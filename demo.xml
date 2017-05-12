@@ -1,0 +1,25 @@
+<openerp>
+    <data>
+        <!--  -->
+        <!--   <record id="object0" model="darb_boondooa_devis.darb_boondooa_devis"> -->
+        <!--     <field name="name">Object 0</field> -->
+        <!--   </record> -->
+        <!--  -->
+        <!--   <record id="object1" model="darb_boondooa_devis.darb_boondooa_devis"> -->
+        <!--     <field name="name">Object 1</field> -->
+        <!--   </record> -->
+        <!--  -->
+        <!--   <record id="object2" model="darb_boondooa_devis.darb_boondooa_devis"> -->
+        <!--     <field name="name">Object 2</field> -->
+        <!--   </record> -->
+        <!--  -->
+        <!--   <record id="object3" model="darb_boondooa_devis.darb_boondooa_devis"> -->
+        <!--     <field name="name">Object 3</field> -->
+        <!--   </record> -->
+        <!--  -->
+        <!--   <record id="object4" model="darb_boondooa_devis.darb_boondooa_devis"> -->
+        <!--     <field name="name">Object 4</field> -->
+        <!--   </record> -->
+        <!--  -->
+    </data>
+</openerp>

@@ -1,0 +1,19 @@
+<openerp>
+    <data>
+        <!-- <record model="ir.ui.view" id="view_order_form">
+            <field name="name">sale.order.form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="attributes">
+				    <attribute name="string">Besoin</attribute>
+                </xpath>
+			    <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
+				    <field name="namo"/>
+                </xpath>
+            </field>
+        </record> -->
+        
+
+    </data>
+</openerp>
