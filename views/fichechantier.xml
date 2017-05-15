@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Declared the same in every module that may need it -->
+    <record id="fiche_chantier" model="ir.ui.view">
+        <field name="name">Fiche de Chantier</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <data>
+              <xpath expr="//field[@name='state']" position="before">
+                  <field name="status_interv" widget="statusbar" statusbar_visible="brouillon,rempli,valide,comptabilise" statusbar_colors="{&quot;brouillon&quot;:&quot;red&quot;,&quot;rempli&quot;:&quot;blue&quot;}"/>
+              </xpath>
+              <xpath expr="//page[last()]" position="after">
+                  <page name="fiche_chantier_infos"
+                        string="Infos Chantier">
+                      <group name="fiche_chantier_infos_group">
+                        <group string="Adresse du Chantier">
+                          <field name="inter_date"/>
+                          <field name="lieu_intervention_latitude"/>
+                          <field name="lieu_intervention_longitude"/>
+                          <field name="lieu_intervention_adresse"/>
+                          <field name="is_display_gm"/>
+                        </group>
+                      </group>
+                  </page>
+              </xpath>
+          </data>
+        </field>
+    </record>
+
+  </data>
+</odoo>
