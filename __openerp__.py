@@ -20,13 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'account',
-	            'account_accountant', 'hr', 'mrp'
+    'depends': ['base', 'sale', 'account', 
+	            'account_accountant', 'hr', 'mrp'			
                 ],
 
     # always loaded
     'data': [
-        'views/fichechantier.xml'
+	    'views/fichechantier.xml' ,
+		'views/teaminfo.xml'
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
