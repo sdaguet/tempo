@@ -3,36 +3,264 @@
   <data>
 
     <!-- Declared the same in every module that may need it -->
-    <record id="fiche_chantier" model="ir.ui.view">
-        <field name="name">Fiche de Chantier</field>
-        <field name="model">fiche.chantier</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
-        <field name="priority">2</field>
-        <field name="arch" type="xml">
-            <data>
-              <xpath expr="//button[@name='button_confirm']" position="after">
-                  <button name="button_remplir" attrs="{'invisible': [('status_interv','!=', 'brouillon')]}" string="Valider Fiche Chantier" class="oe_highlight"/>
-              </xpath>
-              <xpath expr="//field[@name='state']" position="before">
-                  <field name="status_interv" widget="statusbar" statusbar_visible="brouillon,rempli,valide,comptabilise" statusbar_colors="{&quot;brouillon&quot;:&quot;red&quot;,&quot;rempli&quot;:&quot;blue&quot;}"/>
-              </xpath>
-              <xpath expr="//page[last()]" position="after">
-                  <page name="fiche_chantier_infos"
-                        string="Infos Chantier">
-                      <group name="fiche_chantier_infos_group">
-                        <group string="Adresse du Chantier">
-                          <field name="inter_date"/>
-                          <field name="status_interv"/>
-                          <field name="equipe_id"/>
+    <record id="fiche_chantier_form_view" model="ir.ui.view">
+            <field name="name">fiche.chantier.form</field>
+            <field name="model">fiche.chantier</field>
+            <field name="arch" type="xml">
+                <form string="Manufacturing Orders">
+                <header>
+                  <button name="button_confirm" states="draft" string="Confirm Production" class="oe_highlight"/>
+                  <button name="action_assign" states="confirmed,picking_except" string="Reserve" type="object" class="oe_highlight"/>
+                  <button name="force_production" states="confirmed" string="Force Reservation" type="object"/>
+                  <button name="button_produce" states="ready" string="Mark as Started"/>
+                  <button name="button_cancel" states="draft,ready,in_production" string="Cancel Production"/>
+                  <button name="action_cancel" type="object" states="confirmed" string="Cancel Production"/>
+                  <field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,done" statusbar_colors='{"confirmed":"blue"}'/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Manufacturing Reference"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id" on_change="product_id_change(product_id, product_qty)" domain="[('bom_ids','!=',False),('bom_ids.type','!=','phantom')]" context='{"default_type": "product"}'/>
+                            <field name="product_tmpl_id" invisible="1"/>
+                            <field name="state" invisible="1"/>
+                            <label for="product_qty"/>
+                            <div class="o_row">
+                                <field name="product_qty" on_change="product_id_change(product_id, product_qty)"/>
+                                <field name="product_uom" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
+                                <button type="action"
+                                    name="%(mrp.action_change_production_qty)d"
+                                    string="Update" states="confirmed" class="oe_edit_only oe_link"/>
+                            </div>
+                            <field name="date_planned"/>
                         </group>
-                      </group>
-                  </page>
-              </xpath>
-          </data>
-        </field>
-    </record>
+                        <group>
+                            <field name="bom_id"
+                                domain="['|',
+                                            ('product_id','=',product_id),
+                                            '&amp;',
+                                                ('product_tmpl_id.product_variant_ids','=',product_id),
+                                                ('product_id','=',False)]"
+                                context="{'default_product_id': product_id, 'default_product_tmpl_id': product_tmpl_id}" on_change="bom_id_change(bom_id)" required="1"/>
+                            <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                            <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'mrp.group_mrp_user']}"/>
+                            <field name="origin"/>
+                        </group>
+                        <group groups="stock.group_locations">
+                            <field name="location_src_id" domain="[('usage','=','internal')]" on_change="location_id_change(location_src_id,location_dest_id)"/>
+                            <field name="location_dest_id" domain="[('usage','=','internal')]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Consumed Products">
+                            <group>
+                                <group string="Products to Consume">
+                                    <field name="move_lines" nolabel="1" options="{'reload_on_button': true}">
+                                        <tree decoration-info="state == 'draft'" decoration-muted="state in ('cancel','done')" decoration-danger="state in ('confirmed','waiting')" string="Products to Consume">
+                                            <field name="product_id"/>
+                                            <field name="product_uom_qty"  string="Quantity"/>
+                                            <field name="product_uom" options="{'no_open':True,'no_create':True}" string="Unit of Measure" groups="product.group_uom"/>
+                                            <field name="state" invisible="1"/>
+                                            <button name="%(mrp.move_consume)d"
+                                                string="Consume Products" type="action"
+                                                icon="gtk-go-forward" context="{'consume': True}"
+                                                states="assigned"
+                                                 />
+                                            <button name="%(stock.move_scrap)d"
+                                                string="Scrap Products" type="action"
+                                                icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"
+                                                states="draft,waiting,confirmed,assigned"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group string="Consumed Products">
+                                    <field name="move_lines2" nolabel="1" options="{'reload_on_button': true}">
+                                       <tree decoration-danger="scrapped==True" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Consumed Products" editable="bottom">
+                                           <field name="product_id" readonly="1"/>
+                                           <field name="restrict_lot_id" context="{'product_id': product_id}" groups="stock.group_production_lot"/>
+                                           <field name="product_uom_qty" readonly="1"/>
+                                           <field name="product_uom" options="{'no_open':True,'no_create':True}" readonly="1" string="Unit of Measure" groups="product.group_uom"/>
+                                           <field name="state" invisible="1"/>
+                                           <field name="scrapped" invisible="1"/>
+                                       </tree>
+                                    </field>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Finished Products">
+                            <group>
+                                <group string="Products to Produce">
+                                    <field name="move_created_ids" nolabel="1" options="{'reload_on_button': true}">
+                                        <tree string="Products to Finish">
+                                            <field name="product_id"/>
+                                            <field name="product_uom_qty"/>
+                                            <field name="product_uom" options="{'no_open':True,'no_create':True}"  string="Unit of Measure" groups="product.group_uom"/>
+                                            <field name="state" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group string="Produced Products">
+                                    <field name="move_created_ids2" nolabel="1" options="{'reload_on_button': true}">
+                                        <tree decoration-danger="scrapped==True" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Finished Products">
+                                            <field name="product_id" readonly="1"/>
+                                            <field name="product_uom_qty" readonly="1"/>
+                                            <field name="restrict_lot_id" groups="stock.group_production_lot"/>
+                                            <field name="product_uom" options="{'no_open':True,'no_create':True}" readonly="1" string="Unit of Measure" groups="product.group_uom"/>
+                                            <field name="location_dest_id"  readonly="1" string="Destination Loc." widget="selection" groups="stock.group_locations"/>
+                                            <field name="scrapped" invisible="1"/>
+                                            <field name="state" invisible="1"/>
+                                            <button name="%(stock.move_scrap)d"
+                                                string="Scrap Products" type="action" icon="terp-gtk-jump-to-ltr"
+                                                states="done,cancel"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Work Orders" groups="mrp.group_mrp_routings">
+                            <button name="action_compute" states="draft"
+                                string="Compute Data" type="object"
+                                icon="terp-stock_format-scientific"/>
+                            <field name="workcenter_lines" options="{'reload_on_button': true}">
+                                <form string="Production Work Centers">
+                                    <group col="4">
+                                        <field colspan="4" name="name"/>
+                                        <field name="workcenter_id"/>
+                                        <field name="sequence"/>
+                                        <field name="cycle"/>
+                                        <field name="hour" widget="float_time"/>
+                                    </group>
+                                </form>
+                                <tree string="Production Work Centers">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="workcenter_id"/>
+                                    <field name="cycle"/>
+                                    <field name="hour" widget="float_time"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Scheduled Products">
+                            <button name="action_compute" states="draft"
+                                string="Compute Data" type="object"
+                                icon="terp-stock_format-scientific"/>
+                            <field name="product_lines"/>
+                        </page>
+                        <page string="Extra Information">
+                            <group>
+                                <group>
+                                    <field name="priority"/>
+                                    <field name="date_start" invisible="1"/>
+                                    <field name="date_finished" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                                    <field name="move_prod_id" groups="base.group_no_one"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+      </record>
+      <record id="fiche_chantier_calendar_view" model="ir.ui.view">
+        <field name="name">fiche.chantier.calendar</field>
+            <field name="model">fiche.chantier</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar color="routing_id" date_start="date_planned" string="Manufacturing Orders">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="product_qty"/>
+                </calendar>
+            </field>
+      </record>
+      <record id="fiche_chantier_gantt_view" model="ir.ui.view">
+        <field name="name">fiche.chantier.gantt</field>
+            <field name="model">fiche.chantier</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <gantt date_stop="date_finished" date_start="date_start" progress="progress" string="Productions" default_group_by="routing_id">
+                </gantt>
+            </field>
+      </record>
+      <record id="fiche_chantier_tree_view" model="ir.ui.view">
+          <field name="name">fiche.chantier.tree</field>
+          <field name="model">fiche.chantier</field>
+          <field name="arch" type="xml">
+              <tree decoration-bf="message_needaction==True" decoration-info="state in ('draft','confirmed')" decoration-danger="date_planned&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">
+                  <field name="message_needaction" invisible="1"/>
+                  <field name="name"/>
+                  <field name="date_planned"/>
+                  <field name="product_id"/>
+                  <field name="product_qty" sum="Total Qty"/>
+                  <field name="product_uom" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
+                  <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                  <field name="hour_total" sum="Total Hours"/>
+                  <field name="cycle_total" sum="Total Cycles"/>
+                  <field name="origin"/>
+                  <field name="state"/>
+              </tree>
+          </field>
+      </record>
+        <record id="fiche_chantier_kanban_view" model="ir.ui.view">
+            <field name="name">fiche.chantier.kanban</field>
+            <field name="model">fiche.chantier</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="product_qty"/>
+                     <field name="product_uom" options="{'no_open':True,'no_create':True}"/>
+                    <field name="date_planned"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <strong><span><t t-esc="record.product_id.value"/></span></strong>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <strong><span class="pull-right text-right"><t t-esc="record.product_qty.value"/> <t t-esc="record.product_uom.value"/></span></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 text-muted">
+                                        <span><t t-esc="record.name.value"/> <t t-esc="record.date_planned.value and record.date_planned.value.split(' ')[0] or False"/></span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span t-attf-class="pull-right text-right label #{['draft', 'cancel'].indexOf(record.state.raw_value) > -1 ? 'label-default' : ['none'].indexOf(record.state.raw_value) > -1 ? 'label-danger' : ['confirmed'].indexOf(record.state.raw_value) > -1 ? 'label-warning' : ['done'].indexOf(record.state.raw_value) > -1 ? 'label-success' : 'label-primary'}"><t t-esc="record.state.value"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="view_production_calendar" model="ir.ui.view">
+            <field name="name">fiche.chantier.calendar</field>
+            <field name="model">fiche.chantier</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar color="routing_id" date_start="date_planned" string="Manufacturing Orders">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="product_qty"/>
+                </calendar>
+            </field>
+        </record>
 
-    
+
 
   </data>
 </odoo>

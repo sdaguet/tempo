@@ -21,12 +21,14 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account',
-	            'account_accountant', 'hr', 'mrp'
+	            'account_accountant', 'hr', 'mrp', 'hr_attendance', 'hr_payroll'
                 ],
 
     # always loaded
     'data': [
-        'views/fichechantier.xml'
+        'data/menus.xml',
+        'views/fichechantier.xml',
+        'views/fc_workflow.xml'
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode

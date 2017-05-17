@@ -11,28 +11,14 @@ class fiche_chantier(models.Model):
     _inherit = "mrp.production"
     _name = "fiche.chantier"
     _description = 'Fiche de Chantier'
-    status_interv = fields.Selection([
-        ('brouillon', u'A remplir'),
-        ('rempli', u'Rempli. A valider'),
-        ('valide', u'Validé. A comptabiliser'),
-        ('comptabilise', u'Comptabilisé')], default='brouillon',
+    state = fields.Selection([
+        ('draft', 'A remplir'),
+        ('cancel', 'Annulé'),
+        ('confirmed', 'Rempli. A valider'),
+        ('ready', 'Validé. A comptabiliser'),
+        ('in_production', 'Validé. A comptabiliser'),
+        ('done', 'Comptabilisé')], default='brouillon', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
 
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
-
-    @api.one
-    def action_remplir(self):
-        self.status_interv = 'rempli'
-
-    @api.one
-    def action_valider(self):
-        self.status_interv = 'valide'
-
-    @api.one
-    def action_compta(self):
-        self.status_interv = 'comptabilise'
-
-    @api.one
-    def action_decompta(self):
-        self.status_interv = 'valide'

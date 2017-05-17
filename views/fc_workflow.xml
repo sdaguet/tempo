@@ -4,8 +4,8 @@
         <!-- Production -->
 
         <record id="wkf_prod" model="workflow">
-            <field name="name">mrp.production.basic</field>
-            <field name="osv">mrp.production</field>
+            <field name="name">fiche.chantier.basic</field>
+            <field name="osv">fiche.chantier</field>
             <field name="on_create">True</field>
         </record>
 
