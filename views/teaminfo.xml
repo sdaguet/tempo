@@ -1,0 +1,20 @@
+<openerp>
+    <data>
+
+        <record  id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+	          <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+			      <xpath expr="//page[last()]" position="after">
+		            <page name="infos_team" string="Infos Team">
+						<group name="team_work_infos_group">
+                            <field name="name" class="oe_inline"/>
+                            <field name="manager" class="oe_inline"/>
+                      </group>
+                    </page>
+                </xpath>
+            </field>
+		</record>
+    </data>
+</openerp>
