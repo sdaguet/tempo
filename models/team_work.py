@@ -4,7 +4,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class Equipe(models.Model):
-    _inherit = "hr.employee"
     _name ='equipe'
     name = fields.Char('Team Name',required=True)
     manager = fields.Many2one('hr.employee', string='Manager', index=True, track_visibility='onchange',required=True)
