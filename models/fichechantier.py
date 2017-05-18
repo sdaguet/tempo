@@ -17,7 +17,7 @@ class fiche_chantier(models.Model):
         ('confirmed', 'Rempli. A valider'),
         ('ready', 'Validé. A comptabiliser'),
         ('in_production', 'Validé. A comptabiliser'),
-        ('done', 'Comptabilisé')], default='brouillon', copy=False,
+        ('done', 'Comptabilisé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
 
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")

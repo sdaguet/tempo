@@ -29,7 +29,7 @@
     'data': [
         'data/menus.xml',
         'views/fichechantier.xml',
-        'views/fc_workflow.xml'
+        'views/fc_workflow.xml',
 		'views/teaminfo.xml'
     ],
 	#'qweb': ['static/src/js/*.js'],

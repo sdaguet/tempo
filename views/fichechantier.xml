@@ -35,6 +35,7 @@
                                     name="%(mrp.action_change_production_qty)d"
                                     string="Update" states="confirmed" class="oe_edit_only oe_link"/>
                             </div>
+                            <field name="inter_date"/>
                             <field name="date_planned"/>
                         </group>
                         <group>
@@ -44,9 +45,10 @@
                                             '&amp;',
                                                 ('product_tmpl_id.product_variant_ids','=',product_id),
                                                 ('product_id','=',False)]"
-                                context="{'default_product_id': product_id, 'default_product_tmpl_id': product_tmpl_id}" on_change="bom_id_change(bom_id)" required="1"/>
+                                context="{'default_product_id': product_id, 'default_product_tmpl_id': product_tmpl_id}" on_change="bom_id_change(bom_id)" />
                             <field name="routing_id" groups="mrp.group_mrp_routings"/>
                             <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'mrp.group_mrp_user']}"/>
+                            <field name="equipe_id"/>
                             <field name="origin"/>
                         </group>
                         <group groups="stock.group_locations">
@@ -260,7 +262,55 @@
             </field>
         </record>
 
-
+        <record id="view_fiche_chantier_filter" model="ir.ui.view">
+            <field name="name">fiche.chantier.select</field>
+            <field name="model">fiche.chantier</field>
+            <field name="arch" type="xml">
+                <search string="Search Production">
+                    <field name="name" string="Production" filter_domain="['|',('name','ilike',self),('origin','ilike',self)]"/>
+                    <filter string="Pending" name="pending" domain="[('state','=','confirmed')]"
+                        help="Manufacturing Orders which are waiting for raw materials."/>
+                    <filter string="Ready" name="ready" domain="[('state','=','ready')]"
+                        help="Manufacturing Orders which are ready to start production."/>
+                    <filter string="In Production" name="inprogress" domain="[('state','=','in_production')]"
+                        help="Manufacturing Orders which are currently in production."/>
+                    <separator/>
+                    <filter string="Late" domain="['&amp;', ('date_planned','&lt;', current_date), ('state', 'in', ('draft', 'confirmed', 'ready'))]"
+                        help="Production started late"/>
+                    <field name="product_tmpl_id"/>
+                    <field name="product_id"/>
+                    <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Routing" domain="[]" context="{'group_by':'routing_id'}"/>
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Scheduled Month" domain="[]" context="{'group_by':'date_planned'}" help="Scheduled Date by Month"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+        <record id="fiche_chantier_action" model="ir.actions.act_window">
+            <field name="name">Manufacturing Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fiche.chantier</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,gantt</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="view_fiche_chantier_filter"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a manufacturing order.
+              </p><p>
+                A manufacturing order, based on a bill of materials, will
+                consume raw materials and produce finished products.
+              </p><p>
+                Manufacturing orders are usually proposed automatically based
+                on customer requirements or automated rules like the minimum
+                stock rule.
+              </p>
+            </field>
+        </record>
 
   </data>
 </odoo>
