@@ -30,7 +30,8 @@
         'data/menus.xml',
         'views/fichechantier.xml',
         'views/fc_workflow.xml',
-		'views/teaminfo.xml'
+        'views/teaminfo.xml',
+        'crons/template.xml'
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
