@@ -31,7 +31,12 @@
         'views/fichechantier.xml',
         'views/fc_workflow.xml',
         'views/teaminfo.xml',
-        'crons/template.xml'
+        'crons/template.xml',
+		'report/quotations.xml',
+		'views/report_amenagement.xml',
+		'views/modif_quotation.xml',
+		'views/report_plantation.xml',
+		'views/report_entretien.xml',
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
