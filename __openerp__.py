@@ -35,8 +35,6 @@
 		'report/quotations.xml',
 		'views/report_amenagement.xml',
 		'views/modif_quotation.xml',
-		'views/report_plantation.xml',
-		'views/report_entretien.xml',
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
