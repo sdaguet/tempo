@@ -35,6 +35,7 @@
 		'report/quotations.xml',
 		'views/report_amenagement.xml',
 		'views/modif_quotation.xml',
+        'security/security.xml',
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
