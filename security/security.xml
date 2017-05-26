@@ -24,7 +24,7 @@
 	        <field name="perm_write" eval="True"/>
 	        <field name="perm_create" eval="True"/>
 	        <field name="perm_unlink" eval="True"/>
-	    	<field name="domain_force">[('equipe_id.manager','=',user.id)]</field>
+	    	<field name="domain_force">[('equipe_id.manager.user_id','=',user.id)]</field>
 	    </record>
 
 	   	<!-- Menus access -->
