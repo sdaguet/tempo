@@ -109,6 +109,27 @@
             </xpath>  
 			
         </template>
+		<template  id="colspane_modif" inherit_id="sale_layout.subtotal_template">
+    
+            <xpath expr="//tr[@class='text-right']/td" position="attributes">
+		        <attribute name="colspan">8</attribute>
+		    </xpath>  
+		
+        </template>
+		<template  id="largeur_modif" inherit_id="sale_layout.category_template">
+    
+            <xpath expr="//tr[@class='active']/td" position="attributes">
+		        <attribute name="colspan">8</attribute>
+		    </xpath>  
+		
+        </template>
+		<template  id="brackets_modif" inherit_id="sale_layout.separator_template">
+    
+            <xpath expr="//tr[@class='text-center']/td" position="attributes">
+		        <attribute name="colspan">8</attribute>
+		    </xpath>  
+		
+        </template>
 		
 		<template id="report_amenagement">
             <t t-call="report.html_container">
