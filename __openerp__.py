@@ -22,7 +22,7 @@
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account',
 	            'account_accountant', 'hr', 'mrp',
-                'sale_layout', 'hr_timesheet'
+                'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet'
                 ],
 
     # always loaded
