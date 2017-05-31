@@ -1,0 +1,894 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* darb_puthod
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20170411\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 15:39+0000\n"
+"PO-Revision-Date: 2017-05-31 15:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: darb_puthod
+#: model:product.product,description_sale:darb_puthod.product_entretien_printemps
+#: model:product.template,description_sale:darb_puthod.product_entretien_printemps_product_template
+msgid "\n"
+"			Enlevement des protections hivernales (deligaturage, enlevement des perchettes)\n"
+"                        Taille de formation des arbustes\n"
+"                        Piochage manuel des massifs\n"
+"			Fertilisation des arbres et des arbustes\n"
+"			Evacuation et mise en decharge des indesirables\n"
+"            "
+msgstr "\n"
+"			Enlevement des protections hivernales (deligaturage, enlevement des perchettes)\n"
+"                        Taille de formation des arbustes\n"
+"                        Piochage manuel des massifs\n"
+"			Fertilisation des arbres et des arbustes\n"
+"			Evacuation et mise en decharge des indesirables\n"
+"            "
+
+#. module: darb_puthod
+#: model:product.product,description_sale:darb_puthod.product_plantation
+#: model:product.template,description_sale:darb_puthod.product_plantation_product_template
+msgid "\n"
+"			Prise en charge (deplacement, preparation)\n"
+"                        Confection des trous de plantation\n"
+"                        Mise en place des sujets\n"
+"			Mise en place des ancrages\n"
+"			Mise en place des fournitures\n"
+"			Remise en place de la terre vegetale\n"
+"			Nettoyage, rattissage, arrosage\n"
+"            "
+msgstr "\n"
+"			Prise en charge (deplacement, preparation)\n"
+"                        Confection des trous de plantation\n"
+"                        Mise en place des sujets\n"
+"			Mise en place des ancrages\n"
+"			Mise en place des fournitures\n"
+"			Remise en place de la terre vegetale\n"
+"			Nettoyage, rattissage, arrosage\n"
+"            "
+
+#. module: darb_puthod
+#: model:product.product,description_sale:darb_puthod.product_entretien_autumn
+#: model:product.template,description_sale:darb_puthod.product_entretien_autumn_product_template
+msgid "\n"
+"			Suppression des fleurs fanees\n"
+"                        Mise en place des protections hivernales (mise en place des perchettes)\n"
+"                        Ligaturage des plantes sur leur support\n"
+"			Preparation des vegetaux a l'hiver et au deneigement\n"
+"            "
+msgstr "\n"
+"			Suppression des fleurs fanees\n"
+"                        Mise en place des protections hivernales (mise en place des perchettes)\n"
+"                        Ligaturage des plantes sur leur support\n"
+"			Preparation des vegetaux a l'hiver et au deneigement\n"
+"            "
+
+#. module: darb_puthod
+#: model:product.product,description_sale:darb_puthod.product_entretien_ete
+#: model:product.template,description_sale:darb_puthod.product_entretien_ete_product_template
+msgid "\n"
+"			Tonte\n"
+"                        Evacuation et mise en decharge des indesirables\n"
+"                       \n"
+"            "
+msgstr "\n"
+"			Tonte\n"
+"                        Evacuation et mise en decharge des indesirables\n"
+"                       \n"
+"            "
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<span>10%</span>"
+msgstr "<span>10%</span>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<span>20%</span>"
+msgstr "<span>20%</span>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Shipping address:</strong>"
+msgstr "<strong>Adresse de livraison:</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>TVA</strong>"
+msgstr "<strong>TVA</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Taux</strong>"
+msgstr "<strong>Taux</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Total HT</strong>"
+msgstr "<strong>Total HT</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Total TTC</strong>"
+msgstr "<strong>Total TTC</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Total TVA</strong>"
+msgstr "<strong>Total TVA</strong>"
+
+#. module: darb_puthod
+#: model:ir.actions.act_window,help:darb_puthod.fiche_chantier_action
+msgid "A manufacturing order, based on a bill of materials, will\n"
+"                consume raw materials and produce finished products."
+msgstr "Un ordre de fabrication, selon la nomenclature, consommera les matières premières et produira les produits finis."
+
+#. module: darb_puthod
+#: selection:fiche.chantier,state:0
+msgid "A remplir"
+msgstr "A remplir"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_needaction
+msgid "Action Needed"
+msgstr "A besoin d'une action"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,state:0
+msgid "Annulé"
+msgstr "Annulé"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_bom_id
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_bom_id
+msgid "Bill of Materials allow you to define the list of required raw materials to make a finished product."
+msgstr "Les nomenclatures permettent de définir la liste des matières premières pour la fabrication des produits finis."
+
+#. module: darb_puthod
+#: model:res.groups,comment:darb_puthod.group_chef_chantier
+msgid "C'est un Chef de Chantier."
+msgstr "C'est un Chef de Chantier."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Cancel Production"
+msgstr "Annuler la production"
+
+#. module: darb_puthod
+#: model:res.groups,name:darb_puthod.group_chef_chantier
+msgid "Chef de Chantier"
+msgstr "Chef de Chantier"
+
+#. module: darb_puthod
+#: model:ir.actions.act_window,help:darb_puthod.fiche_chantier_action
+msgid "Click to create a manufacturing order."
+msgstr "Cliquez pour créer un ordre de fabrication."
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,state:0
+msgid "Comptabilisé"
+msgstr "Comptabilisé"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Compute Data"
+msgstr "Calculer les données"
+
+#. module: darb_puthod
+#: model:ir.ui.menu,name:darb_puthod.menu_10
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Confirm Production"
+msgstr "Confirmer la fabrication"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Consume Products"
+msgstr "Consommer les articles"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_move_lines2
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Consumed Products"
+msgstr "Articles consommés"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_create_uid
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_create_date
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_inter_date
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_inter_date
+msgid "Date d'intervention"
+msgstr "Date d'intervention"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_message_last_post
+msgid "Date of the last message posted on the record."
+msgstr "Date du dernier message publié sur cet enregistrement"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+#: model:ir.ui.view,arch_db:darb_puthod.view_order_form
+msgid "Designation"
+msgstr "Designation"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Destination Loc."
+msgstr "Emplacement de destination"
+
+#. module: darb_puthod
+#: model:ir.actions.report.xml,name:darb_puthod.sale_quotation_amenagement
+msgid "Devis Amenagement"
+msgstr "Devis Amenagement"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_display_name
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: darb_puthod
+#: model:ir.actions.act_window,name:darb_puthod.fiche_chantier_action_window
+msgid "Détails des déclarations"
+msgstr "Détails des déclarations"
+
+#. module: darb_puthod
+#: model:ir.model,name:darb_puthod.model_hr_employee
+msgid "Employee"
+msgstr "Employé"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_date_finished
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_equipe_id
+#: model:ir.model.fields,field_description:darb_puthod.field_hr_employee_equipe_id
+msgid "Equipe"
+msgstr "Equipe"
+
+#. module: darb_puthod
+#: model:ir.actions.act_window,name:darb_puthod.equipes_action_window
+#: model:ir.ui.menu,name:darb_puthod.menu_101_list
+msgid "Equipes"
+msgstr "Equipes"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Extra Information"
+msgstr "Informations supplémentaires"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_fichechantier_ids
+msgid "Fiche Chantier"
+msgstr "Fiche Chantier"
+
+#. module: darb_puthod
+#: model:ir.model,name:darb_puthod.model_fiche_chantier
+msgid "Fiche de Chantier"
+msgstr "Fiche de Chantier"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.equipe_form_view
+msgid "Fiches Chantier"
+msgstr "Fiches Chantier"
+
+#. module: darb_puthod
+#: model:ir.ui.menu,name:darb_puthod.menu_1
+msgid "Fiches de Chantier"
+msgstr "Fiches de Chantier"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Finished Products"
+msgstr "Produits finis"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_location_dest_id
+msgid "Finished Products Location"
+msgstr "Emplacements des produits finis"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (Canaux)"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Force Reservation"
+msgstr "Forcer la réservation"
+
+#. module: darb_puthod
+#: model:product.product,name:darb_puthod.product_entretien_autumn
+#: model:product.template,name:darb_puthod.product_entretien_autumn_product_template
+msgid "Forfait Entretien Automne\""
+msgstr "Forfait Entretien Automne\""
+
+#. module: darb_puthod
+#: model:product.product,name:darb_puthod.product_entretien_ete
+#: model:product.template,name:darb_puthod.product_entretien_ete_product_template
+msgid "Forfait Entretien Ete"
+msgstr "Forfait Entretien Ete"
+
+#. module: darb_puthod
+#: model:product.product,name:darb_puthod.product_entretien_printemps
+#: model:product.template,name:darb_puthod.product_entretien_printemps_product_template
+msgid "Forfait Entretien Printemps"
+msgstr "Forfait Entretien Printemps"
+
+#. module: darb_puthod
+#: model:ir.module.category,description:darb_puthod.module_category_puthod
+msgid "Gestion des services de Puthod."
+msgstr "Gestion des services de Puthod."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Group By..."
+msgstr "Regrouper par..."
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_id
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "si elle est cochée, de nouveaux messages requièrent votre attention."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "In Production"
+msgstr "En cours de production"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Invoicing address:"
+msgstr "Adresse de facturation :"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Invoicing and shipping address:"
+msgstr "Adresse de facturation et de livraison :"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_is_follower
+msgid "Is Follower"
+msgstr "Est un abonné"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_last_post
+msgid "Last Message Date"
+msgstr "Date du dernier message"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe___last_update
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_write_uid
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_write_date
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Late"
+msgstr "En retard"
+
+#. module: darb_puthod
+#: model:ir.ui.menu,name:darb_puthod.menu_1_list
+msgid "Liste déclarations"
+msgstr "Liste déclarations"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_location_src_id
+msgid "Location where the system will look for components."
+msgstr "Emplacement des composants"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_location_dest_id
+msgid "Location where the system will stock the finished products."
+msgstr "Emplacement où le système stockera les produits finis."
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: darb_puthod
+#: model:ir.actions.act_window,name:darb_puthod.fiche_chantier_action
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_calendar_view
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_tree_view
+#: model:ir.ui.view,arch_db:darb_puthod.view_production_calendar
+msgid "Manufacturing Orders"
+msgstr "Ordres de fabrication"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Manufacturing Orders which are currently in production."
+msgstr "Ordres de fabrication actuellement en production."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Manufacturing Orders which are ready to start production."
+msgstr "Ordres de fabrication dont la production est prête à démarrer."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Manufacturing Orders which are waiting for raw materials."
+msgstr "Ordres de fabrication en attente de matières premières."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Manufacturing Reference"
+msgstr "Référence de fabrication"
+
+#. module: darb_puthod
+#: model:ir.actions.act_window,help:darb_puthod.fiche_chantier_action
+msgid "Manufacturing orders are usually proposed automatically based\n"
+"                on customer requirements or automated rules like the minimum\n"
+"                stock rule."
+msgstr "Les ordres de fabrication sont généralement proposés automatiquement selon les exigences clients ou les règles automatisés comme la règle de stock minimal."
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Mark as Started"
+msgstr "Marqué comme démarré"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,priority:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,priority:0
+msgid "Not urgent"
+msgstr "Not urgent"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Num.ligne"
+msgstr "Num.ligne"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'Actions"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages demandant une action"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Order Amenagement #"
+msgstr "Order Amenagement #"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Pending"
+msgstr "En attente"
+
+#. module: darb_puthod
+#: model:product.product,name:darb_puthod.product_plantation
+#: model:product.template,name:darb_puthod.product_plantation_product_template
+msgid "Plantation avec garantie"
+msgstr "Plantation avec garantie"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.equipe_form_view
+msgid "Pointer l'entrée"
+msgstr "Pointer l'entrée"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.equipe_form_view
+msgid "Pointer la sortie"
+msgstr "Pointer la sortie"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_priority
+msgid "Priority"
+msgstr "Priorité"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_order_form
+msgid "Prix Brut HT"
+msgstr "Prix Brut HT"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Prix brut HT"
+msgstr "Prix brut HT"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Prix unitaire"
+msgstr "Prix unitaire"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_move_created_ids2
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Produced Products"
+msgstr "Articles produits"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_product_id
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_product_tmpl_id
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Product"
+msgstr "Article"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_move_prod_id
+msgid "Product Move"
+msgstr "Mouvement de stock"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_product_qty
+msgid "Product Quantity"
+msgstr "Quantité d'article"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_product_uom
+msgid "Product Unit of Measure"
+msgstr "Unité de mesure d'article"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Production"
+msgstr "Production"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Production Work Centers"
+msgstr "Postes de charge de production"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_progress
+msgid "Production progress"
+msgstr "Progression de la fabrication"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Production started late"
+msgstr "Production démarrée en retard"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_gantt_view
+msgid "Productions"
+msgstr "Productions"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_move_lines
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Products to Consume"
+msgstr "Articles à consommer"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Products to Finish"
+msgstr "Produits à finir"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_move_created_ids
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Products to Produce"
+msgstr "Articles à produire"
+
+#. module: darb_puthod
+#: model:ir.module.category,name:darb_puthod.module_category_puthod
+#: model:ir.ui.menu,name:darb_puthod.menu_root
+msgid "Puthod"
+msgstr "Puthod"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Quotation Amenagement #"
+msgstr "Devis d'Aménagement #"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_location_src_id
+msgid "Raw Materials Location"
+msgstr "Emplacement de matière première"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Ready"
+msgstr "Prêt"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_ready_production
+msgid "Ready for production"
+msgstr "Prêt à produire "
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_name
+msgid "Reference"
+msgstr "Référence"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_origin
+msgid "Reference of the document that generated this production order request."
+msgstr "Référence du document à l'origine de la demande d'ordre de production."
+
+#. module: darb_puthod
+#: selection:fiche.chantier,state:0
+msgid "Rempli. A valider"
+msgstr "Rempli. A valider"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Reserve"
+msgstr "Réserver"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_ressource_list
+msgid "Ressource List"
+msgstr "Ressource List"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_routing_id
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Routing"
+msgstr "Gammes"
+
+#. module: darb_puthod
+#: model:ir.model,name:darb_puthod.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_date_planned
+msgid "Scheduled Date"
+msgstr "Date prévue"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Scheduled Date by Month"
+msgstr "Date planifiée, par mois"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Scheduled Month"
+msgstr "Mois planifié"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Scheduled Products"
+msgstr "Articles prévus"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_product_lines
+msgid "Scheduled goods"
+msgstr "Produits prévus"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Scrap Products"
+msgstr "Mettre au rebut"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Search Production"
+msgstr "Recherche production"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_origin
+msgid "Source Document"
+msgstr "Document Source"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_date_start
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
+msgid "Status"
+msgstr "État"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_state
+msgid "Status FC"
+msgstr "Status FC"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.equipe_form_view
+msgid "Team"
+msgstr "Team"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_equipe_name
+msgid "Team Name"
+msgstr "Team Name"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_routing_id
+msgid "The list of operations (list of work centers) to produce the finished product. The routing is mainly used to compute work center costs during operations and to plan future loads on work centers based on production plannification."
+msgstr "Liste d'opérations (liste des postes de charge) pour produire le produit fini. La gamme est principalement utilisée pour calculer les coûts des postes de charge pendant les opérations et pour planifier leur charge future à partir du planning de production."
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_cycle_total
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_tree_view
+msgid "Total Cycles"
+msgstr "Cycles totaux"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_hour_total
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_tree_view
+msgid "Total Hours"
+msgstr "Heures Totales"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_tree_view
+msgid "Total Qty"
+msgstr "Qté Totale"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Unit of Measure"
+msgstr "Unité de mesure"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_unread
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de messages non lus"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Update"
+msgstr "Mettre à jour"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,priority:0
+msgid "Urgent"
+msgstr "Urgent"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "VAT:"
+msgstr "TVA :"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,state:0
+msgid "Validé. A comptabiliser"
+msgstr "Validé. A comptabiliser"
+
+#. module: darb_puthod
+#: selection:fiche.chantier,priority:0
+msgid "Very Urgent"
+msgstr "Very Urgent"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_website_message_ids
+msgid "Website communication history"
+msgstr "Historique de communication du site web"
+
+#. module: darb_puthod
+#: model:ir.model.fields,help:darb_puthod.field_fiche_chantier_state
+msgid "When the production order is created the status is set to 'Draft'.\n"
+"If the order is confirmed the status is set to 'Waiting Goods.\n"
+"If any exceptions are there, the status is set to 'Picking Exception.\n"
+"If the stock is available then the status is set to 'Ready to Produce.\n"
+"When the production gets started then the status is set to 'In Production.\n"
+"When the production is over, the status is set to 'Done'."
+msgstr "Lorsque l'ordre de fabrication est créé l'état passe à \"Brouillon\". \n"
+"Si la commande est confirmée  l'état passe à sur \"Marchandises en attente\". \n"
+"En cas d'incident, l'état passe à \"Incident de préparation\". \n"
+"Si le stock est disponible,  l'état passe à \"Prêt à produire\". \n"
+"Lorsque la production est commencée l'état passe à \"En production\".\n"
+"En fin de production, l'état passe à \"Terminé\"."
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_workcenter_lines
+msgid "Work Centers Utilisation"
+msgstr "Occupation du poste de charge"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
+msgid "Work Orders"
+msgstr "Ordres de Travail"
+
+#. module: darb_puthod
+#: model:ir.model,name:darb_puthod.model_equipe
+msgid "equipe"
+msgstr "equipe"
+
+#. module: darb_puthod
+#: model:ir.model.fields,field_description:darb_puthod.field_sale_order_line_price_brut
+msgid "prix brut HT"
+msgstr "prix brut HT"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.equipe_form_view
+msgid "view_team_info"
+msgstr "view_team_info"
+

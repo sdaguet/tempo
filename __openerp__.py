@@ -29,6 +29,7 @@
     # always loaded
     'data': [
         'data/menus.xml',
+		'data/product.xml',
         'views/fichechantier.xml',
         'views/fc_workflow.xml',
         'views/teaminfo.xml',
