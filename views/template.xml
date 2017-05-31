@@ -1,19 +1,37 @@
-<openerp>
-    <data>
-        <!-- <record model="ir.ui.view" id="view_order_form">
-            <field name="name">sale.order.form</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="model">sale.order</field>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="attributes">
-				    <attribute name="string">Besoin</attribute>
-                </xpath>
-			    <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
-				    <field name="namo"/>
-                </xpath>
-            </field>
-        </record> -->
-        
-
-    </data>
-</openerp>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="header" inherit_id="website.layout" name="Chantiers Ouverts">
+	  <xpath expr="//header//ul[@id='top_menu']/li" position="before">
+	      <li>
+	          <a href="/chantierslist">
+	              <i class="fa"></i>
+	              Chantiers Ouverts
+	          </a>
+	      </li>
+	  </xpath>
+    </template>
+    
+    <template id="listchantiers" name="Liste des chantiers ouverts">
+    <t t-call="website.layout">
+	  <div class="container panel-group mb32 mt32" id="debug_infos">
+	      <li t-foreach="chantiers" t-as="cho">
+	              <i class="fa"></i>
+	              <a href="/chantiersForm">CO <span t-field="cho.name"/></a>
+	          
+	      </li>
+	  </div></t>
+    </template>
+    
+    <template id="formchantiers" name="Form des chantiers ouverts">
+    <t t-call="website.layout">
+	  <div class="container panel-group mb32 mt32" id="debug_infos">
+	      <li t-foreach="chantiers" t-as="cho">
+	              <i class="fa"></i>
+	              CO <span t-field="cho.name"/>
+	          
+	      </li>
+	  </div></t>
+    </template>
+    
+    
+</odoo>

@@ -38,6 +38,7 @@
 		'views/modif_quotation.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/template.xml',
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
