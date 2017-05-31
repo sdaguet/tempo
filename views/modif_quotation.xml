@@ -9,9 +9,12 @@
                 <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="attributes">
 				    <attribute name="string">Designation</attribute>
                 </xpath>
-			    <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="after">
+				<xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="attributes">
+				    <attribute name="string">Prix Brut HT</attribute>
+                </xpath>
+			    <!-- <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="after">
 				    <field name="price_brut"/>
-                </xpath>  
+                </xpath> -->  
             </field>
         </record>
                
