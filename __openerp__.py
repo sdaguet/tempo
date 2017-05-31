@@ -21,8 +21,8 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account',
-	            'account_accountant', 'hr', 'mrp'
-
+	            'account_accountant', 'hr', 'mrp',
+                'website'
                 ],
 
     # always loaded
