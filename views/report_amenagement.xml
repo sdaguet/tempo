@@ -10,7 +10,9 @@
                     <span t-if="doc.state in ['draft','sent']">Quotation Amenagement # </span>
                     <span t-field="doc.name"/>
                 </h2>
-			</xpath>		
+			</xpath>
+			
+              			
 			
 			<xpath expr="//table[1][@class='table table-condensed']/thead/tr/th[5]" position="before">
                 <th class="text-right">

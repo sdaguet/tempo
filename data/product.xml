@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_entretien_printemps" model="product.product">
+            <field name="name">Forfait Entretien Printemps</field>
+            <field name="categ_id" ref="product.product_category_1"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_day"/>
+            <field name="uom_po_id" ref="product.product_uom_day"/>
+            <field name="company_id" eval="[]"/>
+			<field name="description_sale">
+			Enlevement des protections hivernales (deligaturage, enlevement des perchettes)
+                        Taille de formation des arbustes
+                        Piochage manuel des massifs
+			Fertilisation des arbres et des arbustes
+			Evacuation et mise en decharge des indesirables
+            </field>
+        </record>
+		
+		<record id="product_entretien_ete" model="product.product">
+            <field name="name">Forfait Entretien Ete</field>
+            <field name="categ_id" ref="product.product_category_1"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_day"/>
+            <field name="uom_po_id" ref="product.product_uom_day"/>
+            <field name="company_id" eval="[]"/>
+			<field name="description_sale">
+			Tonte
+                        Evacuation et mise en decharge des indesirables
+                       
+            </field>
+        </record>
+		
+		<record id="product_entretien_autumn" model="product.product">
+            <field name="name">Forfait Entretien Automne"</field>
+            <field name="categ_id" ref="product.product_category_1"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_day"/>
+            <field name="uom_po_id" ref="product.product_uom_day"/>
+            <field name="company_id" eval="[]"/>
+			<field name="description_sale">
+			Suppression des fleurs fanees
+                        Mise en place des protections hivernales (mise en place des perchettes)
+                        Ligaturage des plantes sur leur support
+			Preparation des vegetaux a l'hiver et au deneigement
+            </field>
+        </record>
+		
+		<record id="product_plantation" model="product.product">
+            <field name="name">Plantation avec garantie</field>
+            <field name="categ_id" ref="product.product_category_1"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_day"/>
+            <field name="uom_po_id" ref="product.product_uom_day"/>
+            <field name="company_id" eval="[]"/>
+			<field name="description_sale">
+			Prise en charge (deplacement, preparation)
+                        Confection des trous de plantation
+                        Mise en place des sujets
+			Mise en place des ancrages
+			Mise en place des fournitures
+			Remise en place de la terre vegetale
+			Nettoyage, rattissage, arrosage
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
+
+                        
+                        
+		    
+		    
