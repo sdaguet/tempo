@@ -22,7 +22,8 @@
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account',
 	            'account_accountant', 'hr', 'mrp',
-                'website'
+                'website',
+                'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet'
                 ],
 
     # always loaded
@@ -35,6 +36,8 @@
 		'report/quotations.xml',
 		'views/report_amenagement.xml',
 		'views/modif_quotation.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode

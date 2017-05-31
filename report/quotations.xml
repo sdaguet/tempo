@@ -1,0 +1,14 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<openerp>
+    <data>
+        <report 
+            id="sale_quotation_amenagement"
+            string="Devis Amenagement"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="darb_puthod.report_amenagement" 
+            name="darb_puthod.report_amenagement"
+            />
+		
+    </data>
+</openerp>

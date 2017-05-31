@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.module.category" id="module_category_puthod">
+            <field name="name">Puthod</field>
+            <field name="description">Gestion des services de Puthod.</field>
+            <field name="sequence">10</field>
+        </record>
+        
+    	<record id="group_chef_chantier" model="res.groups">
+	        <field name="name">Chef de Chantier</field>
+	        <field name="category_id" ref="module_category_puthod"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids"/>
+	        <field name="comment">C'est un Chef de Chantier.</field>   
+   		</record>
+ 
+	    <record id="fiche_chantier_visibility" model="ir.rule">
+	        <field name="name">l'utilisateur peut voir ses propre fiche de chantier</field>
+	        <field name="model_id" ref="model_fiche_chantier"/>
+	        <field name="groups" eval="[(4, ref('group_chef_chantier'))]"/>
+	        <field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="True"/>
+	        <field name="perm_unlink" eval="True"/>
+	    	<field name="domain_force">[('equipe_id.manager.user_id','=',user.id)]</field>
+	    </record>
+
+	   	<!-- Menus access -->
+	    <record model="ir.ui.menu" id="darb_puthod.menu_root"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_1"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_10"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_1_list"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_101_list"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
+	    
+	</data>
+</openerp>
