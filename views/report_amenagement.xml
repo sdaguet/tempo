@@ -21,6 +21,32 @@
 				</div>	
 			</xpath>
 			
+			<xpath expr="//div[@id='informations']" position="replace">
+			    <div t-if="doc.client_order_ref" class="col-xs-3">
+                    <strong>Your Reference:</strong>
+                    <p t-field="doc.client_order_ref"/>
+                </div>
+                <div t-if="doc.date_order" class="col-xs-3">
+                    <strong t-if="doc.state not in ['draft','sent']">Date Ordered:</strong>
+                    <strong t-if="doc.state in ['draft','sent']">Quotation Date:</strong>
+                    <p t-field="doc.date_order"/>
+                </div>
+                <div t-if="doc.user_id.name" class="col-xs-3">
+                    <strong>Salesperson:</strong>
+                    <p t-field="doc.user_id"/>
+                </div>
+				<div t-if="doc.user_id.name" class="col-xs-3">
+                    <strong>Delivery date :</strong>
+                    <p t-field="doc.customer_order_delivery_date"/>
+                </div>
+				
+                <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
+                    <strong>Payment Term:</strong>
+                    <p t-field="doc.payment_term_id"/>
+                </div>
+					
+			</xpath>
+			
 			
 			<xpath expr="//h2" position="replace">
 			    <h2>
