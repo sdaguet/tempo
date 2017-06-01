@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Layout and common templates -->
+
+<template id="header" inherit_id="website.layout" name="Header Shop My Cart Link">
+  <xpath expr="//header//ul[@id='top_menu']/li" position="before">
+      <!-- <t t-set="website_sale_order" t-value="website.sale_get_order()"/> -->
+      <li>
+          <a href="/pointages">
+              <i class="fa"></i>
+              Pointages
+          </a>
+      </li>
+  </xpath>
+</template>
+
+
+<template id="pointages" name="Contact us" page="True">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Pointages</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="oe_structure">
+                        <div>
+                            <p>Vous pouvez marquer les présences ci-après.</p>
+                        </div>
+                    </div>
+                    <t t-foreach="docs" t-as="doc">
+                    <div class="text-center mt64" name="mail_button">
+					    EEEE <a t-attf-href="mailto:{{ res_company.email }}" class="btn btn-primary">Present</a>
+					</div>
+					</t>
+                </div>
+                <div class="col-md-4 mb32">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+
+<template id="publish_management">
+    <div groups="base.group_website_publisher" t-ignore="true" class="pull-right css_editable_mode_hidden" t-att-style="style or ''">
+        <div t-attf-class="btn-group js_publish_management #{object.website_published and 'css_published' or 'css_unpublished'}" t-att-data-id="object.id" t-att-data-object="object._name" t-att-data-controller="publish_controller">
+            <button class="btn btn-danger js_publish_btn">Not Published</button>
+            <button class="btn btn-success js_publish_btn">Published</button>
+            <button type="button" t-attf-class="btn btn-default dropdown-toggle" t-att-id="'dopprod-%s' % object.id" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" t-att-aria-labelledby="'dopprod-%s' % object.id">
+                <t t-raw="0"/>
+                <li t-if="publish_edit">
+                    <a t-attf-href="/web#return_label=Website&amp;view_type=form&amp;model=#{object._name}&amp;id=#{object.id}&amp;action=#{action}"
+                    title='Edit in backend'>Edit</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+</data>
+</openerp>
