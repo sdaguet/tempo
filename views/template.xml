@@ -3,14 +3,71 @@
     <template id="header" inherit_id="website.layout" name="Chantiers Ouverts">
 	  <xpath expr="//header//ul[@id='top_menu']/li" position="before">
 	      <li>
+	          <a href="/chantiersnew">
+	              <i class="fa"></i>
+	              Nouveaux Chantiers
+	          </a>
+	      </li>
+		  <li>
 	          <a href="/chantierslist">
 	              <i class="fa"></i>
 	              Chantiers Ouverts
 	          </a>
 	      </li>
+		  <li>
+	          <a href="/pointages">
+	              <i class="fa"></i>
+	              Présences
+	          </a>
+	      </li>
 	  </xpath>
     </template>
-    
+		
+	<template id="pointages" name="Contact us" page="True">
+		<t t-call="website.layout">
+		  <div id="wrap">
+			<div class="oe_structure"/>
+			<div class="container">
+				<h1>Pointages</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="oe_structure">
+							<div>
+								<p>Vous pouvez marquer les présences ci-après.</p>
+							</div>
+						</div>
+						<table class="table table-hover status_table">
+						<thead>
+							<tr class="active">
+								<th>Nom</th>
+								<th>Equipe</th>
+								<th>Présence</th>
+							</tr>
+						</thead>
+						<t t-foreach="teams" t-as="team">
+							<t t-foreach="team.ressource_list" t-as="membr">
+							<tr>
+							<td><span t-field="membr.name"/>
+							</td>
+							<td><span t-field="team.name"/>
+							</td>
+							<td><a t-attf-href="mailto:{{ res_company.email }}" class="btn btn-primary">Present</a>
+							</td>
+							</tr>
+							</t>
+						</t>
+						</table>
+					</div>
+					<div class="col-md-4 mb32">
+						<t t-call="website.company_description"/>
+					</div>
+				</div>
+			</div>
+			<div class="oe_structure"/>
+		  </div>
+		</t>
+	</template>
+
     <template id="listchantiers" name="Liste des chantiers ouverts">
     <t t-call="website.layout">
 	  <div class="container panel-group mb32 mt32" id="debug_infos">

@@ -5,10 +5,26 @@ from openerp.http import request
 from openerp.addons.web.http import request as reqst
 import logging
 _logger = logging.getLogger(__name__)
-
+    
 
 class WebsiteContractDarbtech(http.Controller):
-
+    @http.route('/pointages', type='http', auth="user", website=True)
+    def pointages(self, **kw):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.registry.get('hr.employee')
+        _logger.info("Current user = " + str(uid))
+        current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
+        _logger.info("Current employee = " + str(current_employee))
+        list_teams = request.env['equipe'].sudo().search(
+                [
+                    ('manager', '=', current_employee.id)
+                ])
+        
+        return http.request.render('darb_puthod.pointages', {
+            'teams' : list_teams
+                })
+                
     @http.route(['/chantierslist'], type='http', auth="user", website=True)
     def chantiers_liste(self, product_id=None):
         user = request.env.user
