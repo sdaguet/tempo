@@ -5,7 +5,8 @@
 		
 		<template id="sale_report_quotation" inherit_id="sale.report_saleorder_document">
             
-			<xpath expr="//div[@class='col-xs-6']" position="replace">
+			<!-- <xpath expr="//div[@class='col-xs-6']" position="replace">
+				 <t t-set="taxes" t-value="{}"/> 
 			    <div class="col-xs-6">
                     <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
                     <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
@@ -19,6 +20,56 @@
                         <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
                     </div>
 				</div>	
+			</xpath> -->
+			
+			<xpath expr="//div[@class='row']" position="replace">
+			    <div class="row">
+                <div class="col-xs-6">
+                    <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
+					<strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Shipping address:</strong>
+                        <div t-field="doc.partner_shipping_id" 
+                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
+                        <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
+                    
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
+                        <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
+                    <div t-field="doc.partner_invoice_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
+                    <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p> 
+                    </div>                   
+                </div> 
+                </div>
+			</xpath>
+			
+			<xpath expr="//div[@id='informations']" position="replace">
+			    
+				
+				<div t-if="doc.client_order_ref" class="col-xs-3">
+                    <strong>Your Reference:</strong>
+                    <p t-field="doc.client_order_ref"/>
+					
+                </div>
+                <div t-if="doc.date_order" class="col-xs-3">
+                    <strong t-if="doc.state not in ['draft','sent']">Date Ordered:</strong>
+                    <strong t-if="doc.state in ['draft','sent']">Quotation Date:</strong>
+                    <p t-field="doc.date_order"/>
+                </div>
+                <div t-if="doc.user_id.name" class="col-xs-3">
+                    <strong>Salesperson:</strong>
+                    <p t-field="doc.user_id"/>
+                </div>
+				<div t-if="doc.user_id.name" class="col-xs-3">
+                    <strong>Delivery date :</strong>
+                    <p t-field="doc.customer_order_delivery_date"/>
+                </div>
+				
+                <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
+                    <strong>Payment Term:</strong>
+                    <p t-field="doc.payment_term_id"/>
+                </div>
+					
 			</xpath>
 			
 			
@@ -30,35 +81,30 @@
                 </h2>
 			</xpath>		
 			
-			<xpath expr="//table[1][@class='table table-condensed']/thead/tr/th[5]" position="before">
-                <th class="text-right">
-                   Prix unitaire
-                </th>			  
-            </xpath>
+			<xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
+                
+                <tr>
+				    <th>N°Lig</th>
+                    <th>Désignation</th>
+                    <th class="text-right">Quantité</th>
+                    <th class="text-right">Prix Brut HT</th>
+                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></th>
+                    <th class="text-right">TVA</th>
+					<th class="text-right">Prix Net HT</th>
+					<th class="text-right">Valeur Totale HT</th>
+                </tr>				
+            </xpath>		
 			
-			 <xpath expr="//table[1][@class='table table-condensed']/thead/tr/th" position="replace">
-                <th>Designation</th>		  
-            </xpath>
-			
-			<xpath expr="//table[1][@class='table table-condensed']/thead/tr/th[3]" position="replace">
-                <th class="text-right">Prix brut HT</th>		  
-            </xpath>
-            
-			<xpath expr="//table[1][@class='table table-condensed']/thead/tr/th" position="before">
-                <th>Num.ligne</th>		  
-            </xpath>			
-			
-		    <xpath expr="//t/t/tr/td[5]" position="before">
+		    <xpath expr="//t/t/tr/td[6]" position="before">
                 <td class="text-right" >
                     
-				 <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/> 
-                    
-										
+				    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/> 
+                 <!-- <t t-set="taxes[', '.join(map(lambda x: (x.description or x.name), l.tax_id))]" t-value="l.tax_id"/> -->									
                 </td>	
             </xpath> 
 			
 			<xpath expr="//t/t/tr/td[2]/span" position="replace">
-                <span t-field="l.product_uom_qty" t-esc="'%.2f'%(l.product_uom_qty)"/>          	
+                <span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>          	
             </xpath>
 			
 			
@@ -75,10 +121,17 @@
             </xpath>
 			
 			<xpath expr="//div[@name='total']" position="inside">
-                
+               
+              <!-- TAXES -->
+               
+			   <t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/>
+				
                 <div class="col-xs-4 pull-left">
-                    
+                    <t t-foreach="taxes" t-as="v">
+                         *<t t-esc="v"/> : <t t-esc="v_value"/></t>
 					<table class="table table-condensed">
+						
+
                         <tr class="border-black">
                             <th><strong>TVA</strong></th>
 							<th><strong>Taux</strong></th>
@@ -95,7 +148,7 @@
 					</tr> 
 					</t>
                      -->
-				
+						
 						 <tr>
 						 <td><span>2</span></td>
 						 <td><span>20%</span></td>

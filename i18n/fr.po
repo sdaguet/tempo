@@ -892,3 +892,13 @@ msgstr "prix brut HT"
 msgid "view_team_info"
 msgstr "view_team_info"
 
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Delivery date :</strong>"
+msgstr "<strong>Date de livraison :</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "Shipping address:"
+msgstr "Adresse de livraison"
+
