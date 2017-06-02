@@ -5,8 +5,8 @@
 		
 		<template id="sale_report_quotation" inherit_id="sale.report_saleorder_document">
             
-			<xpath expr="//div[@class='col-xs-6']" position="replace">
-				<!-- <t t-set="taxes" t-value="{}"/> -->
+			<!-- <xpath expr="//div[@class='col-xs-6']" position="replace">
+				 <t t-set="taxes" t-value="{}"/> 
 			    <div class="col-xs-6">
                     <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
                     <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
@@ -20,6 +20,27 @@
                         <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
                     </div>
 				</div>	
+			</xpath> -->
+			
+			<xpath expr="//div[@class='row']" position="replace">
+			    <div class="row">
+                <div class="col-xs-6">
+                    <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
+					<strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Shipping address:</strong>
+                        <div t-field="doc.partner_shipping_id" 
+                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
+                        <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
+                    
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
+                        <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
+                    <div t-field="doc.partner_invoice_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
+                    <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p> 
+                    </div>                   
+                </div> 
+                </div>
 			</xpath>
 			
 			<xpath expr="//div[@id='informations']" position="replace">
@@ -103,7 +124,7 @@
                
               <!-- TAXES -->
                
-			   <t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.name}"/>
+			   <t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/>
 				
                 <div class="col-xs-4 pull-left">
                     <t t-foreach="taxes" t-as="v">
