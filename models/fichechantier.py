@@ -7,6 +7,52 @@ import geocoder
 import logging
 _logger = logging.getLogger(__name__)
 
+
+class subtask(models.Model):
+    _name = 'subtask'
+
+    name = fields.Char('Tâche')
+    description = fields.Text('Description')
+    chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+
+
+class chantier(models.Model):
+    _name = "chantier"
+    _description = 'Chantier'
+
+    @api.depends('address')
+    def _compute_glatlng(self):
+        for record in self:
+            address = record.address
+            if address:
+                g = geocoder.google(address).latlng
+                if g:
+                    record.g_lat = g[0]
+                    record.g_lng = g[1]
+                else:
+                    record.g_lat = False
+                    record.g_lng = False
+
+    name = fields.Char('Nom')
+    state = fields.Selection([
+        ('draft', 'Brouillon'),
+        ('progress', 'En cours'),
+        ('done', 'Terminé'),], default='draft', copy=False,
+        string='Status', readonly=True, track_visibility='onchange')
+
+    address = fields.Text(string='Address')
+    is_display_gm = fields.Boolean('Display Google Maps?')
+    g_lat = fields.Float(
+        compute='_compute_glatlng', string='G Latitude', store=True,
+        multi='glatlng', digits=(3,12))
+    g_lng = fields.Float(
+        compute='_compute_glatlng', string='G Longitude', store=True,
+        multi='glatlng', digits=(3,12))
+    subtasks = fields.One2many('subtask', 'chantier_id', string="Tâches")
+    order_id = fields.Many2one('sale.order', string="Order")
+    fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
+
+
 class fiche_chantier(models.Model):
     _inherit = "mrp.production"
     _name = "fiche.chantier"
@@ -22,3 +68,4 @@ class fiche_chantier(models.Model):
 
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
+    chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')

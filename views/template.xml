@@ -69,14 +69,41 @@
 	</template>
 
     <template id="listchantiers" name="Liste des chantiers ouverts">
-    <t t-call="website.layout">
-	  <div class="container panel-group mb32 mt32" id="debug_infos">
-	      <li t-foreach="chantiers" t-as="cho">
-	              <i class="fa"></i>
-	              <a href="/chantiersForm">CO <span t-field="cho.name"/></a>
-	          
-	      </li>
-	  </div></t>
+    	<t t-call="website.layout">
+		  <div id="wrap">
+			<div class="oe_structure"/>
+			<div class="container">
+				<h1>Chantiers Ouverts</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<table class="table table-hover status_table">
+						<thead>
+							<tr class="active">
+								<th>Référence</th>
+								<th>Date prévue</th>
+								<th>Equipe</th>
+							</tr>
+						</thead>
+						<t t-foreach="chantiers" t-as="chantier">
+							<tr>
+							<td><a href="/chantiersForm"><span t-field="chantier.name"/></a>
+							</td>
+							<td><span t-field="chantier.inter_date"/>
+							</td>
+							<td><span t-field="chantier.equipe_id.name"/>
+							</td>
+							</tr>
+						</t>
+						</table>
+					</div>
+					<div class="col-md-4 mb32">
+						<t t-call="website.company_description"/>
+					</div>
+				</div>
+			</div>
+			<div class="oe_structure"/>
+		  </div>
+		</t>
     </template>
     
     <template id="formchantiers" name="Form des chantiers ouverts">
@@ -85,7 +112,6 @@
 	      <li t-foreach="chantiers" t-as="cho">
 	              <i class="fa"></i>
 	              CO <span t-field="cho.name"/>
-	          
 	      </li>
 	  </div></t>
     </template>

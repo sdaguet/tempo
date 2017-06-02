@@ -40,6 +40,8 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/template.xml',
+        'views/sale_order.xml',
+        'views/chantier.xml',
     ],
 	#'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
