@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+	<data>
+
+        <!-- Chantier -->            	
+		<record id="chantier_view_form" model="ir.ui.view">
+			<field name="name">chantier form</field>
+			<field name="model">chantier</field>
+			<field name="arch" type="xml">
+        		<form>
+	                <header>
+	                  <field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
+	                </header>
+        			<group>
+			          <field name="name"/>
+			          <field name="order_id"/>
+			          <field name="address"/>
+                      <field name="g_lat" readonly="0"/>
+                      <field name="g_lng" readonly="0"/>
+			          <field name="subtasks"/>
+			          <field name="fiche_ids"/>
+					</group>
+        		</form>
+      		</field>
+		</record>
+
+		<record id="chantier_view_tree" model="ir.ui.view">
+			<field name="name">chantier tree</field>
+			<field name="model">chantier</field>
+			<field name="arch" type="xml">
+        		<tree>
+			          <field name="name"/>
+			          <field name="state"/>
+        		</tree>
+      		</field>
+		</record>
+
+		<record id="chantier_action" model="ir.actions.act_window">
+			<field name="name">Chantier</field>
+			<field name="res_model">chantier</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<!-- subtask -->
+		<record id="subtask_view_form" model="ir.ui.view">
+			<field name="name">subtask form</field>
+			<field name="model">subtask</field>
+			<field name="arch" type="xml">
+        		<form>
+        			<group>
+			          <field name="name"/>
+			          <field name="description"/>
+					</group>
+        		</form>
+      		</field>
+		</record>
+
+		<record id="subtask_view_tree" model="ir.ui.view">
+			<field name="name">subtask tree</field>
+			<field name="model">subtask</field>
+			<field name="arch" type="xml">
+        		<tree>
+			          <field name="name"/>
+			          <field name="description"/>
+        		</tree>
+      		</field>
+		</record>
+
+		<record id="subtask_action" model="ir.actions.act_window">
+			<field name="name">Sous tâches</field>
+			<field name="res_model">subtask</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+    	<!-- top menuitem -->
+		<menuitem name="Chantier" id="darb_puthod.chantier" parent="darb_puthod.menu_root" sequence="1"/>
+		<menuitem name="Liste Chantiers" id="darb_puthod.chantier_list" parent="darb_puthod.chantier"
+                    action="chantier_action"/>
+		
+		<!-- Module wizard.create.chantiere Form View -->
+        <record model="ir.ui.view" id="view_wizard_create_chantier_form">
+            <field name="name">wizard.create.chantiere.form</field>
+            <field name="model">wizard.create.chantiere</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <group>                  
+                       <field name="name"/>
+                       <field name="address"/>
+                       <field name="g_lat"/>
+                       <field name="g_lng"/>
+                    </group>
+                    <footer>
+                        <button name="create_chantier" string="Confirm" type="object" class="oe_highlight"/>
+                        Or
+                        <button special="cancel" string="Cancel" type="action"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+  	</data>
+  	
+ </odoo>
