@@ -69,3 +69,63 @@ class fiche_chantier(models.Model):
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+    veicule_ids = fields.One2many('fiche.chantier.vehicle', 'fiche_chantier_id', string=u'Véhicules')
+    materiel_ids = fields.One2many('fiche.chantier.materiel', 'fiche_chantier_id', string=u'Matériels')
+    machine_ids = fields.One2many('fiche.chantier.machine', 'fiche_chantier_id', string=u'Machines')
+    fourniture_ids = fields.One2many('fiche.chantier.fourniture', 'fiche_chantier_id', string=u'Fournitures')
+    kit_ids = fields.One2many('fiche.chantier.kit', 'fiche_chantier_id', string=u'Kits RBKS')
+    tuteurage_ids = fields.One2many('fiche.chantier.tuteurage', 'fiche_chantier_id', string=u'Tuteurage')
+
+
+class fiche_chantier_vehicle(models.Model):
+    _name = "fiche.chantier.vehicle"
+    _description = 'Véhicules de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    vehicle_id = fields.Many2one('product.product', string=u'Véhicule')
+    kms = fields.Float('KMS')
+
+
+class fiche_chantier_materiel(models.Model):
+    _name = "fiche.chantier.materiel"
+    _description = 'Matériels de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    materiel_id = fields.Many2one('product.product', string=u'Matériel')
+    temps = fields.Float('Temps')
+
+
+class fiche_chantier_machine(models.Model):
+    _name = "fiche.chantier.machine"
+    _description = 'Machines de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    machine_id = fields.Many2one('product.product', string=u'Machine')
+    temps = fields.Float('Temps')
+
+
+class fiche_chantier_fourniture(models.Model):
+    _name = "fiche.chantier.fourniture"
+    _description = 'Fournitures de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fourniture_id = fields.Many2one('product.product', string=u'Fournitures Plantation')
+    quantity = fields.Float(u'Qté')
+
+
+class fiche_chantier_kit(models.Model):
+    _name = "fiche.chantier.kit"
+    _description = 'Kits de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    kit_id = fields.Many2one('product.product', string=u'Kit RBKS')
+    quantity = fields.Float(u'Qté')
+
+
+class fiche_chantier_tuteurage(models.Model):
+    _name = "fiche.chantier.tuteurage"
+    _description = 'Tuteurages de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    tuteurage_id = fields.Many2one('product.product', string=u'Tuteurage')
+    quantity = fields.Float(u'Qté')
