@@ -7,7 +7,7 @@
             model="sale.order" 
             report_type="qweb-pdf"
             file="darb_puthod.report_amenagement" 
-            name="darb_puthod.report_amenagement"
+            name="darb_puthod.report_amenagement" 
             />
 		
     </data>
