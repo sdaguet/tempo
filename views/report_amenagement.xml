@@ -99,8 +99,14 @@
                 <td class="text-right" >
                     
 				    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/> 
-                 <!-- <t t-set="taxes[', '.join(map(lambda x: (x.description or x.name), l.tax_id))]" t-value="l.tax_id"/> -->									
+                									
                 </td>	
+            </xpath> 
+			
+			<xpath expr="//t/t/tr/td[4]" position="replace">
+                <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                <span t-esc="str(l.discount)+'%'"/>
+                            </td>
             </xpath> 
 			
 			<xpath expr="//t/t/tr/td[2]/span" position="replace">
@@ -124,14 +130,14 @@
                
               <!-- TAXES -->
                
-			   <t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/>
+			      <!--<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> -->
 				
-                <div class="col-xs-4 pull-left">
-                    <t t-foreach="taxes" t-as="v">
-                         *<t t-esc="v"/> : <t t-esc="v_value"/></t>
+              <div class="col-xs-4 pull-left">
+                <!--       <t t-foreach="taxes" t-as="v">
+                         *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> -->
+					
 					<table class="table table-condensed">
 						
-
                         <tr class="border-black">
                             <th><strong>TVA</strong></th>
 							<th><strong>Taux</strong></th>
