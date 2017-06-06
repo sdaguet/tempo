@@ -6,7 +6,7 @@
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
                 <header position="inside">
-                    <button name="create_fiche_chantier" string="Create FC" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'sale')]}"/>
+                    <button name="create_fiche_chantier" string="Créer un chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'sale')]}"/>
                 </header>
             </field>
         </record>

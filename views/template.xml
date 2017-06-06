@@ -80,6 +80,8 @@
 						<thead>
 							<tr class="active">
 								<th>Référence</th>
+								<th>Client</th>
+								<th>Chantier</th>
 								<th>Date prévue</th>
 								<th>Equipe</th>
 							</tr>
@@ -87,6 +89,10 @@
 						<t t-foreach="chantiers" t-as="chantier">
 							<tr>
 							<td><a href="/chantiersForm"><span t-field="chantier.name"/></a>
+							</td>
+							<td><span t-field="chantier.partner_id.name"/>
+							</td>
+							<td><span t-field="chantier.chantier_id.name"/>
 							</td>
 							<td><span t-field="chantier.inter_date"/>
 							</td>

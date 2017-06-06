@@ -14,7 +14,7 @@
 	                </header>
         			<group>
 			          <field name="name"/>
-			          <field name="order_id"/>
+			          <field name="order_id" readonly="1"/>
 			          <field name="address"/>
                       <field name="g_lat" readonly="0"/>
                       <field name="g_lng" readonly="0"/>
@@ -89,8 +89,6 @@
                     <group>                  
                        <field name="name"/>
                        <field name="address"/>
-                       <field name="g_lat"/>
-                       <field name="g_lng"/>
                     </group>
                     <footer>
                         <button name="create_chantier" string="Confirm" type="object" class="oe_highlight"/>
