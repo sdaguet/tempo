@@ -84,9 +84,9 @@
 			<xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
                 
                 <tr>
-				    <th>N°Lig</th>
-                    <th>Désignation</th>
-                    <th class="text-right">Quantité</th>
+				    <th width="2%">N°Lig</th>
+                    <th width="25%">Désignation</th>
+                    <th width="2%" class="text-right">Quantité</th>
                     <th class="text-right">Prix Brut HT</th>
                     <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></th>
                     <th class="text-right">TVA</th>
@@ -96,7 +96,7 @@
             </xpath>		
 			
 		    <xpath expr="//t/t/tr/td[6]" position="before">
-                <td class="text-right" >
+                <td style="text-align: center;">
                     
 				    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/> 
                 									
@@ -104,7 +104,7 @@
             </xpath> 
 			
 			<xpath expr="//t/t/tr/td[4]" position="replace">
-                <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                <td t-if="display_discount" style="text-align: left;" groups="sale.group_discount_per_so_line">
                                 <span t-esc="str(l.discount)+'%'"/>
                             </td>
             </xpath> 
@@ -126,8 +126,20 @@
                 </td>	
             </xpath>
 			
+			<xpath expr="//t/t/tr/td[2]" position="replace">
+                <td width="25%">
+                    <span t-field="l.name"/>
+                </td>
+            </xpath> 
+			
+			<xpath expr="//t/t/tr/td[4]" position="replace">
+			<td class="text-right" style="text-align: center;">
+                <span t-field="l.price_unit"/>
+            </td>
+			</xpath>
+			
 			<xpath expr="//div[@name='total']" position="inside">
-               
+            
               <!-- TAXES -->
                
 			      <!--<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> -->

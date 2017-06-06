@@ -902,39 +902,17 @@ msgstr "<strong>Date de livraison :</strong>"
 msgid "Shipping address:"
 msgstr "Adresse de livraison"
 
-#. module: sale
-#: model:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "<strong>Payment Term:</strong>"
-msgstr "<strong>Conditions de règlement :</strong>"
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>Vendeur :</strong>"
 
-#. module: sale
-#: model:ir.ui.view,arch_db:sale.report_saleorder_document
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Delivery date :</strong>"
+msgstr "<strong>Date de livraison :</strong>"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
 msgid "Quotation Date:"
 msgstr "Date du devis:"
-
-#. module: sale
-#: selection:sale.order,state:0
-#: selection:sale.report,state:0
-msgid "Quotation Sent"
-msgstr "Devis envoyé"
-
-#. module: sale
-#: model:mail.message.subtype,description:sale.mt_order_confirmed
-msgid "Quotation confirmed"
-msgstr "Devis confirmé"
-
-#. module: sale
-#: model:ir.actions.act_window,name:sale.action_quotations
-#: model:ir.actions.act_window,name:sale.action_quotations_salesteams
-#: model:ir.model.fields,field_description:sale.field_crm_team_use_quotations
-#: model:ir.ui.menu,name:sale.menu_sale_quotations
-#: model:ir.ui.view,arch_db:sale.crm_team_salesteams_view_kanban
-#: model:ir.ui.view,arch_db:sale.view_order_product_search
-#: model:ir.ui.view,arch_db:sale.view_sales_order_filter
-msgid "Quotations"
-msgstr "Devis"
-
-#. module: sale
-#: model:ir.ui.view,arch_db:sale.view_sales_config
-msgid "Quotations & Sales"
-msgstr "Devis et ventes"
