@@ -11,7 +11,7 @@ class sale_order(models.Model):
     @api.multi
     def create_fiche_chantier(self):
         return {
-                'name': 'Chanier',
+                'name': 'Chantier',
                 'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'wizard.create.chantiere',
@@ -64,5 +64,14 @@ class wizard_create_chantier(models.TransientModel):
         active_ids = context.get('active_ids', []) or []
         related_order = self.env['sale.order'].browse(active_ids)
         vals = {'name': self.name, 'address': self.address, 'g_lat': self.g_lat, 'g_lng': self.g_lng, 'order_id': related_order.id}
-        self.env['chantier'].create(vals)
-        return True
+        chantier_id = self.env['chantier'].create(vals)
+        return {
+                'name': 'Chantier',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'chantier',
+                'res_id': chantier_id.id,
+                'view_id': False,
+                'target': 'current_edit',
+                'type': 'ir.actions.act_window',
+                }

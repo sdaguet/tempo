@@ -57,6 +57,12 @@ class fiche_chantier(models.Model):
     _inherit = "mrp.production"
     _name = "fiche.chantier"
     _description = 'Fiche de Chantier'
+
+    @api.onchange('equipe_id')
+    def _onchange_equipe_id(self):
+        if self.equipe_id:
+            self.user_id = self.equipe_id.manager.user_id
+
     state = fields.Selection([
         ('draft', 'A remplir'),
         ('cancel', 'Annulé'),
@@ -69,12 +75,23 @@ class fiche_chantier(models.Model):
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+    partner_id = fields.Many2one('res.partner', string='Client', related='chantier_id.order_id.partner_id')
     veicule_ids = fields.One2many('fiche.chantier.vehicle', 'fiche_chantier_id', string=u'Véhicules')
     materiel_ids = fields.One2many('fiche.chantier.materiel', 'fiche_chantier_id', string=u'Matériels')
     machine_ids = fields.One2many('fiche.chantier.machine', 'fiche_chantier_id', string=u'Machines')
     fourniture_ids = fields.One2many('fiche.chantier.fourniture', 'fiche_chantier_id', string=u'Fournitures')
     kit_ids = fields.One2many('fiche.chantier.kit', 'fiche_chantier_id', string=u'Kits RBKS')
     tuteurage_ids = fields.One2many('fiche.chantier.tuteurage', 'fiche_chantier_id', string=u'Tuteurage')
+    vigitaux_ids = fields.One2many('fiche.chantier.vigitaux', 'fiche_chantier_id', string=u'Vigitaux')
+    engrais_ids = fields.One2many('fiche.chantier.engrais', 'fiche_chantier_id', string=u'Engrais')
+    gazons_ids = fields.One2many('fiche.chantier.gazons', 'fiche_chantier_id', string=u'Gazons')
+    gmateriel_ids = fields.One2many('fiche.chantier.gmateriel', 'fiche_chantier_id', string=u'Matériel')
+    escalier_ids = fields.One2many('fiche.chantier.escalier', 'fiche_chantier_id', string=u'Escalier')
+    outils_ids = fields.One2many('fiche.chantier.outils', 'fiche_chantier_id', string=u'Outils')
+    cloture_ids = fields.One2many('fiche.chantier.cloture', 'fiche_chantier_id', string=u'Cloture')
+    divers_ids = fields.One2many('fiche.chantier.divers', 'fiche_chantier_id', string=u'Divers')
+    terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
+    scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
 
 
 class fiche_chantier_vehicle(models.Model):
@@ -128,4 +145,95 @@ class fiche_chantier_tuteurage(models.Model):
 
     fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
     tuteurage_id = fields.Many2one('product.product', string=u'Tuteurage')
+    quantity = fields.Float(u'Qté')
+
+
+class fiche_chantier_vigitaux(models.Model):
+    _name = "fiche.chantier.vigitaux"
+    _description = 'Vigitaux de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    vigitaux_id = fields.Many2one('product.product', string=u'Liste des vigitaux (rajout, retour)')
+    date = fields.Date(u'Date')
+    commentaire = fields.Text('Commentaires')
+
+
+class fiche_chantier_engrais(models.Model):
+    _name = "fiche.chantier.engrais"
+    _description = 'Engrais de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    engrais_id = fields.Many2one('product.product', string=u'Engrais')
+    quantity = fields.Float(u'Qté/tps')
+
+
+class fiche_chantier_gazons(models.Model):
+    _name = "fiche.chantier.gazons"
+    _description = 'Gazons de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    gazons_id = fields.Many2one('product.product', string=u'Gazons')
+    quantity = fields.Float(u'Qté/tps')
+
+
+class fiche_chantier_gmateriel(models.Model):
+    _name = "fiche.chantier.gmateriel"
+    _description = 'Matériels d\'engazonnement de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    gmateriel_id = fields.Many2one('product.product', string=u'Matériel')
+    quantity = fields.Float(u'Qté/tps')
+
+
+class fiche_chantier_escalier(models.Model):
+    _name = "fiche.chantier.escalier"
+    _description = 'Escalier de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    escalier_id = fields.Many2one('product.product', string=u'Escalier/Muret bois')
+    quantity = fields.Float(u'Qté')
+
+
+class fiche_chantier_outils(models.Model):
+    _name = "fiche.chantier.outils"
+    _description = 'Outils de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    outils_id = fields.Many2one('product.product', string=u'Outils')
+    quantity = fields.Float(u'Tps')
+
+
+class fiche_chantier_cloture(models.Model):
+    _name = "fiche.chantier.cloture"
+    _description = 'Cloture de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    cloture_id = fields.Many2one('product.product', string=u'Cloture')
+    quantity = fields.Float(u'Qté/tps')
+
+
+class fiche_chantier_divers(models.Model):
+    _name = "fiche.chantier.divers"
+    _description = 'Divers de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    divers_id = fields.Many2one('product.product', string=u'Divers')
+    quantity = fields.Float(u'Qté/tps')
+
+
+class fiche_chantier_terrasse(models.Model):
+    _name = "fiche.chantier.terrasse"
+    _description = 'Terrasse de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    terrasse_id = fields.Many2one('product.product', string=u'Terrasse')
+    quantity = fields.Float(u'Qté')
+
+
+class fiche_chantier_scloture(models.Model):
+    _name = "fiche.chantier.scloture"
+    _description = 'Suite Cloture de Fiche de Chantier'
+
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    scloture_id = fields.Many2one('product.product', string=u'Suite Cloture')
     quantity = fields.Float(u'Qté')
