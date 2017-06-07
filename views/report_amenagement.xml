@@ -205,42 +205,52 @@
 		
 		
 		
-		<!-- <template id="x_header" inherit_id="report.external_layout_header">
+		 <template id="x_header" inherit_id="report.external_layout_header">
             <xpath expr="//div[@class='header']" position="replace">
             
 		 <div class="header">
                     
                         <div style="float: left;
-	width: 300px;
+	width: 100px;
 	margin-right: 10px;
 	">
-                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 150px;"/>
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
                         </div>
                         
                     
-                    <div style="margin-left: 300px;
+                    <div style="margin-left: 360px;
 	margin-right: 310px; 
-	padding-top: 20px;
+	padding-top:  20px;
+	overflow: visible;
+	height: 1%;
 	">
                         
-						<t t-esc="company.street"/>
-						<t t-esc="company.street2"/><br/>
-				        <t t-esc="company.city"/>
-						<t t-esc="company.zip"/><br/>
-						<t t-esc="company.country_id.name"/>
+						<ul class="list-inline text-left"> 
+                             <li style="font-size: 120%;"><strong>SARL PEPINIERES ALT PUTHOD Succ.</strong></li> <br/> 
+                             <li><t t-esc="company.street"/></li>                
+                             <li><t t-esc="company.street2"/></li> <br/>
+                             <li> <t t-esc="company.city"/></li> 
+							 <li><t t-esc="company.zip"/><br/></li> <br/>
+                             <li><t t-esc="company.country_id.name"/></li>
+                        </ul>
 						
-						
-                    
                 </div>
 			<div style="float: right;
-	width: 300px;
-	margin-left: 5px;
+	width: 350px;
+	padding-left: 80px;
 	">
                         
-						<t t-esc="company.phone"/><br/>
-						<t t-esc="company.fax"/><br/>
-				        <t t-esc="company.email"/><br/>
-						<t t-esc="company.website"/>
+						<ul class="list-inline text-left"> 
+                             <li>Tel:</li> 
+                             <li><t t-esc="company.phone"/></li> <br/>                
+                             <li>Fax:</li> 
+                             <li><t t-esc="company.fax"/></li> <br/>
+							 <li>Email:</li> 
+                             <li><t t-esc="company.email"/></li> <br/>
+							 <li>Site:</li> 
+                             <li><t t-esc="company.website"/></li> <br/>
+                        </ul>
+						
 						
 						
                     
@@ -249,7 +259,7 @@
 			
          </div>
             </xpath>
-        </template> -->
+        </template>
 		
 		<template id="x_footer" inherit_id="report.external_layout_footer">
             <xpath expr="//div[@class='footer']" position="replace">
