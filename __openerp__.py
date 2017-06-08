@@ -44,7 +44,7 @@
         'views/sale_order.xml',
         'views/chantier.xml',
     ],
-	#'qweb': ['static/src/js/*.js'],
+	'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
     'demo': [
         'demo.xml',

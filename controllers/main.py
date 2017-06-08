@@ -51,3 +51,17 @@ class WebsiteContractDarbtech(http.Controller):
         return http.request.render('darb_puthod.formchantiers', {
                     'chantiers': fiche_chantier,
                 })
+				
+    @http.route(['/chantiersForm'], type='http', auth="user", website=True)
+    def chantiers_form(self, product_id=None):
+        user = request.env.user
+        cr, uid, context = reqst.cr, reqst.uid, reqst.context
+
+        fiche_chantier = request.env['fiche.chantier'].sudo().search([])
+
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche_chantier))
+        form = [1,2,3]
+        return http.request.render('darb_puthod.formchantiers', {
+                    'chantiers': fiche_chantier,
+                })
