@@ -25,6 +25,7 @@
 		
 	<template id="pointages" name="Contact us" page="True">
 		<t t-call="website.layout">
+			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
 		  <div id="wrap">
 			<div class="oe_structure"/>
 			<div class="container">
@@ -47,11 +48,15 @@
 						<t t-foreach="teams" t-as="team">
 							<t t-foreach="team.ressource_list" t-as="membr">
 							<tr>
-							<td><span t-field="membr.name"/>
+							<td><span t-att-value="membr.id" class="membrid" t-field="membr.name"/>
 							</td>
-							<td><span t-field="team.name"/>
+							<td><span class="teamname" t-field="team.name"/>
 							</td>
-							<td><a t-attf-href="mailto:{{ res_company.email }}" class="btn btn-primary">Present</a>
+							<td>
+								<a t-attf-href="#" 
+								class="btn btn-primary pointer">Présent</a>
+								<a t-attf-href="#" 
+								style="visibility: hidden" class="btn btn-primary depointer">Absent</a>
 							</td>
 							</tr>
 							</t>

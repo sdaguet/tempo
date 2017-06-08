@@ -53,19 +53,6 @@ class WebsiteContractDarbtech(http.Controller):
                     'chantiers': fiche_chantier,
                 })
 
-    @http.route(['/chantiersnew'], type='http', auth="user", website=True)
-    def chantiers_nvx(self, product_id=None):
-        user = request.env.user
-        cr, uid, context = reqst.cr, reqst.uid, reqst.context
-
-        fiche_chantier = request.env['fiche.chantier'].sudo().search([])
-
-
-        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche_chantier))
-        form = [1,2,3]
-        return http.request.render('darb_puthod.newchantiers', {
-                    'chantiers': fiche_chantier,
-                })
 
     @http.route(['/equiplist/chantier/<int:chantier_id>'], type='http', auth="user", website=True)
     def equiplist(self, chantier_id):
@@ -98,6 +85,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_chantier = request.env['fiche.chantier'].create(vals)
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(equipe_id))
         form = [1,2,3]
+
         return http.request.render('darb_puthod.formchantiers', {
                     'chantiers': fiche_chantier,
                 })
