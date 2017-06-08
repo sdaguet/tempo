@@ -113,14 +113,110 @@
     </template>
     
     <template id="formchantiers" name="Form des chantiers ouverts">
-    <t t-call="website.layout">
+    
+    	<t t-call="website.layout">
+    
 	  <div class="container panel-group mb32 mt32" id="debug_infos">
 	      <li t-foreach="chantiers" t-as="cho">
 	              <i class="fa"></i>
 	              CO <span t-field="cho.name"/>
 	      </li>
+	      
 	  </div></t>
     </template>
     
+	<template id="newchantiers" name="Form des chantiers ouverts">
     
+    	<t t-call="website.layout">
+		<div class="container panel-group mb32 mt32" id="debug_infos">
+			<div id="xmap" style="width:1000px;height:1000px"></div>
+		    <script language="javascript">
+		    function initMap(domain){
+		    	odoo.define('custom_webpage.my_js', function (require) {'use strict';
+		    	var Model = require('web.Model');
+		    	
+				var model = new Model('chantier');
+		    	model.call('get_google_maps_data', [domain]).then(function(results){
+					var locations = results[0];
+					var gm_configs = results[1];
+					var map = new google.maps.Map(document.getElementById('xmap'), {
+					  	zoom : gm_configs[2],
+					  	center : new google.maps.LatLng(gm_configs[0], gm_configs[1]),
+					  	mapTypeId : google.maps.MapTypeId.TERRAIN,
+					  	mapTypeControl: false
+					});
+					console.log(locations);
+					var infowindow = new google.maps.InfoWindow();
+		
+					var marker, i;
+		
+					for (i = 0; i &lt; locations.length; i++) {
+					  	marker = new google.maps.Marker({
+					  		position : new google.maps.LatLng(locations[i][1], locations[i][2]),
+					  		map : map
+					  	});
+					
+					  	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					  		return function() {
+					  			infowindow.setContent('<div>'+
+										            '<h3>'+locations[i][4]+'</h3>'+
+										            '<div>'+
+										            '<p><b>'+locations[i][5]+'</b></p>'+
+										            '<p><b>'+locations[i][0]+'</b></p>'+
+										            '</div>'+
+										            '</div>');
+					  			infowindow.open(map, marker);
+					  		}
+					  	})(marker, i));
+						google.maps.event.addListener(marker, "dblclick", (function (marker, i) {
+					  		return function() {
+				            	console.log("hhhhhhhhhhhhhhhhhhh");
+								window.location.href = "/equiplist/chantier/"+locations[i][3];
+							}
+			            })(marker, i));
+					  }
+				});});
+		    }
+		    </script>
+			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6zrIunSsB1pHvcaqUsSzqgneTR5ZcCz4&amp;callback=initMap"/>
+    
+		</div></t>
+    </template>
+    
+	<template id="listequipes" name="Liste des equipes">
+    	<t t-call="website.layout">
+		  <div id="wrap">
+			<div class="oe_structure"/>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<table class="table table-hover status_table">
+						<thead>
+							<tr class="active">
+								<th>Nom</th>
+								<th>Chef</th>
+								<th>Affecter</th>
+							</tr>
+						</thead>
+						<t t-foreach="equipes" t-as="equipe">
+							<tr>
+							<td><span t-field="equipe.name"/>
+							</td>
+							<td><span t-field="equipe.manager.name"/>
+							</td>
+							<td><a t-attf-href="/equiplist/chantier/#{chantier_id}/#{equipe.id}" class="btn btn-primary pointer">Affecter</a>
+							</td>
+							</tr>
+						</t>
+						</table>
+					</div>
+					<div class="col-md-4 mb32">
+						<t t-call="website.company_description"/>
+					</div>
+				</div>
+			</div>
+			<div class="oe_structure"/>
+		  </div>
+		</t>
+    </template>
 </odoo>

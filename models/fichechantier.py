@@ -53,6 +53,25 @@ class chantier(models.Model):
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
 
+    @api.model
+    def get_google_maps_data(self, domain=[]):
+        # get all partners need to display google maps
+        chantiers = self.search([('is_display_gm', '=', True)])
+        locations = []
+        for chantier in chantiers:
+            location = [
+                chantier.address, chantier.g_lat, chantier.g_lng, chantier.id, chantier.name, chantier.order_id.partner_id.name]
+            locations.append(location)
+
+
+        IC = self.env['ir.config_parameter']
+        gm_c_lat = float(IC.get_param('Google_Maps_Center_Latitude'))
+        gm_c_lng = float(IC.get_param('Google_Maps_Center_Longitude'))
+        gm_zoom = int(IC.get_param('Google_Maps_Zoom'))
+
+        return locations, (gm_c_lat, gm_c_lng, gm_zoom)
+
+
 class fiche_chantier(models.Model):
     _inherit = "mrp.production"
     _name = "fiche.chantier"
