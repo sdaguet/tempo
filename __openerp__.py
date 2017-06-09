@@ -43,8 +43,9 @@
         'views/template.xml',
         'views/sale_order.xml',
         'views/chantier.xml',
+        'report/report_employee_view.xml',
     ],
-	'qweb': ['static/src/js/*.js'],
+    #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
     'demo': [
         'demo.xml',

@@ -72,6 +72,44 @@
             </field>
         </record>
 
+	<!--
+    Resource: product.category
+    -->
+
+        <record id="product_category_vehicle" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Véhicule</field>
+        </record>
+        
+        <record id="product_category_materiel" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Matériel</field>
+        </record>
+        
+        <record id="product_category_machine" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Machines</field>
+        </record>
+
+        <record id="product_category_fourniture" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Fournitures plantation</field>
+        </record>
+        
+        <record id="product_category_kit" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Kits RBKS</field>
+        </record>
+
+        <record id="product_category_tuteurage" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Tuteurage</field>
+        </record>
+        
+        <record id="product_category_vigitaux" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Végétaux</field>
+        </record>
 
     </data>
 </openerp>

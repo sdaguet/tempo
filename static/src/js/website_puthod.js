@@ -2,7 +2,6 @@ odoo.define('darb_puthod', function(require) {
     'use strict';
     require('website.website');
 	
-	
 	$('.pointer').on('click', function(ev) {
         ev.preventDefault();
         $(this).parents('tr').find(".pointer").toggleClass('hidden');
@@ -10,13 +9,13 @@ odoo.define('darb_puthod', function(require) {
 		console.log($(this).parents('tr').find(".membrid").val());  
 		$.ajax({
 			type: "POST", 
-			url: "/pointages", 
+			url: "/pointer", 
 			async: false, 
-			data: JSON.stringify({'idmember':$(this).parents('tr').find(".membrid").val()}), 
+			data: JSON.stringify({}), 
 			contentType: "application/json", 
 			complete: function (data) {
 				console.log(data);  
-        }
+			}
 		});
 		
     });
@@ -30,13 +29,13 @@ odoo.define('darb_puthod', function(require) {
 		console.log($(this).parents('tr').find(".membrid").val());  
 		$.ajax({
 			type: "POST", 
-			url: "/pointages", 
+			url: "/pointer", 
 			async: false, 
-			data: JSON.stringify({'idmember':$(this).parents('tr').find(".membrid").val()}), 
+			data: JSON.stringify({}), 
 			contentType: "application/json", 
 			complete: function (data) {
 				console.log(data);  
-        }
+			}
 		});
     });
 });
