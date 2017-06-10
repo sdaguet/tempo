@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+	<template id="assets_backend" name="puthod assets" inherit_id="web.assets_backend">
+		<xpath expr="." position="inside">
+			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
+		</xpath>
+	</template>
+	
     <template id="header" inherit_id="website.layout" name="Chantiers Ouverts">
 	  <xpath expr="//header//ul[@id='top_menu']/li" position="before">
 	      <li>
@@ -23,9 +29,9 @@
 	  </xpath>
     </template>
 		
-	<template id="pointages" name="Contact us" page="True">
+	<template id="pointages" name="Pointage des Equipes" page="True">
 		<t t-call="website.layout">
-			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
+			
 		  <div id="wrap">
 			<div class="oe_structure"/>
 			<div class="container">
