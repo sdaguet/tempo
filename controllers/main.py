@@ -26,8 +26,25 @@ class WebsiteContractDarbtech(http.Controller):
             'teams' : list_teams
                 })
 
+    @http.route('/chantierviewer', type='http', auth="user", website=True)
+    def chantierviewer(self, **kw):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.registry.get('hr.employee')
+        _logger.info("Current user = " + str(uid))
+        current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
+        _logger.info("Current employee = " + str(current_employee))
+        list_teams = request.env['equipe'].sudo().search(
+                [
+                    ('manager', '=', current_employee.id)
+                ])
+
+        return http.request.render('darb_puthod.chantierviewer', {
+            'teams' : list_teams
+                })
+
     @http.route('/pointer', type='json', auth="user", website=True)
-    def pointages(self, **kw):
+    def pointer(self, **kw):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
         employes = request.registry.get('hr.employee')

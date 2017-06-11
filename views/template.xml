@@ -3,9 +3,11 @@
 	<template id="assets_backend" name="puthod assets" inherit_id="web.assets_backend">
 		<xpath expr="." position="inside">
 			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
+			<link rel="stylesheet"
+					href="/darb_puthod/static/src/less/muk_web_glyphicons.less" />
 		</xpath>
 	</template>
-	
+
     <template id="header" inherit_id="website.layout" name="Chantiers Ouverts">
 	  <xpath expr="//header//ul[@id='top_menu']/li" position="before">
 	      <li>
@@ -28,10 +30,10 @@
 	      </li>
 	  </xpath>
     </template>
-		
+
 	<template id="pointages" name="Pointage des Equipes" page="True">
 		<t t-call="website.layout">
-			
+
 		  <div id="wrap">
 			<div class="oe_structure"/>
 			<div class="container">
@@ -74,6 +76,367 @@
 			</div>
 			<div class="oe_structure"/>
 		  </div>
+		</t>
+	</template>
+
+	<template id="chantierviewer" name="Saisie Chantier">
+		<t t-call="website.layout">
+			<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+			<div class="container">
+				<div class="row">
+					<div class="col-md-14">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Planning Employés</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<table class="table table-hover status_table">
+									<thead>
+										<tr class="active">
+											<th>Employés</th>
+											<th>7</th>
+											<th>8</th>
+											<th>9</th>
+											<th>10</th>
+											<th>11</th>
+											<th>12</th>
+											<th>13</th>
+											<th>14</th>
+											<th>15</th>
+											<th>16</th>
+											<th>17</th>
+											<th>18</th>
+											<th>19</th>
+										</tr>
+									</thead>
+									<t t-foreach="teams" t-as="team">
+										<t t-foreach="team.ressource_list" t-as="membr">
+										<tr>
+										<td><span class="teamname" t-field="team.name"/>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">White</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										<td>
+											<select name="taskid" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
+										</td>
+										</tr>
+										</t>
+									</t>
+									</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Panel 2</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								LexisNexis Corporate Affiliations<br />
+								121 Chanlon Road,<br />
+								South Building – First Floor,<br />
+								New Providence, NJ 07974<br />
+								phone: 800.340.3244
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<style>
+				.panel-heading span
+				{
+					margin-top: -20px;
+					font-size: 15px;
+				}
+
+				.row
+				{
+					margin-top: 40px;
+					padding: 0 10px;
+				}
+
+				.clickable
+				{
+					cursor: pointer;
+				}
+			</style>
+
+			<script type="text/javascript">
+				jQuery(function ($) {
+					$('.panel-heading span.clickable').on("click", function (e) {
+						if ($(this).hasClass('panel-collapsed')) {
+							// expand the panel
+							$(this).parents('.panel').find('.panel-body').slideDown();
+							$(this).removeClass('panel-collapsed');
+							$(this).find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+						}
+						else {
+							// collapse the panel
+							$(this).parents('.panel').find('.panel-body').slideUp();
+							$(this).addClass('panel-collapsed');
+							$(this).find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+						}
+					});
+				});
+			</script>
 		</t>
 	</template>
 
@@ -120,22 +483,22 @@
 		  </div>
 		</t>
     </template>
-    
+
     <template id="formchantiers" name="Form des chantiers ouverts">
-    
+
     	<t t-call="website.layout">
-    
+
 	  <div class="container panel-group mb32 mt32" id="debug_infos">
 	      <li t-foreach="chantiers" t-as="cho">
 	              <i class="fa"></i>
 	              CO <span t-field="cho.name"/>
 	      </li>
-	      
+
 	  </div></t>
     </template>
-    
+
 	<template id="newchantiers" name="Form des chantiers ouverts">
-    
+
     	<t t-call="website.layout">
 		<div class="container panel-group mb32 mt32" id="debug_infos">
 			<div id="xmap" style="width:1000px;height:1000px"></div>
@@ -143,7 +506,7 @@
 		    function initMap(domain){
 		    	odoo.define('custom_webpage.my_js', function (require) {'use strict';
 		    	var Model = require('web.Model');
-		    	
+
 				var model = new Model('chantier');
 		    	model.call('get_google_maps_data', [domain]).then(function(results){
 					var locations = results[0];
@@ -156,15 +519,15 @@
 					});
 					console.log(locations);
 					var infowindow = new google.maps.InfoWindow();
-		
+
 					var marker, i;
-		
+
 					for (i = 0; i &lt; locations.length; i++) {
 					  	marker = new google.maps.Marker({
 					  		position : new google.maps.LatLng(locations[i][1], locations[i][2]),
 					  		map : map
 					  	});
-					
+
 					  	google.maps.event.addListener(marker, 'click', (function(marker, i) {
 					  		return function() {
 					  			infowindow.setContent('<div>'+
@@ -188,10 +551,10 @@
 		    }
 		    </script>
 			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6zrIunSsB1pHvcaqUsSzqgneTR5ZcCz4&amp;callback=initMap"/>
-    
+
 		</div></t>
     </template>
-    
+
 	<template id="listequipes" name="Liste des equipes">
     	<t t-call="website.layout">
 		  <div id="wrap">
