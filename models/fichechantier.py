@@ -8,6 +8,55 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class wizard_create_fiche_chantier(models.TransientModel):
+    _name = 'wizard.create.fiche.chantiere'
+
+    inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
+    equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
+    chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+    subtasks = fields.One2many('subtask', 'fiche_chantier_id', string="Tâches")
+
+    @api.model
+    def default_get(self, fields_list):
+        res = models.TransientModel.default_get(self, fields_list)
+        context = dict(self._context or {})
+        active_ids = context.get('active_ids', []) or []
+        related_chantier = self.env['chantier'].browse(active_ids)
+        tasks_list = [line.product_id.task_ids for line in related_chantier.order_id.order_line]
+        task_ids = []
+        for x in tasks_list:
+            for y in x:
+                task_ids.append((4, y.id))
+        res['subtasks'] = task_ids
+        return res
+
+    @api.multi
+    def create_fiche_chantier(self):
+        """ ...
+        """
+        context = dict(self._context or {})
+        active_ids = context.get('active_ids', []) or []
+        related_chantier = self.env['chantier'].browse(active_ids)
+        vals = {
+            'equipe_id': self.equipe_id.id,
+            'chantier_id': self.chantier_id.id,
+            'product_id': 1,
+            'inter_date': self.inter_date,
+            'subtasks': [(4, task.id) for task in self.subtasks],
+            }
+        fiche_chantier_id = self.env['fiche.chantier'].create(vals)
+        return {
+                'name': 'Fiche Chantier',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'fiche.chantier',
+                'res_id': fiche_chantier_id.id,
+                'view_id': False,
+                'target': 'current_edit',
+                'type': 'ir.actions.act_window',
+                }
+
+
 class product(models.Model):
     _inherit = 'product.product'
 
@@ -19,7 +68,7 @@ class subtask(models.Model):
 
     name = fields.Char('Tâche')
     description = fields.Text('Description')
-    chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Chantier', index=True, track_visibility='onchange')
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
 
 
@@ -55,7 +104,6 @@ class chantier(models.Model):
     g_lng = fields.Float(
         compute='_compute_glatlng', string='G Longitude', store=True,
         multi='glatlng', digits=(3,12))
-    subtasks = fields.One2many('subtask', 'chantier_id', string="Tâches")
     order_id = fields.Many2one('sale.order', string="Order")
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
@@ -70,13 +118,24 @@ class chantier(models.Model):
                 chantier.address, chantier.g_lat, chantier.g_lng, chantier.id, chantier.name, chantier.order_id.partner_id.name]
             locations.append(location)
 
-
         IC = self.env['ir.config_parameter']
         gm_c_lat = float(IC.get_param('Google_Maps_Center_Latitude'))
         gm_c_lng = float(IC.get_param('Google_Maps_Center_Longitude'))
         gm_zoom = int(IC.get_param('Google_Maps_Zoom'))
 
         return locations, (gm_c_lat, gm_c_lng, gm_zoom)
+
+    @api.multi
+    def create_fiche_chantier(self):
+        return {
+                'name': 'Fiche Chantier',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'wizard.create.fiche.chantiere',
+                'view_id': False,
+                'target': 'new',
+                'type': 'ir.actions.act_window',
+            }
 
 
 class fiche_chantier(models.Model):
@@ -118,6 +177,7 @@ class fiche_chantier(models.Model):
     divers_ids = fields.One2many('fiche.chantier.divers', 'fiche_chantier_id', string=u'Divers')
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
+    subtasks = fields.One2many('subtask', 'fiche_chantier_id', string="Tâches")
 
 
 class fiche_chantier_vehicle(models.Model):
