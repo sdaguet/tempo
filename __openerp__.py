@@ -36,6 +36,7 @@
         'views/teaminfo.xml',
         'crons/template.xml',
 		'report/quotations.xml',
+		'report/quotations.xml',
 		'views/report_amenagement.xml',
 		'views/modif_quotation.xml',
         'security/security.xml',
