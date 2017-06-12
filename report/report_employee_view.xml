@@ -1,0 +1,26 @@
+<openerp>
+<data>
+					    
+   <report 
+    id="hr_employee_report_puthod"
+    model="hr.employee"
+    string="Report"
+    report_type="qweb-pdf"
+    name="darb_puthod.report_hr_employee_view"
+    file="darb_puthod.hr_employee"
+	/>
+        	
+	<template id="report_hr_employee_view">
+        <t t-call="report.html_container">
+        	<t t-call="report.external_layout">
+            	<div class="page">	
+					<div style="text-align:center">
+						<h2> Test employeeee </h2>
+					</div>		
+            	</div>
+            </t>
+        </t>
+    </template>
+
+</data>
+</openerp>
