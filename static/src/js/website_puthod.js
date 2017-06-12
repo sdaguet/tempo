@@ -1,4 +1,4 @@
-odoo.define('darb_puthod', function(require) {
+odoo.define('darb_puthod.responsivejson', function(require) {
     'use strict';
     require('website.website');
 	

@@ -8,12 +8,19 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class product(models.Model):
+    _inherit = 'product.product'
+
+    task_ids = fields.One2many('subtask', 'product_id', string="Tâches")
+
+
 class subtask(models.Model):
     _name = 'subtask'
 
     name = fields.Char('Tâche')
     description = fields.Text('Description')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+    product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
 
 
 class chantier(models.Model):
