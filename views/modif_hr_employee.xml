@@ -8,36 +8,32 @@
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook" position="attributes">
-                    <attribute name="version">"v7"</attribute>
-                </xpath>
-
 
                 <xpath expr="//page[3]" position="after">
                     <page string="Mois">
-                                <group>
-                                    <goup>
-                                        <field name="janvier"/>
-                                        <field name="fevrier"/>
-                                        <field name="mars"/>
-                                    </goup>
-                                    <goup>
-                                        <field name="avril"/>
-                                        <field name="mai"/>
-                                        <field name="juin"/>
-                                    </goup>
-                                    <goup>
-                                        <field name="juillet"/>
-                                        <field name="aout"/>
-                                        <field name="septembre"/>
-                                    </goup>
-                                    <goup>
-                                        <field name="octobre"/>
-                                        <field name="novembre"/>
-                                        <field name="decembre"/>
-                                    </goup>
-                                </group>
-                            </page>
+                        <group>
+                            <group>
+                                <field name="janvier"/>
+                                <field name="fevrier"/>
+                                <field name="mars"/>
+                            </group>
+                            <group>
+                                <field name="avril"/>
+                                <field name="mai"/>
+                                <field name="juin"/>
+                            </group>
+                            <group>
+                                <field name="juillet"/>
+                                <field name="aout"/>
+                                <field name="septembre"/>
+                            </group>
+                            <group>
+                                <field name="octobre"/>
+                                <field name="novembre"/>
+                                <field name="decembre"/>
+                            </group>
+                        </group>
+                    </page>
                 </xpath>
 
             </field>

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api, _
 
+
 class NewModule(models.Model):
     _inherit = 'hr.employee'
 
@@ -10,7 +11,7 @@ class NewModule(models.Model):
     avril = fields.Float("Avril", compute="_compute_months")
     mai = fields.Float("Mai", compute="_compute_months")
     juin = fields.Float("Juin", compute="_compute_months")
-    juillet = fields.Float("Janvier", compute="_compute_months")
+    juillet = fields.Float("Juillet", compute="_compute_months")
     aout = fields.Float("Août", compute="_compute_months")
     septembre = fields.Float("Septembre", compute="_compute_months")
     octobre = fields.Float("Octobre", compute="_compute_months")
@@ -21,19 +22,18 @@ class NewModule(models.Model):
     @api.one
     @api.depends('attendance_id.name')
     def _compute_months(self):
-
-        count_1 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-01-%')])
-        count_2 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-02-%')])
-        count_3 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-03-%')])
-        count_4 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-04-%')])
-        count_5 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-05-%')])
-        count_6 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-06-%')])
-        count_7 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-07-%')])
-        count_8 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-08-%')])
-        count_9 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-09-%')])
-        count_10 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-10-%')])
-        count_11 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-11-%')])
-        count_12 = self.env['hr.attendance'].search_count([('employee_id','=',self.id),('name','like','%-12-%')])
+        count_1 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-01-%')])
+        count_2 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-02-%')])
+        count_3 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-03-%')])
+        count_4 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-04-%')])
+        count_5 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-05-%')])
+        count_6 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-06-%')])
+        count_7 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-07-%')])
+        count_8 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-08-%')])
+        count_9 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-09-%')])
+        count_10 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-10-%')])
+        count_11 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-11-%')])
+        count_12 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-12-%')])
 
         self.janvier = count_1 * 8
         self.fevrier = count_2 * 8
