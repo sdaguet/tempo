@@ -120,7 +120,7 @@
 									<t t-foreach="teams" t-as="team">
 										<t t-foreach="team.ressource_list" t-as="membr">
 										<tr>
-										<td><span class="teamname" t-field="team.name"/>
+										<td><span class="teamname" t-field="membr.name"/>
 										</td>
 										<td>
 											<select name="taskid" class="form-control">
@@ -400,14 +400,187 @@
 
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
-										<div class="col-md-3 col-sm-4 text-right">
-											<label class="control-label" for="client_order_ref">
-											  Véhicules
-											</label>
-										</div>
-										<div class="col-md-7 col-sm-8">
-											<input type="text" class="form-control o_website_form_input" name="client_order_ref"/>
-										</div>
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Véhicules</th>
+												<th>KMS</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.veicule_ids" t-as="veicule">
+											<tr>
+											<td><span t-field="veicule.vehicle_id.name"/>
+											</td>
+											<td><span t-field="veicule.kms"/>
+											</td>
+											</tr>
+										</t>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Matériels</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Matériels</th>
+												<th>Temps</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.materiel_ids" t-as="materiel">
+											<tr>
+											<td><span t-field="materiel.materiel_id.name"/>
+											</td>
+											<td><span t-field="materiel.temps"/>
+											</td>
+											</tr>
+										</t>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Machines</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Machines</th>
+												<th>Temps</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.machine_ids" t-as="machine">
+											<tr>
+											<td><span t-field="machine.machine_id.name"/>
+											</td>
+											<td><span t-field="machine.temps"/>
+											</td>
+											</tr>
+										</t>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Fournitures Plantation</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Fournitures Plantation</th>
+												<th>Qté</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.fourniture_ids" t-as="fourniture">
+											<tr>
+											<td><span t-field="fourniture.fourniture_id.name"/>
+											</td>
+											<td><span t-field="materiel.quantity"/>
+											</td>
+											</tr>
+										</t>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Kit RBKS</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Kit RBKS</th>
+												<th>Qté</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.kit_ids" t-as="kit">
+											<tr>
+											<td><span t-field="kit.kit_id.name"/>
+											</td>
+											<td><span t-field="kit.quantity"/>
+											</td>
+											</tr>
+										</t>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Tuteurage</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Tuteurage</th>
+												<th>Qté</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.tuteurage_ids" t-as="tuteurage">
+											<tr>
+											<td><span t-field="tuteurage.tuteurage_id.name"/>
+											</td>
+											<td><span t-field="tuteurage.quantity"/>
+											</td>
+											</tr>
+										</t>
+										</table>
 									</div>
 									<!--- FIN BOUCLE -->
 								</form>

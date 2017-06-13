@@ -150,7 +150,7 @@ class fiche_chantier(models.Model):
 
     @api.model
     def _get_default_product_id(self):
-        return self.env.ref("product_default_product", raise_if_not_found=False)
+        return self.env.ref("darb_puthod.product_default_product", raise_if_not_found=False)
 
     product_id = fields.Many2one(
         'product.product', 'Product',
@@ -177,7 +177,7 @@ class fiche_chantier(models.Model):
         ('done', 'Comptabilisé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
 
-    termine = fields.Boolean(string=u"Chantier Terminé",required=True, default=False)
+    termine = fields.Boolean(string=u"Chantier Terminé", default=False)
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
