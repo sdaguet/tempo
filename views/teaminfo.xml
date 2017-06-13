@@ -35,9 +35,32 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button name="print_coeff_k" string="Rapport Coefficient K" type="object" class="oe_stat_button"
+                            icon="fa-refresh text-primary"/>
+                </div>
                 <field name="coach_id" position="after">
                         <field name="equipe_id"/>
                 </field>
+            </field>
+        </record>
+
+        <!-- Module wizard.create.chantiere Form View -->
+        <record model="ir.ui.view" id="view_wizard_print_coeffk_form">
+            <field name="name">wizard.print.coeffk.form</field>
+            <field name="model">wizard.print.coeffk</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <group>
+                       <field name="employee" readonly="True"/>
+                       <field name="dob"/>
+                    </group>
+                    <footer>
+                        <button name="print_coeff_k" string="Confirm" type="object" class="oe_highlight"/>
+                        OR
+                        <button special="cancel" string="Cancel" type="action"/>
+                    </footer>
+                </form>
             </field>
         </record>
     </data>

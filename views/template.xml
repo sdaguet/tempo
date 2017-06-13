@@ -28,6 +28,13 @@
 	              Présences
 	          </a>
 	      </li>
+
+          <li>
+	          <a href="/chantierviewer">
+	              <i class="fa"></i>
+	              Fiches de chantier
+	          </a>
+	      </li>
 	  </xpath>
     </template>
 
@@ -385,15 +392,25 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel 2</h3>
+								<h3 class="panel-title">Véhicules</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								LexisNexis Corporate Affiliations<br />
-								121 Chanlon Road,<br />
-								South Building – First Floor,<br />
-								New Providence, NJ 07974<br />
-								phone: 800.340.3244
+								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<div class="col-md-3 col-sm-4 text-right">
+											<label class="control-label" for="client_order_ref">
+											  Véhicules
+											</label>
+										</div>
+										<div class="col-md-7 col-sm-8">
+											<input type="text" class="form-control o_website_form_input" name="client_order_ref"/>
+										</div>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
 							</div>
 						</div>
 					</div>
