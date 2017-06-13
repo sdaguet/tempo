@@ -1,77 +1,72 @@
 <!-- <?xml version="1.0" encoding="utf-8"?> -->
 <openerp>
     <data>
-	
+
 		
 		<template id="sale_report_quotation" inherit_id="sale.report_saleorder_document">
-            
-			
-		
-			<!-- <xpath expr="//div[@class='page']" position="before">
-			   <t t-call="darb_puthod.report_quotation_header">
-			</xpath> -->
-			
-			<xpath expr="//div[@class='row']" position="replace">
+
+            <xpath expr="//div[@class='row']" position="replace">
 			    <div class="row">
                 <div class="col-xs-6">
                     <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
 					<strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Shipping address:</strong>
-                        <div t-field="doc.partner_shipping_id" 
+                        <div t-field="doc.partner_shipping_id"
                             t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
                         <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
-                    
+
                 </div>
                 <div class="col-xs-5 col-xs-offset-1">
                     <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
                         <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
                     <div t-field="doc.partner_invoice_id"
                         t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
-                    <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p> 
-                    </div>                   
-                </div> 
+                    <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
+                    </div>
+                </div>
                 </div>
 			</xpath>
-			
+
 			<xpath expr="//div[@id='informations']" position="replace">
-			    
-				
+
+
 				<div t-if="doc.client_order_ref" class="col-xs-3">
                     <strong>Your Reference:</strong>
                     <p t-field="doc.client_order_ref"/>
-					
+
                 </div>
                 <div t-if="doc.date_order" class="col-xs-3">
                     <strong t-if="doc.state not in ['draft','sent']">Date Ordered:</strong>
                     <strong t-if="doc.state in ['draft','sent']">Quotation Date:</strong>
                     <p t-field="doc.date_order"/>
                 </div>
-                <div t-if="doc.user_id.name" class="col-xs-3">
+                <!--<div t-if="doc.user_id.name" class="col-xs-3">
                     <strong>Salesperson:</strong>
                     <p t-field="doc.user_id"/>
-                </div>
+                </div>-->
 				<div t-if="doc.user_id.name" class="col-xs-3">
                     <strong>Delivery date :</strong>
                     <p t-field="doc.customer_order_delivery_date"/>
                 </div>
-				
+
                 <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
                     <strong>Payment Term:</strong>
                     <p t-field="doc.payment_term_id"/>
                 </div>
-					
+
 			</xpath>
-			
-			
+
+
 			<xpath expr="//h2" position="replace">
 			    <h2>
                     <span t-if="doc.state not in ['draft','sent']">Order Amenagement # </span>
                     <span t-if="doc.state in ['draft','sent']">Quotation Amenagement # </span>
                     <span t-field="doc.name"/>
                 </h2>
-			</xpath>		
-			
+			</xpath>
+
+<!--
 			<xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
-                
+
                 <tr>
 				    <th width="2%">N°Lig</th>
                     <th width="25%">Désignation</th>
@@ -81,91 +76,92 @@
                     <th class="text-right">TVA</th>
 					<th class="text-right">Prix Net HT</th>
 					<th class="text-right">Valeur Totale HT</th>
-                </tr>				
-            </xpath>		
-			
+                </tr>
+            </xpath>
+-->
+
 		    <xpath expr="//t/t/tr/td[6]" position="before">
                 <td style="text-align: center;">
-                    
-				    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/> 
-                									
-                </td>	
-            </xpath> 
-			
+
+				    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/>
+
+                </td>
+            </xpath>
+
 			<xpath expr="//t/t/tr/td[4]" position="replace">
                 <td t-if="display_discount" style="text-align: left;" groups="sale.group_discount_per_so_line">
                                 <span t-esc="str(l.discount)+'%'"/>
                             </td>
-            </xpath> 
-			
+            </xpath>
+
 			<xpath expr="//t/t/tr/td[2]/span" position="replace">
-                <span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>          	
+                <span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>
             </xpath>
-			
-			
+
+
 			<xpath expr="//t/t" position="before">
-                <t t-set="i" t-value="1"/>                      							                                 					              	
+                <t t-set="i" t-value="1"/>
             </xpath>
-			
-			
+
+
 			<xpath expr="//t/t/tr/td" position="before">
-                <td>              
-				<span t-esc="i"/> 
-				<t t-set="i" t-value="i+1"/> 
-                </td>	
+                <td>
+				<span t-esc="i"/>
+				<t t-set="i" t-value="i+1"/>
+                </td>
             </xpath>
-			
+
 			<xpath expr="//t/t/tr/td[2]" position="replace">
                 <td width="25%">
                     <span t-field="l.name"/>
                 </td>
-            </xpath> 
-			
+            </xpath>
+
 			<xpath expr="//t/t/tr/td[4]" position="replace">
 			<td class="text-right" style="text-align: center;">
                 <span t-field="l.price_unit"/>
             </td>
 			</xpath>
-			
-			<xpath expr="//div[@name='total']" position="inside">
-            
-              <!-- TAXES -->
-               
-			      <!--<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> -->
-				
+
+<!--			<xpath expr="//div[@name='total']" position="inside">
+
+              &lt;!&ndash; TAXES &ndash;&gt;
+
+			      &lt;!&ndash;<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> &ndash;&gt;
+
               <div class="col-xs-4 pull-left">
-                <!--       <t t-foreach="taxes" t-as="v">
-                         *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> -->
-					
+                &lt;!&ndash;       <t t-foreach="taxes" t-as="v">
+                         *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> &ndash;&gt;
+
 					<table class="table table-condensed">
-						
+
                         <tr class="border-black">
                             <th><strong>TVA</strong></th>
 							<th><strong>Taux</strong></th>
 							<th><strong>Total HT</strong></th>
 							<th><strong>Total TVA</strong></th>
 							<th><strong>Total TTC</strong></th>
-                            
+
                         </tr>
-					<!-- <t t-foreach="doc.order_line" t-as="l">	
+					&lt;!&ndash; <t t-foreach="doc.order_line" t-as="l">
 						<tr>
 						<td>
-                        <span t-field="l.tax_id.name"/> 
+                        <span t-field="l.tax_id.name"/>
 						</td>
-					</tr> 
+					</tr>
 					</t>
-                     -->
-						
+                     &ndash;&gt;
+
 						 <tr>
 						 <td><span>2</span></td>
 						 <td><span>20%</span></td>
 						 <td>
                                 <t t-set="test_variable" t-value="0"/>
                                 <t t-foreach="doc.order_line" t-as="l">
-								<t t-if="l.tax_id.name=='2'" > 
-								
-                                  <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/> 
-                                      </t> 
+								<t t-if="l.tax_id.name=='2'" >
+
+                                  <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/>
+                                      </t>
 									  </t>
                                          <span t-esc="test_variable"/>
                          </td>
@@ -182,10 +178,10 @@
 						 <td>
                                 <t t-set="test_variable" t-value="0"/>
                                 <t t-foreach="doc.order_line" t-as="l">
-								<t t-if="l.tax_id.name=='4'" > 
-								
-                                  <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/> 
-                                      </t> 
+								<t t-if="l.tax_id.name=='4'" >
+
+                                  <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/>
+                                      </t>
 									  </t>
                                          <span t-esc="test_variable"/>
                          </td>
@@ -195,11 +191,11 @@
 						 <td>
                                         <span t-esc="test_variable + test_variable * 10 /100"/>
                          </td>
-						</tr>                                      
+						</tr>
                     </table>
-                
-            </div>	
-            </xpath>  
+
+            </div>
+            </xpath>-->
 			
         </template>
 		
@@ -265,39 +261,62 @@
             <xpath expr="//div[@class='footer']" position="replace">
                 <div class="footer">
                        <div class="text-left" style="border-top: 1px solid black; font-size: 10px;">
-                         RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139 2044 335 
+                         RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139 2044 335
                           <br />
                      CMCIFR2A (Merci de rappeler le numéro de facture lors de votre règlement)
-                          <ul class="list-inline text-center"> 
-                             <li>Page:</li> 
-                             <li><span class="page"/></li> 
-                             <li>de</li> 
-                             <li><span class="topage"/></li> 
+                          <ul class="list-inline text-center">
+                             <li>Page:</li>
+                             <li><span class="page"/></li>
+                             <li>de</li>
+                             <li><span class="topage"/></li>
                           </ul>
                        </div>
                 </div>
             </xpath>
-        </template> 
+        </template>
+
+        <template id="x_header" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                       <div class="row">
+                    <div class="col-xs-3">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
+                             style="max-height: 45px;"/>
+                    </div>
+                    <div class="col-xs-9 text-right" name="company_address">
+                        <div t-field="company.partner_id"
+                             t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                    </div>
+                </div>
+                <div class="row zero_min_height">
+                    <div class="col-xs-12">
+                        <div style="border-bottom: 1px solid black;"/>
+                    </div>
+                </div>
+                </div>
+            </xpath>
+        </template>
+
 		<template  id="colspane_modif" inherit_id="sale_layout.subtotal_template">
-    
+
             <xpath expr="//tr[@class='text-right']/td" position="attributes">
 		        <attribute name="colspan">8</attribute>
-		    </xpath>  
-		
+		    </xpath>
+
         </template>
 		<template  id="largeur_modif" inherit_id="sale_layout.category_template">
-    
+
             <xpath expr="//tr[@class='active']/td" position="attributes">
 		        <attribute name="colspan">8</attribute>
-		    </xpath>  
-		
+		    </xpath>
+
         </template>
 		<template  id="brackets_modif" inherit_id="sale_layout.separator_template">
-    
+
             <xpath expr="//tr[@class='text-center']/td" position="attributes">
 		        <attribute name="colspan">8</attribute>
-		    </xpath>  
-		
+		    </xpath>
+
         </template>
 		
 		<template id="report_amenagement">
