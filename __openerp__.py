@@ -40,6 +40,7 @@
 		'views/report_amenagement.xml',
 		'views/modif_quotation.xml',
 		'views/modif_hr_employee.xml',
+		'views/tmpputhod.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/template.xml',

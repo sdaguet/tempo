@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="temparticle_view_form" model="ir.ui.view">
+            <field name="name">TMP Article</field>
+            <field name="model">tmparticle</field>
+            <field name="arch" type="xml">
+                <form string="Article">
+                    <sheet>
+                        <group>
+                            <field name="N_Article"/>
+                            <field name="Code_article"/>
+                            <field name="Code_Barre"/>
+                            <field name="Genre"/>
+                            <field name="Espece"/>
+                            <field name="Variete"/>
+                            <field name="Catalogue"/>
+                            <field name="Marque_Savoie"/>
+                            <field name="Presentation"/>
+                            <field name="Presentation"/>
+                            <field name="Taille"/>
+                            <field name="Taille"/>
+                            <field name="Famille"/>
+                            <field name="tarif"/>
+                            <field name="type_de_feuillage"/>
+                            <field name="Famille_Presta"/>
+                            <field name="Promo_automne"/>
+                            <field name="Critere_7"/>
+                            <field name="Critere_8"/>
+                            <field name="Critere_9"/>
+                            <field name="Libelle_commercial"/>
+                            <field name="Nom_francais"/>
+                            <field name="N_conseil"/>
+                            <field name="Modele_etiquette"/>
+                            <field name="Prix_Etiquette"/>
+                            <field name="Code_comptable"/>
+                            <field name="Remise"/>
+                            <field name="TVA"/>
+                            <field name="Hauteur_mm"/>
+                            <field name="Poids_Brut"/>
+                            <field name="Complement"/>
+                            <field name="Code_vente"/>
+                            <field name="Conditionnement"/>
+                            <field name="CA_N"/>
+                            <field name="CA_N_1"/>
+                            <field name="CA_N_2"/>
+                            <field name="Qte_N"/>
+                            <field name="Qte_N_1"/>
+                            <field name="Qte_N_2"/>
+                            <field name="Masquer_dans_les_listes"/>
+                            <field name="Date_de_creation"/>
+                            <field name="Derniere_modification"/>
+                            <field name="Groupe_tarifaire"/>
+                            <field name="N_article_destockage"/>
+                            <field name="Coeff_destockage"/>
+                            <field name="Poids_Net"/>
+                            <field name="Type_fiscal"/>
+                            <field name="Critere_10"/>
+                            <field name="Critere_11"/>
+                            <field name="Critere_12"/>
+                            <field name="Critere_13"/>
+                            <field name="Critere_14"/>
+                            <field name="Critere_15"/>
+                            <field name="Critere_16"/>
+                            <field name="Critere_17"/>
+                            <field name="Critere_18"/>
+                            <field name="Gestion_du_stock"/>
+                            <field name="Unite_de_tarification"/>
+                            <field name="Sur_Appellation"/>
+                            <field name="Sous_Famille_article"/>
+                            <field name="Pays_d_origine"/>
+                            <field name="CA_N_Fourn"/>
+                            <field name="CA_N_1_Fourn"/>
+                            <field name="CA_N_2_Fourn"/>
+                            <field name="Qte_N"/>
+                            <field name="Qte_N_1"/>
+                            <field name="Qte_N_2"/>
+                            <field name="CA_N_A_Nouveau"/>
+                            <field name="Qte_N_A_Nouveau"/>
+                            <field name="Qte_N_Fourn_A_Nouveau"/>
+                            <field name="CA_N_Fourn_A_Nouveau"/>
+                            <field name="Domaine_util_achat"/>
+                            <field name="Domaine_util_vente"/>
+                            <field name="Taux_prix_achat"/>
+                            <field name="Code_achat"/>
+                            <field name="PCB_Article"/>
+                            <field name="Origine"/>
+                            <field name="Prix_ref_marge"/>
+                            <field name="code_barre"/>
+                            <field name="Gestion_de_Facteur"/>
+                            <field name="Code_Facteur"/>
+                            <field name="Remplace_par"/>
+                            <field name="N_Proprietaire"/>
+                            <field name="Fourn_principal"/>
+                            <field name="Date_de_fin_d_achat"/>
+                            <field name="No_FPP"/>
+                            <field name="Coef_FPP"/>
+                            <field name="Sem_Deb_Validite"/>
+                            <field name="Sem_Fin_Validite"/>
+                            <field name="Secteur_par_defaut"/>
+                            <field name="Critere_20"/>
+                            <field name="Critere_21"/>
+                            <field name="Commentaire_logistique"/>
+                            <field name="Identifiant_XOL"/>
+                            <field name="Article_Totalise"/>
+                            <field name="N_Article_Totalisateur"/>
+                            <field name="Article_Financier"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tmparticle_action" model="ir.actions.act_window">
+            <field name="name">TMP Article</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tmparticle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="tempclient_view_form" model="ir.ui.view">
+            <field name="name">TMP Client</field>
+            <field name="model">tmpclient</field>
+            <field name="arch" type="xml">
+                <form string="Article">
+                    <sheet>
+                        <group>
+                            <field name="N_Client"/>
+                            <field name="Civilite"/>
+                            <field name="Nom_1"/>
+                            <field name="Nom_2"/>
+                            <field name="Rais_Soc"/>
+                            <field name="Adresse_1"/>
+                            <field name="Adresse_2"/>
+                            <field name="Code_Postal"/>
+                            <field name="Ville"/>
+                            <field name="Pays"/>
+                            <field name="Telephone"/>
+                            <field name="Portable"/>
+                            <field name="Fax"/>
+                            <field name="E_mail"/>
+                            <field name="URL"/>
+                            <field name="Code_Categorie"/>
+                            <field name="Contfichier"/>
+                            <field name="Contfichier"/>
+                            <field name="altitude_du_jardin"/>
+                            <field name="altitude_du_jardin"/>
+                            <field name="surface_du_jardin"/>
+                            <field name="surface_du_jardin"/>
+                            <field name="Critere_4"/>
+                            <field name="Critere_4"/>
+                            <field name="age_du_jardin"/>
+                            <field name="age_du_jardin"/>
+                            <field name="type_de_client"/>
+                            <field name="type_de_client"/>
+                            <field name="Code_Representant"/>
+                            <field name="Code_Etiquette"/>
+                            <field name="Mode_de_Reglement"/>
+                            <field name="Type_Classe"/>
+                            <field name="Taux_Remise_Lig"/>
+                            <field name="Taux_Remise_Pied"/>
+                            <field name="Interdit"/>
+                            <field name="Compte_Tiers"/>
+                            <field name="Date_Ent"/>
+                            <field name="Date_Dern_Modif"/>
+                            <field name="CA_N"/>
+                            <field name="CA_N_1"/>
+                            <field name="CA_N_2"/>
+                            <field name="Commentaire_client"/>
+                            <field name="Identification_TVA"/>
+                            <field name="Assurance"/>
+                            <field name="Devise"/>
+                            <field name="Compte_Facture"/>
+                            <field name="Regroup_Facture"/>
+                            <field name="Plafond"/>
+                            <field name="Date_Dern_Modif_Plafond"/>
+                            <field name="Objectif_CA"/>
+                            <field name="Adresse_Exp"/>
+                            <field name="Code_Postal"/>
+                            <field name="Ville"/>
+                            <field name="Pays"/>
+                            <field name="Comment_Livraison"/>
+                            <field name="Pays_ProvDest"/>
+                            <field name="Pays_d_origine"/>
+                            <field name="Port"/>
+                            <field name="Code_Cond"/>
+                            <field name="Nbre_Factures"/>
+                            <field name="Rempl_Taille"/>
+                            <field name="Rempl_Variete"/>
+                            <field name="Code_Pays_code_barre"/>
+                            <field name="Masquer_dans_les_listes"/>
+                            <field name="CNUF"/>
+                            <field name="N_Ref"/>
+                            <field name="Logo"/>
+                            <field name="N_Tarification"/>
+                            <field name="Modele_Etiquette"/>
+                            <field name="Modele_de_Facture"/>
+                            <field name="Code_Client"/>
+                            <field name="type_de_plantation"/>
+                            <field name="type_d_entretien"/>
+                            <field name="parrainage"/>
+                            <field name="type_de_profil"/>
+                            <field name="intermediaire"/>
+                            <field name="Intermediaire_2"/>
+                            <field name="NEWSLETTER"/>
+                            <field name="Critere_14"/>
+                            <field name="Critere_15"/>
+                            <field name="Critere_16"/>
+                            <field name="Critere_17"/>
+                            <field name="Critere_18"/>
+                            <field name="Nom_Livraison"/>
+                            <field name="Prenom_Livraison"/>
+                            <field name="Ad_Liv_1"/>
+                            <field name="Ad_Liv_2"/>
+                            <field name="CP_Livraison"/>
+                            <field name="Ville_Liv"/>
+                            <field name="Code_pays_Livraison"/>
+                            <field name="Telephone_Livraison"/>
+                            <field name="Fax_Livraison"/>
+                            <field name="Portable_Livraison"/>
+                            <field name="E_mail_Livraison"/>
+                            <field name="Commentaire_Livraison"/>
+                            <field name="Zone_Exp"/>
+                            <field name="Incoterm"/>
+                            <field name="Type_transport"/>
+                            <field name="Code_lieu_liv_UE"/>
+                            <field name="Lieu_Livraison"/>
+                            <field name="Transporteur"/>
+                            <field name="N_Ordre_Tournee_Livraison"/>
+                            <field name="N_adresse_livraison"/>
+                            <field name="N_ordre_Livraison"/>
+                            <field name="CA_N_Avoir"/>
+                            <field name="Taux_Avoir"/>
+                            <field name="Commentaire_client_2"/>
+                            <field name="Date_Der_commande"/>
+                            <field name="Commentaire_client_3"/>
+                            <field name="Numerique_1"/>
+                            <field name="Mouvementer_des_Consignes"/>
+                            <field name="Consignes_valorisees"/>
+                            <field name="Statut_de_relance"/>
+                            <field name="Statut_rel_precedent"/>
+                            <field name="Consignes_en_compte"/>
+                            <field name="Facture_EDI"/>
+                            <field name="URL2"/>
+                            <field name="Periodicite_releve"/>
+                            <field name="Lie_au_client_N"/>
+                            <field name="Taux_d_escompte"/>
+                            <field name="Escompte_precompte"/>
+                            <field name="Identifiant_Xol"/>
+                            <field name="N_de_societe_XoL"/>
+                            <field name="Qualification_Client"/>
+                            <field name="Ancienne_Qualification"/>
+                            <field name="Animation_1"/>
+                            <field name="Animation_2"/>
+                            <field name="Animation_3"/>
+                            <field name="Animation_4"/>
+                            <field name="Animation_5"/>
+                            <field name="Animation_6"/>
+                            <field name="Mode_d_expedition"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tmpclient_action" model="ir.actions.act_window">
+            <field name="name">TMP Client</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tmpclient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- top menuitem -->
+        <menuitem name="TMP Puthod" id="tmpputhod" sequence="1"/>
+        <menuitem name="TMP Article" id="tmparticle" parent="tmpputhod"
+                  action="tmparticle_action"/>
+        <menuitem name="TMP Client" id="tmpclient" parent="tmpputhod"
+                  action="tmpclient_action"/>
+
+    </data>
+</odoo>
