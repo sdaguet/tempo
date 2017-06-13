@@ -24,38 +24,42 @@
                     </div>
                     <group>
                         <group>
-                            <field name="product_id" on_change="product_id_change(product_id, product_qty)" domain="[('bom_ids','!=',False),('bom_ids.type','!=','phantom')]" context='{"default_type": "product"}'/>
-                            <field name="product_tmpl_id" invisible="1"/>
+                            <!--<field name="product_id"-->
+                                   <!--context="{'default_type'': 'product'"-->
+                            <!--/>-->
+                            <!--<field name="product_tmpl_id" invisible="1"/>-->
                             <field name="state" invisible="1"/>
-                            <field name="partner_id"/>
-                            <label for="product_qty"/>
-                            <div class="o_row">
-                                <field name="product_qty" on_change="product_id_change(product_id, product_qty)"/>
-                                <field name="product_uom" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
-                                <button type="action"
-                                    name="%(mrp.action_change_production_qty)d"
-                                    string="Update" states="confirmed" class="oe_edit_only oe_link"/>
-                            </div>
+                            <!--<field name="partner_id"/>-->
+                            <!--<label for="product_qty" invisible="1"/>-->
+                            <!--<div class="o_row">-->
+                                <!--<field name="product_qty" on_change="product_id_change(product_id, product_qty)" invisible="1">1</field>-->
+                                <!--<field name="product_uom" invisible="1"-->
+                                <!--/>-->
+                                <!--<button type="action"-->
+                                    <!--name="%(mrp.action_change_production_qty)d"-->
+                                    <!--string="Update" states="confirmed" class="oe_edit_only oe_link" invisible="1"/>-->
+                            <!--</div>-->
                             <field name="inter_date"/>
                             <field name="date_planned"/>
+                            <field name="termine"/>
                         </group>
                         <group>
-                            <field name="bom_id"
-                                domain="['|',
-                                            ('product_id','=',product_id),
-                                            '&amp;',
-                                                ('product_tmpl_id.product_variant_ids','=',product_id),
-                                                ('product_id','=',False)]"
-                                context="{'default_product_id': product_id, 'default_product_tmpl_id': product_tmpl_id}" on_change="bom_id_change(bom_id)" />
-                            <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                            <!--<field name="bom_id"-->
+                                <!--domain="['|',-->
+                                            <!--('product_id','=',product_id),-->
+                                            <!--'&amp;',-->
+                                                <!--('product_tmpl_id.product_variant_ids','=',product_id),-->
+                                                <!--('product_id','=',False)]"-->
+                                <!--context="{'default_product_id': product_id, 'default_product_tmpl_id': product_tmpl_id}" on_change="bom_id_change(bom_id)" />-->
+                            <!--<field name="routing_id" groups="mrp.group_mrp_routings"/>-->
                             <field name="equipe_id"/>
                             <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'mrp.group_mrp_user']}"/>
                             <field name="chantier_id"/>
-                            <field name="origin"/>
+                            <!--<field name="origin"/>-->
                         </group>
                         <group groups="stock.group_locations">
-                            <field name="location_src_id" domain="[('usage','=','internal')]" on_change="location_id_change(location_src_id,location_dest_id)"/>
-                            <field name="location_dest_id" domain="[('usage','=','internal')]"/>
+                            <field name="location_src_id" domain="[('usage','=','internal')]" on_change="location_id_change(location_src_id,location_dest_id)" invisible="1"/>
+                            <field name="location_dest_id" domain="[('usage','=','internal')]" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
@@ -198,115 +202,115 @@
                 		</tree>
                 	</field>
 			        <field name="subtasks"/>
-                    <notebook>
-                        <page string="Consumed Products">
-                            <group>
-                                <group string="Products to Consume">
-                                    <field name="move_lines" nolabel="1" options="{'reload_on_button': true}">
-                                        <tree decoration-info="state == 'draft'" decoration-muted="state in ('cancel','done')" decoration-danger="state in ('confirmed','waiting')" string="Products to Consume">
-                                            <field name="product_id"/>
-                                            <field name="product_uom_qty"  string="Quantity"/>
-                                            <field name="product_uom" options="{'no_open':True,'no_create':True}" string="Unit of Measure" groups="product.group_uom"/>
-                                            <field name="state" invisible="1"/>
-                                            <button name="%(mrp.move_consume)d"
-                                                string="Consume Products" type="action"
-                                                icon="gtk-go-forward" context="{'consume': True}"
-                                                states="assigned"
-                                                 />
-                                            <button name="%(stock.move_scrap)d"
-                                                string="Scrap Products" type="action"
-                                                icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"
-                                                states="draft,waiting,confirmed,assigned"/>
-                                        </tree>
-                                    </field>
-                                </group>
-                                <group string="Consumed Products">
-                                    <field name="move_lines2" nolabel="1" options="{'reload_on_button': true}">
-                                       <tree decoration-danger="scrapped==True" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Consumed Products" editable="bottom">
-                                           <field name="product_id" readonly="1"/>
-                                           <field name="restrict_lot_id" context="{'product_id': product_id}" groups="stock.group_production_lot"/>
-                                           <field name="product_uom_qty" readonly="1"/>
-                                           <field name="product_uom" options="{'no_open':True,'no_create':True}" readonly="1" string="Unit of Measure" groups="product.group_uom"/>
-                                           <field name="state" invisible="1"/>
-                                           <field name="scrapped" invisible="1"/>
-                                       </tree>
-                                    </field>
-                                </group>
-                            </group>
-                        </page>
-                        <page string="Finished Products">
-                            <group>
-                                <group string="Products to Produce">
-                                    <field name="move_created_ids" nolabel="1" options="{'reload_on_button': true}">
-                                        <tree string="Products to Finish">
-                                            <field name="product_id"/>
-                                            <field name="product_uom_qty"/>
-                                            <field name="product_uom" options="{'no_open':True,'no_create':True}"  string="Unit of Measure" groups="product.group_uom"/>
-                                            <field name="state" invisible="1"/>
-                                        </tree>
-                                    </field>
-                                </group>
-                                <group string="Produced Products">
-                                    <field name="move_created_ids2" nolabel="1" options="{'reload_on_button': true}">
-                                        <tree decoration-danger="scrapped==True" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Finished Products">
-                                            <field name="product_id" readonly="1"/>
-                                            <field name="product_uom_qty" readonly="1"/>
-                                            <field name="restrict_lot_id" groups="stock.group_production_lot"/>
-                                            <field name="product_uom" options="{'no_open':True,'no_create':True}" readonly="1" string="Unit of Measure" groups="product.group_uom"/>
-                                            <field name="location_dest_id"  readonly="1" string="Destination Loc." widget="selection" groups="stock.group_locations"/>
-                                            <field name="scrapped" invisible="1"/>
-                                            <field name="state" invisible="1"/>
-                                            <button name="%(stock.move_scrap)d"
-                                                string="Scrap Products" type="action" icon="terp-gtk-jump-to-ltr"
-                                                states="done,cancel"/>
-                                        </tree>
-                                    </field>
-                                </group>
-                            </group>
-                        </page>
-                        <page string="Work Orders" groups="mrp.group_mrp_routings">
-                            <button name="action_compute" states="draft"
-                                string="Compute Data" type="object"
-                                icon="terp-stock_format-scientific"/>
-                            <field name="workcenter_lines" options="{'reload_on_button': true}">
-                                <form string="Production Work Centers">
-                                    <group col="4">
-                                        <field colspan="4" name="name"/>
-                                        <field name="workcenter_id"/>
-                                        <field name="sequence"/>
-                                        <field name="cycle"/>
-                                        <field name="hour" widget="float_time"/>
-                                    </group>
-                                </form>
-                                <tree string="Production Work Centers">
-                                    <field name="sequence"/>
-                                    <field name="name"/>
-                                    <field name="workcenter_id"/>
-                                    <field name="cycle"/>
-                                    <field name="hour" widget="float_time"/>
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="Scheduled Products">
-                            <button name="action_compute" states="draft"
-                                string="Compute Data" type="object"
-                                icon="terp-stock_format-scientific"/>
-                            <field name="product_lines"/>
-                        </page>
-                        <page string="Extra Information">
-                            <group>
-                                <group>
-                                    <field name="priority"/>
-                                    <field name="date_start" invisible="1"/>
-                                    <field name="date_finished" invisible="1"/>
-                                </group>
-                                <group>
-                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                                    <field name="move_prod_id" groups="base.group_no_one"/>
-                                </group>
-                            </group>
-                        </page>
-                    </notebook>
+                    <!--<notebook>-->
+                        <!--<page string="Consumed Products">-->
+                            <!--<group>-->
+                                <!--<group string="Products to Consume">-->
+                                    <!--<field name="move_lines" nolabel="1" options="{'reload_on_button': true}">-->
+                                        <!--<tree decoration-info="state == 'draft'" decoration-muted="state in ('cancel','done')" decoration-danger="state in ('confirmed','waiting')" string="Products to Consume">-->
+                                            <!--<field name="product_id"/>-->
+                                            <!--<field name="product_uom_qty"  string="Quantity"/>-->
+                                            <!--<field name="product_uom" options="{'no_open':True,'no_create':True}" string="Unit of Measure" groups="product.group_uom"/>-->
+                                            <!--<field name="state" invisible="1"/>-->
+                                            <!--<button name="%(mrp.move_consume)d"-->
+                                                <!--string="Consume Products" type="action"-->
+                                                <!--icon="gtk-go-forward" context="{'consume': True}"-->
+                                                <!--states="assigned"-->
+                                                 <!--/>-->
+                                            <!--<button name="%(stock.move_scrap)d"-->
+                                                <!--string="Scrap Products" type="action"-->
+                                                <!--icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"-->
+                                                <!--states="draft,waiting,confirmed,assigned"/>-->
+                                        <!--</tree>-->
+                                    <!--</field>-->
+                                <!--</group>-->
+                                <!--<group string="Consumed Products">-->
+                                    <!--<field name="move_lines2" nolabel="1" options="{'reload_on_button': true}">-->
+                                       <!--<tree decoration-danger="scrapped==True" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Consumed Products" editable="bottom">-->
+                                           <!--<field name="product_id" readonly="1"/>-->
+                                           <!--<field name="restrict_lot_id" context="{'product_id': product_id}" groups="stock.group_production_lot"/>-->
+                                           <!--<field name="product_uom_qty" readonly="1"/>-->
+                                           <!--<field name="product_uom" options="{'no_open':True,'no_create':True}" readonly="1" string="Unit of Measure" groups="product.group_uom"/>-->
+                                           <!--<field name="state" invisible="1"/>-->
+                                           <!--<field name="scrapped" invisible="1"/>-->
+                                       <!--</tree>-->
+                                    <!--</field>-->
+                                <!--</group>-->
+                            <!--</group>-->
+                        <!--</page>-->
+                        <!--<page string="Finished Products">-->
+                            <!--<group>-->
+                                <!--<group string="Products to Produce">-->
+                                    <!--<field name="move_created_ids" nolabel="1" options="{'reload_on_button': true}">-->
+                                        <!--<tree string="Products to Finish">-->
+                                            <!--<field name="product_id"/>-->
+                                            <!--<field name="product_uom_qty"/>-->
+                                            <!--<field name="product_uom" options="{'no_open':True,'no_create':True}"  string="Unit of Measure" groups="product.group_uom"/>-->
+                                            <!--<field name="state" invisible="1"/>-->
+                                        <!--</tree>-->
+                                    <!--</field>-->
+                                <!--</group>-->
+                                <!--<group string="Produced Products">-->
+                                    <!--<field name="move_created_ids2" nolabel="1" options="{'reload_on_button': true}">-->
+                                        <!--<tree decoration-danger="scrapped==True" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Finished Products">-->
+                                            <!--<field name="product_id" readonly="1"/>-->
+                                            <!--<field name="product_uom_qty" readonly="1"/>-->
+                                            <!--<field name="restrict_lot_id" groups="stock.group_production_lot"/>-->
+                                            <!--<field name="product_uom" options="{'no_open':True,'no_create':True}" readonly="1" string="Unit of Measure" groups="product.group_uom"/>-->
+                                            <!--<field name="location_dest_id"  readonly="1" string="Destination Loc." widget="selection" groups="stock.group_locations"/>-->
+                                            <!--<field name="scrapped" invisible="1"/>-->
+                                            <!--<field name="state" invisible="1"/>-->
+                                            <!--<button name="%(stock.move_scrap)d"-->
+                                                <!--string="Scrap Products" type="action" icon="terp-gtk-jump-to-ltr"-->
+                                                <!--states="done,cancel"/>-->
+                                        <!--</tree>-->
+                                    <!--</field>-->
+                                <!--</group>-->
+                            <!--</group>-->
+                        <!--</page>-->
+                        <!--<page string="Work Orders" groups="mrp.group_mrp_routings">-->
+                            <!--<button name="action_compute" states="draft"-->
+                                <!--string="Compute Data" type="object"-->
+                                <!--icon="terp-stock_format-scientific"/>-->
+                            <!--<field name="workcenter_lines" options="{'reload_on_button': true}">-->
+                                <!--<form string="Production Work Centers">-->
+                                    <!--<group col="4">-->
+                                        <!--<field colspan="4" name="name"/>-->
+                                        <!--<field name="workcenter_id"/>-->
+                                        <!--<field name="sequence"/>-->
+                                        <!--<field name="cycle"/>-->
+                                        <!--<field name="hour" widget="float_time"/>-->
+                                    <!--</group>-->
+                                <!--</form>-->
+                                <!--<tree string="Production Work Centers">-->
+                                    <!--<field name="sequence"/>-->
+                                    <!--<field name="name"/>-->
+                                    <!--<field name="workcenter_id"/>-->
+                                    <!--<field name="cycle"/>-->
+                                    <!--<field name="hour" widget="float_time"/>-->
+                                <!--</tree>-->
+                            <!--</field>-->
+                        <!--</page>-->
+                        <!--<page string="Scheduled Products">-->
+                            <!--<button name="action_compute" states="draft"-->
+                                <!--string="Compute Data" type="object"-->
+                                <!--icon="terp-stock_format-scientific"/>-->
+                            <!--<field name="product_lines"/>-->
+                        <!--</page>-->
+                        <!--<page string="Extra Information">-->
+                            <!--<group>-->
+                                <!--<group>-->
+                                    <!--<field name="priority"/>-->
+                                    <!--<field name="date_start" invisible="1"/>-->
+                                    <!--<field name="date_finished" invisible="1"/>-->
+                                <!--</group>-->
+                                <!--<group>-->
+                                    <!--<field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>-->
+                                    <!--<field name="move_prod_id" groups="base.group_no_one"/>-->
+                                <!--</group>-->
+                            <!--</group>-->
+                        <!--</page>-->
+                    <!--</notebook>-->
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

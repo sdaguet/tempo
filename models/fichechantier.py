@@ -143,6 +143,27 @@ class fiche_chantier(models.Model):
     _name = "fiche.chantier"
     _description = 'Fiche de Chantier'
 
+    @api.model
+    def _get_default_uom_id(self):
+        # _logger.info('self.env.ref("product.product_uom_kgm", raise_if_not_found=False)' + self.env.ref("product.product_uom_kgm", raise_if_not_found=False))
+        return self.env.ref("product.product_uom_kgm", raise_if_not_found=False)
+
+    @api.model
+    def _get_default_product_id(self):
+        return self.env.ref("product_default_product", raise_if_not_found=False)
+
+    product_id = fields.Many2one(
+        'product.product', 'Product',
+        domain=[('type', 'in', ['product', 'consu'])],
+        readonly=True, required=False,
+        states={'confirmed': [('readonly', False)]},default=_get_default_product_id)
+
+    product_uom_id = fields.Many2one(
+        'product.uom', 'Product Unit of Measure',
+        oldname='product_uom', readonly=True, required=False,
+        states={'confirmed': [('readonly', False)]},default=_get_default_uom_id)
+
+
     @api.onchange('equipe_id')
     def _onchange_equipe_id(self):
         if self.equipe_id:
@@ -153,10 +174,10 @@ class fiche_chantier(models.Model):
         ('cancel', 'Annulé'),
         ('confirmed', 'Rempli. A valider'),
         ('ready', 'Validé. A comptabiliser'),
-        ('in_production', 'Validé. A comptabiliser'),
         ('done', 'Comptabilisé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
 
+    termine = fields.Boolean(string=u"Chantier Terminé",required=True, default=False)
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')

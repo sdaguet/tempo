@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="0">
+        <record id="product_default_product" model="product.product">
+            <field name="name">NomenclatureArticle</field>
+            <field name="categ_id" ref="product.product_category_1"/>
+            <field name="type">product</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_kgm"/>
+            <field name="uom_po_id" ref="product.product_uom_kgm"/>
+            <field name="company_id" eval="[]"/>
+			<field name="description_sale">
+			  Produit par défaut
+            </field>
+        </record>
+
         <record id="product_entretien_printe" model="product.product">
             <field name="name">Forfait Entretien Printemps</field>
             <field name="categ_id" ref="product.product_category_1"/>

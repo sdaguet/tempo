@@ -28,6 +28,13 @@
 	              Présences
 	          </a>
 	      </li>
+
+          <li>
+	          <a href="/chantierviewer">
+	              <i class="fa"></i>
+	              Fiches de chantier
+	          </a>
+	      </li>
 	  </xpath>
     </template>
 
