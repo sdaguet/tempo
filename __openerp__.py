@@ -39,6 +39,7 @@
 		'report/quotations.xml',
 		'views/report_amenagement.xml',
 		'views/modif_quotation.xml',
+		'views/modif_hr_employee.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/template.xml',
