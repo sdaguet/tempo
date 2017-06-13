@@ -38,9 +38,14 @@ class WebsiteContractDarbtech(http.Controller):
                 [
                     ('manager', '=', current_employee.id)
                 ])
+        list_fiches = request.env['fiche.chantier'].sudo().search(
+                [
+                    ('equipe_id', '=', list_teams[0].id)
+                ])
 
         return http.request.render('darb_puthod.chantierviewer', {
-            'teams' : list_teams
+            'teams' : list_teams,
+            'fiche' : list_fiches[0]
                 })
 
     @http.route('/pointer', type='json', auth="user", website=True)
