@@ -107,11 +107,18 @@ class chantier(models.Model):
     order_id = fields.Many2one('sale.order', string="Order")
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
+    @api.one
+    def action_dispatch(self):
+        self.state = 'progress'
+
+    @api.one
+    def action_done(self):
+        self.state = 'done'
 
     @api.model
     def get_google_maps_data(self, domain=[]):
         # get all partners need to display google maps
-        chantiers = self.search([('is_display_gm', '=', True)])
+        chantiers = self.search([('is_display_gm', '=', True), ('state', '!=', 'done')])
         locations = []
         for chantier in chantiers:
             location = [
@@ -158,9 +165,9 @@ class fiche_chantier(models.Model):
         readonly=True, required=False,
         states={'confirmed': [('readonly', False)]},default=_get_default_product_id)
 
-    product_uom_id = fields.Many2one(
+    product_uom = fields.Many2one(
         'product.uom', 'Product Unit of Measure',
-        oldname='product_uom', readonly=True, required=False,
+        readonly=True, required=False,
         states={'confirmed': [('readonly', False)]},default=_get_default_uom_id)
 
 

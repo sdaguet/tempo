@@ -10,8 +10,10 @@
 			<field name="arch" type="xml">
         		<form>
 	                <header>
+                        <button name="action_dispatch" states="draft" string="Valider" type="object" icon="gtk-go-forward" class="oe_highlight"/>
+                        <button name="action_done" states="progress" string="Terminer" type="object" icon="gtk-go-forward" class="oe_highlight"/>
+                    	<button name="create_fiche_chantier" string="Créer une fiche chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
 	                	<field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
-                    	<button name="create_fiche_chantier" string="Créer une fiche chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '=', 'done')]}"/>
 	                </header>
         			<group>
 			          <field name="name"/>
@@ -19,6 +21,7 @@
 			          <field name="address"/>
                       <field name="g_lat" readonly="0"/>
                       <field name="g_lng" readonly="0"/>
+                      <field name="is_display_gm"/>
 			          <field name="fiche_ids" readonly="1"/>
 					</group>
         		</form>
