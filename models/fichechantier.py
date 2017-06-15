@@ -7,6 +7,36 @@ import geocoder
 import logging
 _logger = logging.getLogger(__name__)
 
+types = [
+        ('p', 'Préparation'),
+        ('d', 'Déplacement'),
+        ('pl', 'Plantation'),
+        ('t', 'Tonte'),
+        ('ta', 'Taille'),
+        ('dh', 'Désherbage'),
+        ('g', 'Gazon'),
+        ('g', 'Gazon plaqué'),
+        ('a', 'White'),
+        ('f', 'Fertilisation'),
+        ('tb', 'Terrasse'),
+        ('cl', 'Clôture'),
+        ('pr', 'Protection'),
+        ('em', 'Escalier-murêt'),
+        ('ma', 'Maçonnerie'),
+        ('di', 'Divers')]
+
+
+class subtask_wizard(models.TransientModel):
+    _name = 'subtask.wizard'
+
+    name = fields.Char('Tâche')
+    description = fields.Text('Description')
+    product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
+    fiche_chantier_task = fields.Boolean(string="Ajouter")
+    type = fields.Selection(types, copy=False,
+        string='Type', track_visibility='onchange')
+    wizard_id = fields.Many2one('wizard.create.fiche.chantiere')
+
 
 class wizard_create_fiche_chantier(models.TransientModel):
     _name = 'wizard.create.fiche.chantiere'
@@ -14,7 +44,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
-    subtasks = fields.Many2many('subtask', string="Tâches")
+    subtasks = fields.One2many('subtask.wizard', 'wizard_id', string="Tâches")
 
     @api.model
     def default_get(self, fields_list):
@@ -26,7 +56,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         task_ids = []
         for x in tasks_list:
             for y in x:
-                task_ids.append((4, y.id))
+                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'type': y.type, 'fiche_chantier_task': True}))
         res['subtasks'] = task_ids
         return res
 
@@ -41,7 +71,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
             'equipe_id': self.equipe_id.id,
             'chantier_id': self.chantier_id.id,
             'inter_date': self.inter_date,
-            'subtasks': [(4, task.id) for task in self.subtasks],
+            'subtasks': [((0, 0, {'name': task.name, 'description': task.description, 'type': task.type})) for task in self.subtasks if task.fiche_chantier_task == True],
             }
         fiche_chantier_id = self.env['fiche.chantier'].create(vals)
         return {
@@ -68,6 +98,8 @@ class subtask(models.Model):
     name = fields.Char('Tâche')
     description = fields.Text('Description')
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
+    type = fields.Selection(types, copy=False,
+        string='Type', track_visibility='onchange')
 
 
 class chantier(models.Model):
