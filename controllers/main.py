@@ -123,7 +123,6 @@ class WebsiteContractDarbtech(http.Controller):
         vals = {
             'equipe_id': equipe_id.id,
             'chantier_id': chantier_id.id,
-            'product_id': 2,
             'inter_date': fields.Datetime.now(),
             }
         fiche_chantier = request.env['fiche.chantier'].create(vals)

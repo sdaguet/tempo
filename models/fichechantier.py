@@ -14,7 +14,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
     inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
-    subtasks = fields.One2many('subtask', 'fiche_chantier_id', string="Tâches")
+    subtasks = fields.Many2many('subtask', string="Tâches")
 
     @api.model
     def default_get(self, fields_list):
@@ -40,7 +40,6 @@ class wizard_create_fiche_chantier(models.TransientModel):
         vals = {
             'equipe_id': self.equipe_id.id,
             'chantier_id': self.chantier_id.id,
-            'product_id': 1,
             'inter_date': self.inter_date,
             'subtasks': [(4, task.id) for task in self.subtasks],
             }
@@ -68,7 +67,6 @@ class subtask(models.Model):
 
     name = fields.Char('Tâche')
     description = fields.Text('Description')
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Chantier', index=True, track_visibility='onchange')
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
 
 
@@ -205,7 +203,7 @@ class fiche_chantier(models.Model):
     divers_ids = fields.One2many('fiche.chantier.divers', 'fiche_chantier_id', string=u'Divers')
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
-    subtasks = fields.One2many('subtask', 'fiche_chantier_id', string="Tâches")
+    subtasks = fields.Many2many('subtask', string="Tâches")
 
 
 class fiche_chantier_vehicle(models.Model):
