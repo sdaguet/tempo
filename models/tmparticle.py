@@ -123,7 +123,7 @@ class TmpArticle(models.Model):
             #'uom_id': 1,
             'property_account_income_id': False,
             'description_purchase': False,
-            'default_code': False,
+            #'default_code': N_Article, #N_Article
             'message_ids': False,
             'sale_ok': True,
             'item_ids': [],
@@ -161,6 +161,10 @@ class TmpArticle(models.Model):
             'barcode': Code_Barre , #Code_Barre
             'weight' : Poids_Brut , #Poids_Brut
             }
+        #article = self.env['product.template'].search([('default_code', '=', self.N_Article)])
+        #if article:
+           # _logger.error("Cet Article existe déjà !")
+        #else:
         self.env['product.template'].create(valuesp)
         return record
 
