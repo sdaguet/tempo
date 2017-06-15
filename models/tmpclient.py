@@ -145,7 +145,6 @@ class TmpClient(models.Model):
     def create(self, values):
         record = super(TmpClient, self).create(values)
         Nom_1 = values.get('Nom_1')
-        Nom_2 = values.get('Nom_2')
         Ville = values.get('Ville')
         Code_Postal = values.get('Code_Postal')
         E_mail = values.get('E_mail')
@@ -154,6 +153,14 @@ class TmpClient(models.Model):
         Telephone = values.get('Telephone')
         Adresse_1 = values.get('Adresse_1')
         Adresse_2 = values.get('Adresse_2')
+        N_Client = values.get('N_Client')
+
+        Nom_2 = values.get('Nom_2')
+        if Nom_2:
+            Nom_2 = Nom_2
+        else:
+            Nom_2 = ""
+
 
         valuesc = {'comment': False,
                    'function': False,
@@ -189,12 +196,16 @@ class TmpClient(models.Model):
                    'active': True,
                    'lang': 'fr_FR',
                    # 'property_stock_supplier': 8,
-                   'name': Nom_1 + Nom_2,#nom
+                   'name': Nom_1 + Nom_2, #nom
                    'mobile': False,
-                   'ref': False,
+                   #'ref': N_Client, #N_Client
                    # 'property_account_payable_id': 292,
                    'state_id': False,
                    'category_id': []}
+        #client = self.env['res.partner'].search([('ref','=',self.N_Client)])
+        #if client:
+         #   _logger.error("Ce Client existe déjà !")
+        #else:
         self.env['res.partner'].create(valuesc)
         return record
 
