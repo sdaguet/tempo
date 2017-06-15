@@ -124,7 +124,7 @@ class chantier(models.Model):
         ('draft', 'Brouillon'),
         ('progress', 'En cours'),
         ('done', 'Terminé'),], default='draft', copy=False,
-        string='Status', readonly=True, track_visibility='onchange')
+        string='Status', readonly=True, track_visibility='onchange',compute="_compute_state")
 
     address = fields.Text(string='Address')
     is_display_gm = fields.Boolean('Display Google Maps?')
@@ -136,6 +136,17 @@ class chantier(models.Model):
         multi='glatlng', digits=(3,12))
     order_id = fields.Many2one('sale.order', string="Order")
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
+
+    @api.one
+    @api.depends('fiche_ids','fiche_ids.termine')
+    def _compute_state(self):
+        if self.fiche_ids and self.fiche_ids.termine:
+            self.state = 'progress'
+        elif self.fiche_ids == False:
+            self.state = 'draft'
+        elif self.fiche_ids and self.fiche_ids.termine == False :
+            self.state = 'done'
+        pass
 
     @api.one
     def action_dispatch(self):
