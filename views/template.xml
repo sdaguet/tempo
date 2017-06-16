@@ -30,7 +30,7 @@
 	      </li>
 
           <li>
-	          <a href="/chantierviewer">
+	          <a href="/ficheslist">
 	              <i class="fa"></i>
 	              Fiches de chantier
 	          </a>
@@ -86,7 +86,7 @@
 		</t>
 	</template>
 
-	<template id="chantierviewer" name="Saisie Chantier">
+	<template id="ficheviewer" name="Saisie Chantier">
 		<t t-call="website.layout">
 			<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 			<div class="container">
@@ -674,6 +674,59 @@
 		</t>
     </template>
 
+
+<!--liste des fiches-->
+    <template id="listfiches" name="Liste des fiches de chantiers">
+    	<t t-call="website.layout">
+		  <div id="wrap">
+			<div class="oe_structure"/>
+			<div class="container">
+				<h1>Fiches de chantiers</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<table class="table table-hover status_table">
+						<thead>
+							<tr class="active">
+								<th>Référence</th>
+								<th>Date prévue</th>
+								<th>Article</th>
+								<th>Quantité d'articles</th>
+								<th>Heures Totales</th>
+								<th>Cycles totaux</th>
+								<th>Document Source</th>
+								<th>Status FC</th>
+							</tr>
+						</thead>
+						<t t-foreach="fiches" t-as="fiche">
+							<tr>
+							<td><a href="/fichesForm"><span t-field="fiche.name"/></a>
+							</td>
+							<td><span t-field="fiche.date_planned"/>
+							</td>
+							<td><span t-field="fiche.product_id"/>
+							</td>
+							<td><span t-field="fiche.product_qty"/>
+							</td>
+							<td><span t-field="fiche.hour_total"/>
+							</td>
+							<td><span t-field="fiche.cycle_total"/>
+							</td>
+							<td><span t-field="fiche.state"/>
+							</td>
+							</tr>
+						</t>
+						</table>
+					</div>
+					<div class="col-md-4 mb32">
+						<t t-call="website.company_description"/>
+					</div>
+				</div>
+			</div>
+			<div class="oe_structure"/>
+		  </div>
+		</t>
+    </template>
+
     <template id="formchantiers" name="Form des chantiers ouverts">
 
     	<t t-call="website.layout">
@@ -681,7 +734,7 @@
 	  <div class="container panel-group mb32 mt32" id="debug_infos">
 	      <li t-foreach="chantiers" t-as="cho">
 	              <i class="fa"></i>
-	              CO <span t-field="cho.name"/>
+	              CO <div t-field="cho.name"/>
 	      </li>
 
 	  </div></t>
