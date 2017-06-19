@@ -123,16 +123,17 @@
             </td>
 			</xpath>
 
-<!--			<xpath expr="//div[@name='total']" position="inside">
+			<!-- Pour ajouter le nouveau tableau de la TVA -->
+			<xpath expr="//div[@name='total']" position="inside">
 
-              &lt;!&ndash; TAXES &ndash;&gt;
+              <!-- &lt;!&ndash; TAXES &ndash;&gt;
 
-			      &lt;!&ndash;<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> &ndash;&gt;
+			      &lt;!&ndash;<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> &ndash;&gt; -->
 
               <div class="col-xs-4 pull-left">
-                &lt;!&ndash;       <t t-foreach="taxes" t-as="v">
-                         *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> &ndash;&gt;
-
+             <!--  &lt;!&ndash;       <t t-foreach="taxes" t-as="v">
+                         *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> &ndash;&gt; -->
+ 
 					<table class="table table-condensed">
 
                         <tr class="border-black">
@@ -143,59 +144,57 @@
 							<th><strong>Total TTC</strong></th>
 
                         </tr>
-					&lt;!&ndash; <t t-foreach="doc.order_line" t-as="l">
-						<tr>
-						<td>
-                        <span t-field="l.tax_id.name"/>
-						</td>
-					</tr>
+				    
+                     <!-- pour remplir la liste des types de tva -->
+					<t t-set="tva_category" t-value="[]"/>
+						<t t-foreach="doc.order_line" t-as="l">
+						<t t-set="tva_category" t-value="tva_category+[l.tax_id.name]"/>
 					</t>
-                     &ndash;&gt;
-
-						 <tr>
-						 <td><span>2</span></td>
-						 <td><span>20%</span></td>
-						 <td>
+					
+					<!-- pour remplir le tableau de tva -->
+					<t t-foreach="set(tva_category)" t-as="category">
+					<t t-set="chrono" t-value="True"/>
+					<t t-set="chrono2" t-value="True"/>
+					<tr>
+                      <td><span t-esc="category"/></td>
+					  <t t-foreach="doc.order_line" t-as="l">				  
+					 <t t-if=" category == l.tax_id.name and chrono == True ">
+					<td><span t-esc="str(int(l.tax_id.amount))+'%'"/></td>	
+					<t t-set="chrono" t-value="False"/>
+					</t>
+					</t>
+				   
                                 <t t-set="test_variable" t-value="0"/>
                                 <t t-foreach="doc.order_line" t-as="l">
-								<t t-if="l.tax_id.name=='2'" >
+								<t t-if="category == l.tax_id.name" >
 
                                   <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/>
+								
                                       </t>
 									  </t>
-                                         <span t-esc="test_variable"/>
-                         </td>
-						 <td>
-                                        <span t-esc="test_variable * 20 /100"/>
-                         </td>
-						 <td>
-                                        <span t-esc="test_variable + test_variable * 20 /100"/>
-                         </td>
-						</tr>
-						 <tr>
-						 <td><span>4</span></td>
-						 <td><span>10%</span></td>
-						 <td>
-                                <t t-set="test_variable" t-value="0"/>
-                                <t t-foreach="doc.order_line" t-as="l">
-								<t t-if="l.tax_id.name=='4'" >
+                                       <td>   <span t-esc="test_variable"/></td>
+						 
+						 
+						 <t t-foreach="doc.order_line" t-as="l">				  
+							<t t-if=" category == l.tax_id.name and chrono2 == True ">
+							<td><span t-esc="test_variable * l.tax_id.amount /100"/></td>
+							<td><span t-esc="test_variable + test_variable * l.tax_id.amount /100"/></td>
+							<t t-set="chrono2" t-value="False"/>
+						</t>
+						</t>
+						 
+						 
+						
+					
+					</tr>
+                   
+                   	</t>		   
 
-                                  <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/>
-                                      </t>
-									  </t>
-                                         <span t-esc="test_variable"/>
-                         </td>
-						 <td>
-                                        <span t-esc="test_variable * 10 /100"/>
-                         </td>
-						 <td>
-                                        <span t-esc="test_variable + test_variable * 10 /100"/>
-                         </td>
-						</tr>
+						
                     </table>
 
             </div>
-            </xpath>-->
+            </xpath>
 			
         </template>
 		
