@@ -8,6 +8,10 @@ _logger = logging.getLogger(__name__)
 class sale_order(models.Model):
     _inherit = 'sale.order'
 
+    order_type = fields.Selection([
+        ('entretien', 'Entretien')],
+        string='Type', track_visibility='onchange')
+
     @api.multi
     def create_fiche_chantier(self):
         return {

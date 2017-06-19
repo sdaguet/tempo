@@ -8,6 +8,9 @@
                 <header position="inside">
                     <button name="create_fiche_chantier" string="Créer un chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'sale')]}"/>
                 </header>
+                <field name="validity_date" position="replace">
+                	<field name="order_type"/>
+                </field>
             </field>
         </record>
         

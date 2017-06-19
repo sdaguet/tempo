@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+	<data>
+
+		<record id="emplacement_view_form" model="ir.ui.view">
+			<field name="name">emplacement form</field>
+			<field name="model">emplacement</field>
+			<field name="arch" type="xml">
+        		<form>
+        			<group>
+			          <field name="name"/>
+			          <field name="chantier_id"/>
+        			</group>
+        		</form>
+      		</field>
+		</record>
+
+		<record id="emplacement_view_tree" model="ir.ui.view">
+			<field name="name">emplacement tree</field>
+			<field name="model">emplacement</field>
+			<field name="arch" type="xml">
+        		<tree>
+			          <field name="name"/>
+			          <field name="chantier_id"/>
+        		</tree>
+      		</field>
+		</record>
+
+		<record id="emplacement_action" model="ir.actions.act_window">
+			<field name="name">Emplacement</field>
+			<field name="res_model">emplacement</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="product_emplacement_view_form" model="ir.ui.view">
+			<field name="name">product.emplacement form</field>
+			<field name="model">product.emplacement</field>
+			<field name="arch" type="xml">
+        		<form>
+        			<group>
+			          <field name="product_id"/>
+			          <field name="emplacement_id"/>
+			        </group>
+        		</form>
+      		</field>
+		</record>
+
+		<record id="product_emplacement_view_tree" model="ir.ui.view">
+			<field name="name">product.emplacement tree</field>
+			<field name="model">product.emplacement</field>
+			<field name="arch" type="xml">
+        		<tree>
+			          <field name="name"/>
+			          <field name="product_id"/>
+			          <field name="emplacement_id"/>
+        		</tree>
+      		</field>
+		</record>
+
+		<record id="product_emplacement_action" model="ir.actions.act_window">
+			<field name="name">Article emplacement</field>
+			<field name="res_model">product.emplacement</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		
+		<menuitem name="Emplacements" id="darb_puthod.emplacement_list" parent="darb_puthod.chantier"
+                    action="emplacement_action"/>
+		
+		<menuitem name="Article emplacements" id="darb_puthod.product_emplacement_list" parent="darb_puthod.chantier"
+                    action="product_emplacement_action"/>
+
+	</data>
+
+</odoo>
