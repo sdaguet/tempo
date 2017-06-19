@@ -140,12 +140,14 @@ class chantier(models.Model):
     @api.one
     @api.depends('fiche_ids','fiche_ids.termine')
     def _compute_state(self):
-        if self.fiche_ids and self.fiche_ids.termine:
-            self.state = 'progress'
+        if self.fiche_ids :
+            for fiche in self.fiche_ids:
+                if fiche.termine == True :
+                    self.state = 'progress'
+                else:
+                    self.state = 'done'
         elif self.fiche_ids == False:
             self.state = 'draft'
-        elif self.fiche_ids and self.fiche_ids.termine == False :
-            self.state = 'done'
         pass
 
     @api.one
