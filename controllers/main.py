@@ -26,35 +26,53 @@ class WebsiteContractDarbtech(http.Controller):
             'teams' : list_teams
                 })
 
-    @http.route('/chantierviewer', type='http', auth="user", website=True)
-    def chantierviewer(self, **kw):
-        user = request.env.user
-        cr, uid, context = request.cr, request.uid, request.context
-        employes = request.registry.get('hr.employee')
-        _logger.info("Current user = " + str(uid))
-        current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
-        _logger.info("Current employee = " + str(current_employee))
-        list_teams = request.env['equipe'].sudo().search(
-                [
-                    ('manager', '=', current_employee.id)
-                ])
-        list_fiches = request.env['fiche.chantier'].sudo().search(
-                [
-                    ('equipe_id', '=', list_teams[0].id)
-                ])
-
-        return http.request.render('darb_puthod.chantierviewer', {
-            'teams' : list_teams,
-            'fiche' : list_fiches[0]
-                })
-
     @http.route('/pointer', type='json', auth="user", website=True)
     def pointer(self, **kw):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
         employes = request.registry.get('hr.employee')
         _logger.info("POINTER user = " + str(uid))
-        
+
+        return {}
+
+    @http.route(['/ficheslist'], type='http', auth="user", website=True)
+    def fiches_liste(self, product_id=None):
+        user = request.env.user
+        cr, uid, context = reqst.cr, reqst.uid, reqst.context
+        fiche = request.env['fiche.chantier'].sudo().search(
+                [
+                    ('user_id', '=', uid)
+                ])
+
+        _logger.info("Generated fiche RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+        return http.request.render('darb_puthod.listfiches', {
+                    'fiches': fiche,
+                })
+
+    # fiche info
+
+    @http.route(['/ficheslist/<int:fiche>/'], type='http', auth="user", website=True)
+    def showfiche(self, fiche):
+        user = request.env.user
+        cr, uid, context = reqst.cr, reqst.uid, reqst.context
+
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+        })
+
+    @http.route('/ficheviewer/', auth="user", website=True)
+    def fiche_veicule(self, **kw):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        query_string = request.httprequest.query_string
+        _logger.info("query_stringRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(query_string))
+
         return {}
 
     @http.route(['/chantierslist'], type='http', auth="user", website=True)
