@@ -64,7 +64,7 @@
                 </h2>
 			</xpath>
 
-<!--
+
 			<xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
 
                 <tr>
@@ -78,7 +78,7 @@
 					<th class="text-right">Valeur Totale HT</th>
                 </tr>
             </xpath>
--->
+
 
 		    <xpath expr="//t/t/tr/td[6]" position="before">
                 <td style="text-align: center;">
@@ -148,7 +148,9 @@
                      <!-- pour remplir la liste des types de tva -->
 					<t t-set="tva_category" t-value="[]"/>
 						<t t-foreach="doc.order_line" t-as="l">
+						<t t-if=" bool(l.tax_id.name) == True ">
 						<t t-set="tva_category" t-value="tva_category+[l.tax_id.name]"/>
+						</t>
 					</t>
 					
 					<!-- pour remplir le tableau de tva -->
