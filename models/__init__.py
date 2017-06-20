@@ -5,3 +5,4 @@ import team_work
 import hr_employee
 import tmpclient
 import tmparticle
+import emplacement

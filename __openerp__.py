@@ -46,6 +46,7 @@
         'views/template.xml',
         'views/sale_order.xml',
         'views/chantier.xml',
+        'views/emplacement.xml',
         'report/report_employee_view.xml',
     ],
     #'qweb': ['static/src/js/*.js'],

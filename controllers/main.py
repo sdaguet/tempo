@@ -26,6 +26,15 @@ class WebsiteContractDarbtech(http.Controller):
             'teams' : list_teams
                 })
 
+    @http.route('/pointer', type='json', auth="user", website=True)
+    def pointer(self, **kw):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.registry.get('hr.employee')
+        _logger.info("POINTER user = " + str(uid))
+
+        return {}
+
     @http.route(['/ficheslist'], type='http', auth="user", website=True)
     def fiches_liste(self, product_id=None):
         user = request.env.user
@@ -42,78 +51,28 @@ class WebsiteContractDarbtech(http.Controller):
 
     # fiche info
 
-    # @http.route(['/equiplist/fiche/<int:chantier_id>/<int:equipe_id>'], type='http', auth="user", website=True)
-    # def createfiche(self, chantier_id, equipe_id):
-    #     user = request.env.user
-    #     cr, uid, context = reqst.cr, reqst.uid, reqst.context
-    #
-    #     equipe_id = request.env['equipe'].sudo().search([('id', '=', equipe_id)])
-    #     chantier_id = request.env['equipe'].sudo().search([('id', '=', chantier_id)])
-    #     vals = {
-    #         'equipe_id': equipe_id.id,
-    #         'chantier_id': chantier_id.id,
-    #         'inter_date': fields.Datetime.now(),
-    #     }
-    #     fiche_chantier = request.env['fiche.chantier'].create(vals)
-    #     _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(equipe_id))
-    #     form = [1, 2, 3]
-    # 
-    #     return http.request.render('darb_puthod.formchantiers', {
-    #         'chantiers': fiche_chantier,
-    #     })
-
-    @http.route(['/fichesForm'], type='http', auth="user", website=True)
-    def fiches_form(self, product_id=None):
+    @http.route(['/ficheslist/<int:fiche>/'], type='http', auth="user", website=True)
+    def showfiche(self, fiche):
         user = request.env.user
         cr, uid, context = reqst.cr, reqst.uid, reqst.context
 
-        ver = False
-        fiche = request.env['fiche.chantier'].sudo().search(
-                [
-                    ('user_id', '=', uid)
-                ])
-        current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
-        _logger.info("Current employee = " + str(current_employee))
-        list_teams = request.env['equipe'].sudo().search(
-            [
-                ('manager', '=', current_employee.id)
-            ])
-        # for id in list_teams.fichechantier_ids:
-        #     if id == fiche:
-        #         ver = True
-
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
 
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
-        form = [1, 2, 3]
+
         return http.request.render('darb_puthod.ficheviewer', {
-                'teams': list_teams,
-                'fiche': fiche,
-            })
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+        })
 
-    # @http.route('/ficheviewer', type='http', auth="user", website=True)
-    # def chantierviewer(self, **kw):
-    #     user = request.env.user
-    #     cr, uid, context = request.cr, request.uid, request.context
-    #     employes = request.registry.get('hr.employee')
-    #     _logger.info("Current user = " + str(uid))
-    #
-    #     list_fiches = request.env['fiche.chantier'].sudo().search(
-    #             [
-    #                 ('equipe_id', '=', list_teams[0].id)
-    #             ])
-    #
-    #     return http.request.render('darb_puthod.ficheviewer', {
-    #         'teams' : list_teams,
-    #         'fiche' : list_fiches[0]
-    #             })
-
-    @http.route('/pointer', type='json', auth="user", website=True)
-    def pointer(self, **kw):
+    @http.route('/ficheviewer/', auth="user", website=True)
+    def fiche_veicule(self, **kw):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        employes = request.registry.get('hr.employee')
-        _logger.info("POINTER user = " + str(uid))
-        
+        query_string = request.httprequest.query_string
+        _logger.info("query_stringRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(query_string))
+
         return {}
 
     @http.route(['/chantierslist'], type='http', auth="user", website=True)

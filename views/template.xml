@@ -405,16 +405,22 @@
 											<tr class="active">
 												<th>Véhicules</th>
 												<th>KMS</th>
+												<th>Modifier</th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.veicule_ids" t-as="veicule">
 											<tr>
-											<td><span t-field="veicule.vehicle_id.name"/>
+											<td><input t-att-value="veicule.vehicle_id.name" id="vname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><span t-field="veicule.kms"/>
+											<td><input t-att-value="veicule.kms" id="Kname" style="border:1px solid #ffffff"/>
 											</td>
+											<td>
+												<a t-attf-href="#" class="btn btn-primary edit" id ="edit">Modifier</a>
+											</td>
+
 											</tr>
 										</t>
+
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
@@ -683,7 +689,7 @@
 			<div class="container">
 				<h1>Fiches de chantiers</h1>
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-10">
 						<table class="table table-hover status_table">
 						<thead>
 							<tr class="active">
@@ -699,7 +705,7 @@
 						</thead>
 						<t t-foreach="fiches" t-as="fiche">
 							<tr>
-							<td><a href="/fichesForm"><span t-field="fiche.name"/></a>
+							<td><a t-attf-href="/ficheslist/#{fiche.id}" class="btn btn-primary pointer"><span t-field="fiche.name"/></a>
 							</td>
 							<td><span t-field="fiche.date_planned"/>
 							</td>
@@ -717,7 +723,7 @@
 						</t>
 						</table>
 					</div>
-					<div class="col-md-4 mb32">
+					<div class="col-md-2 mb32">
 						<t t-call="website.company_description"/>
 					</div>
 				</div>
