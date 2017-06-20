@@ -305,11 +305,6 @@ msgid "Fiches Chantier"
 msgstr "Fiches Chantier"
 
 #. module: darb_puthod
-#: model:ir.ui.menu,name:darb_puthod.menu_1
-msgid "Fiches de Chantier"
-msgstr "Fiches de Chantier"
-
-#. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.fiche_chantier_form_view
 msgid "Finished Products"
 msgstr "Produits finis"

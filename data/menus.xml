@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
+    <data noupdate="0">
       <record model="ir.actions.act_window" id="darb_puthod.fiche_chantier_action_window">
         <field name="name">Détails des déclarations</field>
         <field name="res_model">fiche.chantier</field>
@@ -18,7 +18,7 @@
 
           <!-- menu categories -->
 
-          <menuitem name="Fiches de Chantier" id="darb_puthod.menu_1" parent="darb_puthod.menu_root"/>
+          <menuitem name="Fiches d'intervention" id="darb_puthod.menu_1" parent="darb_puthod.menu_root"/>
           <menuitem name="Configuration" id="darb_puthod.menu_10" parent="darb_puthod.menu_root"/>
           <!---menuitem name="Liste déclarations 2" id="climref.menu_2" parent="climref.menu_root"/-->
 
