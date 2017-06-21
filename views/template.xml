@@ -410,12 +410,12 @@
 										</thead>
 										<t t-foreach="fiche.veicule_ids" t-as="veicule">
 											<tr>
-											<td><input t-att-value="veicule.vehicle_id.name" id="vname" style="border:1px solid #ffffff"/>
+											<td><input t-att-value="veicule.vehicle_id.name" class="vname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><input t-att-value="veicule.kms" id="kname" style="border:1px solid #ffffff"/>
+											<td><input t-att-value="veicule.kms" class="kname" style="border:1px solid #ffffff"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary" id="edit">Modifier</a>
+												<a t-attf-href="#" class="btn btn-primary vedit">Modifier</a>
 											</td>
 
 											</tr>
@@ -444,13 +444,17 @@
 											<tr class="active">
 												<th>Matériels</th>
 												<th>Temps</th>
+												<th>Modifier</th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.materiel_ids" t-as="materiel">
 											<tr>
-											<td><span t-field="materiel.materiel_id.name"/>
+												<td><input t-att-value="materiel.materiel_id.name" class="mname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><span t-field="materiel.temps"/>
+											<td><input t-att-value="materiel.temps" class="mtemps" style="border:1px solid #ffffff"/>
+											</td>
+											<td>
+												<a t-attf-href="#" class="btn btn-primary medit">Modifier</a>
 											</td>
 											</tr>
 										</t>
@@ -477,13 +481,17 @@
 											<tr class="active">
 												<th>Machines</th>
 												<th>Temps</th>
+												<th>Modifier</th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.machine_ids" t-as="machine">
 											<tr>
-											<td><span t-field="machine.machine_id.name"/>
+												<td><input t-att-value="machine.machine_id.name" class="mcname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><span t-field="machine.temps"/>
+											<td><input t-att-value="machine.temps" class="mctemps" style="border:1px solid #ffffff"/>
+											</td>
+											<td>
+												<a t-attf-href="#" class="btn btn-primary mcedit">Modifier</a>
 											</td>
 											</tr>
 										</t>
@@ -510,13 +518,17 @@
 											<tr class="active">
 												<th>Fournitures Plantation</th>
 												<th>Qté</th>
+												<th>Modifier</th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.fourniture_ids" t-as="fourniture">
 											<tr>
-											<td><span t-field="fourniture.fourniture_id.name"/>
+												<td><input t-att-value="fourniture.fourniture_id.name" class="fname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><span t-field="materiel.quantity"/>
+											<td><input t-att-value="materiel.quantity" class="fqte" style="border:1px solid #ffffff"/>
+											</td>
+											<td>
+												<a t-attf-href="#" class="btn btn-primary fedit">Modifier</a>
 											</td>
 											</tr>
 										</t>
@@ -543,13 +555,17 @@
 											<tr class="active">
 												<th>Kit RBKS</th>
 												<th>Qté</th>
+												<th>Modifier</th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.kit_ids" t-as="kit">
 											<tr>
-											<td><span t-field="kit.kit_id.name"/>
+												<td><input t-att-value="kit.kit_id.name" class="ktname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><span t-field="kit.quantity"/>
+											<td><input t-att-value="kit.quantity" class="ktqte" style="border:1px solid #ffffff"/>
+											</td>
+											<td>
+												<a t-attf-href="#" class="btn btn-primary ktedit">Modifier</a>
 											</td>
 											</tr>
 										</t>
@@ -576,13 +592,17 @@
 											<tr class="active">
 												<th>Tuteurage</th>
 												<th>Qté</th>
+												<th>Modifier</th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.tuteurage_ids" t-as="tuteurage">
 											<tr>
-											<td><span t-field="tuteurage.tuteurage_id.name"/>
+												<td><input t-att-value="tuteurage.tuteurage_id.name" class="tname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><span t-field="tuteurage.quantity"/>
+											<td><input t-att-value="tuteurage.quantity" class="tqte" style="border:1px solid #ffffff"/>
+											</td>
+											<td>
+												<a t-attf-href="#" class="btn btn-primary tedit">Modifier</a>
 											</td>
 											</tr>
 										</t>
@@ -689,7 +709,7 @@
 			<div class="container">
 				<h1>Fiches de chantiers</h1>
 				<div class="row">
-					<div class="col-md-10">
+					<div class="col-md-11">
 						<table class="table table-hover status_table">
 						<thead>
 							<tr class="active">
@@ -703,7 +723,13 @@
 								<th>Status FC</th>
 							</tr>
 						</thead>
+						<t t-set="hour_variable" t-value="0" />
+						<t t-set="cycle_variable" t-value="0" />
+						<t t-set="qte_variable" t-value="0" />
 						<t t-foreach="fiches" t-as="fiche">
+							<t t-set="hour_variable" t-value="hour_variable+fiche.hour_total" />
+							<t t-set="cycle_variable" t-value="cycle_variable+fiche.cycle_total" />
+							<t t-set="qte_variable" t-value="qte_variable+fiche.product_qty" />
 							<tr>
 							<td><a t-attf-href="/ficheslist/#{fiche.id}"><span t-field="fiche.name"/></a>
 							</td>
@@ -717,13 +743,27 @@
 							</td>
 							<td><span t-field="fiche.cycle_total"/>
 							</td>
-							<td><span t-field="fiche.state"/>
+							<td><span t-field="fiche.origin"/>
+							</td><td><span t-field="fiche.state"/>
 							</td>
 							</tr>
 						</t>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th>
+								<t t-esc="qte_variable"/>
+							</th>
+							<th class="text-left">
+								<t t-esc="hour_variable"/>
+							</th>
+							<th class="text-left">
+								<t t-esc="cycle_variable"/>
+							</th>
+							<td></td>
 						</table>
 					</div>
-					<div class="col-md-2 mb32">
+					<div class="col-md-1 mb32">
 						<t t-call="website.company_description"/>
 					</div>
 				</div>

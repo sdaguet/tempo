@@ -39,12 +39,12 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 		});
     });
 
-    $('#edit').click(function() {
-        var text_value = $("#vname").val();
+    $('.edit').on('click', function(ev) {
+        var text_value = $(".vname").val();
         if(text_value=='') {
-        alert("Enter Some Text In Input Field");
+        console.log("Enter Some Text In Input Field");
         }else{
-        alert(text_value);
+        console.log(text_value);
         }
 });
 });
