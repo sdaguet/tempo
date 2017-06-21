@@ -1,41 +1,50 @@
 odoo.define('darb_puthod.responsivejson', function(require) {
     'use strict';
     require('website.website');
-	
-	$('.pointer').on('click', function(ev) {
+    require('web.ajax');
+
+    $('.pointer').on('click', function(ev) {
         ev.preventDefault();
         $(this).parents('tr').find(".pointer").toggleClass('hidden');
         $(this).parents('tr').find(".depointer").toggleClass('hidden',false);
-		console.log($(this).parents('tr').find(".membrid").val());  
+		console.log($(this).parents('tr').find(".membrid").val());
 		$.ajax({
-			type: "POST", 
-			url: "/pointer", 
-			async: false, 
-			data: JSON.stringify({}), 
-			contentType: "application/json", 
+			type: "POST",
+			url: "/pointer",
+			async: false,
+			data: JSON.stringify({}),
+			contentType: "application/json",
 			complete: function (data) {
-				console.log(data);  
+				console.log(data);
 			}
 		});
-		
+
     });
-	
-	
+
 	$('.depointer').on('click', function(ev) {
         ev.preventDefault();
         $(this).parents('tr').find(".depointer").toggleClass('hidden');
         $(this).parents('tr').find(".pointer").toggleClass('hidden',false);
-		
-		console.log($(this).parents('tr').find(".membrid").val());  
+
+		console.log($(this).parents('tr').find(".membrid").val());
 		$.ajax({
-			type: "POST", 
-			url: "/pointer", 
-			async: false, 
-			data: JSON.stringify({}), 
-			contentType: "application/json", 
+			type: "POST",
+			url: "/pointer",
+			async: false,
+			data: JSON.stringify({}),
+			contentType: "application/json",
 			complete: function (data) {
-				console.log(data);  
+				console.log(data);
 			}
 		});
     });
+
+    $('#edit').click(function() {
+        var text_value = $("#vname").val();
+        if(text_value=='') {
+        alert("Enter Some Text In Input Field");
+        }else{
+        alert(text_value);
+        }
+});
 });

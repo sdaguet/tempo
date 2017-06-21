@@ -412,10 +412,10 @@
 											<tr>
 											<td><input t-att-value="veicule.vehicle_id.name" id="vname" style="border:1px solid #ffffff"/>
 											</td>
-											<td><input t-att-value="veicule.kms" id="Kname" style="border:1px solid #ffffff"/>
+											<td><input t-att-value="veicule.kms" id="kname" style="border:1px solid #ffffff"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary edit" id ="edit">Modifier</a>
+												<a t-attf-href="#" class="btn btn-primary" id="edit">Modifier</a>
 											</td>
 
 											</tr>
@@ -705,7 +705,7 @@
 						</thead>
 						<t t-foreach="fiches" t-as="fiche">
 							<tr>
-							<td><a t-attf-href="/ficheslist/#{fiche.id}" class="btn btn-primary pointer"><span t-field="fiche.name"/></a>
+							<td><a t-attf-href="/ficheslist/#{fiche.id}"><span t-field="fiche.name"/></a>
 							</td>
 							<td><span t-field="fiche.date_planned"/>
 							</td>

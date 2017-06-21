@@ -66,13 +66,12 @@ class WebsiteContractDarbtech(http.Controller):
             'fiche': fiche_id,
         })
 
-    @http.route('/ficheviewer/', auth="user", website=True)
-    def fiche_veicule(self, **kw):
+    @http.route('/ficheviewer', type='json', auth="user", website=True)
+    def ficheviewer(self, **kw):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        query_string = request.httprequest.query_string
-        _logger.info("query_stringRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(query_string))
-
+        fiche = request.registry.get('fiche.chantier')
+        _logger.info("POINTERfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff user = " + str(fiche))
         return {}
 
     @http.route(['/chantierslist'], type='http', auth="user", website=True)
