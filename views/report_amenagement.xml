@@ -37,7 +37,7 @@
                 <div t-if="doc.date_order" class="col-xs-3">
                     <strong t-if="doc.state not in ['draft','sent']">Date Ordered:</strong>
                     <strong t-if="doc.state in ['draft','sent']">Quotation Date:</strong>
-                    <p t-field="doc.date_order"/>
+                    <p t-field="doc.date_order" t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
                 </div>
                 <!--<div t-if="doc.user_id.name" class="col-xs-3">
                     <strong>Salesperson:</strong>
@@ -45,7 +45,7 @@
                 </div>-->
 				<div t-if="doc.user_id.name" class="col-xs-3">
                     <strong>Delivery date :</strong>
-                    <p t-field="doc.customer_order_delivery_date"/>
+                    <p t-field="doc.customer_order_delivery_date" t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
                 </div>
 
                 <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
@@ -69,13 +69,13 @@
 
                 <tr>
 				    <th width="2%">N°Lig</th>
-                    <th width="25%">Désignation</th>
+                    <th width="40%">Désignation</th>
                     <th width="2%" class="text-right">Quantité</th>
                     <th class="text-right">Prix Brut HT</th>
                     <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></th>
                     <th class="text-right">TVA</th>
 					<th class="text-right">Prix Net HT</th>
-					<th class="text-right">Valeur Totale HT</th>
+					<th width="10%" class="text-right">Valeur Totale HT</th>
                 </tr>
             </xpath>
 
@@ -137,8 +137,7 @@
 					<table class="table table-condensed">
 
                         <tr class="border-black">
-                            <th><strong>TVA</strong></th>
-							<th><strong>Taux</strong></th>
+                            <th><strong>TVA  Taux </strong></th>
 							<th><strong>Total HT</strong></th>
 							<th><strong>Total TVA</strong></th>
 							<th><strong>Total TTC</strong></th>
@@ -158,7 +157,7 @@
 					<t t-set="chrono" t-value="True"/>
 					<t t-set="chrono2" t-value="True"/>
 					<tr>
-                      <td><span t-esc="category"/></td>
+                      <!-- <td><span t-esc="category"/></td> -->
 					  <t t-foreach="doc.order_line" t-as="l">				  
 					 <t t-if=" category == l.tax_id.name and chrono == True ">
 					<td><span t-esc="str(int(l.tax_id.amount))+'%'"/></td>	
