@@ -143,9 +143,9 @@ class chantier(models.Model):
         if self.fiche_ids :
             for fiche in self.fiche_ids:
                 if fiche.termine == True :
-                    self.state = 'progress'
-                else:
                     self.state = 'done'
+                else:
+                    self.state = 'progress'
         elif self.fiche_ids == False:
             self.state = 'draft'
         pass
