@@ -11,6 +11,7 @@ class sale_order(models.Model):
     order_type = fields.Selection([
         ('entretien', 'Entretien')],
         string='Type', track_visibility='onchange')
+    altitude = fields.Float(string='Altitude', digits=(3,12))
 
     @api.multi
     def create_fiche_chantier(self):
@@ -42,7 +43,7 @@ class wizard_create_chantier(models.TransientModel):
         active_ids = context.get('active_ids', []) or []
         related_order = self.env['sale.order'].browse(active_ids)
         address = []
-        partner = related_order.partner_id
+        partner = related_order.partner_shipping_id
         if partner.street:
             address.append(partner.street)
         if partner.street2:

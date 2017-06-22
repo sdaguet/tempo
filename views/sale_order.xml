@@ -10,7 +10,11 @@
                 </header>
                 <field name="validity_date" position="replace">
                 	<field name="order_type"/>
+                	<field name="altitude"/>
                 </field>
+				<xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
+					<attribute name="domain">[('altitude_max', '&gt;=', parent.altitude), ('altitude_min', '&lt;=', parent.altitude)]</attribute>
+				</xpath>
             </field>
         </record>
         
@@ -30,6 +34,11 @@
                         </field>
                 	</page>
                 </notebook>
+                
+                <group name="group_standard_price" position="inside">
+                	<field name="altitude_max"/>
+                	<field name="altitude_min"/>
+                </group>
             </field>
         </record>
 	</data>

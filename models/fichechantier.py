@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api, _
-# from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError
 # from dateutil.relativedelta import relativedelta
 # from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 import geocoder
@@ -90,7 +90,14 @@ class product(models.Model):
     _inherit = 'product.product'
 
     task_ids = fields.One2many('subtask', 'product_id', string="Tâches")
+    altitude_max = fields.Float(string='Altitude MAX', digits=(3,12))
+    altitude_min = fields.Float(string='Altitude MIN', digits=(3,12))
 
+    @api.one
+    @api.constrains('altitude_max', 'altitude_min')
+    def _check_altitude(self):
+        if self.altitude_max < self.altitude_min:
+            raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
 class subtask(models.Model):
     _name = 'subtask'

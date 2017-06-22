@@ -19,7 +19,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Current employee = " + str(current_employee))
         list_teams = request.env['equipe'].sudo().search(
                 [
-                    ('manager', '=', current_employee.id)
+                    ('manager', 'in', current_employee.ids)
                 ])
 
         return http.request.render('darb_puthod.pointages', {
