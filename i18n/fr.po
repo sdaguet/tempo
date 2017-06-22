@@ -98,7 +98,7 @@ msgstr "<span>20%</span>"
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
 msgid "<strong>Shipping address:</strong>"
-msgstr "<strong>Adresse de livraison:</strong>"
+msgstr "<strong>Adresse de livraison :</strong>"
 
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
@@ -895,7 +895,7 @@ msgstr "<strong>Date de livraison :</strong>"
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
 msgid "Shipping address:"
-msgstr "Adresse de livraison"
+msgstr "Adresse de livraison :"
 
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
@@ -910,4 +910,9 @@ msgstr "<strong>Date de livraison :</strong>"
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
 msgid "Quotation Date:"
-msgstr "Date du devis:"
+msgstr "Date du devis :"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Payment Term:</strong>"
+msgstr "<strong>Conditions de règlement :</strong>"
