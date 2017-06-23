@@ -6,40 +6,79 @@
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
                 <header position="inside">
-                    <button name="create_fiche_chantier" string="Créer un chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'sale')]}"/>
+                    <button name="create_fiche_chantier" string="Créer un chantier" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'sale')]}"/>
                 </header>
                 <field name="validity_date" position="replace">
-                	<field name="order_type"/>
-                	<field name="altitude"/>
+                    <field name="order_type"/>
+                    <field name="altitude"/>
                 </field>
-				<xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
-					<attribute name="domain">[('altitude_max', '&gt;=', parent.altitude), ('altitude_min', '&lt;=', parent.altitude)]</attribute>
-				</xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
+                    <attribute name="domain">[('altitude_max', '&gt;=', parent.altitude), ('altitude_min', '&lt;=',
+                        parent.altitude)]
+                    </attribute>
+                </xpath>
             </field>
         </record>
-        
+
+        <record model="ir.ui.view" id="view_quotation_tree_inherit_puthod">
+            <field name="name">sale.order.tree</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="field[@name='name']" position="after">
+                    <field name="order_type" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="colors">
+                        red:order_type=='type2';green:order_type=='type3';blue:order_type=='entretien'
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_tree_inherit_puthod">
+            <field name="name">sale.order.tree</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="field[@name='name']" position="after">
+                    <field name="order_type" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="colors">
+                        red:order_type=='type2';green:order_type=='type3';blue:order_type=='entretien'
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="product_form_view_sale_order_tasks">
             <field name="name">product.product.tasks</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                	<page string="Tâches">
+                    <page string="Tâches">
                         <field name="task_ids">
                             <tree editable="bottom">
-			                	<field name="name"/>
-			                	<field name="description"/>
-			                	<field name="type"/>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="type"/>
                             </tree>
                         </field>
-                	</page>
+                    </page>
                 </notebook>
-                
+
                 <group name="group_standard_price" position="inside">
-                	<field name="altitude_max"/>
-                	<field name="altitude_min"/>
+                    <field name="altitude_max"/>
+                    <field name="altitude_min"/>
                 </group>
             </field>
         </record>
-	</data>
+    </data>
 </openerp>
