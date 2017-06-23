@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from openerp import api,fields,models
+from openerp import api, fields, models
 
 import logging
+
 _logger = logging.getLogger(__name__)
 
 
@@ -9,21 +10,23 @@ class sale_order(models.Model):
     _inherit = 'sale.order'
 
     order_type = fields.Selection([
-        ('entretien', 'Entretien')],
+        ('entretien', 'Entretien'),
+        ('type2', 'Type2'),
+        ('type3', 'Type3')],
         string='Type', track_visibility='onchange')
-    altitude = fields.Float(string='Altitude', digits=(3,12))
+    altitude = fields.Float(string='Altitude', digits=(3, 12))
 
     @api.multi
     def create_fiche_chantier(self):
         return {
-                'name': 'Chantier',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'wizard.create.chantiere',
-                'view_id': False,
-                'target': 'new',
-                'type': 'ir.actions.act_window',
-            }
+            'name': 'Chantier',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'wizard.create.chantiere',
+            'view_id': False,
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }
 
 
 class wizard_create_chantier(models.TransientModel):
@@ -32,9 +35,9 @@ class wizard_create_chantier(models.TransientModel):
     name = fields.Char('Nom')
     address = fields.Text(string='Address')
     g_lat = fields.Float(string='G Latitude', store=True,
-        multi='glatlng', digits=(3,12))
+                         multi='glatlng', digits=(3, 12))
     g_lng = fields.Float(string='G Longitude', store=True,
-        multi='glatlng', digits=(3,12))
+                         multi='glatlng', digits=(3, 12))
 
     @api.model
     def default_get(self, fields_list):
@@ -68,15 +71,16 @@ class wizard_create_chantier(models.TransientModel):
         context = dict(self._context or {})
         active_ids = context.get('active_ids', []) or []
         related_order = self.env['sale.order'].browse(active_ids)
-        vals = {'name': self.name, 'address': self.address, 'g_lat': self.g_lat, 'g_lng': self.g_lng, 'order_id': related_order.id}
+        vals = {'name': self.name, 'address': self.address, 'g_lat': self.g_lat, 'g_lng': self.g_lng,
+                'order_id': related_order.id}
         chantier_id = self.env['chantier'].create(vals)
         return {
-                'name': 'Chantier',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'chantier',
-                'res_id': chantier_id.id,
-                'view_id': False,
-                'target': 'current_edit',
-                'type': 'ir.actions.act_window',
-                }
+            'name': 'Chantier',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'chantier',
+            'res_id': chantier_id.id,
+            'view_id': False,
+            'target': 'current_edit',
+            'type': 'ir.actions.act_window',
+        }
