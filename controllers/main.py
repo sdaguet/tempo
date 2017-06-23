@@ -149,3 +149,32 @@ class WebsiteContractDarbtech(http.Controller):
         return http.request.render('darb_puthod.formchantiers', {
                     'chantiers': fiche_chantier,
                 })
+
+    @http.route(['/equipes'], type='http', auth="user", website=True)
+    def equipes_nvx(self, product_id=None):
+        user = request.env.user
+        cr, uid, context = reqst.cr, reqst.uid, reqst.context
+
+        employees = request.env['hr.employee'].sudo().search([])
+
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(employees))
+        return http.request.render('darb_puthod.newequipes', {
+            'employees': employees,
+            'equipe': 0,
+            })
+
+    @http.route(['/equipes/<int:equipe_id>/<int:employee_id>'], type='http', auth="user", website=True)
+    def createequip(self, equipe_id, employee_id):
+        user = request.env.user
+        cr, uid, context = reqst.cr, reqst.uid, reqst.context
+
+        equipe_id = request.env['equipe'].sudo().search([('id','=',equipe_id)])
+        employee = request.env['hr.employee'].sudo().search([('id','=',employee_id)])
+        fiche_chantier = request.env['fiche.chantier'].create(vals)
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(equipe_id))
+        form = [1,2,3]
+
+        return http.request.render('darb_puthod.formchantiers', {
+                    'chantiers': fiche_chantier,
+                })

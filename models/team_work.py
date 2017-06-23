@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api, _
+from openerp.exceptions import ValidationError
 
 import logging
 from datetime import datetime
@@ -12,6 +13,15 @@ class Equipe(models.Model):
     manager = fields.Many2one('hr.employee', string='Manager', index=True, track_visibility='onchange',required=True)
     fichechantier_ids = fields.One2many('fiche.chantier', 'equipe_id', string='Fiche Chantier')
     ressource_list = fields.One2many('hr.employee', 'equipe_id', string="Ressource List")
+    active = fields.Boolean(u"Active")
+
+    @api.one
+    @api.constrains('active')
+    def _check_active(self):
+        if self.active is True:
+            actives = self.sudo().search([('active', '=', True)])
+            if actives and actives != self:
+                raise ValidationError(u"Une équipe active existe déjà")
 
 
 class employee(models.Model):

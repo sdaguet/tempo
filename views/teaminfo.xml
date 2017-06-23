@@ -9,6 +9,7 @@
 					<group>
                         <field name="name" class="oe_inline"/>
                         <field name="manager" class="oe_inline"/>
+                        <field name="active" class="oe_inline"/>
                     </group>
                     <notebook>
                     	<page string="Fiches Chantier">
