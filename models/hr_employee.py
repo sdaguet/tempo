@@ -2,7 +2,7 @@
 from openerp import fields, models, api, _
 
 
-class NewModule(models.Model):
+class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     janvier = fields.Float("Janvier", compute="_compute_months")
