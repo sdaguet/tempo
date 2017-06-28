@@ -7,6 +7,7 @@ from datetime import datetime
 
 _logger = logging.getLogger(__name__)
 
+
 class Equipe(models.Model):
     _name ='equipe'
     name = fields.Char('Team Name',required=True)
@@ -16,12 +17,12 @@ class Equipe(models.Model):
     active = fields.Boolean(u"Active")
 
     @api.one
-    @api.constrains('active')
+    @api.constrains('active', 'manager')
     def _check_active(self):
         if self.active is True:
-            actives = self.sudo().search([('active', '=', True)])
+            actives = self.sudo().search([('active', '=', True), ('manager', '=', self.manager.id)])
             if actives and actives != self:
-                raise ValidationError(u"Une équipe active existe déjà")
+                raise ValidationError(u"Une équipe active existe déjà !")
 
 
 class employee(models.Model):

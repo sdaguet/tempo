@@ -155,7 +155,7 @@ class WebsiteContractDarbtech(http.Controller):
         user = request.env.user
         cr, uid, context = reqst.cr, reqst.uid, reqst.context
 
-        employees = request.env['hr.employee'].sudo().search([])
+        employees = request.env['hr.employee'].sudo().search(['|', ('equipe_id','=',False), ('equipe_id.active','=',False)])
 
 
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(employees))
@@ -168,13 +168,34 @@ class WebsiteContractDarbtech(http.Controller):
     def createequip(self, equipe_id, employee_id):
         user = request.env.user
         cr, uid, context = reqst.cr, reqst.uid, reqst.context
+        _logger.info("just idddddddddddddddddddddddd : " + str(equipe_id))
 
         equipe_id = request.env['equipe'].sudo().search([('id','=',equipe_id)])
+        _logger.info("objjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj : " + str(equipe_id))
         employee = request.env['hr.employee'].sudo().search([('id','=',employee_id)])
-        fiche_chantier = request.env['fiche.chantier'].create(vals)
+        current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
+        _logger.info("employeeemployeeemployee : " + str(employee))
+        if equipe_id:
+            _logger.info("111111111111111111 : " + str(employee))
+            employee.equipe_id = equipe_id.id
+        else:
+            manager_equipe_id = request.env['equipe'].sudo().search([('manager','in',current_employee.ids), ('active','=',True)])
+            manager_equipe_id.active = False
+            _logger.info("222222222222222222 : " + str(employee))
+            vals = {
+                'name': 'Equipe',
+                'manager': current_employee[0].id if current_employee else 1,
+                'ressource_list': [(4, employee_id)],
+                'active': True
+                }
+            equipe_id = request.env['equipe'].create(vals)
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(equipe_id))
         form = [1,2,3]
 
-        return http.request.render('darb_puthod.formchantiers', {
-                    'chantiers': fiche_chantier,
+        employees = request.env['hr.employee'].sudo().search(['|', ('equipe_id','=',False), ('equipe_id.active','=',False)])
+        _logger.info("Generated fiche_chantierlasttttttttttttttttttttttttttt: " + str(employees))
+
+        return http.request.render('darb_puthod.newequipes', {
+            'employees': employees,
+            'equipe': equipe_id.id,
                 })
