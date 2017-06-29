@@ -58,12 +58,14 @@ class WebsiteContractDarbtech(http.Controller):
 
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        vehicles = request.env['product.product'].sudo().search([])
 
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
             'fiche': fiche_id,
+            'vehicles': vehicles,
         })
 
     @http.route('/ficheviewer', type='json', auth="user", website=True)
@@ -199,3 +201,25 @@ class WebsiteContractDarbtech(http.Controller):
             'employees': employees,
             'equipe': equipe_id.id,
                 })
+
+    @http.route('/add/vehicles', type='http', auth="user", methods=['POST'], website=True)
+    def verify(self, fiche, veicule_id, km=0, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        _logger.info("Generated veicule_idveicule_idveicule_idveicule_id : " + str(veicule_id))
+        _logger.info("Generated kmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm : " + str(km))
+        _logger.info("Generated fiche_chantierIDDDDDDDDDDDDDDDDDDDDDD : " + str(fiche))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        vehicles = request.env['product.product'].sudo().search([('id','not in', fiche_id.veicule_ids.ids)])
+        #vehicles = request.env['product.product'].sudo().search([('categ_id','=', pool.ref('darb_puthod.product_category_machine').id), ('id','not in', fiche_id.veicule_ids.ids)])
+        fiche_id.veicule_ids = [(0, 0, {
+                                    'vehicle_id': int(veicule_id),
+                                    'kms': float(km),
+                                    })]
+
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+        })

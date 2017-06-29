@@ -403,7 +403,9 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+								<form action="/add/vehicles" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
@@ -417,17 +419,32 @@
 										</thead>
 										<t t-foreach="fiche.veicule_ids" t-as="veicule">
 											<tr>
-											<td><input t-att-value="veicule.vehicle_id.name" class="vname" style="border:1px solid #ffffff"/>
+											<td><span t-field="veicule.vehicle_id.name" class="vname" />
 											</td>
-											<td><input t-att-value="veicule.kms" class="kname" style="border:1px solid #ffffff"/>
+											<td><span t-field="veicule.kms" class="kname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary vedit">Modifier</a>
+												<a t-attf-href="#" class="btn btn-primary vedit">Supprimer</a>
 											</td>
 
 											</tr>
 										</t>
+										<tr>
+										<td>
+					                      <select name="veicule_id" class="form-control">
+					                          <option value="">Véhicules...</option>
+					                          <t t-foreach="vehicles or []" t-as="vehicle">
+					                              <option t-att-value="vehicle.id"><t t-esc="vehicle.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="km" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
 
+										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
