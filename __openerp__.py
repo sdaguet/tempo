@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'account',
+    'depends': ['base', 'sale', 'account','calendar',
 	            'account_accountant', 'hr', 'mrp',
                 'website',
                 'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet',
@@ -47,6 +47,7 @@
         'views/sale_order.xml',
         'views/chantier.xml',
         'views/emplacement.xml',
+        'views/calendar.xml',
         'report/report_employee_view.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
