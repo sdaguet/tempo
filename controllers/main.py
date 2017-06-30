@@ -58,7 +58,13 @@ class WebsiteContractDarbtech(http.Controller):
 
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        vehicles = request.env['product.product'].sudo().search([])
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
 
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
@@ -66,7 +72,50 @@ class WebsiteContractDarbtech(http.Controller):
             'teams': list_teams_id,
             'fiche': fiche_id,
             'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
         })
+
+    @http.route(['/ficheslist/<int:fiche>/<int:composant>/<int:param>'], type='http', auth="user", website=True)
+    def deletevecshowfiche(self, fiche, composant, param):
+        user = request.env.user
+        cr, uid, context = reqst.cr, reqst.uid, reqst.context
+
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        if param == 1: fiche_id.veicule_ids = [(2, composant)]
+        elif param == 2: fiche_id.materiel_ids = [(2, composant)]
+        elif param == 3: fiche_id.machine_ids = [(2, composant)]
+        elif param == 4: fiche_id.fourniture_ids = [(2, composant)]
+        elif param == 5: fiche_id.kit_ids = [(2, composant)]
+        elif param == 6: fiche_id.tuteurage_ids = [(2, composant)]
+        elif param == 7: fiche_id.vigitaux_ids = [(2, composant)]
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
 
     @http.route('/ficheviewer', type='json', auth="user", website=True)
     def ficheviewer(self, **kw):
@@ -203,23 +252,212 @@ class WebsiteContractDarbtech(http.Controller):
                 })
 
     @http.route('/add/vehicles', type='http', auth="user", methods=['POST'], website=True)
-    def verify(self, fiche, veicule_id, km=0, **kw):
+    def add_vehicles(self, fiche, veicule_id, km=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
-        _logger.info("Generated veicule_idveicule_idveicule_idveicule_id : " + str(veicule_id))
-        _logger.info("Generated kmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm : " + str(km))
-        _logger.info("Generated fiche_chantierIDDDDDDDDDDDDDDDDDDDDDD : " + str(fiche))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        vehicles = request.env['product.product'].sudo().search([('id','not in', fiche_id.veicule_ids.ids)])
-        #vehicles = request.env['product.product'].sudo().search([('categ_id','=', pool.ref('darb_puthod.product_category_machine').id), ('id','not in', fiche_id.veicule_ids.ids)])
         fiche_id.veicule_ids = [(0, 0, {
                                     'vehicle_id': int(veicule_id),
-                                    'kms': float(km),
+                                    'kms': km,
                                     })]
 
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
             'fiche': fiche_id,
             'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
+    @http.route('/add/materiels', type='http', auth="user", methods=['POST'], website=True)
+    def add_materiels(self, fiche, materiel_id, temps=0, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.materiel_ids = [(0, 0, {
+                                    'materiel_id': int(materiel_id),
+                                    'temps': temps,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
+    @http.route('/add/machines', type='http', auth="user", methods=['POST'], website=True)
+    def add_machines(self, fiche, machine_id, temps=0, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.machine_ids = [(0, 0, {
+                                    'machine_id': int(machine_id),
+                                    'temps': temps,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
+    @http.route('/add/fournitures', type='http', auth="user", methods=['POST'], website=True)
+    def add_fournitures(self, fiche, fourniture_id, quantity=0, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.fourniture_ids = [(0, 0, {
+                                    'fourniture_id': int(fourniture_id),
+                                    'quantity': quantity,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
+    @http.route('/add/kits', type='http', auth="user", methods=['POST'], website=True)
+    def add_kits(self, fiche, kit_id, quantity=0, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.kit_ids = [(0, 0, {
+                                    'kit_id': int(kit_id),
+                                    'quantity': quantity,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
+    @http.route('/add/tuteurages', type='http', auth="user", methods=['POST'], website=True)
+    def add_tuteurages(self, fiche, tuteurage_id, quantity=0, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.tuteurage_ids = [(0, 0, {
+                                    'tuteurage_id': int(tuteurage_id),
+                                    'quantity': quantity,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+        })
+
+    @http.route('/add/vigitaux', type='http', auth="user", methods=['POST'], website=True)
+    def add_vigitaux(self, fiche, date, vigitaux_id, commentaire, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.vigitaux_ids = [(0, 0, {
+                                    'date': date,
+                                    'vigitaux_id': int(vigitaux_id),
+                                    'commentaire': commentaire,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
         })

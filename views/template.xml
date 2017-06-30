@@ -424,7 +424,7 @@
 											<td><span t-field="veicule.kms" class="kname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary vedit">Supprimer</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{veicule.id}/1" class="btn btn-primary vedit">Supprimer</a>
 											</td>
 
 											</tr>
@@ -459,8 +459,9 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-
+								<form action="/add/materiels" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
 										<table class="table table-hover status_table">
@@ -473,15 +474,32 @@
 										</thead>
 										<t t-foreach="fiche.materiel_ids" t-as="materiel">
 											<tr>
-												<td><input t-att-value="materiel.materiel_id.name" class="mname" style="border:1px solid #ffffff"/>
+											<td><span t-field="materiel.materiel_id.name" class="mname" />
 											</td>
-											<td><input t-att-value="materiel.temps" class="mtemps" style="border:1px solid #ffffff"/>
+											<td><span t-field="materiel.temps" class="tname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary medit">Modifier</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{materiel.id}/2" class="btn btn-primary vedit">Supprimer</a>
 											</td>
+
 											</tr>
 										</t>
+										<tr>
+										<td>
+					                      <select name="materiel_id" class="form-control">
+					                          <option value="">Matériels...</option>
+					                          <t t-foreach="materiels or []" t-as="materiel">
+					                              <option t-att-value="materiel.id"><t t-esc="materiel.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="temps" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
@@ -496,8 +514,9 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-
+								<form action="/add/machines" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
 										<table class="table table-hover status_table">
@@ -510,15 +529,32 @@
 										</thead>
 										<t t-foreach="fiche.machine_ids" t-as="machine">
 											<tr>
-												<td><input t-att-value="machine.machine_id.name" class="mcname" style="border:1px solid #ffffff"/>
+											<td><span t-field="machine.machine_id.name" class="mname" />
 											</td>
-											<td><input t-att-value="machine.temps" class="mctemps" style="border:1px solid #ffffff"/>
+											<td><span t-field="machine.temps" class="tname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary mcedit">Modifier</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{machine.id}/3" class="btn btn-primary vedit">Supprimer</a>
 											</td>
+
 											</tr>
 										</t>
+										<tr>
+										<td>
+					                      <select name="machine_id" class="form-control">
+					                          <option value="">Machines...</option>
+					                          <t t-foreach="machines or []" t-as="machine">
+					                              <option t-att-value="machine.id"><t t-esc="machine.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="temps" type="float" class="tname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
@@ -533,8 +569,9 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-
+								<form action="/add/fournitures" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
 										<table class="table table-hover status_table">
@@ -547,15 +584,32 @@
 										</thead>
 										<t t-foreach="fiche.fourniture_ids" t-as="fourniture">
 											<tr>
-												<td><input t-att-value="fourniture.fourniture_id.name" class="fname" style="border:1px solid #ffffff"/>
+											<td><span t-field="fourniture.fourniture_id.name" class="mname" />
 											</td>
-											<td><input t-att-value="materiel.quantity" class="fqte" style="border:1px solid #ffffff"/>
+											<td><span t-field="fourniture.quantity" class="qname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary fedit">Modifier</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{fourniture.id}/4" class="btn btn-primary vedit">Supprimer</a>
 											</td>
+
 											</tr>
 										</t>
+										<tr>
+										<td>
+					                      <select name="fourniture_id" class="form-control">
+					                          <option value="">Fournitures...</option>
+					                          <t t-foreach="fournitures or []" t-as="fourniture">
+					                              <option t-att-value="fourniture.id"><t t-esc="fourniture.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="quantity" type="float" class="tname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
@@ -570,8 +624,9 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-
+								<form action="/add/kits" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
 										<table class="table table-hover status_table">
@@ -584,15 +639,32 @@
 										</thead>
 										<t t-foreach="fiche.kit_ids" t-as="kit">
 											<tr>
-												<td><input t-att-value="kit.kit_id.name" class="ktname" style="border:1px solid #ffffff"/>
+											<td><span t-field="kit.kit_id.name" class="mname" />
 											</td>
-											<td><input t-att-value="kit.quantity" class="ktqte" style="border:1px solid #ffffff"/>
+											<td><span t-field="kit.quantity" class="qname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary ktedit">Modifier</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{kit.id}/5" class="btn btn-primary vedit">Supprimer</a>
 											</td>
+
 											</tr>
 										</t>
+										<tr>
+										<td>
+					                      <select name="kit_id" class="form-control">
+					                          <option value="">Kits...</option>
+					                          <t t-foreach="kits or []" t-as="kit">
+					                              <option t-att-value="kit.id"><t t-esc="kit.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="quantity" type="float" class="tname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
@@ -607,8 +679,9 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-
+								<form action="/add/tuteurages" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
 										<table class="table table-hover status_table">
@@ -621,15 +694,32 @@
 										</thead>
 										<t t-foreach="fiche.tuteurage_ids" t-as="tuteurage">
 											<tr>
-												<td><input t-att-value="tuteurage.tuteurage_id.name" class="tname" style="border:1px solid #ffffff"/>
+											<td><span t-field="tuteurage.tuteurage_id.name" class="mname" />
 											</td>
-											<td><input t-att-value="tuteurage.quantity" class="tqte" style="border:1px solid #ffffff"/>
+											<td><span t-field="tuteurage.quantity" class="qname"/>
 											</td>
 											<td>
-												<a t-attf-href="#" class="btn btn-primary tedit">Modifier</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{tuteurage.id}/6" class="btn btn-primary vedit">Supprimer</a>
 											</td>
+
 											</tr>
 										</t>
+										<tr>
+										<td>
+					                      <select name="tuteurage_id" class="form-control">
+					                          <option value="">Tuteurages...</option>
+					                          <t t-foreach="tuteurages or []" t-as="tuteurage">
+					                              <option t-att-value="tuteurage.id"><t t-esc="tuteurage.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="quantity" type="float" class="tname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
@@ -638,6 +728,67 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-14">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Vigitaux</h3>
+							<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+						</div>
+						<div class="panel-body">
+							<form action="/add/vigitaux" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+      							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+      							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+								<!--- DEBUT BOUCLE -->
+								<div class="form-group form-field">
+									<table class="table table-hover status_table">
+									<thead>
+										<tr class="active">
+											<th>Date</th>
+											<th>Vigitaux</th>
+											<th>Commentaire</th>
+											<th>Modifier</th>
+										</tr>
+									</thead>
+									<t t-foreach="fiche.vigitaux_ids" t-as="vigitaux">
+										<tr>
+										<td><span t-field="vigitaux.date" class="kname"/>
+										</td>
+										<td><span t-field="vigitaux.vigitaux_id.name" class="vname" />
+										</td>
+										<td><span t-field="vigitaux.commentaire" class="kname"/>
+										</td>
+										<td>
+											<a t-attf-href="/ficheslist/#{fiche.id}/#{vigitaux.id}/7" class="btn btn-primary vedit">Supprimer</a>
+										</td>
+
+										</tr>
+									</t>
+									<tr>
+									<td><input name="date" type="date" class="kname"/>
+									</td>
+									<td>
+				                      <select name="vigitaux_id" class="form-control">
+				                          <option value="">Vigitaux...</option>
+				                          <t t-foreach="vigitaux_list or []" t-as="vigitaux_list_id">
+				                              <option t-att-value="vigitaux_list_id.id"><t t-esc="vigitaux_list_id.name"/></option>
+				                          </t>
+				                      </select>
+									</td>
+									<td><input name="commentaire" type="float" class="kname"/>
+									</td>
+									<td>
+										<button name="submit" type="submit" > Ajouter </button>
+									</td>
+
+									</tr>
+									</table>
+								</div>
+								<!--- FIN BOUCLE -->
+							</form>
+						</div>
+					</div>
+				</div>	
 			</div>
 
 			<style>
