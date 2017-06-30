@@ -311,13 +311,7 @@
 		    </xpath>
 
         </template>
-		<template  id="brackets_modif" inherit_id="sale_layout.separator_template">
-
-            <xpath expr="//tr[@class='text-center']/td" position="attributes">
-		        <attribute name="colspan">8</attribute>
-		    </xpath>
-
-        </template>
+		
 		
 		<template id="report_amenagement">
             <t t-call="report.html_container">
@@ -325,6 +319,21 @@
                     <t t-call="darb_puthod.sale_report_quotation" t-lang="doc.partner_id.lang"/>
                 </t>
             </t>
+        </template>
+		
+		<template  id="largeur" inherit_id="sale_layout.category_template">
+
+            <xpath expr="//tr[@class='active']/td" position="replace">
+		        <td colspan="8" style="font-weight: bold; border-bottom: 1px solid black; border-top: 1px solid black;">&amp;bull;
+                <t t-if="p['category'].name">
+                    <t t-esc="p['category'].name"></t>
+                </t>
+                <t t-if="not p['category'].name">
+                    Uncategorized
+                </t>
+            </td>
+		    </xpath>
+
         </template>
 	</data> 
 </openerp>
