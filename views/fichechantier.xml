@@ -193,6 +193,12 @@
                             	</field>
                             </group>
                     	</page>
+	                	<page string="Google maps">
+		                    <field name="address"/>
+		                    <field name="is_display_gm"/>
+		                    <field name="g_lat" readonly="0"/>
+		                    <field name="g_lng" readonly="0"/>
+	                    </page>
 					</notebook>
                 	<field name="vigitaux_ids" nolabel="1">
                 		<tree editable="bottom">
@@ -420,6 +426,8 @@
                         help="Manufacturing Orders which are ready to start production."/>
                     <filter string="In Production" name="inprogress" domain="[('state','=','in_production')]"
                         help="Manufacturing Orders which are currently in production."/>
+                    <filter string="En cours" name="IN" domain="[('inter_date','&lt;=',current_date)]"/>
+                    <filter string="A venir" name="OUT" domain="[('inter_date','&gt;',current_date)]"/>
                     <separator/>
                     <filter string="Late" domain="['&amp;', ('date_planned','&lt;', current_date), ('state', 'in', ('draft', 'confirmed', 'ready'))]"
                         help="Production started late"/>
@@ -455,6 +463,16 @@
                 on customer requirements or automated rules like the minimum
                 stock rule.
               </p>
+            </field>
+        </record>
+        
+        <record id="view_fiche_chantier_custom_inherit" model="ir.ui.view">
+            <field name="name">view.fiche.chantier.custom.inherit</field>
+            <field name="model">fiche.chantier</field>
+            <field name="arch" type="xml">
+                <custom string="Google Maps"                  
+                    template_name="manufacturing_google_maps.manufacturing_google_maps">                                 
+                </custom>
             </field>
         </record>
 

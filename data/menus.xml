@@ -4,7 +4,7 @@
       <record model="ir.actions.act_window" id="darb_puthod.fiche_chantier_action_window">
         <field name="name">Détails des déclarations</field>
         <field name="res_model">fiche.chantier</field>
-        <field name="view_mode">tree,form,kanban,calendar,gantt</field>
+        <field name="view_mode">calendar,tree,form,pivot,graph,custom</field>
       </record>
 
       <record model="ir.actions.act_window" id="darb_puthod.equipes_action_window">

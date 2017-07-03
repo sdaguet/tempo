@@ -24,7 +24,8 @@
 	            'account_accountant', 'hr', 'mrp',
                 'website',
                 'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet',
-				'website_customer_order_delivery_date'
+				'website_customer_order_delivery_date',
+                'manufacturing_google_maps'
                 ],
 
     # always loaded

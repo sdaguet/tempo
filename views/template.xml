@@ -351,6 +351,7 @@
 										</td>
 										<td>
 											<select name="taskid" class="form-control">
+												<option value="p"></option>
 												<option value="p">Préparation</option>
 												<option value="d">Déplacement</option>
 												<option value="pl">Plantation</option>
@@ -371,6 +372,7 @@
 										</td>
 										<td>
 											<select name="taskid" class="form-control">
+												<option value="p"></option>
 												<option value="p">Préparation</option>
 												<option value="d">Déplacement</option>
 												<option value="pl">Plantation</option>
@@ -775,7 +777,7 @@
 				                          </t>
 				                      </select>
 									</td>
-									<td><input name="commentaire" type="float" class="kname"/>
+									<td><input name="commentaire" type="text" class="kname"/>
 									</td>
 									<td>
 										<button name="submit" type="submit" > Ajouter </button>
