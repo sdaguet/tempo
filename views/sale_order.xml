@@ -88,6 +88,7 @@
                                 <field name="name"/>
                                 <field name="description"/>
                                 <field name="type"/>
+                                <field name="rapide"/>
                             </tree>
                         </field>
                     </page>
