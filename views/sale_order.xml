@@ -18,6 +18,25 @@
                         parent.altitude)]
                     </attribute>
                 </xpath>
+
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="after">
+                    <field name="inter_effectue" invisible="1"/>
+                    <field name="inter_restant" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']//form//field[@name='product_uom_qty']" position="after">
+
+                    <field name="inter_effectue"/>
+                    <field name="inter_restant"/>
+                    <field name="type" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']//form//field[@name='invoice_lines']" position="after">
+                    <label for="inter_ids"/>
+                    <field name="inter_ids"/>
+                </xpath>
+
             </field>
         </record>
 
@@ -69,6 +88,7 @@
                                 <field name="name"/>
                                 <field name="description"/>
                                 <field name="type"/>
+                                <field name="rapide"/>
                             </tree>
                         </field>
                     </page>

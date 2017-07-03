@@ -36,6 +36,8 @@ class subtask_wizard(models.TransientModel):
     type = fields.Selection(types, copy=False,
         string='Type', track_visibility='onchange')
     wizard_id = fields.Many2one('wizard.create.fiche.chantiere')
+    rapide = fields.Boolean(string="Rapide")
+
 
 
 class wizard_create_fiche_chantier(models.TransientModel):
@@ -56,7 +58,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         task_ids = []
         for x in tasks_list:
             for y in x:
-                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'type': y.type, 'fiche_chantier_task': True}))
+                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'type': y.type, 'rapide': y.rapide, 'fiche_chantier_task': True}))
         res['subtasks'] = task_ids
         return res
 
@@ -71,7 +73,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
             'equipe_id': self.equipe_id.id,
             'chantier_id': self.chantier_id.id,
             'inter_date': self.inter_date,
-            'subtasks': [((0, 0, {'name': task.name, 'description': task.description, 'type': task.type})) for task in self.subtasks if task.fiche_chantier_task == True],
+            'subtasks': [((0, 0, {'name': task.name, 'description': task.description, 'type': task.type, 'rapide': task.rapide})) for task in self.subtasks if task.fiche_chantier_task == True],
             }
         fiche_chantier_id = self.env['fiche.chantier'].create(vals)
         return {
@@ -107,6 +109,7 @@ class subtask(models.Model):
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
     type = fields.Selection(types, copy=False,
         string='Type', track_visibility='onchange')
+    rapide = fields.Boolean(string="Rapide")
 
 
 class chantier(models.Model):
@@ -256,6 +259,28 @@ class fiche_chantier(models.Model):
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
     subtasks = fields.Many2many('subtask', string="Tâches")
+    type_inter = fields.Selection(string="Type d'intervention",compute="_compute_type_inter", selection=[('cloturante', 'Clôturante'), ('rapide', 'Rapide'),('maintenance', 'Maintenance'), ('normale', 'Normale')], required=False, )
+
+    @api.one
+    @api.depends('subtasks','termine','chantier_id.order_id.order_type')
+    def _compute_type_inter(self):
+
+        rapide = True
+
+        for s in self.subtasks:
+            if s.rapide != True:
+                rapide = False
+                break
+
+        if self.termine:
+            self.type_inter = 'cloturante'
+        elif self.chantier_id.order_id.order_type == 'entretien' :
+            self.type_inter = 'maintenance'
+        elif rapide :
+            self.type_inter = 'rapide'
+        else:
+            self.type_inter = 'normale'
+        pass
 
 
 class fiche_chantier_vehicle(models.Model):

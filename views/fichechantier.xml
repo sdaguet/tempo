@@ -55,6 +55,8 @@
                             <field name="equipe_id"/>
                             <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'mrp.group_mrp_user']}"/>
                             <field name="chantier_id"/>
+                            <field name="type_inter"/>
+
                             <!--<field name="origin"/>-->
                         </group>
                         <group groups="stock.group_locations">

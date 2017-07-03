@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-from openerp import api, fields, models
+from openerp import api, fields, models, _
+from datetime import datetime, timedelta
+from openerp import SUPERUSER_ID
+import openerp.addons.decimal_precision as dp
+from openerp.exceptions import UserError
+from openerp.tools import float_is_zero, float_compare, DEFAULT_SERVER_DATETIME_FORMAT
 
 import logging
 
@@ -84,3 +89,26 @@ class wizard_create_chantier(models.TransientModel):
             'target': 'current_edit',
             'type': 'ir.actions.act_window',
         }
+
+class PuthodIntervention(models.Model):
+    _name = 'puthod.intervention'
+
+    order_line_id = fields.Many2one(comodel_name="sale.order.line", string="Source", required=False)
+    date_inter = fields.Datetime(string="Date d'intervention", default=fields.Datetime.now, required=False)
+    user_inter_id = fields.Many2one(comodel_name="res.users", string="User", default=lambda self: self.env.user, required=False)
+    nb_inter = fields.Integer(string="Nombre d'intervention", required=False)
+    inter_effectue = fields.Integer(string="Effectuées")
+    inter_restant = fields.Integer(string="Restantes")
+
+
+class PuthodOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    inter_effectue = fields.Integer(string="Effectuées")
+    inter_restant = fields.Integer(string="Restantes")
+    type = fields.Selection(related='product_id.type')
+    inter_ids  = fields.One2many(comodel_name="puthod.intervention", inverse_name="order_line_id", string="Interventions", required=False )
+
+
+
+
