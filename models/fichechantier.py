@@ -256,6 +256,7 @@ class fiche_chantier(models.Model):
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
     subtasks = fields.Many2many('subtask', string="Tâches")
+    type_inter = fields.Selection(string="Type d'intervention", selection=[('cloturante', 'Clôturante'), ('rapide', 'Rapide'),('maintenance', 'Maintenance'), ('normale', 'Normale')], required=False, )
 
 
 class fiche_chantier_vehicle(models.Model):
