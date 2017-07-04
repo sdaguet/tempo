@@ -25,6 +25,18 @@ types = [
         ('ma', 'Maçonnerie'),
         ('di', 'Divers')]
 
+plage_horaire = [
+        ('7', '7:00'),
+        ('73', '7:30'),
+        ('8', '8:00'),
+        ('83', '8:30'),
+        ('9', '9:00'),
+        ('93', '9:30'),
+        ('10', '10:00'),
+        ('103', '10:30'),
+        ('11', '11:00'),
+        ('12', '12:00')]
+
 
 class subtask_wizard(models.TransientModel):
     _name = 'subtask.wizard'
@@ -37,7 +49,6 @@ class subtask_wizard(models.TransientModel):
         string='Type', track_visibility='onchange')
     wizard_id = fields.Many2one('wizard.create.fiche.chantiere')
     rapide = fields.Boolean(string="Rapide")
-
 
 
 class wizard_create_fiche_chantier(models.TransientModel):
@@ -101,6 +112,7 @@ class product(models.Model):
         if self.altitude_max < self.altitude_min:
             raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
+
 class subtask(models.Model):
     _name = 'subtask'
 
@@ -110,6 +122,28 @@ class subtask(models.Model):
     type = fields.Selection(types, copy=False,
         string='Type', track_visibility='onchange')
     rapide = fields.Boolean(string="Rapide")
+    """
+    class fiche_chantier_subtasks(models.Model):
+        _name = 'fiche.chantier.subtasks'
+
+        subtask_id = fields.Many2one('subtask', string='Tâche', index=True, track_visibility='onchange')"""
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string="Fiches de Chantier", index=True, track_visibility='onchange')
+
+    comment = fields.Text('Commentaire')
+    state = fields.Selection([
+        ('draft', 'Oui'),
+        ('done', 'Non'),], default='draft', copy=False,
+        string='Terminé?', track_visibility='onchange')
+    employee_subtask_ids = fields.One2many('employees.subtasks', 'fiche_chantier_subtask_id', string="Horaires")
+
+
+class employees_subtasks(models.Model):
+    _name = 'employees.subtasks'
+
+    employee = fields.Many2one('hr.employee', string='Employee', index=True, track_visibility='onchange', required=True)
+    heure_deb = fields.Selection(plage_horaire, copy=False ,string='Type', track_visibility='onchange')
+    heure_fin = fields.Selection(plage_horaire, copy=False ,string='Type', track_visibility='onchange')
+    fiche_chantier_subtask_id = fields.Many2one('fiche.chantier.subtasks', string='fcst', index=True, track_visibility='onchange')
 
 
 class chantier(models.Model):
@@ -258,7 +292,7 @@ class fiche_chantier(models.Model):
     divers_ids = fields.One2many('fiche.chantier.divers', 'fiche_chantier_id', string=u'Divers')
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
-    subtasks = fields.Many2many('subtask', string="Tâches")
+    subtasks = fields.One2many('subtask', 'fiche_chantier_id', string=u"Tâches")
     type_inter = fields.Selection(string="Type d'intervention",compute="_compute_type_inter", selection=[('cloturante', 'Clôturante'), ('rapide', 'Rapide'),('maintenance', 'Maintenance'), ('normale', 'Normale')], required=False, )
 
     @api.one

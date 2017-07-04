@@ -209,7 +209,16 @@
                             <field name="commentaire"/>
                 		</tree>
                 	</field>
-			        <field name="subtasks"/>
+			        <field name="subtasks" nolabel="1">
+                		<tree editable="bottom">
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="rapide"/>
+                            <field name="comment"/>
+                            <field name="state"/>
+                            <field name="employee_subtask_ids" widget="many2many_tags"/>
+                		</tree>
+                	</field>
                     <!--<notebook>-->
                         <!--<page string="Consumed Products">-->
                             <!--<group>-->
