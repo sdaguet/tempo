@@ -16,8 +16,8 @@ class sale_order(models.Model):
 
     order_type = fields.Selection([
         ('entretien', 'Entretien'),
-        ('type2', 'Type2'),
-        ('type3', 'Type3')],
+        ('amenagement', 'Aménagement'),
+        ('plantation', 'Plantation')],
         string='Type', track_visibility='onchange')
     altitude = fields.Float(string='Altitude', digits=(3, 12))
 
