@@ -124,6 +124,46 @@
             <field name="parent_id" ref="product.product_category_all"/>
             <field name="name">Végétaux</field>
         </record>
+        
+        <record id="product_category_gazons" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Gazons</field>
+        </record>
+        
+        <record id="product_category_engrais" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Engrais</field>
+        </record>
+        
+        <record id="product_category_gmateriel" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Matériels d'engazonnement</field>
+        </record>
+        
+        <record id="product_category_escalier" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Escalier/Muret bois</field>
+        </record>
+        
+        <record id="product_category_outils" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Outils</field>
+        </record>
+        
+        <record id="product_category_cloture" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Produit de Cloture</field>
+        </record>
+        
+        <record id="product_category_divers" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Divers</field>
+        </record>
+        
+        <record id="product_category_terrasse" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Produit de Terrasse</field>
+        </record>
 
     </data>
 </openerp>

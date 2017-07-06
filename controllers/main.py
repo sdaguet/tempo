@@ -65,6 +65,15 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
 
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
@@ -78,6 +87,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriels': gmateriel,
+            'escaliers': escalier,
+            'outils': outils,
+            'clotures': cloture,
+            'divers': divers,
+            'terrasses': terrasse,
+            'tasks': tasks,
         })
 
     @http.route(['/ficheslist/<int:fiche>/<int:composant>/<int:param>'], type='http', auth="user", website=True)
@@ -93,6 +111,15 @@ class WebsiteContractDarbtech(http.Controller):
         elif param == 5: fiche_id.kit_ids = [(2, composant)]
         elif param == 6: fiche_id.tuteurage_ids = [(2, composant)]
         elif param == 7: fiche_id.vigitaux_ids = [(2, composant)]
+        elif param == 8: fiche_id.engrais_ids = [(2, composant)]
+        elif param == 9: fiche_id.gazons_ids = [(2, composant)]
+        elif param == 10: fiche_id.gmateriel_ids = [(2, composant)]
+        elif param == 11: fiche_id.escalier_ids = [(2, composant)]
+        elif param == 12: fiche_id.outils_ids = [(2, composant)]
+        elif param == 13: fiche_id.cloture_ids = [(2, composant)]
+        elif param == 14: fiche_id.divers_ids = [(2, composant)]
+        elif param == 15: fiche_id.terrasse_ids = [(2, composant)]
+        elif param == 16: fiche_id.scloture_ids = [(2, composant)]
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -101,6 +128,15 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
 
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
@@ -114,6 +150,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
 
 
@@ -231,10 +276,9 @@ class WebsiteContractDarbtech(http.Controller):
             employee.equipe_id = equipe_id.id
         else:
             manager_equipe_id = request.env['equipe'].sudo().search([('manager','in',current_employee.ids), ('active','=',True)])
-            manager_equipe_id.active = False
+            if manager_equipe_id: manager_equipe_id.active = False
             _logger.info("222222222222222222 : " + str(employee))
             vals = {
-                'name': 'Equipe',
                 'manager': current_employee[0].id if current_employee else 1,
                 'ressource_list': [(4, employee_id)],
                 'active': True
@@ -268,6 +312,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -279,6 +334,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
 
     @http.route('/add/materiels', type='http', auth="user", methods=['POST'], website=True)
@@ -298,6 +362,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -309,6 +384,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
 
     @http.route('/add/machines', type='http', auth="user", methods=['POST'], website=True)
@@ -328,6 +412,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -339,6 +434,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
 
     @http.route('/add/fournitures', type='http', auth="user", methods=['POST'], website=True)
@@ -358,6 +462,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -369,8 +484,16 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
-
     @http.route('/add/kits', type='http', auth="user", methods=['POST'], website=True)
     def add_kits(self, fiche, kit_id, quantity=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
@@ -388,6 +511,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -399,6 +533,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
 
     @http.route('/add/tuteurages', type='http', auth="user", methods=['POST'], website=True)
@@ -418,6 +561,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -429,6 +583,15 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })
 
     @http.route('/add/vigitaux', type='http', auth="user", methods=['POST'], website=True)
@@ -449,6 +612,17 @@ class WebsiteContractDarbtech(http.Controller):
         kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
         tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
         vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': list_teams_id,
@@ -460,4 +634,571 @@ class WebsiteContractDarbtech(http.Controller):
             'kits': kits,
             'tuteurages': tuteurage,
             'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/engrais', type='http', auth="user", methods=['POST'], website=True)
+    def add_engrais(self, fiche, engrais_id, qty_temps, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.engrais_ids = [(0, 0, {
+                                    'engrais_id': int(engrais_id),
+                                    'quantity': qty_temps,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/gazons', type='http', auth="user", methods=['POST'], website=True)
+    def add_gazons(self, fiche, gazons_id, qty_temps, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.gazons_ids = [(0, 0, {
+                                    'gazons_id': int(gazons_id),
+                                    'quantity': qty_temps,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/gmateriel', type='http', auth="user", methods=['POST'], website=True)
+    def add_gmateriel(self, fiche, gmateriel_id, qty_temps, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.gmateriel_ids = [(0, 0, {
+                                    'gmateriel_id': int(gmateriel_id),
+                                    'quantity': qty_temps,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/escalier', type='http', auth="user", methods=['POST'], website=True)
+    def add_escalier(self, fiche, escalier_id, qty, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.escalier_ids = [(0, 0, {
+                                    'gazons_id': int(escalier_id),
+                                    'quantity': qty,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/outils', type='http', auth="user", methods=['POST'], website=True)
+    def add_outils(self, fiche, outils_id, qty, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.outils_ids = [(0, 0, {
+                                    'outils_id': int(outils_id),
+                                    'quantity': qty,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/cloture', type='http', auth="user", methods=['POST'], website=True)
+    def add_cloture(self, fiche, cloture_id, qty, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.cloture_ids = [(0, 0, {
+                                    'cloture_id': int(cloture_id),
+                                    'quantity': qty,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/divers', type='http', auth="user", methods=['POST'], website=True)
+    def add_divers(self, fiche, divers_id, qty, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.divers_ids = [(0, 0, {
+                                    'divers_id': int(divers_id),
+                                    'quantity': qty,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/terrasse', type='http', auth="user", methods=['POST'], website=True)
+    def add_terrasse(self, fiche, terrasse_id, qty, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.terrasse_ids = [(0, 0, {
+                                    'terrasse_id': int(terrasse_id),
+                                    'quantity': qty,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/scloture', type='http', auth="user", methods=['POST'], website=True)
+    def add_scloture(self, fiche, scloture_id, qty, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        fiche_id.scloture_ids = [(0, 0, {
+                                    'scloture_id': int(scloture_id),
+                                    'quantity': qty,
+                                    })]
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+    @http.route('/add/work', type='http', auth="user", methods=['POST'], website=True)
+    def add_work(self, fiche, employee, tesk_id, heure_deb, heure_fin, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        _logger.info("Generated 111111111111111111111111111111111111111 : " + str(fiche))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        _logger.info("Generated 111111111111111111111111111111111111111 : " + str(employee))
+        _logger.info("Generated tesk_idtesk_idtesk_idtesk_idtesk_idtesk_id : " + str(tesk_id))
+        _logger.info("Generated 333333333333333333333333333333333333 : " + str(heure_deb))
+        vals = {
+                'employee': employee,
+                'heure_deb': heure_deb,
+                'heure_fin': heure_fin,
+                'fiche_chantier_subtask_id': tesk_id
+                }
+        request.env['employees.subtasks'].create(vals)
+
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
+        })
+
+
+    @http.route('/add/comment', type='http', auth="user", methods=['POST'], website=True)
+    def add_comment(self, fiche, comment, **kw):
+        cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+        _logger.info("Generated 111111111111111111111111111111111111111 : " + str(fiche))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+
+        fiche_id.remarqs = comment
+
+        vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
+        materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
+        machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
+        fournitures = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_fourniture').id)])
+        kits = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_kit').id)])
+        tuteurage = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_tuteurage').id)])
+        vigitaux = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vigitaux').id)])
+        gazons = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gazons').id)])
+        engrais = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_engrais').id)])
+        gmateriel = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_gmateriel').id)])
+        escalier = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_escalier').id)])
+        outils = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_outils').id)])
+        cloture = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_cloture').id)])
+        divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
+        terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
+        tasks = fiche_id.subtasks
+
+        _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
+
+        return http.request.render('darb_puthod.ficheviewer', {
+            'teams': list_teams_id,
+            'fiche': fiche_id,
+            'vehicles': vehicles,
+            'materiels': materiels,
+            'machines': machines,
+            'fournitures': fournitures,
+            'kits': kits,
+            'tuteurages': tuteurage,
+            'vigitaux_list': vigitaux,
+            'gazons': gazons,
+            'engrais': engrais,
+            'gmateriel': gmateriel,
+            'escalier': escalier,
+            'outils': outils,
+            'cloture': cloture,
+            'divers': divers,
+            'terrasse': terrasse,
+            'tasks': tasks,
         })

@@ -26,16 +26,41 @@ types = [
         ('di', 'Divers')]
 
 plage_horaire = [
-        ('7', '7:00'),
-        ('73', '7:30'),
-        ('8', '8:00'),
-        ('83', '8:30'),
-        ('9', '9:00'),
-        ('93', '9:30'),
-        ('10', '10:00'),
-        ('103', '10:30'),
-        ('11', '11:00'),
-        ('12', '12:00')]
+        ('7:00', '7:00'),
+        ('7:15', '7:15'),
+        ('7:30', '7:30'),
+        ('8:00', '8:00'),
+        ('8:15', '8:15'),
+        ('8:30', '8:30'),
+        ('9:00', '9:00'),
+        ('9:15', '9:15'),
+        ('9:30', '9:30'),
+        ('10:00', '10:00'),
+        ('10:15', '10:15'),
+        ('10:30', '10:30'),
+        ('11:00', '11:00'),
+        ('11:15', '11:15'),
+        ('11:30', '11:30'),
+        ('12:00', '12:00'),
+        ('13:00', '13:00'),
+        ('13:15', '13:15'),
+        ('13:30', '13:30'),
+        ('14:00', '14:00'),
+        ('14:15', '14:15'),
+        ('14:30', '14:30'),
+        ('15:00', '15:00'),
+        ('15:15', '15:15'),
+        ('15:30', '15:30'),
+        ('16:00', '16:00'),
+        ('16:15', '16:15'),
+        ('16:30', '16:30'),
+        ('17:00', '17:00'),
+        ('17:15', '17:15'),
+        ('17:30', '17:30'),
+        ('18:00', '18:00'),
+        ('18:15', '18:15'),
+        ('18:30', '18:30'),
+        ('19:00', '19:00')]
 
 
 class subtask_wizard(models.TransientModel):
@@ -49,6 +74,7 @@ class subtask_wizard(models.TransientModel):
         string='Type', track_visibility='onchange')
     wizard_id = fields.Many2one('wizard.create.fiche.chantiere')
     rapide = fields.Boolean(string="Rapide")
+    subtask_id = fields.Many2one('subtask', string='ref product Tâche')
 
 
 class wizard_create_fiche_chantier(models.TransientModel):
@@ -69,7 +95,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         task_ids = []
         for x in tasks_list:
             for y in x:
-                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'type': y.type, 'rapide': y.rapide, 'fiche_chantier_task': True}))
+                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'type': y.type, 'rapide': y.rapide, 'fiche_chantier_task': True, 'subtask_id': y.id,}))
         res['subtasks'] = task_ids
         return res
 
@@ -84,7 +110,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
             'equipe_id': self.equipe_id.id,
             'chantier_id': self.chantier_id.id,
             'inter_date': self.inter_date,
-            'subtasks': [((0, 0, {'name': task.name, 'description': task.description, 'type': task.type, 'rapide': task.rapide})) for task in self.subtasks if task.fiche_chantier_task == True],
+            'subtasks': [((0, 0, {'subtask_id': task.subtask_id.id})) for task in self.subtasks if task.fiche_chantier_task == True],
             }
         fiche_chantier_id = self.env['fiche.chantier'].create(vals)
         return {
@@ -105,6 +131,11 @@ class product(models.Model):
     task_ids = fields.One2many('subtask', 'product_id', string="Tâches")
     altitude_max = fields.Float(string='Altitude MAX', digits=(3,12))
     altitude_min = fields.Float(string='Altitude MIN', digits=(3,12))
+    qrcode = fields.Char(string='QR Code')
+
+    _sql_constraints = [
+        ('qrcode_uniq', 'unique(qrcode)', _("A qrcode can only be assigned to one product !")),
+    ]
 
     @api.one
     @api.constrains('altitude_max', 'altitude_min')
@@ -122,17 +153,26 @@ class subtask(models.Model):
     type = fields.Selection(types, copy=False,
         string='Type', track_visibility='onchange')
     rapide = fields.Boolean(string="Rapide")
-    """
-    class fiche_chantier_subtasks(models.Model):
-        _name = 'fiche.chantier.subtasks'
 
-        subtask_id = fields.Many2one('subtask', string='Tâche', index=True, track_visibility='onchange')"""
+
+class fiche_chantier_subtasks(models.Model):
+    _name = 'fiche.chantier.subtasks'
+
+    @api.multi
+    @api.depends('subtask_id')
+    def _get_name(self):
+        for record in self:
+            if record.subtask_id:
+                record.name = record.subtask_id.name
+
+    name = fields.Char('Nom', compute='_get_name')
+    subtask_id = fields.Many2one('subtask', string='Tâche', index=True, track_visibility='onchange')
     fiche_chantier_id = fields.Many2one('fiche.chantier', string="Fiches de Chantier", index=True, track_visibility='onchange')
 
     comment = fields.Text('Commentaire')
     state = fields.Selection([
-        ('draft', 'Oui'),
-        ('done', 'Non'),], default='draft', copy=False,
+        ('draft', 'Nom'),
+        ('done', 'Oui'),], default='draft', copy=False,
         string='Terminé?', track_visibility='onchange')
     employee_subtask_ids = fields.One2many('employees.subtasks', 'fiche_chantier_subtask_id', string="Horaires")
 
@@ -140,9 +180,17 @@ class subtask(models.Model):
 class employees_subtasks(models.Model):
     _name = 'employees.subtasks'
 
+    @api.multi
+    @api.depends('employee', 'heure_deb', 'heure_fin')
+    def _get_name(self):
+        for record in self:
+            if record.employee and record.heure_deb and record.heure_fin:
+                record.name = record.employee.name + ' (' + record.heure_deb + ' - ' + record.heure_fin + ')'
+
+    name = fields.Char('Nom', compute='_get_name')
     employee = fields.Many2one('hr.employee', string='Employee', index=True, track_visibility='onchange', required=True)
-    heure_deb = fields.Selection(plage_horaire, copy=False ,string='Type', track_visibility='onchange')
-    heure_fin = fields.Selection(plage_horaire, copy=False ,string='Type', track_visibility='onchange')
+    heure_deb = fields.Selection(plage_horaire, copy=False ,string='Heure début', track_visibility='onchange')
+    heure_fin = fields.Selection(plage_horaire, copy=False ,string='Heure fin', track_visibility='onchange')
     fiche_chantier_subtask_id = fields.Many2one('fiche.chantier.subtasks', string='fcst', index=True, track_visibility='onchange')
 
 
@@ -292,8 +340,9 @@ class fiche_chantier(models.Model):
     divers_ids = fields.One2many('fiche.chantier.divers', 'fiche_chantier_id', string=u'Divers')
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
-    subtasks = fields.One2many('subtask', 'fiche_chantier_id', string=u"Tâches")
+    subtasks = fields.One2many('fiche.chantier.subtasks', 'fiche_chantier_id', string=u"Tâches")
     type_inter = fields.Selection(string="Type d'intervention",compute="_compute_type_inter", selection=[('cloturante', 'Clôturante'), ('rapide', 'Rapide'),('maintenance', 'Maintenance'), ('normale', 'Normale')], required=False, )
+    remarqs = fields.Text('Commentaire')
 
     @api.one
     @api.depends('subtasks','termine','chantier_id.order_id.order_type')
@@ -302,7 +351,7 @@ class fiche_chantier(models.Model):
         rapide = True
 
         for s in self.subtasks:
-            if s.rapide != True:
+            if s.subtask_id.rapide != True:
                 rapide = False
                 break
 

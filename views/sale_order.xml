@@ -97,6 +97,7 @@
                 <group name="group_standard_price" position="inside">
                     <field name="altitude_max"/>
                     <field name="altitude_min"/>
+                    <field name="qrcode"/>
                 </group>
             </field>
         </record>

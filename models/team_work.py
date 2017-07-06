@@ -10,11 +10,18 @@ _logger = logging.getLogger(__name__)
 
 class Equipe(models.Model):
     _name ='equipe'
-    name = fields.Char('Team Name',required=True)
+    name = fields.Char('Team Name', required=True, compute='_get_name')
     manager = fields.Many2one('hr.employee', string='Manager', index=True, track_visibility='onchange',required=True)
     fichechantier_ids = fields.One2many('fiche.chantier', 'equipe_id', string='Fiche Chantier')
     ressource_list = fields.One2many('hr.employee', 'equipe_id', string="Ressource List")
     active = fields.Boolean(u"Active")
+
+    @api.multi
+    @api.depends('manager')
+    def _get_name(self):
+        for record in self:
+            if record.manager:
+                record.name = 'Equipe ' + record.manager.name
 
     @api.one
     @api.constrains('active', 'manager')

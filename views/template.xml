@@ -109,292 +109,115 @@
 									<thead>
 										<tr class="active">
 											<th>Employés</th>
-											<th>7</th>
-											<th>8</th>
-											<th>9</th>
-											<th>10</th>
-											<th>11</th>
-											<th>12</th>
-											<th>13</th>
-											<th>14</th>
-											<th>15</th>
-											<th>16</th>
-											<th>17</th>
-											<th>18</th>
-											<th>19</th>
+											<th>Tâches</th>
+											<th>Heure début</th>
+											<th>Heure fin</th>
+											<th>Validé</th>
 										</tr>
 									</thead>
 									<t t-foreach="teams" t-as="team">
 										<t t-foreach="team.ressource_list" t-as="membr">
-										<tr>
+										<tr>		
+										<form action="/add/work" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+		          						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+		          						<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+										<input type="hidden" name="employee" t-att-value="membr.id"/>
 										<td><span class="teamname" t-field="membr.name"/>
 										</td>
 										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">White</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
+					                      <select name="tesk_id" class="form-control">
+					                          <option value="">Tâches...</option>
+					                          <t t-foreach="tasks or []" t-as="task">
+					                              <option t-att-value="task.id"><t t-esc="task.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td>
+											<select name="heure_deb" class="form-control">
+												<option value="7:00">7:00</option>
+												<option value="7:15">7:15</option>
+												<option value="7:30">7:30</option>
+												<option value="8:00">8:00</option>
+												<option value="8:15">8:15</option>
+												<option value="8:30">8:30</option>
+												<option value="9:00">9:00</option>
+												<option value="9:15">9:15</option>
+												<option value="9:30">9:30</option>
+												<option value="10:00">10:00</option>
+												<option value="10:15">10:15</option>
+												<option value="10:30">10:30</option>
+												<option value="11:00">11:00</option>
+												<option value="11:15">11:15</option>
+												<option value="11:30">11:30</option>
+												<option value="12:00">12:00</option>
+												<option value="13:00">13:00</option>
+												<option value="13:15">13:15</option>
+												<option value="13:30">13:30</option>
+												<option value="14:00">14:00</option>
+												<option value="14:15">14:15</option>
+												<option value="14:30">14:30</option>
+												<option value="15:00">15:00</option>
+												<option value="15:15">15:15</option>
+												<option value="15:30">15:30</option>
+												<option value="16:00">16:00</option>
+												<option value="16:15">16:15</option>
+												<option value="16:30">16:30</option>
+												<option value="17:00">17:00</option>
+												<option value="17:15">17:15</option>
+												<option value="17:30">17:30</option>
+												<option value="18:00">18:00</option>
+												<option value="18:15">18:15</option>
+												<option value="18:30">18:30</option>
+												<option value="19:00">19:00</option>
 											</select>
 										</td>
 										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
+											<select name="heure_fin" class="form-control">
+												<option value="7:00">7:00</option>
+												<option value="7:15">7:15</option>
+												<option value="7:30">7:30</option>
+												<option value="8:00">8:00</option>
+												<option value="8:15">8:15</option>
+												<option value="8:30">8:30</option>
+												<option value="9:00">9:00</option>
+												<option value="9:15">9:15</option>
+												<option value="9:30">9:30</option>
+												<option value="10:00">10:00</option>
+												<option value="10:15">10:15</option>
+												<option value="10:30">10:30</option>
+												<option value="11:00">11:00</option>
+												<option value="11:15">11:15</option>
+												<option value="11:30">11:30</option>
+												<option value="12:00">12:00</option>
+												<option value="13:00">13:00</option>
+												<option value="13:15">13:15</option>
+												<option value="13:30">13:30</option>
+												<option value="14:00">14:00</option>
+												<option value="14:15">14:15</option>
+												<option value="14:30">14:30</option>
+												<option value="15:00">15:00</option>
+												<option value="15:15">15:15</option>
+												<option value="15:30">15:30</option>
+												<option value="16:00">16:00</option>
+												<option value="16:15">16:15</option>
+												<option value="16:30">16:30</option>
+												<option value="17:00">17:00</option>
+												<option value="17:15">17:15</option>
+												<option value="17:30">17:30</option>
+												<option value="18:00">18:00</option>
+												<option value="18:15">18:15</option>
+												<option value="18:30">18:30</option>
+												<option value="19:00">19:00</option>
 											</select>
 										</td>
 										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
+											<button name="submit" type="submit" > Ajouter </button>
 										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p"></option>
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
-										<td>
-											<select name="taskid" class="form-control">
-												<option value="p"></option>
-												<option value="p">Préparation</option>
-												<option value="d">Déplacement</option>
-												<option value="pl">Plantation</option>
-												<option value="t">Tonte</option>
-												<option value="ta">Taille</option>
-												<option value="dh">Désherbage</option>
-												<option value="g">Gazon</option>
-												<option value="g">Gazon plaqué</option>
-												<option value="a">Arrosage</option>
-												<option value="f">Fertilisation</option>
-												<option value="tb">Terrasse</option>
-												<option value="cl">Clôture</option>
-												<option value="pr">Protection</option>
-												<option value="em">Escalier-murêt</option>
-												<option value="ma">Maçonnerie</option>
-												<option value="di">Divers</option>
-											</select>
-										</td>
+										</form>
 										</tr>
 										</t>
 									</t>
-									</table>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -790,7 +613,518 @@
 							</form>
 						</div>
 					</div>
-				</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Engazonnement</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/engrais" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Engrais</th>
+												<th>Qté/tps</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.engrais_ids" t-as="engrai">
+											<tr>
+											<td><span t-field="engrai.engrais_id.name" class="vname" />
+											</td>
+											<td><span t-field="engrai.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{engrai.id}/8" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="engrais_id" class="form-control">
+					                          <option value="">Engrais...</option>
+					                          <t t-foreach="engrais or []" t-as="engrai">
+					                              <option t-att-value="engrai.id"><t t-esc="engrai.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty_temps" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+							<div class="panel-body">
+								<form action="/add/gazons" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Gazons</th>
+												<th>Qté/tps</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.gazons_ids" t-as="gazon">
+											<tr>
+											<td><span t-field="gazon.gazons_id.name" class="vname" />
+											</td>
+											<td><span t-field="gazon.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{gazon.id}/9" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="gazons_id" class="form-control">
+					                          <option value="">Gazons...</option>
+					                          <t t-foreach="gazons or []" t-as="gazon">
+					                              <option t-att-value="gazon.id"><t t-esc="gazon.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty_temps" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+							<div class="panel-body">
+								<form action="/add/gmateriel" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Matériels</th>
+												<th>Qté/tps</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.gmateriel_ids" t-as="gmateriel">
+											<tr>
+											<td><span t-field="gmateriel.gmateriel_id.name" class="vname" />
+											</td>
+											<td><span t-field="gmateriel.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{gazon.id}/10" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="gmateriel_id" class="form-control">
+					                          <option value="">Gazons...</option>
+					                          <t t-foreach="gmateriels or []" t-as="gmateriel">
+					                              <option t-att-value="gmateriels.id"><t t-esc="gmateriels.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty_temps" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Escalier/Muret bois</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/escalier" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Escalier/Muret bois</th>
+												<th>Qté</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.escalier_ids" t-as="escalier">
+											<tr>
+											<td><span t-field="escalier.escalier_id.name" class="vname" />
+											</td>
+											<td><span t-field="escalier.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{escalier.id}/11" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="escalier_id" class="form-control">
+					                          <option value="">Escalier...</option>
+					                          <t t-foreach="escaliers or []" t-as="escalier">
+					                              <option t-att-value="escalier.id"><t t-esc="escalier.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Outils</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/outils" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Outils</th>
+												<th>Tps</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.outils_ids" t-as="outils">
+											<tr>
+											<td><span t-field="outils.outils_id.name" class="vname" />
+											</td>
+											<td><span t-field="outils.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{outils.id}/12" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="outils_id" class="form-control">
+					                          <option value="">Outils...</option>
+					                          <t t-foreach="outils or []" t-as="outil">
+					                              <option t-att-value="outil.id"><t t-esc="outil.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Cloture</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/cloture" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Cloture</th>
+												<th>Tps</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.cloture_ids" t-as="cloture">
+											<tr>
+											<td><span t-field="cloture.cloture_id.name" class="vname" />
+											</td>
+											<td><span t-field="cloture.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{cloture.id}/13" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="cloture_id" class="form-control">
+					                          <option value="">Cloture...</option>
+					                          <t t-foreach="clotures or []" t-as="cloture">
+					                              <option t-att-value="cloture.id"><t t-esc="cloture.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Divers</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/divers" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Divers</th>
+												<th>Qté/tps</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.divers_ids" t-as="divers">
+											<tr>
+											<td><span t-field="divers.divers_id.name" class="vname" />
+											</td>
+											<td><span t-field="divers.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{divers.id}/14" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="divers_id" class="form-control">
+					                          <option value="">Divers...</option>
+					                          <t t-foreach="divers or []" t-as="diver">
+					                              <option t-att-value="diver.id"><t t-esc="diver.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Terrasse</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/terrasse" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Terrasse</th>
+												<th>Qté</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.terrasse_ids" t-as="terrasse">
+											<tr>
+											<td><span t-field="terrasse.terrasse_id.name" class="vname" />
+											</td>
+											<td><span t-field="terrasse.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{terrasse.id}/15" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="terrasse_id" class="form-control">
+					                          <option value="">Terrasse...</option>
+					                          <t t-foreach="terrasses or []" t-as="terrasse">
+					                              <option t-att-value="terrasse.id"><t t-esc="terrasse.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Suite Cloture</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<form action="/add/scloture" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div class="form-group form-field">
+										<table class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Suite Cloture</th>
+												<th>Qté</th>
+												<th>Modifier</th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.scloture_ids" t-as="scloture">
+											<tr>
+											<td><span t-field="scloture.scloture_id.name" class="vname" />
+											</td>
+											<td><span t-field="scloture.quantity" class="kname"/>
+											</td>
+											<td>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{scloture.id}/16" class="btn btn-primary vedit">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select name="scloture_id" class="form-control">
+					                          <option value="">Suite Cloture...</option>
+					                          <t t-foreach="clotures or []" t-as="scloture">
+					                              <option t-att-value="scloture.id"><t t-esc="scloture.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="kname"/>
+										</td>
+										<td>
+											<button name="submit" type="submit" > Ajouter </button>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-14">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Commentaire</h3>
+							<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+						</div>
+						<div class="panel-body">
+							<form action="/add/comment" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
+      							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+      							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+								<!--- DEBUT BOUCLE -->
+								<div class="form-group form-field">
+									<input name="comment" type="text" class="kname"/>
+									<button name="submit" type="submit" > Ajouter </button>
+								</div>
+								<!--- FIN BOUCLE -->
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<style>
