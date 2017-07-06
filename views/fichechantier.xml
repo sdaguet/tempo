@@ -9,13 +9,14 @@
             <field name="arch" type="xml">
                 <form string="Manufacturing Orders">
                 <header>
-                  <button name="button_confirm" states="draft" string="Confirm Production" class="oe_highlight"/>
-                  <button name="action_assign" states="confirmed,picking_except" string="Reserve" type="object" class="oe_highlight"/>
-                  <button name="force_production" states="confirmed" string="Force Reservation" type="object"/>
-                  <button name="button_produce" states="ready" string="Mark as Started"/>
-                  <button name="button_cancel" states="draft,ready,in_production" string="Cancel Production"/>
-                  <button name="action_cancel" type="object" states="confirmed" string="Cancel Production"/>
-                  <field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,done" statusbar_colors='{"confirmed":"blue"}'/>
+                  <button name="action_confirm" type="object" states="draft" string="Valider" class="oe_highlight"/>
+                  <button name="moves_ready" type="object" states="confirmed" string="Valider" class="oe_highlight"/>
+                  <button name="button_back" type="object" states="confirmed" string="Retour" class="oe_highlight"/>
+                  <button name="button_produce" type="object" states="ready" string="Comptabiliser" class="oe_highlight" />
+                  <button name="button_done" type="object" states="in_production" string="Terminé" class="oe_highlight"/>
+                  <button name="button_cancel" type="object" states="draft,confirmed,ready,in_production" string="Annuler" />
+
+                  <field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,confirmed,done" statusbar_colors='{"draft":"blue"}'/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -28,7 +29,7 @@
                                    <!--context="{'default_type'': 'product'"-->
                             <!--/>-->
                             <!--<field name="product_tmpl_id" invisible="1"/>-->
-                            <field name="state" invisible="1"/>
+                            <!--<field name="state" invisible="1"/>-->
                             <!--<field name="partner_id"/>-->
                             <!--<label for="product_qty" invisible="1"/>-->
                             <!--<div class="o_row">-->

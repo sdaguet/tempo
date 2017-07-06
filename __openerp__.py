@@ -33,7 +33,6 @@
         'data/menus.xml',
 		'data/product.xml',
         'views/fichechantier.xml',
-        'views/fc_workflow.xml',
         'views/teaminfo.xml',
         'crons/template.xml',
         'report/quotations.xml',
