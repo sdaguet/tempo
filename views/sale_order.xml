@@ -12,7 +12,19 @@
                 <field name="validity_date" position="replace">
                     <field name="order_type"/>
                     <field name="altitude"/>
+<!--
+                    <field name="item_url"/>
+-->
+                    <!--<notebook>
+                        <page string="Live Site">
+                            <form string="Embedded Webpage" version="7.0" edit="false">
+                                <field name="iframe" widget="html"/>
+                            </form>
+                        </page>
+                    </notebook>-->
                 </field>
+
+
                 <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
                     <attribute name="domain">[('altitude_max', '&gt;=', parent.altitude), ('altitude_min', '&lt;=',
                         parent.altitude)]

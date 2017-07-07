@@ -5,25 +5,26 @@ from openerp.exceptions import ValidationError
 # from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 import geocoder
 import logging
+
 _logger = logging.getLogger(__name__)
 
 types = [
-        ('p', 'Préparation'),
-        ('d', 'Déplacement'),
-        ('pl', 'Plantation'),
-        ('t', 'Tonte'),
-        ('ta', 'Taille'),
-        ('dh', 'Désherbage'),
-        ('g', 'Gazon'),
-        ('g', 'Gazon plaqué'),
-        ('a', 'White'),
-        ('f', 'Fertilisation'),
-        ('tb', 'Terrasse'),
-        ('cl', 'Clôture'),
-        ('pr', 'Protection'),
-        ('em', 'Escalier-murêt'),
-        ('ma', 'Maçonnerie'),
-        ('di', 'Divers')]
+    ('p', 'Préparation'),
+    ('d', 'Déplacement'),
+    ('pl', 'Plantation'),
+    ('t', 'Tonte'),
+    ('ta', 'Taille'),
+    ('dh', 'Désherbage'),
+    ('g', 'Gazon'),
+    ('g', 'Gazon plaqué'),
+    ('a', 'White'),
+    ('f', 'Fertilisation'),
+    ('tb', 'Terrasse'),
+    ('cl', 'Clôture'),
+    ('pr', 'Protection'),
+    ('em', 'Escalier-murêt'),
+    ('ma', 'Maçonnerie'),
+    ('di', 'Divers')]
 
 plage_horaire = [
         ('7:00', '7:00'),
@@ -71,7 +72,7 @@ class subtask_wizard(models.TransientModel):
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
     fiche_chantier_task = fields.Boolean(string="Ajouter")
     type = fields.Selection(types, copy=False,
-        string='Type', track_visibility='onchange')
+                            string='Type', track_visibility='onchange')
     wizard_id = fields.Many2one('wizard.create.fiche.chantiere')
     rapide = fields.Boolean(string="Rapide")
     subtask_id = fields.Many2one('subtask', string='ref product Tâche')
@@ -80,7 +81,7 @@ class subtask_wizard(models.TransientModel):
 class wizard_create_fiche_chantier(models.TransientModel):
     _name = 'wizard.create.fiche.chantiere'
 
-    inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
+    inter_date = fields.Datetime(string="Date d'intervention", required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
     subtasks = fields.One2many('subtask.wizard', 'wizard_id', string="Tâches")
@@ -114,23 +115,23 @@ class wizard_create_fiche_chantier(models.TransientModel):
             }
         fiche_chantier_id = self.env['fiche.chantier'].create(vals)
         return {
-                'name': 'Fiche Chantier',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'fiche.chantier',
-                'res_id': fiche_chantier_id.id,
-                'view_id': False,
-                'target': 'current_edit',
-                'type': 'ir.actions.act_window',
-                }
+            'name': 'Fiche Chantier',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'fiche.chantier',
+            'res_id': fiche_chantier_id.id,
+            'view_id': False,
+            'target': 'current_edit',
+            'type': 'ir.actions.act_window',
+        }
 
 
 class product(models.Model):
     _inherit = 'product.product'
 
     task_ids = fields.One2many('subtask', 'product_id', string="Tâches")
-    altitude_max = fields.Float(string='Altitude MAX', digits=(3,12))
-    altitude_min = fields.Float(string='Altitude MIN', digits=(3,12))
+    altitude_max = fields.Float(string='Altitude MAX', digits=(3, 12))
+    altitude_min = fields.Float(string='Altitude MIN', digits=(3, 12))
     qrcode = fields.Char(string='QR Code')
 
     _sql_constraints = [
@@ -151,8 +152,9 @@ class subtask(models.Model):
     description = fields.Text('Description')
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
     type = fields.Selection(types, copy=False,
-        string='Type', track_visibility='onchange')
+                            string='Type', track_visibility='onchange')
     rapide = fields.Boolean(string="Rapide")
+
 
 
 class fiche_chantier_subtasks(models.Model):
@@ -215,26 +217,26 @@ class chantier(models.Model):
     state = fields.Selection([
         ('draft', 'Brouillon'),
         ('progress', 'En cours'),
-        ('done', 'Terminé'),], default='draft', copy=False,
-        string='Status', readonly=True, track_visibility='onchange',compute="_compute_state")
+        ('done', 'Terminé'), ], default='draft', copy=False,
+        string='Status', readonly=True, track_visibility='onchange', compute="_compute_state")
 
     address = fields.Text(string='Address')
     is_display_gm = fields.Boolean('Display Google Maps?')
     g_lat = fields.Float(
         compute='_compute_glatlng', string='G Latitude', store=True,
-        multi='glatlng', digits=(3,12))
+        multi='glatlng', digits=(3, 12))
     g_lng = fields.Float(
         compute='_compute_glatlng', string='G Longitude', store=True,
-        multi='glatlng', digits=(3,12))
+        multi='glatlng', digits=(3, 12))
     order_id = fields.Many2one('sale.order', string="Order")
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
     @api.one
-    @api.depends('fiche_ids','fiche_ids.termine')
+    @api.depends('fiche_ids', 'fiche_ids.termine')
     def _compute_state(self):
-        if self.fiche_ids :
+        if self.fiche_ids:
             for fiche in self.fiche_ids:
-                if fiche.termine == True :
+                if fiche.termine == True:
                     self.state = 'done'
                 else:
                     self.state = 'progress'
@@ -257,7 +259,8 @@ class chantier(models.Model):
         locations = []
         for chantier in chantiers:
             location = [
-                chantier.address, chantier.g_lat, chantier.g_lng, chantier.id, chantier.name, chantier.order_id.partner_id.name]
+                chantier.address, chantier.g_lat, chantier.g_lng, chantier.id, chantier.name,
+                chantier.order_id.partner_id.name]
             locations.append(location)
 
         IC = self.env['ir.config_parameter']
@@ -270,20 +273,50 @@ class chantier(models.Model):
     @api.multi
     def create_fiche_chantier(self):
         return {
-                'name': 'Fiche Chantier',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'wizard.create.fiche.chantiere',
-                'view_id': False,
-                'target': 'new',
-                'type': 'ir.actions.act_window',
-            }
+            'name': 'Fiche Chantier',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'wizard.create.fiche.chantiere',
+            'view_id': False,
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }
 
 
 class fiche_chantier(models.Model):
     _inherit = "mrp.production"
     _name = "fiche.chantier"
     _description = 'Fiche de Chantier'
+
+    @api.multi
+    def action_confirm(self):
+        res = self.write({'state': 'confirmed'})
+        return res
+
+    @api.multi
+    def moves_ready(self):
+        res = self.write({'state': 'ready'})
+        return res
+
+    @api.multi
+    def button_produce(self):
+        res = self.write({'state': 'in_production'})
+        return res
+
+    @api.multi
+    def button_done(self):
+        res = self.write({'state': 'done'})
+        return res
+
+    @api.multi
+    def button_cancel(self):
+        res = self.write({'state': 'cancel'})
+        return res
+
+    @api.multi
+    def button_back(self):
+        res = self.write({'state': 'draft'})
+        return res
 
     @api.model
     def _get_default_uom_id(self):
@@ -298,13 +331,12 @@ class fiche_chantier(models.Model):
         'product.product', 'Product',
         domain=[('type', 'in', ['product', 'consu'])],
         readonly=True, required=False,
-        states={'confirmed': [('readonly', False)]},default=_get_default_product_id)
+        states={'confirmed': [('readonly', False)]}, default=_get_default_product_id)
 
     product_uom = fields.Many2one(
         'product.uom', 'Product Unit of Measure',
         readonly=True, required=False,
-        states={'confirmed': [('readonly', False)]},default=_get_default_uom_id)
-
+        states={'confirmed': [('readonly', False)]}, default=_get_default_uom_id)
 
     @api.onchange('equipe_id')
     def _onchange_equipe_id(self):
@@ -316,11 +348,12 @@ class fiche_chantier(models.Model):
         ('cancel', 'Annulé'),
         ('confirmed', 'Rempli. A valider'),
         ('ready', 'Validé. A comptabiliser'),
-        ('done', 'Comptabilisé')], default='draft', copy=False,
+        ('in_production', 'Comptabilisé'),
+        ('done', 'Terminé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
 
     termine = fields.Boolean(string=u"Chantier Terminé", default=False)
-    inter_date = fields.Datetime(string="Date d'intervention",required=True, help="Date d'intervention")
+    inter_date = fields.Datetime(string="Date d'intervention", required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
     partner_id = fields.Many2one('res.partner', string='Client', related='chantier_id.order_id.partner_id')
@@ -370,7 +403,8 @@ class fiche_chantier_vehicle(models.Model):
     _name = "fiche.chantier.vehicle"
     _description = 'Véhicules de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     vehicle_id = fields.Many2one('product.product', string=u'Véhicule')
     kms = fields.Float('KMS')
 
@@ -379,7 +413,8 @@ class fiche_chantier_materiel(models.Model):
     _name = "fiche.chantier.materiel"
     _description = 'Matériels de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     materiel_id = fields.Many2one('product.product', string=u'Matériel')
     temps = fields.Float('Temps')
 
@@ -388,7 +423,8 @@ class fiche_chantier_machine(models.Model):
     _name = "fiche.chantier.machine"
     _description = 'Machines de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     machine_id = fields.Many2one('product.product', string=u'Machine')
     temps = fields.Float('Temps')
 
@@ -397,7 +433,8 @@ class fiche_chantier_fourniture(models.Model):
     _name = "fiche.chantier.fourniture"
     _description = 'Fournitures de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     fourniture_id = fields.Many2one('product.product', string=u'Fournitures Plantation')
     quantity = fields.Float(u'Qté')
 
@@ -406,7 +443,8 @@ class fiche_chantier_kit(models.Model):
     _name = "fiche.chantier.kit"
     _description = 'Kits de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     kit_id = fields.Many2one('product.product', string=u'Kit RBKS')
     quantity = fields.Float(u'Qté')
 
@@ -415,7 +453,8 @@ class fiche_chantier_tuteurage(models.Model):
     _name = "fiche.chantier.tuteurage"
     _description = 'Tuteurages de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     tuteurage_id = fields.Many2one('product.product', string=u'Tuteurage')
     quantity = fields.Float(u'Qté')
 
@@ -424,7 +463,8 @@ class fiche_chantier_vigitaux(models.Model):
     _name = "fiche.chantier.vigitaux"
     _description = 'Vigitaux de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     vigitaux_id = fields.Many2one('product.product', string=u'Liste des vigitaux (rajout, retour)')
     date = fields.Date(u'Date')
     commentaire = fields.Text('Commentaires')
@@ -434,7 +474,8 @@ class fiche_chantier_engrais(models.Model):
     _name = "fiche.chantier.engrais"
     _description = 'Engrais de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     engrais_id = fields.Many2one('product.product', string=u'Engrais')
     quantity = fields.Float(u'Qté/tps')
 
@@ -443,7 +484,8 @@ class fiche_chantier_gazons(models.Model):
     _name = "fiche.chantier.gazons"
     _description = 'Gazons de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     gazons_id = fields.Many2one('product.product', string=u'Gazons')
     quantity = fields.Float(u'Qté/tps')
 
@@ -452,7 +494,8 @@ class fiche_chantier_gmateriel(models.Model):
     _name = "fiche.chantier.gmateriel"
     _description = 'Matériels d\'engazonnement de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     gmateriel_id = fields.Many2one('product.product', string=u'Matériel')
     quantity = fields.Float(u'Qté/tps')
 
@@ -461,7 +504,8 @@ class fiche_chantier_escalier(models.Model):
     _name = "fiche.chantier.escalier"
     _description = 'Escalier de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     escalier_id = fields.Many2one('product.product', string=u'Escalier/Muret bois')
     quantity = fields.Float(u'Qté')
 
@@ -470,7 +514,8 @@ class fiche_chantier_outils(models.Model):
     _name = "fiche.chantier.outils"
     _description = 'Outils de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     outils_id = fields.Many2one('product.product', string=u'Outils')
     quantity = fields.Float(u'Tps')
 
@@ -479,7 +524,8 @@ class fiche_chantier_cloture(models.Model):
     _name = "fiche.chantier.cloture"
     _description = 'Cloture de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     cloture_id = fields.Many2one('product.product', string=u'Cloture')
     quantity = fields.Float(u'Qté/tps')
 
@@ -488,7 +534,8 @@ class fiche_chantier_divers(models.Model):
     _name = "fiche.chantier.divers"
     _description = 'Divers de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     divers_id = fields.Many2one('product.product', string=u'Divers')
     quantity = fields.Float(u'Qté/tps')
 
@@ -497,7 +544,8 @@ class fiche_chantier_terrasse(models.Model):
     _name = "fiche.chantier.terrasse"
     _description = 'Terrasse de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     terrasse_id = fields.Many2one('product.product', string=u'Terrasse')
     quantity = fields.Float(u'Qté')
 
@@ -506,6 +554,7 @@ class fiche_chantier_scloture(models.Model):
     _name = "fiche.chantier.scloture"
     _description = 'Suite Cloture de Fiche de Chantier'
 
-    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True, track_visibility='onchange')
+    fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
+                                        track_visibility='onchange')
     scloture_id = fields.Many2one('product.product', string=u'Suite Cloture')
     quantity = fields.Float(u'Qté')

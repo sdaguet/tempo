@@ -31,12 +31,12 @@
             <field name="name">in_production</field>
             <field name="kind">function</field>
             <field name="action">action_in_production()</field>
-        </record>
+</record>
         <record id="prod_act_done" model="workflow.activity">
             <field name="wkf_id" ref="wkf_prod"/>
             <field name="flow_stop">True</field>
             <field name="kind">function</field>
-            <field name="action">action_production_end()</field>
+            <field name="action">action_end()</field>
             <field name="name">done</field>
         </record>
         <record id="prod_act_cancel" model="workflow.activity">
@@ -65,13 +65,14 @@
             <field name="act_from" ref="prod_act_ready"/>
             <field name="act_to" ref="prod_act_in_production"/>
             <field name="signal">button_produce</field>
-        </record>
-        <record id="prod_trans_in_production_done" model="workflow.transition">
+</record>
+
+         <record id="prod_trans_in_production_done" model="workflow.transition">
             <field name="act_from" ref="prod_act_in_production"/>
             <field name="act_to" ref="prod_act_done"/>
             <field name="signal">button_produce_done</field>
             <field name="condition">test_production_done()</field>
-        </record>
+</record>
         <record id="prod_trans_ready_cancel" model="workflow.transition">
             <field name="act_from" ref="prod_act_ready"/>
             <field name="act_to" ref="prod_act_cancel"/>
@@ -81,7 +82,7 @@
             <field name="act_from" ref="prod_act_in_production"/>
             <field name="act_to" ref="prod_act_cancel"/>
             <field name="signal">button_cancel</field>
-        </record>
+</record>
         <record id="prod_trans_draft_cancel" model="workflow.transition">
             <field name="act_from" ref="prod_act_draft"/>
             <field name="act_to" ref="prod_act_cancel"/>

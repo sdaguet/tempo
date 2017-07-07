@@ -20,6 +20,20 @@ class sale_order(models.Model):
         ('plantation', 'Plantation')],
         string='Type', track_visibility='onchange')
     altitude = fields.Float(string='Altitude', digits=(3, 12))
+    item_url = fields.Char('View Item')
+    iframe = fields.Html('Embedded Webpage', compute='_compute_iframe', sanitize=False, strip_style=False)
+
+    @api.multi
+    def _compute_iframe(self):
+            url = self.item_url
+            print "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
+            print url
+            template = self.env.ref('darb_puthod.iframe')
+            print "tttttttttttttttttttttttttttttttttttttt"
+            print template
+            self.iframe = template.render({'url': url})
+            print "iffffffffffffffffffffffffff"
+            print self.iframe
 
     @api.multi
     def create_fiche_chantier(self):

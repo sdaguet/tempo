@@ -2,34 +2,40 @@
 <openerp>
     <data>
 
-		
-		<template id="sale_report_quotation" inherit_id="sale.report_saleorder_document">
+
+        <template id="sale_report_quotation" inherit_id="sale.report_saleorder_document">
 
             <xpath expr="//div[@class='row']" position="replace">
-			    <div class="row">
-                <div class="col-xs-6">
-                    <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping address:</strong>
-					<strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Shipping address:</strong>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and shipping
+                            address:
+                        </strong>
+                        <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Shipping address:</strong>
                         <div t-field="doc.partner_shipping_id"
-                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
-                        <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
+                             t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
+                        <p t-if="doc.partner_id.vat">VAT:
+                            <span t-field="doc.partner_id.vat"/>
+                        </p>
 
-                </div>
-                <div class="col-xs-5 col-xs-offset-1">
-                    <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
-                        <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
-                    <div t-field="doc.partner_invoice_id"
-                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
-                    <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
+                    </div>
+                    <div class="col-xs-5 col-xs-offset-1">
+                        <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
+                            <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
+                            <div t-field="doc.partner_invoice_id"
+                                 t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax"], "no_marker": true, "phone_icons": true}'/>
+                            <p t-if="doc.partner_id.vat">VAT:
+                                <span t-field="doc.partner_id.vat"/>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                </div>
-			</xpath>
+            </xpath>
 
-			<xpath expr="//div[@id='informations']" position="replace">
+            <xpath expr="//div[@id='informations']" position="replace">
 
 
-				<div t-if="doc.client_order_ref" class="col-xs-3">
+                <div t-if="doc.client_order_ref" class="col-xs-3">
                     <strong>Your Reference:</strong>
                     <p t-field="doc.client_order_ref"/>
 
@@ -43,9 +49,10 @@
                     <strong>Salesperson:</strong>
                     <p t-field="doc.user_id"/>
                 </div>-->
-				<div t-if="doc.user_id.name" class="col-xs-3">
+                <div t-if="doc.user_id.name" class="col-xs-3">
                     <strong>Delivery date :</strong>
-                    <p t-field="doc.customer_order_delivery_date" t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
+                    <p t-field="doc.customer_order_delivery_date"
+                       t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
                 </div>
 
                 <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
@@ -53,224 +60,273 @@
                     <p t-field="doc.payment_term_id"/>
                 </div>
 
-			</xpath>
+            </xpath>
 
 
-			<xpath expr="//h2" position="replace">
-			    <h2>
-                    <span t-if="doc.state not in ['draft','sent']">Order Amenagement # </span>
-                    <span t-if="doc.state in ['draft','sent']">Quotation Amenagement # </span>
+            <xpath expr="//h2" position="replace">
+                <h2>
+                    <span t-if="doc.state not in ['draft','sent']">Order Amenagement #</span>
+                    <span t-if="doc.state in ['draft','sent']">Quotation Amenagement #</span>
                     <span t-field="doc.name"/>
                 </h2>
-			</xpath>
+            </xpath>
 
 
-			<xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
+            <xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
 
                 <tr>
-				    <th width="2%">N°Lig</th>
+                    <th width="2%">N°Lig</th>
                     <th width="40%">Désignation</th>
                     <th width="2%" class="text-right">Quantité</th>
                     <th class="text-right">Prix Brut HT</th>
                     <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></th>
                     <th class="text-right">TVA</th>
-					<th class="text-right">Prix Net HT</th>
-					<th width="10%" class="text-right">Valeur Totale HT</th>
+                    <th class="text-right">Prix Net HT</th>
+                    <th width="10%" class="text-right">Valeur Totale HT</th>
                 </tr>
             </xpath>
 
 
-		    <xpath expr="//t/t/tr/td[6]" position="before">
+            <xpath expr="//t/t/tr/td[6]" position="before">
                 <td style="text-align: center;">
 
-				    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/>
+                    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/>
 
                 </td>
             </xpath>
 
-			<xpath expr="//t/t/tr/td[4]" position="replace">
+            <xpath expr="//t/t/tr/td[4]" position="replace">
                 <td t-if="display_discount" style="text-align: left;" groups="sale.group_discount_per_so_line">
-                                <span t-esc="str(l.discount)+'%'"/>
-                            </td>
+                    <span t-esc="str(l.discount)+'%'"/>
+                </td>
             </xpath>
 
-			<xpath expr="//t/t/tr/td[2]/span" position="replace">
+            <xpath expr="//t/t/tr/td[2]/span" position="replace">
                 <span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>
             </xpath>
 
 
-			<xpath expr="//t/t" position="before">
+            <xpath expr="//t/t" position="before">
                 <t t-set="i" t-value="1"/>
             </xpath>
 
 
-			<xpath expr="//t/t/tr/td" position="before">
+            <xpath expr="//t/t/tr/td" position="before">
                 <td>
-				<span t-esc="i"/>
-				<t t-set="i" t-value="i+1"/>
+                    <span t-esc="i"/>
+                    <t t-set="i" t-value="i+1"/>
                 </td>
             </xpath>
 
-			<xpath expr="//t/t/tr/td[2]" position="replace">
+            <xpath expr="//t/t/tr/td[2]" position="replace">
                 <td width="25%">
                     <span t-field="l.name"/>
                 </td>
             </xpath>
 
-			<xpath expr="//t/t/tr/td[4]" position="replace">
-			<td class="text-right" style="text-align: center;">
-                <span t-field="l.price_unit"/>
-            </td>
-			</xpath>
+            <xpath expr="//t/t/tr/td[4]" position="replace">
+                <td class="text-right" style="text-align: center;">
+                    <span t-field="l.price_unit"/>
+                </td>
+            </xpath>
 
-			<!-- Pour ajouter le nouveau tableau de la TVA -->
-			<xpath expr="//div[@name='total']" position="inside">
+            <!-- Pour ajouter le nouveau tableau de la TVA -->
+            <xpath expr="//div[@name='total']" position="inside">
 
-              <!-- &lt;!&ndash; TAXES &ndash;&gt;
+                <!-- &lt;!&ndash; TAXES &ndash;&gt;
 
-			      &lt;!&ndash;<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> &ndash;&gt; -->
+                    &lt;!&ndash;<t t-set="taxes" t-value="{doc.order_line.tax_id.name : doc.order_line.tax_id.amount}"/> &ndash;&gt; -->
 
-              <div class="col-xs-4 pull-left">
-             <!--  &lt;!&ndash;       <t t-foreach="taxes" t-as="v">
-                         *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> &ndash;&gt; -->
- 
-					<table class="table table-condensed">
+                <div class="col-xs-4 pull-left">
+                    <!--  &lt;!&ndash;       <t t-foreach="taxes" t-as="v">
+                                *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> &ndash;&gt; -->
+
+                    <table class="table table-condensed">
 
                         <tr class="border-black">
-                            <th><strong>TVA  Taux </strong></th>
-							<th><strong>Total HT</strong></th>
-							<th><strong>Total TVA</strong></th>
-							<th><strong>Total TTC</strong></th>
+                            <th>
+                                <strong>TVA Taux</strong>
+                            </th>
+                            <th>
+                                <strong>Total HT</strong>
+                            </th>
+                            <th>
+                                <strong>Total TVA</strong>
+                            </th>
+                            <th>
+                                <strong>Total TTC</strong>
+                            </th>
 
                         </tr>
-				    
-                     <!-- pour remplir la liste des types de tva -->
-					<t t-set="tva_category" t-value="[]"/>
-						<t t-foreach="doc.order_line" t-as="l">
-						<t t-if=" bool(l.tax_id.name) == True ">
-						<t t-set="tva_category" t-value="tva_category+[l.tax_id.name]"/>
-						</t>
-					</t>
-					
-					<!-- pour remplir le tableau de tva -->
-					<t t-foreach="set(tva_category)" t-as="category">
-					<t t-set="chrono" t-value="True"/>
-					<t t-set="chrono2" t-value="True"/>
-					<tr>
-                      <!-- <td><span t-esc="category"/></td> -->
-					  <t t-foreach="doc.order_line" t-as="l">				  
-					 <t t-if=" category == l.tax_id.name and chrono == True ">
-					<td><span t-esc="str(int(l.tax_id.amount))+'%'"/></td>	
-					<t t-set="chrono" t-value="False"/>
-					</t>
-					</t>
-				   
+
+                        <!-- pour remplir la liste des types de tva -->
+                        <t t-set="tva_category" t-value="[]"/>
+                        <t t-foreach="doc.order_line" t-as="l">
+                            <t t-if=" bool(l.tax_id.name) == True ">
+                                <t t-set="tva_category" t-value="tva_category+[l.tax_id.name]"/>
+                            </t>
+                        </t>
+
+                        <!-- pour remplir le tableau de tva -->
+                        <t t-foreach="set(tva_category)" t-as="category">
+                            <t t-set="chrono" t-value="True"/>
+                            <t t-set="chrono2" t-value="True"/>
+                            <tr>
+                                <!-- <td><span t-esc="category"/></td> -->
+                                <t t-foreach="doc.order_line" t-as="l">
+                                    <t t-if=" category == l.tax_id.name and chrono == True ">
+                                        <td>
+                                            <span t-esc="str(int(l.tax_id.amount))+'%'"/>
+                                        </td>
+                                        <t t-set="chrono" t-value="False"/>
+                                    </t>
+                                </t>
+
                                 <t t-set="test_variable" t-value="0"/>
                                 <t t-foreach="doc.order_line" t-as="l">
-								<t t-if="category == l.tax_id.name" >
+                                    <t t-if="category == l.tax_id.name">
 
-                                  <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/>
-								
-                                      </t>
-									  </t>
-                                       <td>   <span t-esc="test_variable"/></td>
-						 
-						 
-						 <t t-foreach="doc.order_line" t-as="l">				  
-							<t t-if=" category == l.tax_id.name and chrono2 == True ">
-							<td><span t-esc="test_variable * l.tax_id.amount /100"/></td>
-							<td><span t-esc="test_variable + test_variable * l.tax_id.amount /100"/></td>
-							<t t-set="chrono2" t-value="False"/>
-						</t>
-						</t>
-						 
-						 
-						
-					
-					</tr>
-                   
-                   	</t>		   
+                                        <t t-set="test_variable" t-value="test_variable+l.price_subtotal"/>
 
-						
+                                    </t>
+                                </t>
+                                <td>
+                                    <span t-esc="test_variable"/>
+                                </td>
+
+
+                                <t t-foreach="doc.order_line" t-as="l">
+                                    <t t-if=" category == l.tax_id.name and chrono2 == True ">
+                                        <td>
+                                            <span t-esc="test_variable * l.tax_id.amount /100"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="test_variable + test_variable * l.tax_id.amount /100"/>
+                                        </td>
+                                        <t t-set="chrono2" t-value="False"/>
+                                    </t>
+                                </t>
+
+
+                            </tr>
+
+                        </t>
+
+
                     </table>
 
-            </div>
+                </div>
+
+                <!--<div t-field="doc.framed_page_rendered"/>-->
+
+                <html>
+                    <body>
+                        <a href="https://www.puthod.com/productions-pepinieres-puthod/arbres/acacia-casque-rouge-6984.html">
+                                    Un lien à utiliser dans les cas où les navigateurs ne supportent
+                                    pas les <i>iframes</i>.
+                                </a>
+                        <iframe
+                                src="/darb_puthod/static/src/acacia-casque-rouge-6984.html"
+                                width="100%" height="500"
+                        >
+                            <p>
+                                <a href="https://www.puthod.com/productions-pepinieres-puthod/arbres/acacia-casque-rouge-6984.html">
+                                    Un lien à utiliser dans les cas où les navigateurs ne supportent
+                                    pas les <i>iframes</i>.
+                                </a>
+                            </p>
+                        </iframe>
+
+
+                        <!--<iframe src="//www.puthod.com/productions-pepinieres-puthod/arbres/acacia-casque-rouge-6984.html?page=1" marginheight="0" marginwidth="0"
+                                frameborder="0" width="100%" height="750"/>-->
+                    </body>
+                </html>
+
+
             </xpath>
-			
+
         </template>
-		
-		
-		<!--
-		 <template id="x_header" inherit_id="report.external_layout_header">
+
+
+        <!--
+         <template id="x_header" inherit_id="report.external_layout_header">
             <xpath expr="//div[@class='header']" position="replace">
-            
-		 <div class="header">
-                    
+
+         <div class="header">
+
                         <div style="float: left;
-	width: 100px;
-	margin-right: 10px;
-	">
+    width: 100px;
+    margin-right: 10px;
+    ">
                             <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
                         </div>
-                        
-                    
+
+
                     <div style="margin-left: 360px;
-	margin-right: 310px; 
-	padding-top:  20px;
-	overflow: visible;
-	height: 1%;
-	">
-                        
-						<ul class="list-inline text-left"> 
-                             <li style="font-size: 120%;"><strong>SARL PEPINIERES ALT PUTHOD Succ.</strong></li> <br/> 
-                             <li><t t-esc="company.street"/></li>                
+    margin-right: 310px;
+    padding-top:  20px;
+    overflow: visible;
+    height: 1%;
+    ">
+
+                        <ul class="list-inline text-left">
+                             <li style="font-size: 120%;"><strong>SARL PEPINIERES ALT PUTHOD Succ.</strong></li> <br/>
+                             <li><t t-esc="company.street"/></li>
                              <li><t t-esc="company.street2"/></li> <br/>
-                             <li> <t t-esc="company.city"/></li> 
-							 <li><t t-esc="company.zip"/><br/></li> <br/>
+                             <li> <t t-esc="company.city"/></li>
+                             <li><t t-esc="company.zip"/><br/></li> <br/>
                              <li><t t-esc="company.country_id.name"/></li>
                         </ul>
-						
+
                 </div>
-			<div style="float: right;
-	width: 350px;
-	padding-left: 80px;
-	">
-                        
-						<ul class="list-inline text-left"> 
-                             <li>Tel:</li> 
-                             <li><t t-esc="company.phone"/></li> <br/>                
-                             <li>Fax:</li> 
+            <div style="float: right;
+    width: 350px;
+    padding-left: 80px;
+    ">
+
+                        <ul class="list-inline text-left">
+                             <li>Tel:</li>
+                             <li><t t-esc="company.phone"/></li> <br/>
+                             <li>Fax:</li>
                              <li><t t-esc="company.fax"/></li> <br/>
-							 <li>Email:</li> 
+                             <li>Email:</li>
                              <li><t t-esc="company.email"/></li> <br/>
-							 <li>Site:</li> 
+                             <li>Site:</li>
                              <li><t t-esc="company.website"/></li> <br/>
                         </ul>
-						
-						
-						
-                    
-                </div>	
-				
-			
+
+
+
+
+                </div>
+
+
          </div>
             </xpath>
         </template>
-		-->
-		<template id="x_footer" inherit_id="report.external_layout_footer">
+        -->
+        <template id="x_footer" inherit_id="report.external_layout_footer">
             <xpath expr="//div[@class='footer']" position="replace">
                 <div class="footer">
-                       <div class="text-left" style="border-top: 1px solid black; font-size: 10px;">
-                         RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139 2044 335
-                          <br />
-                     CMCIFR2A (Merci de rappeler le numéro de facture lors de votre règlement)
-                          <ul class="list-inline text-center">
-                             <li>Page:</li>
-                             <li><span class="page"/></li>
-                             <li>de</li>
-                             <li><span class="topage"/></li>
-                          </ul>
-                       </div>
+                    <div class="text-left" style="border-top: 1px solid black; font-size: 10px;">
+                        RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139
+                        2044 335
+                        <br/>
+                        CMCIFR2A (Merci de rappeler le numéro de facture lors de votre règlement)
+                        <ul class="list-inline text-center">
+                            <li>Page:</li>
+                            <li>
+                                <span class="page"/>
+                            </li>
+                            <li>de</li>
+                            <li>
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+
+
                 </div>
             </xpath>
         </template>
@@ -278,62 +334,64 @@
         <template id="x_header" inherit_id="report.external_layout_header">
             <xpath expr="//div[@class='header']" position="replace">
                 <div class="header">
-                       <div class="row">
-                    <div class="col-xs-3">
-                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
-                             style="max-height: 45px;"/>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
+                                 style="max-height: 45px;"/>
+                        </div>
+                        <div class="col-xs-9 text-right" name="company_address">
+                            <div t-field="company.partner_id"
+                                 t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        </div>
                     </div>
-                    <div class="col-xs-9 text-right" name="company_address">
-                        <div t-field="company.partner_id"
-                             t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                    <div class="row zero_min_height">
+                        <div class="col-xs-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row zero_min_height">
-                    <div class="col-xs-12">
-                        <div style="border-bottom: 1px solid black;"/>
-                    </div>
-                </div>
                 </div>
             </xpath>
         </template>
 
-		<template  id="colspane_modif" inherit_id="sale_layout.subtotal_template">
+        <template id="colspane_modif" inherit_id="sale_layout.subtotal_template">
 
             <xpath expr="//tr[@class='text-right']/td" position="attributes">
-		        <attribute name="colspan">8</attribute>
-		    </xpath>
+                <attribute name="colspan">8</attribute>
+            </xpath>
 
         </template>
-		<template  id="largeur_modif" inherit_id="sale_layout.category_template">
+        <template id="largeur_modif" inherit_id="sale_layout.category_template">
 
             <xpath expr="//tr[@class='active']/td" position="attributes">
-		        <attribute name="colspan">8</attribute>
-		    </xpath>
+                <attribute name="colspan">8</attribute>
+            </xpath>
 
         </template>
-		
-		
-		<template id="report_amenagement">
+
+
+        <template id="report_amenagement">
             <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="darb_puthod.sale_report_quotation" t-lang="doc.partner_id.lang"/>
                 </t>
             </t>
         </template>
-		
-		<template  id="largeur" inherit_id="sale_layout.category_template">
+
+        <template id="largeur" inherit_id="sale_layout.category_template">
 
             <xpath expr="//tr[@class='active']/td" position="replace">
-		        <td colspan="8" style="font-weight: bold; border-bottom: 1px solid black; border-top: 1px solid black;">&amp;bull;
-                <t t-if="p['category'].name">
-                    <t t-esc="p['category'].name"></t>
-                </t>
-                <t t-if="not p['category'].name">
-                    Uncategorized
-                </t>
-            </td>
-		    </xpath>
+                <td colspan="8" style="font-weight: bold; border-bottom: 1px solid black; border-top: 1px solid black;">
+                    &amp;bull;
+                    <t t-if="p['category'].name">
+                        <t t-esc="p['category'].name"></t>
+                    </t>
+                    <t t-if="not p['category'].name">
+                        Uncategorized
+                    </t>
+                </td>
+            </xpath>
+
 
         </template>
-	</data> 
+    </data>
 </openerp>
