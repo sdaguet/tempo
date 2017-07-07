@@ -231,26 +231,42 @@ class chantier(models.Model):
     order_id = fields.Many2one('sale.order', string="Order")
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
+
+
+#bug
     @api.one
-    @api.depends('fiche_ids', 'fiche_ids.termine')
+    @api.depends('fiche_ids', 'fiche_ids.termine', 'order_id')
     def _compute_state(self):
-        if self.fiche_ids:
+        done = 1;
+        if self.fiche_ids.ids != []:
             for fiche in self.fiche_ids:
                 if fiche.termine == True:
-                    self.state = 'done'
+                    done = 1
                 else:
-                    self.state = 'progress'
-        elif self.fiche_ids == False:
+                    done = 0
+                    break
+            if done == 1: self.state = 'done'
+            elif done == 0 and self.done_click != True: self.state = 'progress'
+            else : self.state = 'done'
+
+        elif self.valid_click != True and self.fiche_ids.ids == []:
             self.state = 'draft'
+        else:
+            self.state = 'progress'
         pass
+
+    valid_click  = fields.Boolean(string="valid", default = False )
 
     @api.one
     def action_dispatch(self):
-        self.state = 'progress'
+        self.write({'valid_click':True, 'state':'progress'})
+        #self.state = 'progress'
 
+    done_click  = fields.Boolean(string="done", default = False )
     @api.one
     def action_done(self):
-        self.state = 'done'
+        self.write({'done_click':True, 'state':'done'})
+        #self.state = 'done'
 
     @api.model
     def get_google_maps_data(self, domain=[]):

@@ -9,6 +9,11 @@
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
 
+                <xpath expr="//notebook" position="before">
+                    <label for="is_responsable"></label>
+                    <field name="is_responsable"/>
+                </xpath>
+
                 <xpath expr="//page[3]" position="after">
                     <page string="Mois">
                         <group>
