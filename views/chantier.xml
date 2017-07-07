@@ -12,6 +12,7 @@
 	                <header>
                         <button name="action_dispatch" states="draft" string="Valider" type="object" icon="gtk-go-forward" class="oe_highlight"/>
                         <button name="action_done" states="progress" string="Terminer" type="object" icon="gtk-go-forward" class="oe_highlight"/>
+						<!--bug-->
                     	<button name="create_fiche_chantier" string="Créer une fiche chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
 	                	<field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
 	                </header>

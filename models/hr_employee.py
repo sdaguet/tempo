@@ -18,6 +18,7 @@ class HrEmployee(models.Model):
     novembre = fields.Float("Novembre", compute="_compute_months")
     decembre = fields.Float("Décembre", compute="_compute_months")
     attendance_id = fields.Many2one(comodel_name="hr.attendance")
+    is_responsable = fields.Boolean(string="Peut être responsable", default = False )
 
     @api.one
     @api.depends('attendance_id.name')
