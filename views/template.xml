@@ -112,7 +112,7 @@
 											<th>Tâches</th>
 											<th>Heure début</th>
 											<th>Heure fin</th>
-											<th>Validé</th>
+											<th>Valider</th>
 										</tr>
 									</thead>
 									<t t-foreach="teams" t-as="team">
@@ -556,7 +556,7 @@
 				<div class="col-md-14">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Vigitaux</h3>
+							<h3 class="panel-title">Végétaux</h3>
 							<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 						</div>
 						<div class="panel-body">
@@ -570,7 +570,7 @@
 									<thead>
 										<tr class="active">
 											<th>Date</th>
-											<th>Vigitaux</th>
+											<th>Végétaux</th>
 											<th>Commentaire</th>
 											<th>Modifier</th>
 										</tr>
@@ -594,7 +594,7 @@
 									</td>
 									<td>
 				                      <select name="vigitaux_id" class="form-control">
-				                          <option value="">Vigitaux...</option>
+				                          <option value="">Végétaux...</option>
 				                          <t t-foreach="vigitaux_list or []" t-as="vigitaux_list_id">
 				                              <option t-att-value="vigitaux_list_id.id"><t t-esc="vigitaux_list_id.name"/></option>
 				                          </t>

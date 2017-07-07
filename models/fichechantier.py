@@ -17,7 +17,7 @@ types = [
     ('dh', 'Désherbage'),
     ('g', 'Gazon'),
     ('g', 'Gazon plaqué'),
-    ('a', 'White'),
+    ('a', 'Arrosage'),
     ('f', 'Fertilisation'),
     ('tb', 'Terrasse'),
     ('cl', 'Clôture'),
@@ -109,7 +109,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         related_chantier = self.env['chantier'].browse(active_ids)
         vals = {
             'equipe_id': self.equipe_id.id,
-            'chantier_id': self.chantier_id.id,
+            'chantier_id': related_chantier.id,
             'inter_date': self.inter_date,
             'subtasks': [((0, 0, {'subtask_id': task.subtask_id.id})) for task in self.subtasks if task.fiche_chantier_task == True],
             }
@@ -173,7 +173,7 @@ class fiche_chantier_subtasks(models.Model):
 
     comment = fields.Text('Commentaire')
     state = fields.Selection([
-        ('draft', 'Nom'),
+        ('draft', 'Non'),
         ('done', 'Oui'),], default='draft', copy=False,
         string='Terminé?', track_visibility='onchange')
     employee_subtask_ids = fields.One2many('employees.subtasks', 'fiche_chantier_subtask_id', string="Horaires")
@@ -220,7 +220,7 @@ class chantier(models.Model):
         ('done', 'Terminé'), ], default='draft', copy=False,
         string='Status', readonly=True, track_visibility='onchange', compute="_compute_state")
 
-    address = fields.Text(string='Address')
+    address = fields.Text(string='Adresse')
     is_display_gm = fields.Boolean('Display Google Maps?')
     g_lat = fields.Float(
         compute='_compute_glatlng', string='G Latitude', store=True,
@@ -363,7 +363,7 @@ class fiche_chantier(models.Model):
     fourniture_ids = fields.One2many('fiche.chantier.fourniture', 'fiche_chantier_id', string=u'Fournitures')
     kit_ids = fields.One2many('fiche.chantier.kit', 'fiche_chantier_id', string=u'Kits RBKS')
     tuteurage_ids = fields.One2many('fiche.chantier.tuteurage', 'fiche_chantier_id', string=u'Tuteurage')
-    vigitaux_ids = fields.One2many('fiche.chantier.vigitaux', 'fiche_chantier_id', string=u'Vigitaux')
+    vigitaux_ids = fields.One2many('fiche.chantier.vigitaux', 'fiche_chantier_id', string=u'Végétaux')
     engrais_ids = fields.One2many('fiche.chantier.engrais', 'fiche_chantier_id', string=u'Engrais')
     gazons_ids = fields.One2many('fiche.chantier.gazons', 'fiche_chantier_id', string=u'Gazons')
     gmateriel_ids = fields.One2many('fiche.chantier.gmateriel', 'fiche_chantier_id', string=u'Matériel')
@@ -461,11 +461,11 @@ class fiche_chantier_tuteurage(models.Model):
 
 class fiche_chantier_vigitaux(models.Model):
     _name = "fiche.chantier.vigitaux"
-    _description = 'Vigitaux de Fiche de Chantier'
+    _description = 'Végétaux de Fiche de Chantier'
 
     fiche_chantier_id = fields.Many2one('fiche.chantier', string='Fiche de Chantier', index=True,
                                         track_visibility='onchange')
-    vigitaux_id = fields.Many2one('product.product', string=u'Liste des vigitaux (rajout, retour)')
+    vigitaux_id = fields.Many2one('product.product', string=u'Liste des Végétaux (rajout, retour)')
     date = fields.Date(u'Date')
     commentaire = fields.Text('Commentaires')
 

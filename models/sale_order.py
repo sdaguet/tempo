@@ -52,7 +52,7 @@ class wizard_create_chantier(models.TransientModel):
     _name = 'wizard.create.chantiere'
 
     name = fields.Char('Nom')
-    address = fields.Text(string='Address')
+    address = fields.Text(string='Adresse')
     g_lat = fields.Float(string='G Latitude', store=True,
                          multi='glatlng', digits=(3, 12))
     g_lng = fields.Float(string='G Longitude', store=True,
