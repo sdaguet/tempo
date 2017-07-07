@@ -49,6 +49,7 @@
         'views/emplacement.xml',
         'views/calendar.xml',
         'report/report_employee_view.xml',
+        'data/puthod_product_data.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode

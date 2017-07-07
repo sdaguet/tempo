@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    	
+        <record id="product_vehicle4x4" model="product.product">
+            <field name="name">4x4</field>
+            <field name="categ_id" ref="darb_puthod.product_category_vehicle"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_km"/>
+            <field name="uom_po_id" ref="product.product_uom_km"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+
+    </data>
+</openerp>
