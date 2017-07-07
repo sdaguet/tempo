@@ -200,10 +200,10 @@
 		                    <field name="remarqs" nolabel="1"/>
 	                    </page>
 	                	<page string="Google maps">
-		                    <field name="address"/>
+		                    <field name="address" readonly="1"/>
 		                    <field name="is_display_gm"/>
-		                    <field name="g_lat" readonly="0"/>
-		                    <field name="g_lng" readonly="0"/>
+		                    <field name="g_lat" readonly="1"/>
+		                    <field name="g_lng" readonly="1"/>
 	                    </page>
 					</notebook>
                 	<field name="vigitaux_ids" nolabel="1">
@@ -498,6 +498,7 @@
                         <field name="employee"/>
                         <field name="heure_deb"/>
                         <field name="heure_fin"/>
+			            <field name="type"/>
                     </group>
 				</form>
             </field>

@@ -56,7 +56,7 @@
         			<group>
 			          <field name="name"/>
 			          <field name="description"/>
-			          <field name="type"/>
+			          <field name="rapide"/>
 					</group>
         		</form>
       		</field>
@@ -69,7 +69,6 @@
         		<tree>
 			          <field name="name"/>
 			          <field name="description"/>
-			          <field name="type"/>
 			          <field name="rapide"/>
         		</tree>
       		</field>
@@ -119,7 +118,6 @@
                             <tree editable="bottom">
 			                	<field name="name"/>
 			                	<field name="description"/>
-			                	<field name="type"/>
 			                	<field name="rapide"/>
 			                	<field name="fiche_chantier_task"/>
                             </tree>

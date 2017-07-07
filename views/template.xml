@@ -110,6 +110,7 @@
 										<tr class="active">
 											<th>Employés</th>
 											<th>Tâches</th>
+											<th>Type</th>
 											<th>Heure début</th>
 											<th>Heure fin</th>
 											<th>Valider</th>
@@ -131,6 +132,26 @@
 					                              <option t-att-value="task.id"><t t-esc="task.name"/></option>
 					                          </t>
 					                      </select>
+										</td>
+ 										<td>
+											<select name="type" class="form-control">
+												<option value="p">Préparation</option>
+												<option value="d">Déplacement</option>
+												<option value="pl">Plantation</option>
+												<option value="t">Tonte</option>
+												<option value="ta">Taille</option>
+												<option value="dh">Désherbage</option>
+												<option value="g">Gazon</option>
+												<option value="g">Gazon plaqué</option>
+												<option value="a">Arrosage</option>
+												<option value="f">Fertilisation</option>
+												<option value="tb">Terrasse</option>
+												<option value="cl">Clôture</option>
+												<option value="pr">Protection</option>
+												<option value="em">Escalier-murêt</option>
+												<option value="ma">Maçonnerie</option>
+												<option value="di">Divers</option>
+											</select>
 										</td>
 										<td>
 											<select name="heure_deb" class="form-control">
