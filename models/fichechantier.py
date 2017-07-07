@@ -398,13 +398,13 @@ class fiche_chantier(models.Model):
     @api.one
     @api.depends('subtasks','termine','chantier_id.order_id.order_type')
     def _compute_type_inter(self):
-
-        rapide = True
-
+        rapide = False
         for s in self.subtasks:
             if s.subtask_id.rapide != True:
                 rapide = False
                 break
+            else:
+                rapide = True
 
         if self.termine:
             self.type_inter = 'cloturante'
