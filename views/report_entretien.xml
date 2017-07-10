@@ -38,15 +38,14 @@
                             <tr>
                                 <th></th>
                                 <th>A Faire</th>
-                                <th>Qui</th>
-                                <th>Quand</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <t t-foreach="doc.order_id.order_line" t-as="ol">
                                 <tr>
                                     <td>
-                                        <span t-field="ol.product_id.name"/>
+                                        <strong><span t-field="ol.product_id.name"/></strong>
                                         <t t-foreach="ol.product_id.task_ids" t-as="t">
                                             <tr>
                                                 <td>
@@ -55,15 +54,33 @@
                                                 <td>
                                                     <p t-esc="a_faire(doc,t)[0]"/>
                                                 </td>
-                                                <t t-foreach="a_faire(doc,t)[1]" t-as="e">
+                                                <td>
 
-                                                <td>
-                                                    <span t-field="e.employee"/>
+                                                <table  class="table table-bordered">
+
+
+                                                        <tr>
+                                                            <th>QUI</th>
+                                                            <th>QUAND</th>
+                                                        </tr>
+                                                    <t t-foreach="a_faire(doc,t)[1]" t-as="e">
+
+                                                        <tr>
+
+                                                            <td>
+                                                                <span t-field="e.employee"/>
+                                                            </td>
+
+                                                            <td>
+                                                                <span t-field="e.heure_deb"/>-
+                                                                <span t-field="e.heure_fin"/>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </t>
+                                                </table>
                                                 </td>
-                                                <td>
-                                                    <span t-field="e.heure_deb"/>-<span t-field="e.heure_fin"/>
-                                                </td>
-                                                 </t>
                                             </tr>
                                         </t>
                                     </td>
