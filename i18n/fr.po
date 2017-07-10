@@ -916,3 +916,94 @@ msgstr "Date du devis :"
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
 msgid "<strong>Payment Term:</strong>"
 msgstr "<strong>Conditions de règlement :</strong>"
+
+#. module: sale_order_acompte
+#: code:addons/sale_order_acompte/models/sale_order_acompte.py:138
+#: code:addons/sale_order_acompte/models/sale_order_acompte.py:152
+#, python-format
+msgid "Advance: %s"
+msgstr "Avance : %s"
+
+#. module: sale_order_acompte
+#: code:addons/sale_order_acompte/models/sale_order_acompte.py:72
+#, python-format
+msgid "Down Payment"
+msgstr "Acompte"
+
+#. module: sale_order_acompte
+#: model:ir.model.fields,field_description:sale_order_acompte.field_sale_order_line_acompte
+msgid "Down Payment %"
+msgstr "Acompte %"
+
+#. module: sale_order_acompte
+#: code:addons/sale_order_acompte/models/sale_order_acompte.py:53
+#, python-format
+msgid "Down payment of %s%%"
+msgstr "Acompte de %s%%"
+
+#. module: sale_order_acompte
+#: model:ir.model,name:sale_order_acompte.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Facture de paiement d'avance"
+
+#. module: sale_order_acompte
+#: model:ir.model,name:sale_order_acompte.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+
+#. module: sale_order_acompte
+#: code:addons/sale_order_acompte/models/sale_order_acompte.py:47
+#, python-format
+msgid "The value of the down payment amount must be positive."
+msgstr "La valeur du montant de l'acompte doit être positive."
+
+#. module: website_customer_order_delivery_date
+#: model:ir.ui.view,arch_db:website_customer_order_delivery_date.view_config_settings_customer_delivery_inherit
+#: model:ir.ui.view,arch_db:website_customer_order_delivery_date.view_customer_order_delivery_sale_form_view_inherited
+msgid "Customer Order Delivery Date"
+msgstr "Date de livraison de la commande client"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.model.fields,field_description:website_customer_order_delivery_date.field_sale_order_customer_order_delivery_comment
+#: model:ir.ui.view,arch_db:website_customer_order_delivery_date.website_sale_customer_order_delivery_date
+msgid "Delivery Comment"
+msgstr "Commentaire de livraison"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.model.fields,field_description:website_customer_order_delivery_date.field_sale_order_customer_order_delivery_date
+#: model:ir.ui.view,arch_db:website_customer_order_delivery_date.report_quotation_inherit_darb_touch
+msgid "Delivery Date"
+msgstr "Date de livraison"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.ui.view,arch_db:website_customer_order_delivery_date.website_sale_customer_order_delivery_date
+msgid "Delivery Date and time"
+msgstr "Date et heure de livraison"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.model.fields,field_description:website_customer_order_delivery_date.field_website_config_settings_is_customer_order_delivery__comment_feature
+#: model:ir.model.fields,field_description:website_customer_order_delivery_date.field_website_is_customer_order_delivery_comment_feature
+msgid "Do you want to disable customer order delivery comment feature"
+msgstr "Voulez-vous désactiver la fonction de commentaire de livraison de commande client"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.model.fields,field_description:website_customer_order_delivery_date.field_website_config_settings_is_customer_order_delivery__date_feature
+#: model:ir.model.fields,field_description:website_customer_order_delivery_date.field_website_is_customer_order_delivery_date_feature
+msgid "Do you want to disable customer order delivery date feature"
+msgstr "Voulez-vous désactiver la fonction de date de livraison de la commande client"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.model,name:website_customer_order_delivery_date.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.model,name:website_customer_order_delivery_date.model_website
+msgid "Website"
+msgstr "Site Web"
+
+#. module: website_customer_order_delivery_date
+#: model:ir.ui.view,arch_db:website_customer_order_delivery_date.website_sale_customer_order_delivery_date
+msgid "Write a comment..."
+msgstr "Ecrire un commentaire..." 
