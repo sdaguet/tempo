@@ -10,5 +10,14 @@
                 name="darb_puthod.report_amenagement"
         />
 
+        <report
+                id="sale_report_entretien"
+                string="Rapport d'entretien"
+                model="chantier"
+                report_type="qweb-pdf"
+                file="darb_puthod.report_entretien"
+                name="darb_puthod.report_entretien"
+        />
+
     </data>
 </openerp>

@@ -116,7 +116,8 @@
 											<th>Valider</th>
 										</tr>
 									</thead>
-									<t t-foreach="teams" t-as="membr">
+									<t t-foreach="teams" t-as="team">
+										<t t-foreach="team.ressource_list" t-as="membr">
 										<tr>		
 										<form action="/add/work" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
 		          						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
@@ -235,6 +236,7 @@
 										</td>
 										</form>
 										</tr>
+										</t>
 									</t>
 								</table>
 							</div>
@@ -1326,8 +1328,8 @@
 		    	odoo.define('custom_webpage.my_js', function (require) {'use strict';
 		    	var Model = require('web.Model');
 
-				var model = new Model('fiche.chantier');
-		    	model.call('get_google_maps_data', [[]]).then(function(results){
+				var model = new Model('chantier');
+		    	model.call('get_google_maps_data', [domain]).then(function(results){
 					var locations = results[0];
 					var gm_configs = results[1];
 					var map = new google.maps.Map(document.getElementById('xmap'), {
@@ -1346,16 +1348,14 @@
 					  		position : new google.maps.LatLng(locations[i][1], locations[i][2]),
 					  		map : map
 					  	});
-						var location = "../ficheslist/" + locations[i][3];
+
 					  	google.maps.event.addListener(marker, 'click', (function(marker, i) {
 					  		return function() {
 					  			infowindow.setContent('<div>'+
-										            '<h3>Fiche chantier</h3>'+
+										            '<h3>'+locations[i][4]+'</h3>'+
 										            '<div>'+
+										            '<p><b>'+locations[i][5]+'</b></p>'+
 										            '<p><b>'+locations[i][0]+'</b></p>'+
-										            '<p align="center"><a class="btn btn-primary pointer" href="' + location + '">'+
-										            'Consulter</a> '+
-            										'</p>'+
 										            '</div>'+
 										            '</div>');
 					  			infowindow.open(map, marker);
