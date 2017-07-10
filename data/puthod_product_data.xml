@@ -303,7 +303,7 @@
         </record>
 		
 		<record id="product_FournitureBigBagdeterreau" model="product.product">
-            <field name="name">Big Bag de terreau(2.50m3)</field>
+            <field name="name">Big Bag de terreau(2.50 m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -380,7 +380,7 @@
         </record>
 		
 		<record id="product_FournitureTerredebruyere" model="product.product">
-            <field name="name">Terre de bruyère (le m3 ou 70L)</field>
+            <field name="name">Terre de bruyère (le m&#179; ou 70L)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -402,7 +402,7 @@
         </record>
 		
 		<record id="product_FournitureTerreVegetale" model="product.product">
-            <field name="name">Terre Végétale (le m3)</field>
+            <field name="name">Terre Végétale (le m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -435,7 +435,7 @@
         </record>
 		
 		<record id="product_FournitureGeotextile" model="product.product">
-            <field name="name">Géotextile (=bidim)(m2)</field>
+            <field name="name">Géotextile (=bidim)(m&#178;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -801,6 +801,50 @@
             <field name="company_id" eval="[]"/>
         </record>
 		
+		<record id="product_gazonsSPORTALPINSUPRAOHS" model="product.product">
+            <field name="name">SPORT ALPIN SUPRA OHS (Kg)(gazon)-Densité : 30 g/m&#178;</field>
+            <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_gazonsMINIFLORA" model="product.product">
+            <field name="name">MINIFLORA (gazon fleuri)(le Kg)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_gazonsMINIFLORA" model="product.product">
+            <field name="name">SWISSFLORA (prairie fleurie)(Kg)-Densité : 20 g/m&#178; </field>
+            <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_gazonsMINIFLORA" model="product.product">
+            <field name="name">SALVIA prairie fleurs sauvages (mélange fleurs sauvages)(le Kg)-Densité : 5 g/m&#178; </field>
+            <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+			
 		
 		<record id="product_gazonsGazonfleuriEuroflor" model="product.product">
             <field name="name">Gazon fleuri Euroflor Tenor (le kilo)</field>
@@ -814,7 +858,7 @@
         </record>
 		
 		<record id="product_gazonsGazonPlaque" model="product.product">
-            <field name="name">Gazon Plaqué (le m2)</field>
+            <field name="name">Gazon Plaqué (le m&#178;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -881,8 +925,8 @@
         </record>
     
 		<!-- Produit de type escalier muret bois -->
-		<!-- <record id="product_escalier" model="product.product">
-            <field name="name"></field>
+		<record id="product_escalierTraverseschene130220100" model="product.product">
+            <field name="name">Traverses chêne 130*220*1.00</field>
             <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -890,7 +934,217 @@
             <field name="uom_id" ref="product.product_uom_unit"/>
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="company_id" eval="[]"/>
-        </record> -->
+        </record> 
+		
+		<record id="product_escalierTraverseschene130220125" model="product.product">
+            <field name="name">Traverses chêne 130*220*1.25</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierTraverseschene130220150" model="product.product">
+            <field name="name">Traverses chêne 130*220*1.50</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierTraverseschene130220175" model="product.product">
+            <field name="name">Traverses chêne 130*220*1.75</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierTraverseschene130220200" model="product.product">
+            <field name="name">Traverses chêne 130*220*2.00</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierTraverseschene130220250" model="product.product">
+            <field name="name">Traverses chêne 130*220*2.50</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees140240Marchedescalier080m" model="product.product">
+            <field name="name">Marches rainurées 140 * 240 Marche d'escalier 0.80 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees140240Marchedescalier125m" model="product.product">
+            <field name="name">Marches rainurées 140 * 240 Marche d'escalier 1.25 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees140240Marchedescalier150m" model="product.product">
+            <field name="name">Marches rainurées 140 * 240 Marche d'escalier 1.50 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees140240Marchedescalier200m" model="product.product">
+            <field name="name">Marches rainurées 140 * 240 Marche d'escalier 2.00 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees140240Marchedescalier250m" model="product.product">
+            <field name="name">Marches rainurées 140 * 240 Marche d'escalier 2.50 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees130220Marchedescalier080m" model="product.product">
+            <field name="name">Marches rainurées 130 * 220 Marche d'escalier 0.80 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees130220Marchedescalier125m" model="product.product">
+            <field name="name">Marches rainurées 130 * 220 Marche d'escalier 1.25 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees130220Marchedescalier150m" model="product.product">
+            <field name="name">Marches rainurées 130 * 220 Marche d'escalier 1.50 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees130220Marchedescalier200m" model="product.product">
+            <field name="name">Marches rainurées 130 * 220 Marche d'escalier 2.00 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierMarchesrainurees130220Marchedescalier250m" model="product.product">
+            <field name="name">Marches rainurées 130 * 220 Marche d'escalier 2.50 m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierPiquetsmetalliques12cm20cm " model="product.product">
+            <field name="name">Piquets métalliques 12cm &lt; 20cm </field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierPiquetsmetalliques12cm50cm " model="product.product">
+            <field name="name">Piquets métalliques 12cm &gt;à 50cm </field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierPiquetsmetalliques16cm50cm " model="product.product">
+            <field name="name">Piquets métalliques 16cm &gt; 50cm </field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_escalierPlaqueacierperforeePuthod " model="product.product">
+            <field name="name">Plaque acier perforée Puthod </field>
+            <field name="categ_id" ref="darb_puthod.product_category_escalier"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
 		
 		<!-- Produit de type outils-->
 		<record id="product_outilsDisqueuse" model="product.product">
@@ -1415,7 +1669,7 @@
         </record>
 		
 		<record id="product_divers" model="product.product">
-            <field name="name">Gravier (le m3)</field>
+            <field name="name">Gravier (le m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_divers"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -1426,7 +1680,7 @@
         </record>
 		
 		<record id="product_divers" model="product.product">
-            <field name="name">Sable (le m3)</field>
+            <field name="name">Sable (le m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_divers"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -1437,7 +1691,7 @@
         </record>
 		
 		<record id="product_divers" model="product.product">
-            <field name="name">Terre végétale (le m3)</field>
+            <field name="name">Terre végétale (le m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_divers"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -1448,7 +1702,7 @@
         </record>
 		
 		<record id="product_diversBeton achetelem3" model="product.product">
-            <field name="name">Béton acheté(le m3)</field>
+            <field name="name">Béton acheté(le m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_divers"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -1459,7 +1713,7 @@
         </record>
 		
 		<record id="product_diversSacdeciment25Kgs" model="product.product">
-            <field name="name">Sac de ciment(25Kgs)</field>
+            <field name="name">Sac de ciment(25 Kgs)</field>
             <field name="categ_id" ref="darb_puthod.product_category_divers"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -1482,7 +1736,7 @@
         </record>
 		
 		<record id="product_cloturePoteaudemaintien1101101m50" model="product.product">
-            <field name="name">Poteau de maintien 110*110*1m50 </field>
+            <field name="name">Poteau de maintien 110 * 110 * 1m50 </field>
             <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
