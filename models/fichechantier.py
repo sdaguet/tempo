@@ -71,8 +71,6 @@ class subtask_wizard(models.TransientModel):
     description = fields.Text('Description')
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
     fiche_chantier_task = fields.Boolean(string="Ajouter")
-    type = fields.Selection(types, copy=False,
-                            string='Type', track_visibility='onchange')
     wizard_id = fields.Many2one('wizard.create.fiche.chantiere')
     rapide = fields.Boolean(string="Rapide")
     subtask_id = fields.Many2one('subtask', string='ref product Tâche')
@@ -96,7 +94,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         task_ids = []
         for x in tasks_list:
             for y in x:
-                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'type': y.type, 'rapide': y.rapide, 'fiche_chantier_task': True, 'subtask_id': y.id,}))
+                task_ids.append((0, 0, {'name': y.name, 'description': y.description, 'rapide': y.rapide, 'fiche_chantier_task': True, 'subtask_id': y.id,}))
         res['subtasks'] = task_ids
         return res
 
@@ -112,6 +110,10 @@ class wizard_create_fiche_chantier(models.TransientModel):
             'chantier_id': related_chantier.id,
             'inter_date': self.inter_date,
             'subtasks': [((0, 0, {'subtask_id': task.subtask_id.id})) for task in self.subtasks if task.fiche_chantier_task == True],
+            'address': related_chantier.address,
+            'is_display_gm': related_chantier.is_display_gm,
+            'g_lat': related_chantier.g_lat,
+            'g_lng': related_chantier.g_lng,
             }
         fiche_chantier_id = self.env['fiche.chantier'].create(vals)
         return {
@@ -151,8 +153,6 @@ class subtask(models.Model):
     name = fields.Char('Tâche')
     description = fields.Text('Description')
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
-    type = fields.Selection(types, copy=False,
-                            string='Type', track_visibility='onchange')
     rapide = fields.Boolean(string="Rapide")
 
 
@@ -187,13 +187,15 @@ class employees_subtasks(models.Model):
     def _get_name(self):
         for record in self:
             if record.employee and record.heure_deb and record.heure_fin:
-                record.name = record.employee.name + ' (' + record.heure_deb + ' - ' + record.heure_fin + ')'
+                record.name = record.employee.name + ' : ' + record.type + ' (' + record.heure_deb + ' - ' + record.heure_fin + ')'
 
     name = fields.Char('Nom', compute='_get_name')
     employee = fields.Many2one('hr.employee', string='Employee', index=True, track_visibility='onchange', required=True)
     heure_deb = fields.Selection(plage_horaire, copy=False ,string='Heure début', track_visibility='onchange')
     heure_fin = fields.Selection(plage_horaire, copy=False ,string='Heure fin', track_visibility='onchange')
     fiche_chantier_subtask_id = fields.Many2one('fiche.chantier.subtasks', string='fcst', index=True, track_visibility='onchange')
+    type = fields.Selection(types, copy=False,
+                            string='Type', track_visibility='onchange')
 
 
 class chantier(models.Model):
@@ -396,13 +398,13 @@ class fiche_chantier(models.Model):
     @api.one
     @api.depends('subtasks','termine','chantier_id.order_id.order_type')
     def _compute_type_inter(self):
-
-        rapide = True
-
+        rapide = False
         for s in self.subtasks:
             if s.subtask_id.rapide != True:
                 rapide = False
                 break
+            else:
+                rapide = True
 
         if self.termine:
             self.type_inter = 'cloturante'

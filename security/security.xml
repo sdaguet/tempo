@@ -7,15 +7,57 @@
             <field name="description">Gestion des services de Puthod.</field>
             <field name="sequence">10</field>
         </record>
-        
-    	<record id="group_chef_chantier" model="res.groups">
-	        <field name="name">Chef de Chantier</field>
+
+		<!--ajouts de groupes hierarchiques pas de roles exclusif !-->
+
+    	<record id="group_saisonnier" model="res.groups">
+	        <field name="name">Saisonnier</field>
 	        <field name="category_id" ref="module_category_puthod"/>
 	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
 	        <field name="implied_ids"/>
-	        <field name="comment">C'est un Chef de Chantier.</field>   
+	        <field name="comment">C'est un saisonnier.</field>
    		</record>
- 
+
+		<record id="group_apprenti" model="res.groups">
+	        <field name="name">Apprenti</field>
+	        <field name="category_id" ref="module_category_puthod"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_saisonnier'))]"/>
+	        <field name="comment">C'est un Apprenti.</field>
+   		</record>
+
+		<record id="group_ouvrier" model="res.groups">
+	        <field name="name">Ouvrier</field>
+	        <field name="category_id" ref="module_category_puthod"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_apprenti'))]"/>
+	        <field name="comment">C'est un Ouvrier.</field>
+   		</record>
+
+		<record id="group_direction" model="res.groups">
+	        <field name="name">Direction</field>
+	        <field name="category_id" ref="module_category_puthod"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_ouvrier'))]"/>
+	        <field name="comment">Direction.</field>
+   		</record>
+
+		<record id="group_chef_chantier_occasionnel" model="res.groups">
+	        <field name="name">Chef de Chantier Occasionnel</field>
+	        <field name="category_id" ref="module_category_puthod"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_direction'))]"/>
+	        <field name="comment">C'est un Chef de Chantier Occasionnel.</field>
+   		</record>
+
+		<record id="group_chef_chantier" model="res.groups">
+	        <field name="name">Chef de Chantier</field>
+	        <field name="category_id" ref="module_category_puthod"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_chef_chantier_occasionnel'))]"/>
+	        <field name="comment">C'est un Chef de Chantier.</field>
+   		</record>
+
 	    <record id="fiche_chantier_visibility" model="ir.rule">
 	        <field name="name">l'utilisateur peut voir ses propre fiche de chantier</field>
 	        <field name="model_id" ref="model_fiche_chantier"/>
@@ -33,6 +75,5 @@
 	    <record model="ir.ui.menu" id="darb_puthod.menu_10"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
 	    <record model="ir.ui.menu" id="darb_puthod.menu_1_list"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
 	    <record model="ir.ui.menu" id="darb_puthod.menu_101_list"><field eval="[(4, ref('group_chef_chantier'))]" name="groups_id"/></record>
-	    
 	</data>
 </openerp>

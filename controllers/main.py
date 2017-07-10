@@ -1096,7 +1096,7 @@ class WebsiteContractDarbtech(http.Controller):
         })
 
     @http.route('/add/work', type='http', auth="user", methods=['POST'], website=True)
-    def add_work(self, fiche, employee, tesk_id, heure_deb, heure_fin, **kw):
+    def add_work(self, fiche, employee, tesk_id, type, heure_deb, heure_fin, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
         _logger.info("Generated 111111111111111111111111111111111111111 : " + str(fiche))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
@@ -1108,6 +1108,7 @@ class WebsiteContractDarbtech(http.Controller):
                 'employee': employee,
                 'heure_deb': heure_deb,
                 'heure_fin': heure_fin,
+                'type': type,
                 'fiche_chantier_subtask_id': tesk_id
                 }
         request.env['employees.subtasks'].create(vals)
