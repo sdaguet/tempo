@@ -2,11 +2,52 @@
 <odoo>
     <data>
 
-        <template id="report_bilan_chantier">
+        <template id="report_bilan_chantier_document">
+                <div class="page">
+                    <style>
+            			table.lines-table, .lines-table th , .lines-table td {
+            			border: 1px solid black;
+            			border-collapse: collapse;}
+            		</style>
+                    <div class="oe_structure"/>
 
-                            <div class="page">
-                                test
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <u>
+                                <strong>Nom:</strong>
+                            </u>
+                            <span t-field="doc.order_id.partner_id.name"/>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <u>
+                                <strong>Address:</strong>
+                            </u>
+                            <span t-field="doc.address"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <div>
+                            <u>
+                                <strong>Tél:</strong>
+                            </u>
+                            <span t-field="doc.order_id.partner_id.phone"/>
                             </div>
+                            <div>
+                            <u>
+                                <strong>CDE</strong>
+                            </u>
+                            <span t-field="doc.order_id.name"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </template>
+        <template id="report_bilan_chantier">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="darb_puthod.report_bilan_chantier_document" t-lang="doc.order_id.partner_id.lang"/>
+                </t>
+            </t>
         </template>
 
     </data>
