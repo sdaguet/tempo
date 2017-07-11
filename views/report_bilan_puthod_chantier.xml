@@ -12,7 +12,7 @@
 
                         <t t-call="report.external_layout">
                             <div class="page">
-                                jhgfjhsgfjhsgd
+                                test
                             </div>
                         </t>
         </template>
