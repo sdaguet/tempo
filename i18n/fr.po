@@ -1165,3 +1165,6 @@ msgstr "Devis envoyé"
 #: model:ir.ui.view,arch_db:sale.view_order_form
 msgid "Send by Email"
 msgstr "Envoyer par courriel"
+=======
+msgstr "<strong>Conditions de règlement :</strong>"
+

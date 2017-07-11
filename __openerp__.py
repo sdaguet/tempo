@@ -38,6 +38,8 @@
         'report/quotations.xml',
 		'views/iframe.xml',
 		'views/report_amenagement.xml',
+		'views/report_bilan_puthod_chantier.xml',
+		'views/report_entretien.xml',
 		'views/modif_quotation.xml',
 		'views/modif_hr_employee.xml',
 		'views/tmpputhod.xml',

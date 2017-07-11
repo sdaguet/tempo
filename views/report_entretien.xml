@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_entretien_document">
+            <t t-call="report.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.order_id.partner_id.lang})"/>
+                <div class="page">
+                    <style>
+            			table.lines-table, .lines-table th , .lines-table td {
+            			border: 1px solid black;
+            			border-collapse: collapse;}
+            		</style>
+                    <table class="table table-bordered" style="width:100%;text-align:center;">
+                        <td style="font-weight:bold;">DETAILS DU CHANTIER
+                            <span t-field="doc.name"/>
+                        </td>
+                    </table>
+                    <div class="oe_structure"/>
+
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <u>
+                                <strong>Nom:</strong>
+                            </u>
+                            <span t-field="doc.order_id.partner_id.name"/>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <u>
+                                <strong>Address:</strong>
+                            </u>
+                            <span t-field="doc.address"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <div>
+                            <u>
+                                <strong>Tél:</strong>
+                            </u>
+                            <span t-field="doc.order_id.partner_id.phone"/>
+                            </div>
+                            <div>
+                            <u>
+                                <strong>CDE</strong>
+                            </u>
+                            <span t-field="doc.order_id.name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <strong><center><h1>ENTRETIEN <span t-field="doc.order_id.customer_order_delivery_date" t-field-options='{"format": "y"}'/></h1></center></strong>
+                    <table class="lines-table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th><center>Article/Tâches</center></th>
+                                <th><center>A Faire</center></th>
+                                <th><center>Horraires</center></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.order_id.order_line" t-as="ol">
+                                <tr align="center">
+                                    <td align="center">
+                                        <strong><span t-field="ol.product_id.name"/></strong>
+                                        <t t-foreach="ol.product_id.task_ids" t-as="t">
+                                            <tr align="center">
+                                                <td align="center">
+                                                    <span t-field="t.name"/>
+                                                </td>
+                                                <td align="center">
+                                                    <p t-esc="a_faire(doc,t)[0]"/>
+                                                </td>
+                                                <td align="center">
+
+                                                <table  class="table table-bordered">
+
+
+                                                        <tr>
+                                                            <th>QUI</th>
+                                                            <th>QUAND</th>
+                                                        </tr>
+                                                    <t t-foreach="a_faire(doc,t)[1]" t-as="e">
+
+                                                        <tr>
+
+                                                            <td>
+                                                                <span t-field="e.employee"/>
+                                                            </td>
+
+                                                            <td>
+                                                                <span t-field="e.heure_deb"/>-
+                                                                <span t-field="e.heure_fin"/>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </t>
+                                                </table>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+
+        <template id="x_footer" inherit_id="report.external_layout_footer">
+            <xpath expr="//div[@class='footer']" position="replace">
+                <div class="footer">
+                    <div class="text-left" style="border-top: 1px solid black; font-size: 10px;">
+                        RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139
+                        2044 335
+                        <br/>
+                        CMCIFR2A (Merci de rappeler le numéro de facture lors de votre règlement)
+                        <ul class="list-inline text-center">
+                            <li>Page:</li>
+                            <li>
+                                <span class="page"/>
+                            </li>
+                            <li>de</li>
+                            <li>
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </xpath>
+        </template>
+
+        <template id="x_header" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
+                                 style="max-height: 45px;"/>
+                        </div>
+                        <div class="col-xs-9 text-right" name="company_address">
+                            <div t-field="company.partner_id"
+                                 t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                        </div>
+                    </div>
+                    <div class="row zero_min_height">
+                        <div class="col-xs-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+
+        <template id="report_entretien">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="darb_puthod.report_entretien_document" t-lang="doc.order_id.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

@@ -187,7 +187,7 @@ class employees_subtasks(models.Model):
     def _get_name(self):
         for record in self:
             if record.employee and record.heure_deb and record.heure_fin:
-                record.name = record.employee.name + ' : ' + record.type + ' (' + record.heure_deb + ' - ' + record.heure_fin + ')'
+                record.name = str(record.employee.name) + ' : ' + str(record.type) + ' (' + str(record.heure_deb) + ' - ' + str(record.heure_fin) + ')'
 
     name = fields.Char('Nom', compute='_get_name')
     employee = fields.Many2one('hr.employee', string='Employee', index=True, track_visibility='onchange', required=True)

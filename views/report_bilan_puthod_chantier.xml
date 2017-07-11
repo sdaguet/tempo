@@ -1,0 +1,31 @@
+<openerp>
+    <data>
+        <report
+                id="report_bilan_puthod_chantier"
+                model="chantier"
+                string="Bilan Chantier"
+                name="darb_puthod.report_bilan_chantier"
+                file="darb_puthod.report_bilan_puthod_chantier"
+                report_type="qweb-pdf"/>
+
+        <template id="report_bilan_chantier">
+
+                        <t t-call="report.external_layout">
+                            <div class="page">
+                                test
+                            </div>
+                        </t>
+        </template>
+
+
+        <record id="paperformat_landscape" model="report.paperformat">
+            <field name="name">Bilan Puthod</field>
+            <field name="orientation">Landscape</field>
+        </record>
+
+        <record id="report_bilan_puthod_chantier" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="darb_puthod.paperformat_landscape"/>
+        </record>
+
+    </data>
+</openerp>
