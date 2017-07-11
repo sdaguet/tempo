@@ -5,6 +5,11 @@
             <t t-call="report.external_layout">
                 <t t-set="doc" t-value="doc.with_context({'lang':doc.order_id.partner_id.lang})"/>
                 <div class="page">
+                    <style>
+            			table.lines-table, .lines-table th , .lines-table td {
+            			border: 1px solid black;
+            			border-collapse: collapse;}
+            		</style>
                     <table class="table table-bordered" style="width:100%;text-align:center;">
                         <td style="font-weight:bold;">DETAILS DU CHANTIER
                             <span t-field="doc.name"/>
@@ -27,34 +32,43 @@
                             <span t-field="doc.address"/>
                         </div>
                         <div class="col-xs-3">
+                            <div>
                             <u>
                                 <strong>Tél:</strong>
                             </u>
                             <span t-field="doc.order_id.partner_id.phone"/>
+                            </div>
+                            <div>
+                            <u>
+                                <strong>CDE</strong>
+                            </u>
+                            <span t-field="doc.order_id.name"/>
+                            </div>
                         </div>
                     </div>
-                    <table class="table table-bordered" style="width:100%;">
+                    <strong><center><h1>ENTRETIEN <span t-field="doc.order_id.customer_order_delivery_date" t-field-options='{"format": "y"}'/></h1></center></strong>
+                    <table class="lines-table" style="width:100%;">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>A Faire</th>
-                                <th></th>
+                                <th><center>Article/Tâches</center></th>
+                                <th><center>A Faire</center></th>
+                                <th><center>Horraires</center></th>
                             </tr>
                         </thead>
                         <tbody>
                             <t t-foreach="doc.order_id.order_line" t-as="ol">
-                                <tr>
-                                    <td>
+                                <tr align="center">
+                                    <td align="center">
                                         <strong><span t-field="ol.product_id.name"/></strong>
                                         <t t-foreach="ol.product_id.task_ids" t-as="t">
-                                            <tr>
-                                                <td>
+                                            <tr align="center">
+                                                <td align="center">
                                                     <span t-field="t.name"/>
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     <p t-esc="a_faire(doc,t)[0]"/>
                                                 </td>
-                                                <td>
+                                                <td align="center">
 
                                                 <table  class="table table-bordered">
 
