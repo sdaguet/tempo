@@ -82,7 +82,7 @@
 
                 <xpath expr="//tree" position="attributes">
                     <attribute name="colors">
-                        orange:order_type=='amenagement';green:order_type=='plantation';blue:order_type=='entretien'
+                        Fuchsia:order_type=='amenagement';GoldenRod:order_type=='plantation';blue:order_type=='entretien'
                     </attribute>
                 </xpath>
             </field>

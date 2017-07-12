@@ -3,44 +3,59 @@
     <data>
 
         <template id="report_bilan_chantier_document">
-                <div class="page">
-                    <style>
-            			table.lines-table, .lines-table th , .lines-table td {
-            			border: 1px solid black;
-            			border-collapse: collapse;}
-            		</style>
-                    <div class="oe_structure"/>
+            <div class="page">
+                <style>
+                    table.lines-table, .lines-table th , .lines-table td {
+                    border: 1px solid gray;
+                    border-collapse: collapse;
+                    vertical-align: middle;}
+                </style>
+                <div class="oe_structure"/>
 
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <u>
-                                <strong>Nom:</strong>
-                            </u>
-                            <span t-field="doc.order_id.partner_id.name"/>
-                        </div>
+                <table>
+                    <thead class="lines-table" style="width:100%;">
+                        <tr>
+                            <th align="center"> PROPRIETE OVERSEAS CONSULTING </th>
+                            <th align="center"><div align="center"> N° DE COMMANDE </div><div align="center"><span t-field="doc.order_id.name"/></div></th>
+                            <th align="center"><div align="center"> TABLEAU DES COÛTS </div><div align="center">SCI LA VERTE - Chamonix</div></th>
+                            <th align="center"><div align="center"> N°Client </div><div align="center"><span t-field="doc.order_id.partner_id.name"/></div></th>
+                            <th align="center"><div align="center"> Désignation de la commande </div><div align="center"><span t-field="doc.order_id.order_type"/>-<span t-field="doc.order_id.customer_order_delivery_date" t-field-options='{"format": "y"}'/></div></th>
+                            <th align="center"><div align="center"> DATE COMMANDE </div><div align="center"><span t-field="doc.order_id.customer_order_delivery_date" t-field-options='{"format": "d/m/y"}'/></div></th>
+                            <th align="center"><img class="img img-responsive" align="center" style="width: 90%; height: 70%" src="/darb_puthod/static/images/Puthod_Logo.jpeg"/></th>
+                        </tr>
+                    </thead>
+                </table>
 
-                        <div class="col-xs-6">
-                            <u>
-                                <strong>Address:</strong>
-                            </u>
-                            <span t-field="doc.address"/>
-                        </div>
-                        <div class="col-xs-3">
-                            <div>
-                            <u>
-                                <strong>Tél:</strong>
-                            </u>
-                            <span t-field="doc.order_id.partner_id.phone"/>
-                            </div>
-                            <div>
-                            <u>
-                                <strong>CDE</strong>
-                            </u>
-                            <span t-field="doc.order_id.name"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <table class="lines-table" style="width:100%;">
+                        <thead>
+                            <th>TOTAUX COMMANDE</th>
+                            <th>Coûts végétaux</th>
+                            <th>PREPARATION/DEPLACEMENT</th>
+                            <th>TONTE</th>
+                            <th>TAILLE</th>
+                            <th>PLANTATION</th>
+                            <th>PLANTATION</th>
+                            <th>DESHERBAGE</th>
+                            <th>PROTECTION</th>
+                            <th>GAZON</th>
+                            <th>ARROSAGE</th>
+                            <th>DIVERS</th>
+                            <th>Total des coût spécifiques + FOURNITURES</th>
+                            <th>Total sous-traitance</th>
+                            <th>Totaux</th>
+                        </thead>
+                </table>
+                <table>
+                    <thead class="lines-table" style="width:100%;">
+                        <th>Végétaux</th>
+                        <th>Coût spécifiques + FOURNITURES</th>
+                    </thead>
+                </table>
+                <table>
+
+                </table>
+
+            </div>
         </template>
         <template id="report_bilan_chantier">
             <t t-call="report.html_container">
