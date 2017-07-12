@@ -12,22 +12,67 @@
                 </style>
                 <div class="oe_structure"/>
 
-                <table>
+                <table class="lines-table" style="width:100%;">
+
+                    <thead class="lines-table" style="width:100%;">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </thead>
                     <thead class="lines-table" style="width:100%;">
                         <tr>
-                            <th align="center"> PROPRIETE OVERSEAS CONSULTING </th>
-                            <th align="center"><div align="center"> N° DE COMMANDE </div><div align="center"><span t-field="doc.order_id.name"/></div></th>
-                            <th align="center"><div align="center"> TABLEAU DES COÛTS </div><div align="center">SCI LA VERTE - Chamonix</div></th>
-                            <th align="center"><div align="center"> N°Client </div><div align="center"><span t-field="doc.order_id.partner_id.name"/></div></th>
-                            <th align="center"><div align="center"> Désignation de la commande </div><div align="center"><span t-field="doc.order_id.order_type"/>-<span t-field="doc.order_id.customer_order_delivery_date" t-field-options='{"format": "y"}'/></div></th>
-                            <th align="center"><div align="center"> DATE COMMANDE </div><div align="center"><span t-field="doc.order_id.customer_order_delivery_date" t-field-options='{"format": "d/m/y"}'/></div></th>
-                            <th align="center"><img class="img img-responsive" align="center" style="width: 90%; height: 70%" src="/darb_puthod/static/images/Puthod_Logo.jpeg"/></th>
+                            <th align="center">PROPRIETE OVERSEAS CONSULTING</th>
+                            <th colspan="2" align="center">
+                                <div align="center">N° DE COMMANDE</div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.name"/>
+                                </div>
+                            </th>
+                            <th colspan="7" align="center">
+                                <div align="center">TABLEAU DES COÛTS</div>
+                                <div align="center">SCI LA VERTE - Chamonix</div>
+                            </th>
+                            <th align="center">
+                                <div align="center">N°Client</div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.partner_id.name"/>
+                                </div>
+                            </th>
+                            <th colspan="2" align="center">
+                                <div align="center">Désignation de la commande</div>
+                                <div align="center"><span t-field="doc.order_id.order_type"/>-
+                                    <span t-field="doc.order_id.customer_order_delivery_date"
+                                          t-field-options='{"format": "y"}'/>
+                                </div>
+                            </th>
+                            <th align="center">
+                                <div align="center">DATE COMMANDE</div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.customer_order_delivery_date"
+                                          t-field-options='{"format": "d/m/y"}'/>
+                                </div>
+                            </th>
+                            <th align="center" colspan="2">
+                                <img class="img img-responsive" align="center" style="width: 90%; height: 70%"
+                                     src="/darb_puthod/static/images/Puthod_Logo.jpeg"/>
+                            </th>
                         </tr>
                     </thead>
-                </table>
-
-                    <table class="lines-table" style="width:100%;">
-                        <thead>
+                    <tbody>
+                        <tr class="lines-table" style="width:100%;">
                             <th>TOTAUX COMMANDE</th>
                             <th>Coûts végétaux</th>
                             <th>PREPARATION/DEPLACEMENT</th>
@@ -42,14 +87,73 @@
                             <th>DIVERS</th>
                             <th>Total des coût spécifiques + FOURNITURES</th>
                             <th>Total sous-traitance</th>
-                            <th>Totaux</th>
-                        </thead>
-                </table>
-                <table>
-                    <thead class="lines-table" style="width:100%;">
-                        <th>Végétaux</th>
-                        <th>Coût spécifiques + FOURNITURES</th>
-                    </thead>
+                            <th colspan="2">Totaux</th>
+                        </tr>
+                        <tr class="lines-table" style="width:100%;">
+                            <th colspan="10">Végétaux</th>
+                            <th></th>
+                            <th colspan="5">Coût spécifiques + FOURNITURES</th>
+                        </tr>
+                        <tr class="lines-table" style="width:100%;">
+                            <td>Date Fiche Chantier</td>
+                            <td>Quantité</td>
+                            <td colspan="5">Description</td>
+                            <td>Prix Unitaires</td>
+                            <td>Coût</td>
+                            <td>Date du B.L</td>
+                            <td>Quantité</td>
+                            <td colspan="3">Description</td>
+                            <td>Prix Unitaires</td>
+                            <td>Coût</td>
+                        </tr>
+                        <t t-foreach="doc.order_id.order_line" t-as="ol">
+                            <tr>
+                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
+                                <td>
+                                    Date Fiche Chantier
+                                </td>
+                                <td>
+                                    <span t-field="ol.product_id.name"/>
+                                </td>
+                                <td colspan="5">
+                                    <span t-field="ol.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="ol.price_unit"/>
+                                </td>
+                                <td>
+                                    <span t-field="ol.purchase_price"/>
+                                </td>
+                                <td>customer_order_delivery_date</td>
+                                <td>
+                                    <span t-field="ol.product_uom_qty"/>
+                                </td>
+                                </t>
+                                <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td colspan="5">
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span t-field="ol.product_uom_qty"/>
+                                </td>
+                                </t>
+                                <td colspan="3">Description</td>
+                                <td>Prix Unitaires</td>
+                                <td>Coût</td>
+                            </tr>
+                        </t>
+                        <tr>
+
+                        </tr>
+                    </tbody>
                 </table>
                 <table>
 
