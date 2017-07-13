@@ -19,6 +19,7 @@ class fiche_chantier(models.Model):
         fiche_chantier = self.search([('state', '=', 'draft')])
         res = {}
         for record in fiche_chantier:
+			#change format date from DEFAULT_SERVER_DATETIME_FORMAT to DEFAULT_SERVER_DATE_FORMAT
             limit_date = (fields.Datetime.from_string(today) - relativedelta(days=+1)).strftime(DEFAULT_SERVER_DATE_FORMAT)
             if record.inter_date <= limit_date:
                 if record.equipe_id.manager in res:
