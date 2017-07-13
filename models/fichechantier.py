@@ -198,6 +198,8 @@ class employees_subtasks(models.Model):
     type = fields.Selection(types, copy=False,
                             string='Type', track_visibility='onchange')
 
+	#Check time : Start < End
+	#Check intersections between time
     """@api.one
     @api.constrains('heure_deb', 'heure_fin')
     def _check_active(self):
