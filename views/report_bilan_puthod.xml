@@ -190,6 +190,59 @@
                                 </div>
                             </th>
                         </tr>
+                        <tr>
+                            <th colspan="9"> Main d'oeuvre </th>
+                            <th></th>
+                            <th colspan="6"> Sous-Traitance </th>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Preparation/Deplacement</th>
+                            <th>TONTE</th>
+                            <th>TAILLE</th>
+                            <th>PLANTATION</th>
+                            <th>PLANTATION</th>
+                            <th>DESHERBAGE</th>
+                            <th>PROTECTION</th>
+                            <th>GAZON</th>
+                            <th>ARROSAGE</th>
+                            <th>DIVERS</th>
+                            <th>Date Du B.L</th>
+                            <th>Fournisseur</th>
+                            <th>Description</th>
+                            <th>Prix Unitaie</th>
+                            <th>Coût</th>
+                        </tr>
+                        <t t-foreach="doc.fiche_ids" t-as="f">
+                            <t t-set="date_inter" t-value="f.inter_date"/>
+                        <t t-foreach="f.subtasks" t-as="s">
+                        <tr>
+
+                            <th><span t-esc="date_inter"/>
+                                <t t-foreach="s.employee_subtask_ids" t-as="e">
+                                <span t-field="e.employee.name"/>+
+                                </t>
+
+                            </th>
+                            <th>Preparation/Deplacement</th>
+                            <th>TONTE</th>
+                            <th>TAILLE</th>
+                            <th>PLANTATION</th>
+                            <th>PLANTATION</th>
+                            <th>DESHERBAGE</th>
+                            <th>PROTECTION</th>
+                            <th>GAZON</th>
+                            <th>ARROSAGE</th>
+                            <th>DIVERS</th>
+                            <th>Date Du B.L</th>
+                            <th>Fournisseur</th>
+                            <th>Description</th>
+                            <th>Prix Unitaie</th>
+                            <th>Coût</th>
+
+                        </tr>
+                        </t>
+                        </t>
                     </tbody>
                 </table>
                 <table>
