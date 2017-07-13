@@ -106,52 +106,87 @@
                             <td>Prix Unitaires</td>
                             <td>Coût</td>
                         </tr>
+                        <t t-set="total" t-value="0"/>
+                        <t t-set="totalb" t-value="0"/>
+                        <t t-set="chantier" t-value="doc.name"/>
+                        <t t-set="date" t-value="doc.order_id.customer_order_delivery_date"/>
+                        <span t-esc="date"/>
+
                         <t t-foreach="doc.order_id.order_line" t-as="ol">
                             <tr>
-                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
-                                <td>
-                                    Date Fiche Chantier
-                                </td>
-                                <td>
-                                    <span t-field="ol.product_id.name"/>
-                                </td>
-                                <td colspan="5">
-                                    <span t-field="ol.name"/>
-                                </td>
-                                <td>
-                                    <span t-field="ol.price_unit"/>
-                                </td>
-                                <td>
-                                    <span t-field="ol.purchase_price"/>
-                                </td>
-                                <td>customer_order_delivery_date</td>
-                                <td>
-                                    <span t-field="ol.product_uom_qty"/>
-                                </td>
-                                </t>
                                 <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td colspan="5">
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <span t-field="ol.product_uom_qty"/>
-                                </td>
+                                    <td>
+                                        <span t-esc="chantier"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.product_id.name"/>
+                                    </td>
+                                    <td colspan="5">
+                                        <span t-field="ol.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.purchase_price"/>
+                                        <span t-set="total" t-value="total + ol.purchase_price"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.product_uom_qty"/>
+                                    </td>
                                 </t>
-                                <td colspan="3">Description</td>
-                                <td>Prix Unitaires</td>
-                                <td>Coût</td>
+                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td colspan="5">
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                    </td>
+                                </t>
+                                <t t-if="ol.product_id.categ_id.name=='Fournitures plantation'">
+                                    <td colspan="3">
+                                        <span t-field="ol.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.purchase_price"/>
+                                        <span t-set="totalb" t-value="totalb + ol.purchase_price"/>
+                                    </td>
+                                </t>
+
+                                <t t-if="ol.product_id.categ_id.name!='Fournitures plantation'">
+                                    <td colspan="3"></td>
+                                    <td></td>
+                                    <td>tt</td>
+                                </t>
                             </tr>
+
                         </t>
                         <tr>
-
+                            <th colspan="6">TOTAL VEGETAUX</th>
+                            <th colspan="3">
+                                <div align="right">
+                                <span t-esc="total"/>
+                                </div>
+                            </th>
+                            <th colspan="5">TOTAL COÛTS SPECIFIQUES</th>
+                            <th colspan="2">
+                                <div align="right">
+                                <span t-esc="totalb"/>
+                                </div>
+                            </th>
                         </tr>
                     </tbody>
                 </table>
