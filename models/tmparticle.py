@@ -108,7 +108,7 @@ class TmpArticle(models.Model):
     @api.model
     def create(self, values):
         record = super(TmpArticle, self).create(values)
-        Variete = values.get('Variete')
+        Nom_francais = values.get('Nom_francais')
         tarif = float(values.get('tarif'))
         Code_Barre = values.get('Code_Barre')
         Poids_Brut = float(values.get('Poids_Brut'))
@@ -149,7 +149,7 @@ class TmpArticle(models.Model):
             'cost_method': False,
             'valuation': False,
             'image_medium': False,
-            'name': Variete,# name
+            'name': Nom_francais,# name
             'property_account_expense_id': False,
             #'categ_id': 1,
             'packaging_ids': [],

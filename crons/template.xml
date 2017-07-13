@@ -11,5 +11,16 @@
             <field eval="'scheduler_reminder_mrp_production'" name="function"/>
             <field eval="'()'" name="args"/>
         </record>
+        
+    <record forcecreate="True" id="ir_cron_chek_teams" model="ir.cron">
+            <field name="name">Check Teams Active</field>
+            <field eval="True" name="active"/>            
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="'equipe'" name="model"/>
+            <field eval="'scheduler_chek_teams'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
     </data>
 </openerp>

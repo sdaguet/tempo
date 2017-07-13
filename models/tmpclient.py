@@ -196,7 +196,7 @@ class TmpClient(models.Model):
                    'active': True,
                    'lang': 'fr_FR',
                    # 'property_stock_supplier': 8,
-                   'name': Nom_1 + Nom_2, #nom
+                   'name': Nom_1 + " " + Nom_2, #nom
                    'mobile': False,
                    #'ref': N_Client, #N_Client
                    # 'property_account_payable_id': 292,
