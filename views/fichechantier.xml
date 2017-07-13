@@ -359,6 +359,7 @@
                 </gantt>
             </field>
       </record>
+	  <!-- remove fields not used in the FC-->
       <record id="fiche_chantier_tree_view" model="ir.ui.view">
           <field name="name">fiche.chantier.tree</field>
           <field name="model">fiche.chantier</field>

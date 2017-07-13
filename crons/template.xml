@@ -11,7 +11,7 @@
             <field eval="'scheduler_reminder_mrp_production'" name="function"/>
             <field eval="'()'" name="args"/>
         </record>
-        
+    <!-- #To disable yesterday's teams -->    
     <record forcecreate="True" id="ir_cron_chek_teams" model="ir.cron">
             <field name="name">Check Teams Active</field>
             <field eval="True" name="active"/>            
@@ -22,5 +22,6 @@
             <field eval="'scheduler_chek_teams'" name="function"/>
             <field eval="'()'" name="args"/>
         </record>
+	<!-- #/To disable yesterday's teams --> 
     </data>
 </openerp>

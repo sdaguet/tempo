@@ -198,6 +198,8 @@ class employees_subtasks(models.Model):
     type = fields.Selection(types, copy=False,
                             string='Type', track_visibility='onchange')
 
+	#Check time : Start < End
+	#Check intersections between time
     """@api.one
     @api.constrains('heure_deb', 'heure_fin')
     def _check_active(self):
@@ -394,7 +396,7 @@ class fiche_chantier(models.Model):
         ('in_production', 'Comptabilisé'),
         ('done', 'Terminé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
-
+	#change inter_date from datetime to date
     termine = fields.Boolean(string=u"Chantier Terminé", default=False)
     inter_date = fields.Date(string="Date d'intervention", required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')

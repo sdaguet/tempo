@@ -97,6 +97,7 @@
 		<t t-call="website.layout">
 			<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
 			<div class="container">
+				<!-- check errers msg (times, required fields)-->
 				<div class="col-md-12">
 				  <div t-if="error_message" class="alert alert-danger">
 				      <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
@@ -1249,12 +1250,9 @@
 						<thead>
 							<tr class="active">
 								<th>Référence</th>
-								<th>Date prévue</th>
-								<th>Article</th>
-								<th>Quantité d'articles</th>
-								<th>Heures Totales</th>
-								<th>Cycles totaux</th>
-								<th>Document Source</th>
+								<th>Date d'intervention</th>
+								<th>Responsable</th>
+								<th>Equipe</th>
 								<th>Status FC</th>
 							</tr>
 						</thead>
@@ -1268,18 +1266,13 @@
 							<tr>
 							<td><a t-attf-href="/ficheslist/#{fiche.id}"><span t-field="fiche.name"/></a>
 							</td>
-							<td><span t-field="fiche.date_planned"/>
+							<td><span t-field="fiche.inter_date"/>
 							</td>
-							<td><span t-field="fiche.product_id"/>
+							<td><span t-field="fiche.user_id"/>
 							</td>
-							<td><span t-field="fiche.product_qty"/>
+							<td><span t-field="fiche.equipe_id"/>
 							</td>
-							<td><span t-field="fiche.hour_total"/>
-							</td>
-							<td><span t-field="fiche.cycle_total"/>
-							</td>
-							<td><span t-field="fiche.origin"/>
-							</td><td><span t-field="fiche.state"/>
+							<td><span t-field="fiche.state"/>
 							</td>
 							</tr>
 						</t>
