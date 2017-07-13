@@ -248,8 +248,8 @@ msgstr "Emplacement de destination"
 
 #. module: darb_puthod
 #: model:ir.actions.report.xml,name:darb_puthod.sale_quotation_amenagement
-msgid "Devis Amenagement"
-msgstr "Devis Amenagement"
+msgid "Devis"
+msgstr "Devis"
 
 #. module: darb_puthod
 #: model:ir.model.fields,field_description:darb_puthod.field_equipe_display_name
@@ -524,8 +524,8 @@ msgstr "Nombre de messages non lus"
 
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
-msgid "Order Amenagement #"
-msgstr "Order Amenagement #"
+msgid "Order "
+msgstr "Commande "
 
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.view_fiche_chantier_filter
@@ -651,8 +651,8 @@ msgstr "Quantité"
 
 #. module: darb_puthod
 #: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
-msgid "Quotation Amenagement #"
-msgstr "Devis d'Aménagement #"
+msgid "Quotation "
+msgstr "Devis "
 
 #. module: darb_puthod
 #: model:ir.model.fields,field_description:darb_puthod.field_fiche_chantier_location_src_id
