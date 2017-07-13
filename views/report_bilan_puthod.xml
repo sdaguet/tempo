@@ -110,11 +110,12 @@
                         <t t-set="totalb" t-value="0"/>
                         <t t-set="chantier" t-value="doc.name"/>
                         <t t-set="date" t-value="doc.order_id.customer_order_delivery_date"/>
-                        <span t-esc="date"/>
-
                         <t t-foreach="doc.order_id.order_line" t-as="ol">
+
+                        <t t-if="ol.product_id.categ_id.name=='Fournitures plantation' or ol.product_id.categ_id.name=='Vegeteaux'">
+
                             <tr>
-                                <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
+                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
                                     <td>
                                         <span t-esc="chantier"/>
                                     </td>
@@ -138,7 +139,7 @@
                                         <span t-field="ol.product_uom_qty"/>
                                     </td>
                                 </t>
-                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
+                                <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
                                     <td>
                                     </td>
                                     <td>
@@ -173,6 +174,7 @@
                                 </t>
                             </tr>
 
+                        </t>
                         </t>
                         <tr>
                             <th colspan="6">TOTAL VEGETAUX</th>
