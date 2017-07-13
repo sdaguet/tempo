@@ -36,7 +36,7 @@ class fiche_chantier(models.Model):
                 msg_id.send()
         return True
 
-
+#To disable yesterday's teams
 class Equipe(models.Model):
     _inherit = 'equipe'
 
@@ -51,3 +51,4 @@ class Equipe(models.Model):
             if record.create_date < today_date:
                 record.active = False
         return True
+#/To disable yesterday's teams
