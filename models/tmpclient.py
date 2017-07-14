@@ -209,11 +209,11 @@ class TmpClient(models.Model):
         self.env['res.partner'].create(valuesc)
         return record
 
-
-class Partner(models.Model):
-    _inherit = 'res.partner'
-
-    @api.model
-    def create(self, values):
-        _logger.info("----------------> client iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-        return super(Partner, self).create(values)
+#
+# class Partner(models.Model):
+#     _inherit = 'res.partner'
+#
+#     @api.model
+#     def create(self, values):
+#         _logger.info("----------------> client iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+#         return super(Partner, self).create(values)
