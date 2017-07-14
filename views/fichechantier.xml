@@ -364,7 +364,8 @@
           <field name="name">fiche.chantier.tree</field>
           <field name="model">fiche.chantier</field>
           <field name="arch" type="xml">
-              <tree decoration-bf="message_needaction==True" decoration-info="state in ('draft','confirmed')" decoration-danger="date_planned&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">
+              <!--<tree decoration-bf="message_needaction==True" decoration-info="state in ('draft','confirmed')" decoration-danger="date_planned&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">-->
+              <tree colors="orange:type_inter=='cloturante';green:type_inter=='normale';red:type_inter=='rapide';blue:type_inter=='maintenance'" string="Manufacturing Orders">
                   <field name="message_needaction" invisible="1"/>
                   <field name="name"/>
                   <field name="inter_date"/>
@@ -379,6 +380,7 @@
                   <field name="cycle_total" sum="Total Cycles" invisible="1"/>
                   <field name="origin" invisible="1"/>
                   <field name="state"/>
+                  <field name="type_inter" invisible="1"/>
               </tree>
           </field>
       </record>

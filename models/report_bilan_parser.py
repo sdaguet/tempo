@@ -8,11 +8,15 @@ class BilanReport(models.AbstractModel):
 
     @api.multi
     def bilan_main_oeuvre(self,doc):
-        date_e = []
+        tasks = []
+
         fiches = self.env['fiche.chantier'].search([('chantier_id','=',doc.id)])
         for f in fiches:
-            date_e.append(f.subtasks)
-        return date_e
+            tasks.append(f.subtasks)
+            for s in tasks:
+                print ""
+
+        return tasks
 
 
 

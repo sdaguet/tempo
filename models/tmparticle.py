@@ -109,6 +109,12 @@ class TmpArticle(models.Model):
     def create(self, values):
         record = super(TmpArticle, self).create(values)
         Nom_francais = values.get('Nom_francais')
+        print "Nom_francais"
+        print Nom_francais
+        if Nom_francais:
+            Nom_francais = Nom_francais
+        else:
+            Nom_francais = " "
         tarif = float(values.get('tarif'))
         Code_Barre = values.get('Code_Barre')
         Poids_Brut = float(values.get('Poids_Brut'))
@@ -158,7 +164,7 @@ class TmpArticle(models.Model):
             'property_stock_account_output': False,
             'seller_ids': [],
             'list_price': tarif , #tarif
-            'barcode': Code_Barre , #Code_Barre
+            # 'barcode': Code_Barre , #Code_Barre
             'weight' : Poids_Brut , #Poids_Brut
             }
         #article = self.env['product.template'].search([('default_code', '=', self.N_Article)])
@@ -171,10 +177,10 @@ class TmpArticle(models.Model):
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    @api.model
-    def create(self, values):
-        _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-        return super(ProductTemplate, self).create(values)
+    # @api.model
+    # def create(self, values):
+    #     _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+    #     return super(ProductTemplate, self).create(values)
 
 class Partner(models.Model):
     _inherit = 'res.partner'
