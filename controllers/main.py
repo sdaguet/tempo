@@ -4,6 +4,7 @@ from openerp.addons.website_project_issue.controllers.main import website_accoun
 from openerp.http import request
 from openerp.addons.web.http import request as reqst
 from openerp import fields, models, api, _
+from datetime import datetime
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -236,7 +237,7 @@ class WebsiteContractDarbtech(http.Controller):
         vals = {
             'equipe_id': equipe_id.id,
             'chantier_id': chantier_id.id,
-            'inter_date': fields.Datetime.now(),
+            'inter_date': fields.Date.today(),
             }
         fiche_chantier = request.env['fiche.chantier'].create(vals)
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(equipe_id))
@@ -298,12 +299,17 @@ class WebsiteContractDarbtech(http.Controller):
     @http.route('/add/vehicles', type='http', auth="user", methods=['POST'], website=True)
     def add_vehicles(self, fiche, veicule_id, km=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.veicule_ids = [(0, 0, {
+        if veicule_id:
+            fiche_id.veicule_ids = [(0, 0, {
                                     'vehicle_id': int(veicule_id),
                                     'kms': km,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -343,17 +349,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/materiels', type='http', auth="user", methods=['POST'], website=True)
     def add_materiels(self, fiche, materiel_id, temps=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.materiel_ids = [(0, 0, {
+        if materiel_id:
+            fiche_id.materiel_ids = [(0, 0, {
                                     'materiel_id': int(materiel_id),
                                     'temps': temps,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -393,17 +405,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/machines', type='http', auth="user", methods=['POST'], website=True)
     def add_machines(self, fiche, machine_id, temps=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.machine_ids = [(0, 0, {
+        if machine_id:
+            fiche_id.machine_ids = [(0, 0, {
                                     'machine_id': int(machine_id),
                                     'temps': temps,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -443,17 +461,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/fournitures', type='http', auth="user", methods=['POST'], website=True)
     def add_fournitures(self, fiche, fourniture_id, quantity=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.fourniture_ids = [(0, 0, {
+        if fourniture_id:
+            fiche_id.fourniture_ids = [(0, 0, {
                                     'fourniture_id': int(fourniture_id),
                                     'quantity': quantity,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -493,16 +517,22 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
     @http.route('/add/kits', type='http', auth="user", methods=['POST'], website=True)
     def add_kits(self, fiche, kit_id, quantity=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.kit_ids = [(0, 0, {
+        if kit_id:
+            fiche_id.kit_ids = [(0, 0, {
                                     'kit_id': int(kit_id),
                                     'quantity': quantity,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -542,17 +572,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/tuteurages', type='http', auth="user", methods=['POST'], website=True)
     def add_tuteurages(self, fiche, tuteurage_id, quantity=0, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.tuteurage_ids = [(0, 0, {
+        if tuteurage_id:
+            fiche_id.tuteurage_ids = [(0, 0, {
                                     'tuteurage_id': int(tuteurage_id),
                                     'quantity': quantity,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -592,18 +628,24 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/vigitaux', type='http', auth="user", methods=['POST'], website=True)
     def add_vigitaux(self, fiche, date, vigitaux_id, commentaire, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.vigitaux_ids = [(0, 0, {
+        if vigitaux_id:
+            fiche_id.vigitaux_ids = [(0, 0, {
                                     'date': date,
                                     'vigitaux_id': int(vigitaux_id),
                                     'commentaire': commentaire,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -643,17 +685,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/engrais', type='http', auth="user", methods=['POST'], website=True)
     def add_engrais(self, fiche, engrais_id, qty_temps, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.engrais_ids = [(0, 0, {
+        if engrais_id:
+            fiche_id.engrais_ids = [(0, 0, {
                                     'engrais_id': int(engrais_id),
                                     'quantity': qty_temps,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -693,17 +741,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/gazons', type='http', auth="user", methods=['POST'], website=True)
     def add_gazons(self, fiche, gazons_id, qty_temps, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.gazons_ids = [(0, 0, {
+        if gazons_id:
+            fiche_id.gazons_ids = [(0, 0, {
                                     'gazons_id': int(gazons_id),
                                     'quantity': qty_temps,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -743,17 +797,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/gmateriel', type='http', auth="user", methods=['POST'], website=True)
     def add_gmateriel(self, fiche, gmateriel_id, qty_temps, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.gmateriel_ids = [(0, 0, {
+        if gmateriel_id:
+            fiche_id.gmateriel_ids = [(0, 0, {
                                     'gmateriel_id': int(gmateriel_id),
                                     'quantity': qty_temps,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -793,17 +853,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/escalier', type='http', auth="user", methods=['POST'], website=True)
     def add_escalier(self, fiche, escalier_id, qty, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.escalier_ids = [(0, 0, {
+        if escalier_id:
+            fiche_id.escalier_ids = [(0, 0, {
                                     'gazons_id': int(escalier_id),
                                     'quantity': qty,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -843,17 +909,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/outils', type='http', auth="user", methods=['POST'], website=True)
     def add_outils(self, fiche, outils_id, qty, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.outils_ids = [(0, 0, {
+        if outils_id:
+            fiche_id.outils_ids = [(0, 0, {
                                     'outils_id': int(outils_id),
                                     'quantity': qty,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -893,17 +965,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/cloture', type='http', auth="user", methods=['POST'], website=True)
     def add_cloture(self, fiche, cloture_id, qty, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.cloture_ids = [(0, 0, {
+        if cloture_id:
+            fiche_id.cloture_ids = [(0, 0, {
                                     'cloture_id': int(cloture_id),
                                     'quantity': qty,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -943,17 +1021,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/divers', type='http', auth="user", methods=['POST'], website=True)
     def add_divers(self, fiche, divers_id, qty, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.divers_ids = [(0, 0, {
+        if divers_id:
+            fiche_id.divers_ids = [(0, 0, {
                                     'divers_id': int(divers_id),
                                     'quantity': qty,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -993,17 +1077,23 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/terrasse', type='http', auth="user", methods=['POST'], website=True)
     def add_terrasse(self, fiche, terrasse_id, qty, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.terrasse_ids = [(0, 0, {
+        if terrasse_id:
+            fiche_id.terrasse_ids = [(0, 0, {
                                     'terrasse_id': int(terrasse_id),
                                     'quantity': qty,
                                     })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -1043,17 +1133,27 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/scloture', type='http', auth="user", methods=['POST'], website=True)
     def add_scloture(self, fiche, scloture_id, qty, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        fiche_id.scloture_ids = [(0, 0, {
-                                    'scloture_id': int(scloture_id),
-                                    'quantity': qty,
-                                    })]
+        _logger.info("Generated scloture_idscloture_idscloture_idscloture_idscloture_idscloture_id : " + str(scloture_id))
+		#check  required fields empty
+        if scloture_id:
+            _logger.info("Generated IFFFFFFFFFFFFFFFFFFFFFFFFFFFF : " + str(scloture_id))
+            fiche_id.scloture_ids = [(0, 0, {
+                                        'scloture_id': int(scloture_id),
+                                        'quantity': qty,
+                                        })]
+        else:
+            error_message.append(_(u'Certains champs obligatoires sont vides.'))
+		#/check  required fields empty
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -1093,25 +1193,38 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
     @http.route('/add/work', type='http', auth="user", methods=['POST'], website=True)
     def add_work(self, fiche, employee, tesk_id, type, heure_deb, heure_fin, **kw):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
-        _logger.info("Generated 111111111111111111111111111111111111111 : " + str(fiche))
+
+        error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
-        _logger.info("Generated 111111111111111111111111111111111111111 : " + str(employee))
-        _logger.info("Generated tesk_idtesk_idtesk_idtesk_idtesk_idtesk_id : " + str(tesk_id))
-        _logger.info("Generated 333333333333333333333333333333333333 : " + str(heure_deb))
-        vals = {
-                'employee': employee,
-                'heure_deb': heure_deb,
-                'heure_fin': heure_fin,
-                'type': type,
-                'fiche_chantier_subtask_id': tesk_id
-                }
-        request.env['employees.subtasks'].create(vals)
+        item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(employee)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
+        dd = datetime.strptime(heure_deb,'%H:%M')
+        df = datetime.strptime(heure_fin,'%H:%M')
+		#Check time : Start < End 
+        if dd > df:
+            error_message.append(_(u"Heure début > Heure fin !"))
+		#Check intersections between time
+        for item in item_ids:
+            idd = datetime.strptime(item.heure_deb,'%H:%M')
+            idf = datetime.strptime(item.heure_fin,'%H:%M')
+            if (df > idd and df < idf) or (dd > idd and dd < idf) or (dd > idd and df < idf) or (dd < idd and df > idf):
+                error_message.append(_(u"Intersection entre plages horaires !"))
+		#/Check intersections between time
+        if error_message == []:
+            vals = {
+                    'employee': employee,
+                    'heure_deb': heure_deb,
+                    'heure_fin': heure_fin,
+                    'type': type,
+                    'fiche_chantier_subtask_id': tesk_id
+                    }
+            request.env['employees.subtasks'].create(vals)
 
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
@@ -1152,6 +1265,7 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasse': terrasse,
             'tasks': tasks,
+            'error_message': error_message
         })
 
 

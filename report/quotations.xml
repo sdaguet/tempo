@@ -3,7 +3,7 @@
     <data>
         <report
                 id="sale_quotation_amenagement"
-                string="Devis Amenagement"
+                string="Devis"
                 model="sale.order"
                 report_type="qweb-pdf"
                 file="darb_puthod.report_amenagement"

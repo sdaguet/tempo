@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api, _
 from openerp.exceptions import ValidationError
+from datetime import datetime
 # from dateutil.relativedelta import relativedelta
 # from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 import geocoder
@@ -79,7 +80,7 @@ class subtask_wizard(models.TransientModel):
 class wizard_create_fiche_chantier(models.TransientModel):
     _name = 'wizard.create.fiche.chantiere'
 
-    inter_date = fields.Datetime(string="Date d'intervention", required=True, help="Date d'intervention")
+    inter_date = fields.Date(string="Date d'intervention", required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
     subtasks = fields.One2many('subtask.wizard', 'wizard_id', string="Tâches")
@@ -196,6 +197,32 @@ class employees_subtasks(models.Model):
     fiche_chantier_subtask_id = fields.Many2one('fiche.chantier.subtasks', string='fcst', index=True, track_visibility='onchange')
     type = fields.Selection(types, copy=False,
                             string='Type', track_visibility='onchange')
+
+	#Check time : Start < End
+	#Check intersections between time
+    """@api.one
+    @api.constrains('heure_deb', 'heure_fin')
+    def _check_active(self):
+        if self.heure_deb and self.heure_fin:
+            dd = datetime.strptime(self.heure_deb,'%H:%M')
+            df = datetime.strptime(self.heure_fin,'%H:%M')
+            if dd > df:
+                raise ValidationError(u"Heure début > Heure fin !")
+
+    @api.multi
+    @api.constrains('heure_deb', 'heure_fin', 'employee', 'fiche_chantier_subtask_id')
+    def _check_active2(self):
+        if self.heure_deb and self.heure_fin:
+            dd = datetime.strptime(self.heure_deb,'%H:%M')
+            df = datetime.strptime(self.heure_fin,'%H:%M')
+        item_ids = self.search([('employee', '=', self.employee.id), ('id', '<>', self.id), ('fiche_chantier_subtask_id', '=', self.fiche_chantier_subtask_id.id)])
+        for item in item_ids:
+            idd = datetime.strptime(item.heure_deb,'%H:%M')
+            idf = datetime.strptime(item.heure_fin,'%H:%M')
+            if (df > idd and df < idf) or (dd > idd and dd < idf) or (dd > idd and df < idf) or (dd < idd and df > idf):
+                raise ValidationError(u"Intersection entre plages horaires !")
+        else:
+            return True"""
 
 
 class chantier(models.Model):
@@ -369,9 +396,9 @@ class fiche_chantier(models.Model):
         ('in_production', 'Comptabilisé'),
         ('done', 'Terminé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
-
+	#change inter_date from datetime to date
     termine = fields.Boolean(string=u"Chantier Terminé", default=False)
-    inter_date = fields.Datetime(string="Date d'intervention", required=True, help="Date d'intervention")
+    inter_date = fields.Date(string="Date d'intervention", required=True, help="Date d'intervention")
     equipe_id = fields.Many2one('equipe', string='Equipe', index=True, track_visibility='onchange')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
     partner_id = fields.Many2one('res.partner', string='Client', related='chantier_id.order_id.partner_id')

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api, _
 from dateutil.relativedelta import relativedelta
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -15,11 +15,12 @@ class fiche_chantier(models.Model):
         """ envoi des notification en cas de non remplissage de la fiche de chantier de la veille"""
         mail_mail_obj = self.env['mail.mail']
         values = {}
-        today = fields.Datetime.now()
+        today = fields.Date.today()
         fiche_chantier = self.search([('state', '=', 'draft')])
         res = {}
         for record in fiche_chantier:
-            limit_date = (fields.Datetime.from_string(today) - relativedelta(days=+1)).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+			#change format date from DEFAULT_SERVER_DATETIME_FORMAT to DEFAULT_SERVER_DATE_FORMAT
+            limit_date = (fields.Datetime.from_string(today) - relativedelta(days=+1)).strftime(DEFAULT_SERVER_DATE_FORMAT)
             if record.inter_date <= limit_date:
                 if record.equipe_id.manager in res:
                     res[record.equipe_id.manager].append(record.name)
@@ -35,3 +36,20 @@ class fiche_chantier(models.Model):
             if msg_id:
                 msg_id.send()
         return True
+
+#To disable yesterday's teams
+class Equipe(models.Model):
+    _inherit = 'equipe'
+
+    @api.model
+    def scheduler_chek_teams(self):
+        """Cette méthode est appelée par une tâche cron 
+        ... """
+        today = fields.Date.today()
+        teams = self.search([('active', '=', True)])
+        for record in teams:
+            today_date = (fields.Datetime.from_string(today)).strftime(DEFAULT_SERVER_DATE_FORMAT)
+            if record.create_date < today_date:
+                record.active = False
+        return True
+#/To disable yesterday's teams

@@ -65,9 +65,11 @@
 
             <xpath expr="//h2" position="replace">
                 <h2>
-                    <span t-if="doc.state not in ['draft','sent']">Order Amenagement #</span>
-                    <span t-if="doc.state in ['draft','sent']">Quotation Amenagement #</span>
-                    <span t-field="doc.name"/>
+                    <span t-if="doc.state not in ['draft','sent']">Order </span>
+                    <span t-if="doc.state in ['draft','sent']">Quotation </span>
+                    <span t-field="doc.order_type"/>
+					<span># </span>
+					<span t-field="doc.name"/>
                 </h2>
             </xpath>
 

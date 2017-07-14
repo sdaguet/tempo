@@ -218,7 +218,7 @@
                             <field name="subtask_id"/>
                             <field name="comment"/>
                             <field name="state"/>
-                            <field name="employee_subtask_ids" widget="many2many_tags"/>
+                            <field name="employee_subtask_ids" widget="many2many_tags" invisible="1"/>
                 		</tree>
                 	</field>
                     <!--<notebook>-->
@@ -359,24 +359,26 @@
                 </gantt>
             </field>
       </record>
+	  <!-- remove fields not used in the FC-->
       <record id="fiche_chantier_tree_view" model="ir.ui.view">
           <field name="name">fiche.chantier.tree</field>
           <field name="model">fiche.chantier</field>
           <field name="arch" type="xml">
-              <!--<tree decoration-bf="message_needaction==True" decoration-info="state in ('draft','confirmed')" decoration-danger="date_planned&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">-->
-              <tree colors="orange:type_inter=='cloturante';green:type_inter=='normale';red:type_inter=='rapide';blue:type_inter=='maintenance'" string="Manufacturing Orders">
+              <tree decoration-bf="message_needaction==True" decoration-info="state in ('draft','confirmed')" decoration-danger="date_planned&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">
                   <field name="message_needaction" invisible="1"/>
                   <field name="name"/>
-                  <field name="date_planned"/>
-                  <field name="product_id"/>
-                  <field name="product_qty" sum="Total Qty"/>
-                  <field name="product_uom" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
-                  <field name="routing_id" groups="mrp.group_mrp_routings"/>
-                  <field name="hour_total" sum="Total Hours"/>
-                  <field name="cycle_total" sum="Total Cycles"/>
-                  <field name="origin"/>
+                  <field name="inter_date"/>
+                  <field name="user_id"/>
+                  <field name="equipe_id"/>
+                  <field name="date_planned" invisible="1"/>
+                  <field name="product_id" invisible="1"/>
+                  <field name="product_qty" sum="Total Qty" invisible="1"/>
+                  <field name="product_uom" options="{'no_open':True,'no_create':True}" groups="product.group_uom" invisible="1"/>
+                  <field name="routing_id" groups="mrp.group_mrp_routings" invisible="1"/>
+                  <field name="hour_total" sum="Total Hours" invisible="1"/>
+                  <field name="cycle_total" sum="Total Cycles" invisible="1"/>
+                  <field name="origin" invisible="1"/>
                   <field name="state"/>
-                  <field name="type_inter" invisible="1"/>
               </tree>
           </field>
       </record>
