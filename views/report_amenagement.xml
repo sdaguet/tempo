@@ -73,24 +73,33 @@
                 </h2>
             </xpath>
 
-
+			<!-- <xpath expr="//table" position="attributes">
+				<attribute name="style">border-right:thin solid #323232;border-top:thin solid #323232</attribute>
+                
+            </xpath>  -->
+			
+			<xpath expr="//table[1][@class='table table-condensed']" position="attributes">
+				<attribute name="style">border-top:thin solid #323232</attribute>
+                
+            </xpath> 
+			
             <xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
 
                 <tr>
-                    <th width="2%">N°Lig</th>
-                    <th width="40%">Désignation</th>
-                    <th width="2%" class="text-right">Quantité</th>
-                    <th class="text-right">Prix Brut HT</th>
-                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></th>
-                    <th class="text-right">TVA</th>
-                    <th class="text-right">Prix Net HT</th>
-                    <th width="10%" class="text-right">Valeur Totale HT</th>
+                    <th width="2%" style="border-right:thin solid #323232;border-left:thin solid #323232">N°Lig</th>
+                    <th width="40%" style="border-right:thin solid #323232">Désignation</th>
+                    <th width="2%" class="text-right" style="border-right:thin solid #323232">Quantité</th>
+                    <th class="text-center" style="border-right:thin solid #323232">Prix Brut HT</th>
+                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line" style="border-right:thin solid #323232"></th>
+                    <th class="text-center" style="border-right:thin solid #323232">TVA</th>
+                    <th class="text-center" style="border-right:thin solid #323232">Prix Net HT</th>
+                    <th width="10%" class="text-center" style="border-right:thin solid #323232">Valeur Totale HT</th>
                 </tr>
             </xpath>
 
 
             <xpath expr="//t/t/tr/td[6]" position="before">
-                <td style="text-align: center;">
+                <td style="text-align:center;border:thin solid #323232">
 
                     <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/>
 
@@ -98,12 +107,16 @@
             </xpath>
 
             <xpath expr="//t/t/tr/td[4]" position="replace">
-                <td t-if="display_discount" style="text-align: left;" groups="sale.group_discount_per_so_line">
+                <td t-if="display_discount" style="text-align: center;border:thin solid #323232" groups="sale.group_discount_per_so_line">
                     <span t-esc="str(l.discount)+'%'"/>
                 </td>
             </xpath>
 
-            <xpath expr="//t/t/tr/td[2]/span" position="replace">
+            <xpath expr="//t/t/tr/td[2]" position="attributes">
+                <attribute name="style">text-align: center</attribute>
+            </xpath>
+			
+			<xpath expr="//t/t/tr/td[2]/span" position="replace">
                 <span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>
             </xpath>
 
@@ -114,22 +127,34 @@
 
 
             <xpath expr="//t/t/tr/td" position="before">
-                <td>
+                <td style="border:thin solid #323232">
                     <span t-esc="i"/>
                     <t t-set="i" t-value="i+1"/>
                 </td>
             </xpath>
 
             <xpath expr="//t/t/tr/td[2]" position="replace">
-                <td width="25%">
+                <td width="25%" style="border:thin solid #323232">
                     <span t-field="l.name"/>
                 </td>
             </xpath>
+			
+			<xpath expr="//t/t/tr/td[3]" position="attributes">
+                <attribute name="style">border:thin solid #323232</attribute>        
+            </xpath>
 
             <xpath expr="//t/t/tr/td[4]" position="replace">
-                <td class="text-right" style="text-align: center;">
+                <td class="text-right" style="text-align: center;border:thin solid #323232">
                     <span t-field="l.price_unit"/>
                 </td>
+            </xpath>
+			
+			<xpath expr="//t/t/tr/td[6]" position="attributes">
+                <attribute name="style">border:thin solid #323232</attribute>        
+            </xpath>
+			
+			<xpath expr="//t/t/tr/td[8]" position="attributes">
+                <attribute name="style">border:thin solid #323232</attribute>        
             </xpath>
 
             <!-- Pour ajouter le nouveau tableau de la TVA -->
@@ -146,16 +171,16 @@
                     <table class="table table-condensed">
 
                         <tr class="border-black">
-                            <th>
+                            <th style="border:thin solid #323232">
                                 <strong>TVA Taux</strong>
                             </th>
-                            <th>
+                            <th style="border-right:thin solid #323232;border-top:thin solid #323232">
                                 <strong>Total HT</strong>
                             </th>
-                            <th>
+                            <th style="border-right:thin solid #323232;border-top:thin solid #323232">
                                 <strong>Total TVA</strong>
                             </th>
-                            <th>
+                            <th style="border-right:thin solid #323232;border-top:thin solid #323232">
                                 <strong>Total TTC</strong>
                             </th>
 
@@ -177,7 +202,7 @@
                                 <!-- <td><span t-esc="category"/></td> -->
                                 <t t-foreach="doc.order_line" t-as="l">
                                     <t t-if=" category == l.tax_id.name and chrono == True ">
-                                        <td>
+                                        <td style="border:thin solid #323232">
                                             <span t-esc="str(int(l.tax_id.amount))+'%'"/>
                                         </td>
                                         <t t-set="chrono" t-value="False"/>
@@ -192,17 +217,17 @@
 
                                     </t>
                                 </t>
-                                <td>
+                                <td style="border:thin solid #323232">
                                     <span t-esc="test_variable"/>
                                 </td>
 
 
                                 <t t-foreach="doc.order_line" t-as="l">
                                     <t t-if=" category == l.tax_id.name and chrono2 == True ">
-                                        <td>
+                                        <td style="border:thin solid #323232">
                                             <span t-esc="test_variable * l.tax_id.amount /100"/>
                                         </td>
-                                        <td>
+                                        <td style="border:thin solid #323232">
                                             <span t-esc="test_variable + test_variable * l.tax_id.amount /100"/>
                                         </td>
                                         <t t-set="chrono2" t-value="False"/>
