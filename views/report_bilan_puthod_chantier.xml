@@ -5,22 +5,18 @@
                 model="chantier"
                 string="Bilan Chantier"
                 name="darb_puthod.report_bilan_chantier"
-                file="darb_puthod.report_bilan_puthod_chantier"
+                file="darb_puthod.report_bilan_chantier"
                 report_type="qweb-pdf"/>
-
-        <template id="report_bilan_chantier">
-
-                        <t t-call="report.external_layout">
-                            <div class="page">
-                                test
-                            </div>
-                        </t>
-        </template>
-
 
         <record id="paperformat_landscape" model="report.paperformat">
             <field name="name">Bilan Puthod</field>
             <field name="orientation">Landscape</field>
+            <field name="margin_top">3</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
         </record>
 
         <record id="report_bilan_puthod_chantier" model="ir.actions.report.xml">

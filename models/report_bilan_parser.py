@@ -7,8 +7,12 @@ class BilanReport(models.AbstractModel):
     _name = 'report.darb_puthod.report_bilan_chantier'
 
     @api.multi
-    def bilan_main_oeuvre(self):
-        return True
+    def bilan_main_oeuvre(self,doc):
+        date_e = []
+        fiches = self.env['fiche.chantier'].search([('chantier_id','=',doc.id)])
+        for f in fiches:
+            date_e.append(f.subtasks)
+        return date_e
 
 
 

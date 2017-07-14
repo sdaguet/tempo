@@ -179,7 +179,7 @@ class ProductTemplate(models.Model):
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    @api.model
-    def create(self, values):
-        _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-        return super(Partner, self).create(values)
+    # @api.model
+    # def create(self, values):
+    #     _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+    #     return super(Partner, self).create(values)

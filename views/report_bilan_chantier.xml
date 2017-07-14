@@ -111,6 +111,7 @@
                         <t t-set="chantier" t-value="doc.name"/>
                         <t t-set="date" t-value="doc.order_id.customer_order_delivery_date"/>
                         <t t-esc="bilan_main_oeuvre(doc)"/>
+                        f
 
 
 
