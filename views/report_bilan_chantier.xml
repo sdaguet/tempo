@@ -43,7 +43,11 @@
                             </th>
                             <th colspan="7" align="center">
                                 <div align="center">TABLEAU DES COÛTS</div>
-                                <div align="center"><span t-field="doc.order_id.partner_id.name"/> - <span t-field="doc.order_id.partner_id.city"/></div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.partner_id.name"/>
+                                    -
+                                    <span t-field="doc.order_id.partner_id.city"/>
+                                </div>
                             </th>
                             <th align="center">
                                 <div align="center">N°Client</div>
@@ -110,103 +114,96 @@
                         <t t-set="totalb" t-value="0"/>
                         <t t-set="chantier" t-value="doc.name"/>
                         <t t-set="date" t-value="doc.order_id.customer_order_delivery_date"/>
-                        <t t-esc="bilan_main_oeuvre(doc)"/>
-                        f
-
-
-
-
                         <t t-foreach="doc.order_id.order_line" t-as="ol">
 
-                        <t t-if="ol.product_id.categ_id.name=='Fournitures plantation' or ol.product_id.categ_id.name=='Vegeteaux'">
+                            <t t-if="ol.product_id.categ_id.name=='Fournitures plantation' or ol.product_id.categ_id.name=='Vegeteaux'">
 
-                            <tr>
-                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
-                                    <td>
-                                        <span t-esc="chantier"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ol.product_id.name"/>
-                                    </td>
-                                    <td colspan="5">
-                                        <span t-field="ol.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ol.price_unit"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ol.purchase_price"/>
-                                        <span t-set="total" t-value="total + ol.purchase_price"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="date"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ol.product_uom_qty"/>
-                                    </td>
-                                </t>
-                                <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td colspan="5">
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                    </td>
-                                </t>
-                                <t t-if="ol.product_id.categ_id.name=='Fournitures plantation'">
-                                    <td colspan="3">
-                                        <span t-field="ol.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ol.price_unit"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ol.purchase_price"/>
-                                        <span t-set="totalb" t-value="totalb + ol.purchase_price"/>
-                                    </td>
-                                </t>
+                                <tr>
+                                    <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
+                                        <td>
+                                            <span t-esc="chantier"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ol.product_id.name"/>
+                                        </td>
+                                        <td colspan="5">
+                                            <span t-field="ol.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ol.price_unit"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ol.purchase_price"/>
+                                            <span t-set="total" t-value="total + ol.purchase_price"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ol.product_uom_qty"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td colspan="5">
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="ol.product_id.categ_id.name=='Fournitures plantation'">
+                                        <td colspan="3">
+                                            <span t-field="ol.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ol.price_unit"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="ol.purchase_price"/>
+                                            <span t-set="totalb" t-value="totalb + ol.purchase_price"/>
+                                        </td>
+                                    </t>
 
-                                <t t-if="ol.product_id.categ_id.name!='Fournitures plantation'">
-                                    <td colspan="3"></td>
-                                    <td></td>
-                                    <td>tt</td>
-                                </t>
-                            </tr>
+                                    <t t-if="ol.product_id.categ_id.name!='Fournitures plantation'">
+                                        <td colspan="3"></td>
+                                        <td></td>
+                                        <td>tt</td>
+                                    </t>
+                                </tr>
 
-                        </t>
+                            </t>
                         </t>
                         <tr>
                             <th colspan="6">TOTAL VEGETAUX</th>
                             <th colspan="3">
                                 <div align="right">
-                                <span t-esc="total"/>
+                                    <span t-esc="total"/>
                                 </div>
                             </th>
                             <th colspan="5">TOTAL COÛTS SPECIFIQUES</th>
                             <th colspan="2">
                                 <div align="right">
-                                <span t-esc="totalb"/>
+                                    <span t-esc="totalb"/>
                                 </div>
                             </th>
                         </tr>
                         <tr>
-                            <th colspan="9"> Main d'oeuvre </th>
+                            <th colspan="9">Main d'oeuvre</th>
                             <th></th>
-                            <th colspan="6"> Sous-Traitance </th>
+                            <th colspan="6">Sous-Traitance</th>
                         </tr>
                         <tr>
-                            <th>Date</th>
+                            <th colspan="2">Date</th>
                             <th>Preparation/Deplacement</th>
                             <th>TONTE</th>
                             <th>TAILLE</th>
-                            <th>PLANTATION</th>
                             <th>PLANTATION</th>
                             <th>DESHERBAGE</th>
                             <th>PROTECTION</th>
@@ -219,36 +216,118 @@
                             <th>Prix Unitaie</th>
                             <th>Coût</th>
                         </tr>
+
+
+                        <t t-set="tmp_p_d" t-value="0"/>
+                        <t t-set="tmp_t" t-value="0"/>
+                        <t t-set="tmp_ta" t-value="0"/>
+                        <t t-set="tmp_pl" t-value="0"/>
+                        <t t-set="tmp_dh" t-value="0"/>
+                        <t t-set="tmp_pr" t-value="0"/>
+                        <t t-set="tmp_g" t-value="0"/>
+                        <t t-set="tmp_a" t-value="0"/>
+                        <t t-set="tmp_divers" t-value="0"/>
+
                         <t t-foreach="doc.fiche_ids" t-as="f">
-                            <t t-set="date_inter" t-value="f.inter_date"/>
-                        <t t-foreach="f.subtasks" t-as="s">
+                            <tr>
+                                <td colspan="2">
+                                    (<span
+                                        t-esc="time.strftime('%d/%m/%y',time.strptime(bilan_main_oeuvre(f)[0],'%Y-%m-%d'))"/>
+                                    )
+                                    <strong>
+                                        <span t-esc="bilan_main_oeuvre(f)[1]"/>
+                                    </strong>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][0]"/>
+                                    <span t-esc="bilan_main_oeuvre(f)[3]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][1]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][2]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][3]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][4]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][5]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][6]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][7]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[2][8]"/>
+                                </td>
+
+                                <t t-set="tmp_p_d" t-value="tmp_p_d + bilan_main_oeuvre(f)[2][0]"/>
+                                <t t-set="tmp_t" t-value="tmp_t + bilan_main_oeuvre(f)[2][1]"/>
+                                <t t-set="tmp_ta" t-value="tmp_ta + bilan_main_oeuvre(f)[2][2]"/>
+                                <t t-set="tmp_pl" t-value="tmp_pl + bilan_main_oeuvre(f)[2][3]"/>
+                                <t t-set="tmp_dh" t-value="tmp_dh + bilan_main_oeuvre(f)[2][4]"/>
+                                <t t-set="tmp_pr" t-value="tmp_pr + bilan_main_oeuvre(f)[2][5]"/>
+                                <t t-set="tmp_g" t-value="tmp_g + bilan_main_oeuvre(f)[2][6]"/>
+                                <t t-set="tmp_a" t-value="tmp_a + bilan_main_oeuvre(f)[2][7]"/>
+                                <t t-set="tmp_divers" t-value="tmp_divers + bilan_main_oeuvre(f)[2][8]"/>
+
+                                <td>Date Du B.L</td>
+                                <td>Fournisseur</td>
+                                <td>Description</td>
+                                <td>Prix Unitaie</td>
+                                <td>Coût</td>
+
+                            </tr>
+                        </t>
                         <tr>
-
-                            <td><span t-esc="date_inter"/>
-                                <t t-foreach="s.employee_subtask_ids" t-as="e">
-                                <span t-field="e.employee.name"/>+
-                                </t>
-
-                            </td>
-                            <td>Preparation/Deplacement</td>
-                            <td>TONTE</td>
-                            <td>TAILLE</td>
-                            <td>PLANTATION</td>
-                            <td>PLANTATION</td>
-                            <td>DESHERBAGE</td>
-                            <td>PROTECTION</td>
-                            <td>GAZON</td>
-                            <td>ARROSAGE</td>
-                            <td>DIVERS</td>
-                            <td>Date Du B.L</td>
-                            <td>Fournisseur</td>
-                            <td>Description</td>
-                            <td>Prix Unitaie</td>
-                            <td>Coût</td>
-
+                            <th colspan="2">TOT Hre PROD REAL</th>
+                            <th>
+                                <span t-esc="tmp_p_d"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_t"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_ta"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_pl"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_dh"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_pr"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_g"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_a"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_divers"/>
+                            </th>
+                            <th>Date Du B.L</th>
+                            <th>Fournisseur</th>
+                            <th>Description</th>
+                            <th>Prix Unitaie</th>
+                            <th>Coût</th>
                         </tr>
-                        </t>
-                        </t>
+                        <tr>
+                            <th colspan="4">Totale heures effectuées</th>
+                            <th><span t-esc="tmp_p_d + tmp_t + tmp_ta + tmp_pl + tmp_pl + tmp_dh + tmp_pr + tmp_g + tmp_a + tmp_divers"/></th>
+                            <th colspan="5"></th>
+                            <th></th>
+                            <th colspan="4"></th>
+                            <th></th>
+                        </tr>
                     </tbody>
                 </table>
                 <table>
