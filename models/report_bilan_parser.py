@@ -117,6 +117,53 @@ class BilanReport(models.AbstractModel):
         return tmps
 
     @api.multi
+    def get_tmp_cost(self, etss):
+
+        tmp_cost_p_d = 0
+        tmp_cost_t = 0
+        tmp_cost_ta = 0
+        tmp_cost_pl = 0
+        tmp_cost_dh = 0
+        tmp_cost_pr = 0
+        tmp_cost_g = 0
+        tmp_cost_a = 0
+        tmp_cost_divers = 0
+
+        tmp_costs = []
+
+        for ets in etss:
+            for et in ets:
+                if et.type == "p" or et.type == "d":
+                    tmp_cost_p_d = tmp_cost_p_d + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "t":
+                    tmp_cost_t = tmp_cost_t + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "ta":
+                    tmp_cost_ta = tmp_cost_ta + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "pl":
+                    tmp_cost_pl = tmp_cost_pl + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "dh":
+                    tmp_cost_dh = tmp_cost_dh + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "pr":
+                    tmp_cost_pr = tmp_cost_pr + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "g":
+                    tmp_cost_g = tmp_cost_g + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                elif et.type == "a":
+                    tmp_cost_a = tmp_cost_a + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+                else:
+                    tmp_cost_divers = tmp_cost_divers + (self.get_time(et.heure_fin) - self.get_time(et.heure_deb))*et.time_cost
+
+            tmp_costs.extend([tmp_cost_p_d,
+                         tmp_cost_t,
+                         tmp_cost_ta,
+                         tmp_cost_pl,
+                         tmp_cost_dh,
+                         tmp_cost_pr,
+                         tmp_cost_g,
+                         tmp_cost_a,
+                         tmp_cost_divers])
+            return tmp_costs
+
+    @api.multi
     def bilan_main_oeuvre(self, sub):
         employee_tasks = []
         date_e = []
@@ -132,6 +179,7 @@ class BilanReport(models.AbstractModel):
             for et in ets:
                 date_e.append(et.employee.name)
         tmp = self.get_tmp(employee_tasks)
+        tmp_cost = self.get_tmp_cost(employee_tasks)
 
         print "tmp"
         print tmp
@@ -143,7 +191,7 @@ class BilanReport(models.AbstractModel):
         plus = self.add_plus(date_e)
         print "date_e"
         print plus
-        return (date, plus, tmp, comment)
+        return (date, plus, tmp, tmp_cost, comment)
 
     @api.multi
     def render_html(self, data=None):

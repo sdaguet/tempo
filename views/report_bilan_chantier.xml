@@ -144,6 +144,7 @@
                                         </td>
                                     </t>
                                     <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
+                                    <!--<t t-if="%(darb_puthod.ol.product_id.product_category_vigitaux)!='Vegetaux'">-->
                                         <td>
                                         </td>
                                         <td>
@@ -231,8 +232,9 @@
                         <t t-foreach="doc.fiche_ids" t-as="f">
                             <tr>
                                 <td colspan="2">
-                                    (<span
-                                        t-esc="time.strftime('%d/%m/%y',time.strptime(bilan_main_oeuvre(f)[0],'%Y-%m-%d'))"/>
+                                    (
+                                    <span
+                                            t-esc="time.strftime('%d/%m/%y',time.strptime(bilan_main_oeuvre(f)[0],'%Y-%m-%d'))"/>
                                     )
                                     <strong>
                                         <span t-esc="bilan_main_oeuvre(f)[1]"/>
@@ -240,7 +242,7 @@
                                 </td>
                                 <td>
                                     <span t-esc="bilan_main_oeuvre(f)[2][0]"/>
-                                    <span t-esc="bilan_main_oeuvre(f)[3]"/>
+                                    <span t-esc="bilan_main_oeuvre(f)[4]"/>
                                 </td>
                                 <td>
                                     <span t-esc="bilan_main_oeuvre(f)[2][1]"/>
@@ -320,9 +322,106 @@
                             <th>Prix Unitaie</th>
                             <th>Coût</th>
                         </tr>
+                        <t t-foreach="doc.fiche_ids" t-as="f">
+                        <tr>
+                            <th colspan="2">COÛT DIRECT REAL</th>
+                            <th>
+                                <t t-if="tmp_p_d != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][0]/tmp_p_d"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_t != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][1]/tmp_t"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_ta != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][2]/tmp_ta"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_pl != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][3]/tmp_pl"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_dh != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][4]/tmp_dh"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_pr != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][5]/tmp_pr"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_g != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][6]/tmp_g"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_a != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][7]/tmp_a"/>
+                                </t>
+                            </th>
+                            <th>
+                                <t t-if="tmp_divers != 0">
+                                <span t-esc="bilan_main_oeuvre(f)[3][8]/tmp_divers"/>
+                                </t>
+                            </th>
+                            <th>Date Du B.L</th>
+                            <th>Fournisseur</th>
+                            <th>Description</th>
+                            <th>Prix Unitaie</th>
+                            <th>Coût</th>
+                        </tr>
+                        </t>
+                        <t t-foreach="doc.fiche_ids" t-as="f">
+                            <tr>
+
+                                <td colspan="2">TOT. TRAV INTERNE REAL</td>
+
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][0]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][1]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][2]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][3]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][4]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][5]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][6]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][7]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="bilan_main_oeuvre(f)[3][8]"/>
+                                </td>
+
+                                <td>Date Du B.L</td>
+                                <td>Fournisseur</td>
+                                <td>Description</td>
+                                <td>Prix Unitaie</td>
+                                <td>Coût</td>
+                            </tr>
+                        </t>
                         <tr>
                             <th colspan="4">Totale heures effectuées</th>
-                            <th><span t-esc="tmp_p_d + tmp_t + tmp_ta + tmp_pl + tmp_pl + tmp_dh + tmp_pr + tmp_g + tmp_a + tmp_divers"/></th>
+                            <th>
+                                <span t-esc="tmp_p_d + tmp_t + tmp_ta + tmp_pl + tmp_pl + tmp_dh + tmp_pr + tmp_g + tmp_a + tmp_divers"/>
+                            </th>
                             <th colspan="5"></th>
                             <th></th>
                             <th colspan="4"></th>
