@@ -53,6 +53,7 @@
         'views/calendar.xml',
         'report/report_employee_view.xml',
         'data/puthod_product_data.xml',
+        'report/annexes_product_report_view.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
