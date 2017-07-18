@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_bilan_chantier_document">
+            <div class="page">
+                <style>
+                    table.lines-table, .lines-table th , .lines-table td {
+                    border: 1px solid gray;
+                    border-collapse: collapse;
+                    vertical-align: middle;}
+                </style>
+                <div class="oe_structure"/>
+
+                <table class="lines-table" style="width:100%;">
+
+                    <thead class="lines-table" style="width:100%;">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    <thead class="lines-table" style="width:100%;">
+                        <tr>
+                            <th align="center">PROPRIETE OVERSEAS CONSULTING</th>
+                            <th colspan="2" align="center">
+                                <div align="center">N° DE COMMANDE</div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.name"/>
+                                </div>
+                            </th>
+                            <th colspan="7" align="center">
+                                <div align="center">TABLEAU DES COÛTS</div>
+                                <div align="center">SCI LA VERTE - Chamonix</div>
+                            </th>
+                            <th align="center">
+                                <div align="center">N°Client</div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.partner_id.name"/>
+                                </div>
+                            </th>
+                            <th colspan="2" align="center">
+                                <div align="center">Désignation de la commande</div>
+                                <div align="center"><span t-field="doc.order_id.order_type"/>-
+                                    <span t-field="doc.order_id.customer_order_delivery_date"
+                                          t-field-options='{"format": "y"}'/>
+                                </div>
+                            </th>
+                            <th align="center">
+                                <div align="center">DATE COMMANDE</div>
+                                <div align="center">
+                                    <span t-field="doc.order_id.customer_order_delivery_date"
+                                          t-field-options='{"format": "d/m/y"}'/>
+                                </div>
+                            </th>
+                            <th align="center" colspan="2">
+                                <img class="img img-responsive" align="center" style="width: 90%; height: 70%"
+                                     src="/darb_puthod/static/images/Puthod_Logo.jpeg"/>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="lines-table" style="width:100%;">
+                            <th>TOTAUX COMMANDE</th>
+                            <th>Coûts végétaux</th>
+                            <th>PREPARATION/DEPLACEMENT</th>
+                            <th>TONTE</th>
+                            <th>TAILLE</th>
+                            <th>PLANTATION</th>
+                            <th>PLANTATION</th>
+                            <th>DESHERBAGE</th>
+                            <th>PROTECTION</th>
+                            <th>GAZON</th>
+                            <th>ARROSAGE</th>
+                            <th>DIVERS</th>
+                            <th>Total des coût spécifiques + FOURNITURES</th>
+                            <th>Total sous-traitance</th>
+                            <th colspan="2">Totaux</th>
+                        </tr>
+                        <tr class="lines-table" style="width:100%;">
+                            <th colspan="10">Végétaux</th>
+                            <th></th>
+                            <th colspan="5">Coût spécifiques + FOURNITURES</th>
+                        </tr>
+                        <tr class="lines-table" style="width:100%;">
+                            <td>Date Fiche Chantier</td>
+                            <td>Quantité</td>
+                            <td colspan="5">Description</td>
+                            <td>Prix Unitaires</td>
+                            <td>Coût</td>
+                            <td>Date du B.L</td>
+                            <td>Quantité</td>
+                            <td colspan="3">Description</td>
+                            <td>Prix Unitaires</td>
+                            <td>Coût</td>
+                        </tr>
+                        <t t-set="total" t-value="0"/>
+                        <t t-set="totalb" t-value="0"/>
+                        <t t-set="chantier" t-value="doc.name"/>
+                        <t t-set="date" t-value="doc.order_id.customer_order_delivery_date"/>
+                        <t t-foreach="doc.order_id.order_line" t-as="ol">
+
+                        <t t-if="ol.product_id.categ_id.name=='Fournitures plantation' or ol.product_id.categ_id.name=='Vegeteaux'">
+
+                            <tr>
+                                <t t-if="ol.product_id.categ_id.name=='Vegetaux'">
+                                    <td>
+                                        <span t-esc="chantier"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.product_id.name"/>
+                                    </td>
+                                    <td colspan="5">
+                                        <span t-field="ol.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.purchase_price"/>
+                                        <span t-set="total" t-value="total + ol.purchase_price"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.product_uom_qty"/>
+                                    </td>
+                                </t>
+                                <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td colspan="5">
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                    </td>
+                                </t>
+                                <t t-if="ol.product_id.categ_id.name=='Fournitures plantation'">
+                                    <td colspan="3">
+                                        <span t-field="ol.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="ol.purchase_price"/>
+                                        <span t-set="totalb" t-value="totalb + ol.purchase_price"/>
+                                    </td>
+                                </t>
+
+                                <t t-if="ol.product_id.categ_id.name!='Fournitures plantation'">
+                                    <td colspan="3"></td>
+                                    <td></td>
+                                    <td>tt</td>
+                                </t>
+                            </tr>
+
+                        </t>
+                        </t>
+                        <tr>
+                            <th colspan="6">TOTAL VEGETAUX</th>
+                            <th colspan="3">
+                                <div align="right">
+                                <span t-esc="total"/>
+                                </div>
+                            </th>
+                            <th colspan="5">TOTAL COÛTS SPECIFIQUES</th>
+                            <th colspan="2">
+                                <div align="right">
+                                <span t-esc="totalb"/>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="9"> Main d'oeuvre </th>
+                            <th></th>
+                            <th colspan="6"> Sous-Traitance </th>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Preparation/Deplacement</th>
+                            <th>TONTE</th>
+                            <th>TAILLE</th>
+                            <th>PLANTATION</th>
+                            <th>PLANTATION</th>
+                            <th>DESHERBAGE</th>
+                            <th>PROTECTION</th>
+                            <th>GAZON</th>
+                            <th>ARROSAGE</th>
+                            <th>DIVERS</th>
+                            <th>Date Du B.L</th>
+                            <th>Fournisseur</th>
+                            <th>Description</th>
+                            <th>Prix Unitaie</th>
+                            <th>Coût</th>
+                        </tr>
+                        <t t-foreach="doc.fiche_ids" t-as="f">
+                            <t t-set="date_inter" t-value="f.inter_date"/>
+                        <t t-foreach="f.subtasks" t-as="s">
+                        <tr>
+
+                            <th><span t-esc="date_inter"/>
+                                <t t-foreach="s.employee_subtask_ids" t-as="e">
+                                <span t-field="e.employee.name"/>+
+                                </t>
+
+                            </th>
+                            <th>Preparation/Deplacement</th>
+                            <th>TONTE</th>
+                            <th>TAILLE</th>
+                            <th>PLANTATION</th>
+                            <th>PLANTATION</th>
+                            <th>DESHERBAGE</th>
+                            <th>PROTECTION</th>
+                            <th>GAZON</th>
+                            <th>ARROSAGE</th>
+                            <th>DIVERS</th>
+                            <th>Date Du B.L</th>
+                            <th>Fournisseur</th>
+                            <th>Description</th>
+                            <th>Prix Unitaie</th>
+                            <th>Coût</th>
+
+                        </tr>
+                        </t>
+                        </t>
+                    </tbody>
+                </table>
+                <table>
+
+                </table>
+
+            </div>
+        </template>
+        <template id="report_bilan_chantier">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="darb_puthod.report_bilan_chantier_document" t-lang="doc.order_id.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
+
+
