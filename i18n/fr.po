@@ -2035,3 +2035,17 @@ msgstr ""
 "                </div>\n"
 "                \n"
 "                "
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_wizard_create_chantier_form
+#: model:ir.ui.view,arch_db:darb_puthod.view_wizard_create_fiche_chantier_form
+#: model:ir.ui.view,arch_db:darb_puthod.view_wizard_print_coeffk_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.view_wizard_create_chantier_form
+#: model:ir.ui.view,arch_db:darb_puthod.view_wizard_create_fiche_chantier_form
+#: model:ir.ui.view,arch_db:darb_puthod.view_wizard_print_coeffk_form
+msgid "Cancel"
+msgstr "Annuler"
