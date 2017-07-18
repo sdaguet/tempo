@@ -93,54 +93,141 @@
                         </tr>
 
                         <tr class="lines-table" style="width:100%;">
-                            <td><strong>A)</strong> Prévisionnel prix de vente</td>
-                            <td><span t-esc="get_sum_product(doc)[0]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[1]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[2]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[3]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[4]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[5]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[6]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[7]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[8]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[9]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[10]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[11]"/></td>
-                            <td colspan="3"><span t-esc="get_sum_product(doc)[24]"/></td>
+                            <td>
+                                <strong>A)</strong>
+                                Prévisionnel prix de vente
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[0]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[1]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[2]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[3]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[4]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[5]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[6]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[7]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[8]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[9]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[10]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[11]"/>
+                            </td>
+                            <td colspan="3">
+                                <span t-esc="get_sum_product(doc)[24]"/>
+                            </td>
                         </tr>
 
                         <tr class="lines-table" style="width:100%;">
-                            <td><strong>B)</strong> Réalisé prix de revient</td>
-                            <td><span t-esc="get_sum_product(doc)[12]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[13]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[14]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[15]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[16]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[17]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[18]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[19]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[20]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[21]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[22]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[23]"/></td>
-                            <td colspan="3"><span t-esc="get_sum_product(doc)[25]"/></td>
+                            <td>
+                                <strong>B)</strong>
+                                Réalisé prix de revient
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[12]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[13]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[14]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[15]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[16]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[17]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[18]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[19]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[20]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[21]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[22]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[23]"/>
+                            </td>
+                            <td colspan="3">
+                                <span t-esc="get_sum_product(doc)[25]"/>
+                            </td>
                         </tr>
 
                         <tr class="lines-table" style="width:100%;">
-                            <td><strong>C)</strong> Ecart = A - B</td>
-                            <td><span t-esc="get_sum_product(doc)[0] - get_sum_product(doc)[12]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[1] - get_sum_product(doc)[13]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[2] - get_sum_product(doc)[14]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[3] - get_sum_product(doc)[15]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[4] - get_sum_product(doc)[16]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[5] - get_sum_product(doc)[17]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[6] - get_sum_product(doc)[18]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[7] - get_sum_product(doc)[19]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[8] - get_sum_product(doc)[20]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[9] - get_sum_product(doc)[21]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[10] - get_sum_product(doc)[22]"/></td>
-                            <td><span t-esc="get_sum_product(doc)[11] - get_sum_product(doc)[23]"/></td>
-                            <td colspan="3"><span t-esc="get_sum_product(doc)[24] - get_sum_product(doc)[25]"/></td>
+                            <td>
+                                <strong>C)</strong>
+                                Ecart = A - B
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[0] - get_sum_product(doc)[12]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[1] - get_sum_product(doc)[13]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[2] - get_sum_product(doc)[14]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[3] - get_sum_product(doc)[15]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[4] - get_sum_product(doc)[16]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[5] - get_sum_product(doc)[17]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[6] - get_sum_product(doc)[18]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[7] - get_sum_product(doc)[19]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[8] - get_sum_product(doc)[20]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[9] - get_sum_product(doc)[21]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[10] - get_sum_product(doc)[22]"/>
+                            </td>
+                            <td>
+                                <span t-esc="get_sum_product(doc)[11] - get_sum_product(doc)[23]"/>
+                            </td>
+                            <td colspan="3">
+                                <span t-esc="get_sum_product(doc)[24] - get_sum_product(doc)[25]"/>
+                            </td>
                         </tr>
 
                         <tr class="lines-table" style="width:100%;">
@@ -196,7 +283,7 @@
                                         </td>
                                     </t>
                                     <t t-if="ol.product_id.categ_id.name!='Vegetaux'">
-                                    <!--<t t-if="%(darb_puthod.ol.product_id.product_category_vigitaux)!='Vegetaux'">-->
+                                        <!--<t t-if="%(darb_puthod.ol.product_id.product_category_vigitaux)!='Vegetaux'">-->
                                         <td>
                                         </td>
                                         <td>
@@ -331,11 +418,11 @@
                                 <t t-set="tmp_a" t-value="tmp_a + bilan_main_oeuvre(f)[2][7]"/>
                                 <t t-set="tmp_divers" t-value="tmp_divers + bilan_main_oeuvre(f)[2][8]"/>
 
-                                <td>Date Du B.L</td>
-                                <td>Fournisseur</td>
-                                <td>Description</td>
-                                <td>Prix Unitaie</td>
-                                <td>Coût</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
                             </tr>
                         </t>
@@ -368,127 +455,165 @@
                             <th>
                                 <span t-esc="tmp_divers"/>
                             </th>
-                            <th>Date Du B.L</th>
-                            <th>Fournisseur</th>
-                            <th>Description</th>
-                            <th>Prix Unitaie</th>
-                            <th>Coût</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
+
+                        <t t-set="tmp_cost_p_d" t-value="0"/>
+                        <t t-set="tmp_cost_t" t-value="0"/>
+                        <t t-set="tmp_cost_ta" t-value="0"/>
+                        <t t-set="tmp_cost_pl" t-value="0"/>
+                        <t t-set="tmp_cost_dh" t-value="0"/>
+                        <t t-set="tmp_cost_pr" t-value="0"/>
+                        <t t-set="tmp_cost_g" t-value="0"/>
+                        <t t-set="tmp_cost_a" t-value="0"/>
+                        <t t-set="tmp_cost_divers" t-value="0"/>
                         <t t-foreach="doc.fiche_ids" t-as="f">
+                            <t t-set="tmp_cost_p_d" t-value="tmp_cost_p_d + bilan_main_oeuvre(f)[3][0]"/>
+                            <t t-set="tmp_cost_t" t-value="tmp_cost_t + bilan_main_oeuvre(f)[3][1]"/>
+                            <t t-set="tmp_cost_ta" t-value="tmp_cost_ta + bilan_main_oeuvre(f)[3][2]"/>
+                            <t t-set="tmp_cost_pl" t-value="tmp_cost_pl + bilan_main_oeuvre(f)[3][3]"/>
+                            <t t-set="tmp_cost_dh" t-value="tmp_cost_dh + bilan_main_oeuvre(f)[3][4]"/>
+                            <t t-set="tmp_cost_pr" t-value="tmp_cost_pr + bilan_main_oeuvre(f)[3][5]"/>
+                            <t t-set="tmp_cost_g" t-value="tmp_cost_g + bilan_main_oeuvre(f)[3][6]"/>
+                            <t t-set="tmp_cost_a" t-value="tmp_cost_a + bilan_main_oeuvre(f)[3][7]"/>
+                            <t t-set="tmp_cost_divers" t-value="tmp_cost_divers + bilan_main_oeuvre(f)[3][8]"/>
+                        </t>
                         <tr>
                             <th colspan="2">COÛT DIRECT REAL</th>
                             <th>
                                 <t t-if="tmp_p_d != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][0]/tmp_p_d"/>
+                                    <span t-esc="tmp_cost_p_d/tmp_p_d"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_t != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][1]/tmp_t"/>
+                                    <span t-esc="tmp_cost_t/tmp_t"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_ta != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][2]/tmp_ta"/>
+                                    <span t-esc="tmp_cost_ta/tmp_ta"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_pl != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][3]/tmp_pl"/>
+                                    <span t-esc="tmp_cost_pl/tmp_pl"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_dh != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][4]/tmp_dh"/>
+                                    <span t-esc="tmp_cost_dh/tmp_dh"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_pr != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][5]/tmp_pr"/>
+                                    <span t-esc="tmp_cost_pr/tmp_pr"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_g != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][6]/tmp_g"/>
+                                    <span t-esc="tmp_cost_q/tmp_g"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_a != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][7]/tmp_a"/>
+                                    <span t-esc="tmp_cost_a/tmp_a"/>
                                 </t>
                             </th>
                             <th>
                                 <t t-if="tmp_divers != 0">
-                                <span t-esc="bilan_main_oeuvre(f)[3][8]/tmp_divers"/>
+                                    <span t-esc="tmp_cost_divers/tmp_divers"/>
                                 </t>
                             </th>
-                            <th>Date Du B.L</th>
-                            <th>Fournisseur</th>
-                            <th>Description</th>
-                            <th>Prix Unitaie</th>
-                            <th>Coût</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
-                        </t>
-                        <t t-foreach="doc.fiche_ids" t-as="f">
-                            <tr>
-
-                                <th colspan="2">TOT. TRAV INTERNE REAL</th>
-
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][0]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][1]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][2]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][3]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][4]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][5]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][6]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][7]"/>
-                                </th>
-                                <th>
-                                    <span t-esc="bilan_main_oeuvre(f)[3][8]"/>
-                                </th>
-
-                                <th>Date Du B.L</th>
-                                <th>Fournisseur</th>
-                                <th>Description</th>
-                                <th>Prix Unitaie</th>
-                                <th>Coût</th>
-                            </tr>
-                        </t>
+                        <tr>
+                            <th colspan="2">TOT. TRAV INTERNE REAL</th>
+                            <th>
+                                <span t-esc="tmp_cost_p_d"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_t"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_ta"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_pl"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_dh"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_pr"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_q"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_a"/>
+                            </th>
+                            <th>
+                                <span t-esc="tmp_cost_divers"/>
+                            </th>
+                            <th colspan="3">TOTALE SOUS TRAITANCE</th>
+                            <td colspan="2"></td>
+                        </tr>
                         <tr>
                             <th colspan="4">Montant devis accepté</th>
                             <th>
-                                <span t-field="doc.order_id.amount_total" t-field-options="{&quot;widget&quot;: &quot;False&quot;}"/>
+                                <span t-field="doc.order_id.amount_total"
+                                      t-field-options="{&quot;widget&quot;: &quot;False&quot;}"/>
                             </th>
                             <th colspan="5"></th>
-                            <th></th>
-                            <th colspan="4"></th>
-                            <th></th>
+                            <th colspan="4">FACTURES EMISES (A=Acompte; S=Solde; A.T)</th>
+                            <th colspan="2">NOTE</th>
                         </tr>
                         <tr>
                             <th colspan="4">Totale heures effectuées</th>
                             <th>
                                 <span t-esc="tmp_p_d + tmp_t + tmp_ta + tmp_pl + tmp_pl + tmp_dh + tmp_pr + tmp_g + tmp_a + tmp_divers"/>
                             </th>
-                            <th colspan="5"></th>
+                            <th rowspan="2" colspan="5"></th>
+                            <th rowspan="3" colspan="4"></th>
+                            <th rowspan="3" colspan="2"></th>
+
+                        </tr>
+                        <tr>
+                            <th colspan="4">Totale heures prévues</th>
                             <th></th>
-                            <th colspan="4"></th>
+
+                        </tr>
+
+                        <tr>
+                            <th colspan="4">Marge de contribution (sur devis)</th>
+                            
+                        </tr>
+                        <tr>
+                            <th colspan="4">COMMENTAIRES</th>
+                            <th colspan="10">selon commande innitiale</th>
+                            <th>VUE PB</th>
                             <th></th>
                         </tr>
+                        <tr>
+                            <th rowspan="2" colspan="4"></th>
+                            <th rowspan="2" colspan="10"></th>
+                            <th>IDEM</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>MODIF</th>
+                            <th></th>
+                        </tr>
+
                     </tbody>
                 </table>
                 <table>
