@@ -170,6 +170,38 @@ class WebsiteContractDarbtech(http.Controller):
         fiche = request.registry.get('fiche.chantier')
         _logger.info("POINTERfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff user = " + str(fiche))
         return {}
+		
+    @http.route('/getgantt', type='json', auth="user", website=True)
+    def ganttdatas(self, **kw):
+        gantclasses = []
+        i=0
+        tailleGantClasses=len(gantclasses)
+        i=(i+1)%tailleGantClasses
+
+        gantclasses[i]
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        #fiche = request.registry.get('fiche.chantier')
+        _logger.info("Ramene mon gantt data = ")
+        return [{
+                    'name': "Sprint 0",
+                    'desc': "Analysis",
+                    'values': [{
+                        'from': "/Date(1320192000000)/",
+                        'to': "/Date(1322401600000)/",
+                        'label': "Requirement Gathering", 
+                        'customClass': "ganttRed"
+                    }]
+                }, {
+                    'name': " ",
+                    'desc': "Warranty Period",
+                    'values': [{
+                        'from': "/Date(1336611200000)/",
+                        'to': "/Date(1349711200000)/",
+                        'label': "Warranty Period", 
+                        'customClass': "ganttOrange"
+                    }]
+                }]
 
     @http.route(['/chantierslist'], type='http', auth="user", website=True)
     def chantiers_liste(self, product_id=None):
