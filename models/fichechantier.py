@@ -197,6 +197,7 @@ class employees_subtasks(models.Model):
     fiche_chantier_subtask_id = fields.Many2one('fiche.chantier.subtasks', string='fcst', index=True, track_visibility='onchange')
     type = fields.Selection(types, copy=False,
                             string='Type', track_visibility='onchange')
+    time_cost = fields.Float(string="time cost",  required=False, related='employee.timesheet_cost',store = True )
 
 	#Check time : Start < End
 	#Check intersections between time

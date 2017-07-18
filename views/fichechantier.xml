@@ -505,6 +505,7 @@
                         <field name="heure_deb"/>
                         <field name="heure_fin"/>
 			            <field name="type"/>
+			            <field name="time_cost"/>
                     </group>
 				</form>
             </field>
