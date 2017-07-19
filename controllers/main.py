@@ -58,7 +58,10 @@ class WebsiteContractDarbtech(http.Controller):
         cr, uid, context = reqst.cr, reqst.uid, reqst.context
 
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
         machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
@@ -79,7 +82,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -121,7 +124,10 @@ class WebsiteContractDarbtech(http.Controller):
         elif param == 14: fiche_id.divers_ids = [(2, composant)]
         elif param == 15: fiche_id.terrasse_ids = [(2, composant)]
         elif param == 16: fiche_id.scloture_ids = [(2, composant)]
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
         machines = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_machine').id)])
@@ -142,7 +148,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -334,7 +340,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if veicule_id:
             fiche_id.veicule_ids = [(0, 0, {
                                     'vehicle_id': int(veicule_id),
@@ -363,7 +372,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -390,7 +399,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if materiel_id:
             fiche_id.materiel_ids = [(0, 0, {
                                     'materiel_id': int(materiel_id),
@@ -419,7 +431,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -446,7 +458,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if machine_id:
             fiche_id.machine_ids = [(0, 0, {
                                     'machine_id': int(machine_id),
@@ -475,7 +490,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -502,7 +517,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if fourniture_id:
             fiche_id.fourniture_ids = [(0, 0, {
                                     'fourniture_id': int(fourniture_id),
@@ -531,7 +549,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -557,7 +575,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if kit_id:
             fiche_id.kit_ids = [(0, 0, {
                                     'kit_id': int(kit_id),
@@ -586,7 +607,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -613,7 +634,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if tuteurage_id:
             fiche_id.tuteurage_ids = [(0, 0, {
                                     'tuteurage_id': int(tuteurage_id),
@@ -642,7 +666,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -669,7 +693,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if vigitaux_id:
             fiche_id.vigitaux_ids = [(0, 0, {
                                     'date': date,
@@ -699,7 +726,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -726,7 +753,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if engrais_id:
             fiche_id.engrais_ids = [(0, 0, {
                                     'engrais_id': int(engrais_id),
@@ -755,7 +785,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -782,7 +812,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if gazons_id:
             fiche_id.gazons_ids = [(0, 0, {
                                     'gazons_id': int(gazons_id),
@@ -811,7 +844,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -838,7 +871,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if gmateriel_id:
             fiche_id.gmateriel_ids = [(0, 0, {
                                     'gmateriel_id': int(gmateriel_id),
@@ -867,7 +903,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -894,7 +930,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if escalier_id:
             fiche_id.escalier_ids = [(0, 0, {
                                     'gazons_id': int(escalier_id),
@@ -923,7 +962,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -950,7 +989,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if outils_id:
             fiche_id.outils_ids = [(0, 0, {
                                     'outils_id': int(outils_id),
@@ -979,7 +1021,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -1006,7 +1048,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if cloture_id:
             fiche_id.cloture_ids = [(0, 0, {
                                     'cloture_id': int(cloture_id),
@@ -1035,7 +1080,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -1062,7 +1107,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if divers_id:
             fiche_id.divers_ids = [(0, 0, {
                                     'divers_id': int(divers_id),
@@ -1091,7 +1139,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -1118,7 +1166,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         if terrasse_id:
             fiche_id.terrasse_ids = [(0, 0, {
                                     'terrasse_id': int(terrasse_id),
@@ -1147,7 +1198,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -1174,7 +1225,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         _logger.info("Generated scloture_idscloture_idscloture_idscloture_idscloture_idscloture_id : " + str(scloture_id))
 		#check  required fields empty
         if scloture_id:
@@ -1207,7 +1261,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -1234,7 +1288,10 @@ class WebsiteContractDarbtech(http.Controller):
 
         error_message = []
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(employee)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
         dd = datetime.strptime(heure_deb,'%H:%M')
         df = datetime.strptime(heure_fin,'%H:%M')
@@ -1279,7 +1336,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
@@ -1306,7 +1363,10 @@ class WebsiteContractDarbtech(http.Controller):
         cr, uid, context, pool = request.cr, request.uid, request.context, request.registry
         _logger.info("Generated 111111111111111111111111111111111111111 : " + str(fiche))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
-        list_teams_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
 
         fiche_id.remarqs = comment
 
@@ -1330,7 +1390,7 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("Generated fiche_chantierRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR : " + str(fiche))
 
         return http.request.render('darb_puthod.ficheviewer', {
-            'teams': list_teams_id,
+            'teams': members_employee,
             'fiche': fiche_id,
             'vehicles': vehicles,
             'materiels': materiels,
