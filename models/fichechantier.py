@@ -384,10 +384,15 @@ class fiche_chantier(models.Model):
         readonly=True, required=False,
         states={'confirmed': [('readonly', False)]}, default=_get_default_uom_id)
 
-    @api.onchange('equipe_id')
-    def _onchange_equipe_id(self):
-        if self.equipe_id:
-            self.user_id = self.equipe_id.manager.user_id
+
+    user_id = fields.Many2one('res.users', 'Responsible', compute="_compute_user")
+
+    @api.multi
+    @api.depends('equipe_id.manager.user_id')
+    def _compute_user(self):
+        for record in self:
+            if record.equipe_id:
+                record.user_id = record.equipe_id.manager.user_id
 
     state = fields.Selection([
         ('draft', 'A remplir'),
