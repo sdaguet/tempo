@@ -419,6 +419,9 @@
             <xpath expr="//tr[@class='active']/td" position="attributes">
                 <attribute name="colspan">8</attribute>
             </xpath>
+			<xpath expr="//tr[@class='active']/td" position="attributes">
+                <attribute name="style">font-weight: bold; border-bottom: 1px solid black;border:thin solid #323232</attribute>
+            </xpath>
 
         </template>
 
