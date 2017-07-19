@@ -869,14 +869,14 @@
 												<th>Modifier</th>
 											</tr>
 										</thead>
-										<t t-foreach="fiche.outils_ids" t-as="outils">
+										<t t-foreach="fiche.outils_ids" t-as="outilss">
 											<tr>
-											<td><span t-field="outils.outils_id.name" class="vname" />
+											<td><span t-field="outilss.outils_id.name" class="vname" />
 											</td>
-											<td><span t-field="outils.quantity" class="kname"/>
+											<td><span t-field="outilss.quantity" class="kname"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{outils.id}/12" class="btn btn-primary vedit">Supprimer</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{outilss.id}/12" class="btn btn-primary vedit">Supprimer</a>
 											</td>
 
 											</tr>
@@ -981,14 +981,14 @@
 												<th>Modifier</th>
 											</tr>
 										</thead>
-										<t t-foreach="fiche.divers_ids" t-as="divers">
+										<t t-foreach="fiche.divers_ids" t-as="diverss">
 											<tr>
-											<td><span t-field="divers.divers_id.name" class="vname" />
+											<td><span t-field="diverss.divers_id.name" class="vname" />
 											</td>
-											<td><span t-field="divers.quantity" class="kname"/>
+											<td><span t-field="diverss.quantity" class="kname"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{divers.id}/14" class="btn btn-primary vedit">Supprimer</a>
+												<a t-attf-href="/ficheslist/#{fiche.id}/#{diverss.id}/14" class="btn btn-primary vedit">Supprimer</a>
 											</td>
 
 											</tr>
