@@ -354,7 +354,11 @@
 
          </div>
             </xpath>
+			    <xpath expr="//div[@class='header']" position="inside">
+					<div t-if="doc.name">Ref.: <span t-field="doc.name"/></div>
+				</xpath>
         </template>
+		
        
        <template id="new_footer" inherit_id="report.external_layout_footer">
             <xpath expr="//div[@class='footer']" position="replace">
