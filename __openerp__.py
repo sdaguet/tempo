@@ -20,10 +20,10 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'account','calendar',
+    'depends': ['base', 'sale', 'account','calendar','stock',
 	            'account_accountant', 'hr', 'mrp',
                 'website',
-                'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet',
+                'sale_layout', 'hr_timesheet','hr_attendance', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet',
 				'website_customer_order_delivery_date',
                 'manufacturing_google_maps'
                 ],
