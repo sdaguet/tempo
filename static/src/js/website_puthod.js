@@ -46,5 +46,6 @@ odoo.define('darb_puthod.responsivejson', function(require) {
         }else{
         console.log(text_value);
         }
-});
+	});
+	
 });
