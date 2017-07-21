@@ -70,7 +70,8 @@
 								<th>Presence</th>
 							</tr>
 						</thead>
-						<t t-foreach="teams" t-as="membr">
+						<t t-foreach="teams" t-as="team">
+							<t t-foreach="team.ressource_list" t-as="membr">
 							<tr>
 							<td><span t-att-value="membr.id" class="membrid" t-field="membr.name"/>
 							</td>
@@ -81,7 +82,7 @@
 								<a t-attf-href="#" class="btn btn-primary depointer">Absent</a>
 							</td>
 							</tr>
-						</t>
+						</t></t>
 						</table>
 					</div>
 					<div class="col-md-4 mb32">
@@ -677,7 +678,7 @@
 										<thead>
 											<tr class="active">
 												<th>Engrais</th>
-												<th>Qté/tps</th>
+												<th>Qté</th>
 												<th>Modifier</th>
 											</tr>
 										</thead>
@@ -725,7 +726,7 @@
 										<thead>
 											<tr class="active">
 												<th>Gazons</th>
-												<th>Qté/tps</th>
+												<th>Qté</th>
 												<th>Modifier</th>
 											</tr>
 										</thead>
@@ -815,7 +816,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Escalier/Muret bois</h3>
+								<h3 class="panel-title">Construction Bois</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
@@ -828,7 +829,7 @@
 										<table class="table table-hover status_table">
 										<thead>
 											<tr class="active">
-												<th>Escalier/Muret bois</th>
+												<th>Construction Bois</th>
 												<th>Qté</th>
 												<th>Modifier</th>
 											</tr>
