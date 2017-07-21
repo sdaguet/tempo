@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<template id="assets_backend" name="puthod assets" inherit_id="web.assets_backend">
-		<xpath expr="." position="inside">
+	<template id="assets_frontend" name="Theme frontend assets" inherit_id="website.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet"
+					href="/darb_puthod/static/src/less/muk_web_glyphicons.less" type="text/less"/>			
+        </xpath>
+		<xpath expr="//script[last()]" position="inside">
 			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
-			<link rel="stylesheet"
-					href="/darb_puthod/static/src/less/muk_web_glyphicons.less" />
+			
 		</xpath>
-	</template>
+    </template>
 
     <template id="header" inherit_id="website.layout" name="Chantiers Ouverts">
 	  <xpath expr="//header//ul[@id='top_menu']/li" position="before">
@@ -67,8 +70,7 @@
 								<th>Presence</th>
 							</tr>
 						</thead>
-						<t t-foreach="teams" t-as="team">
-							<t t-foreach="team.ressource_list" t-as="membr">
+						<t t-foreach="teams" t-as="membr">
 							<tr>
 							<td><span t-att-value="membr.id" class="membrid" t-field="membr.name"/>
 							</td>
@@ -79,7 +81,6 @@
 								<a t-attf-href="#" class="btn btn-primary depointer">Absent</a>
 							</td>
 							</tr>
-							</t>
 						</t>
 						</table>
 					</div>
@@ -95,7 +96,14 @@
 
 	<template id="ficheviewer" name="Saisie Chantier">
 		<t t-call="website.layout">
-			<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+			<script type="text/javascript" src="/darb_puthod/static/src/js/jquery.fn.gantt.js"></script>
+			<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
+			<script type="text/javascript" src="/darb_puthod/static/src/js/gantt_puthod.js"></script>
+			<!-- <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script> -->
+			<!-- <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script> -->
+			<link rel="stylesheet" href="http://taitems.github.com/UX-Lab/core/css/prettify.css"/>
+			<link rel="stylesheet" type="text/css" href="/darb_puthod/static/src/css/ganttstyle.css"/>
+			<link rel="stylesheet" type="text/css" href="/darb_puthod/static/src/css/font-awesome.min.css" />
 			<div class="container">
 				<!-- check errers msg (times, required fields)-->
 				<div class="col-md-12">
@@ -104,6 +112,18 @@
 				  </div>
 				</div>
 				<div class="row">
+					<div class="col-md-14">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Gantt Employés</h3>
+								<span class="pull-right clickable ganttshowme"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+								<div><span id="ganttx" class="fiechce" t-field="fiche.id"/></div>
+								<div class="gantt"></div>
+							</div>
+						</div>
+					</div>
 					<div class="col-md-14">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -1421,7 +1441,7 @@
 					<div class="col-md-8">
 						<div class="oe_structure">
 							<div>
-								<p>Vous pouvez .......</p>
+								<p>.</p>
 							</div>
 						</div>
 						<table class="table table-hover status_table">

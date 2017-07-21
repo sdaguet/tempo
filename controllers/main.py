@@ -176,20 +176,24 @@ class WebsiteContractDarbtech(http.Controller):
         fiche = request.registry.get('fiche.chantier')
         _logger.info("POINTERfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff user = " + str(fiche))
         return {}
-		
-    @http.route('/getgantt', type='json', auth="user", website=True)
-    def ganttdatas(self, **kw):
-        gantclasses = []
+        
+    @http.route('/getgantt/<fiche>', type='json', auth="user", website=True)
+    def ganttdatas(self, fiche, **kw):
+        gantclasses = ["ganttRed","ganttGreen","ganttOrange"]
         i=0
         tailleGantClasses=len(gantclasses)
-        i=(i+1)%tailleGantClasses
+        
 
-        gantclasses[i]
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        #fiche = request.registry.get('fiche.chantier')
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
         _logger.info("Ramene mon gantt data = ")
-        return [{
+        members = list_teams.ressource_list.ids
+        members.append(list_teams.manager.id)
+        members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
+        
+        rezult = [{
                     'name': "Sprint 0",
                     'desc': "Analysis",
                     'values': [{
@@ -208,7 +212,31 @@ class WebsiteContractDarbtech(http.Controller):
                         'customClass': "ganttOrange"
                     }]
                 }]
-
+                
+        for mbr in members_employee:
+            elmt = {
+                'name': mbr.name,
+                'desc': "",
+                'values': []
+            }
+            
+            item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(mbr.id)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
+            for itm in item_ids:
+                hdeb = itm.heure_deb
+                hfin = itm.heure_fin
+                if len(hfin) == 4 : hfin = '0' + hfin
+                if len(hdeb) == 4 : hdeb = '0' + hdeb
+                elmt['values'].append({
+                    'from' : hdeb,
+                    'to' : hfin,
+                    'label' : itm.type,
+                    'customClass' : gantclasses[i],
+                })
+                i=(i+1)%tailleGantClasses
+            rezult.append(elmt)
+        return rezult
+    
+    
     @http.route(['/chantierslist'], type='http', auth="user", website=True)
     def chantiers_liste(self, product_id=None):
         user = request.env.user
@@ -1230,7 +1258,7 @@ class WebsiteContractDarbtech(http.Controller):
         members.append(list_teams.manager.id)
         members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
         _logger.info("Generated scloture_idscloture_idscloture_idscloture_idscloture_idscloture_id : " + str(scloture_id))
-		#check  required fields empty
+        #check  required fields empty
         if scloture_id:
             _logger.info("Generated IFFFFFFFFFFFFFFFFFFFFFFFFFFFF : " + str(scloture_id))
             fiche_id.scloture_ids = [(0, 0, {
@@ -1239,7 +1267,7 @@ class WebsiteContractDarbtech(http.Controller):
                                         })]
         else:
             error_message.append(_(u'Certains champs obligatoires sont vides.'))
-		#/check  required fields empty
+        #/check  required fields empty
 
         vehicles = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_vehicle').id)])
         materiels = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_materiel').id)])
@@ -1295,16 +1323,16 @@ class WebsiteContractDarbtech(http.Controller):
         item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(employee)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
         dd = datetime.strptime(heure_deb,'%H:%M')
         df = datetime.strptime(heure_fin,'%H:%M')
-		#Check time : Start < End 
+        #Check time : Start < End 
         if dd > df:
             error_message.append(_(u"Heure début > Heure fin !"))
-		#Check intersections between time
+        #Check intersections between time
         for item in item_ids:
             idd = datetime.strptime(item.heure_deb,'%H:%M')
             idf = datetime.strptime(item.heure_fin,'%H:%M')
             if (df > idd and df < idf) or (dd > idd and dd < idf) or (dd > idd and df < idf) or (dd < idd and df > idf):
                 error_message.append(_(u"Intersection entre plages horaires !"))
-		#/Check intersections between time
+        #/Check intersections between time
         if error_message == []:
             vals = {
                     'employee': employee,
