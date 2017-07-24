@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
+# coding: utf8
 from openerp import fields, models, api, _
 import logging
 _logger = logging.getLogger(__name__)
@@ -85,7 +86,7 @@ class TmpArticle(models.Model):
     PCB_Article = fields.Char("PCB Artifcle")
     Origine = fields.Char("Origine")
     Prix_ref_marge = fields.Char("Prix ref marge")
-    code_barre = fields.Char("code barre")
+    # code_barre = fields.Char("code barre")
     Gestion_de_Facteur = fields.Char("Gestion de Facteur")
     Code_Facteur = fields.Char("Code Facteur")
     Remplace_par = fields.Char("Remplacé par")
@@ -114,7 +115,7 @@ class TmpArticle(models.Model):
         if Nom_francais:
             Nom_francais = Nom_francais
         else:
-            Nom_francais = " "
+            Nom_francais = ""
         tarif = float(values.get('tarif'))
         Code_Barre = values.get('Code_Barre')
         Poids_Brut = float(values.get('Poids_Brut'))
