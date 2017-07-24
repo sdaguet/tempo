@@ -6,7 +6,6 @@
 					href="/darb_puthod/static/src/less/muk_web_glyphicons.less" type="text/less"/>			
         </xpath>
 		<xpath expr="//script[last()]" position="inside">
-			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
 			
 		</xpath>
     </template>
@@ -51,6 +50,7 @@
 	<template id="pointages" name="Pointage des Equipes" page="True">
 		<t t-call="website.layout">
 
+		<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod.js"></script>
 		  <div id="wrap">
 			<div class="oe_structure"/>
 			<div class="container">
@@ -78,8 +78,8 @@
 							<td><span class="teamname" t-field="team.name"/>
 							</td>
 							<td>
-								<a t-attf-href="#" class="btn btn-primary pointer">Present</a>
-								<a t-attf-href="#" class="btn btn-primary depointer">Absent</a>
+								<a class="btn btn-primary pointer">Present</a>
+								<a class="btn btn-primary depointer">Absent</a>
 							</td>
 							</tr>
 						</t></t>
