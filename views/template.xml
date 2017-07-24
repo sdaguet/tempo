@@ -44,8 +44,43 @@
 	              Equipes
 	          </a>
 	      </li>
+	      
+          <li>
+	          <a href="/testajax">
+	              <i class="fa"></i>
+	              AJAX
+	          </a>
+	      </li>
 	  </xpath>
     </template>
+    
+	<template id="testajax" name="AJAX" page="True">
+		<t t-call="website.layout">
+
+		<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod_ajax.js"></script>
+		  <div id="wrap">
+			<div class="oe_structure"/>
+			<div class="container">
+				<h1>Ajax</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="oe_structure">
+							<div>
+								<p class="tesxt">Vous pouvez marquer un NOM ci-après.</p>
+								<input name="nom" type="char" class="kname"/>
+								<a class="btn btn-primary ajaxi">Present</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 mb32">
+						<t t-call="website.company_description"/>
+					</div>
+				</div>
+			</div>
+			<div class="oe_structure"/>
+		  </div>
+		</t>
+	</template>
 
 	<template id="pointages" name="Pointage des Equipes" page="True">
 		<t t-call="website.layout">
@@ -97,6 +132,7 @@
 
 	<template id="ficheviewer" name="Saisie Chantier">
 		<t t-call="website.layout">
+			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod_fiche.js"></script>
 			<script type="text/javascript" src="/darb_puthod/static/src/js/jquery.fn.gantt.js"></script>
 			<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
 			<script type="text/javascript" src="/darb_puthod/static/src/js/gantt_puthod.js"></script>
@@ -274,10 +310,6 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/add/vehicles" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
-          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
-
 									<!--- DEBUT BOUCLE -->
 									<div class="form-group form-field">
 										<table class="table table-hover status_table">
@@ -302,7 +334,7 @@
 										</t>
 										<tr>
 										<td>
-					                      <select name="veicule_id" class="form-control">
+					                      <select id="vehicle_id" name="veicule_id" class="form-control">
 					                          <option value="">Véhicules...</option>
 					                          <t t-foreach="vehicles or []" t-as="vehicle">
 					                              <option t-att-value="vehicle.id"><t t-esc="vehicle.name"/></option>
@@ -312,14 +344,13 @@
 										<td><input name="km" type="float" class="kname"/>
 										</td>
 										<td>
-											<button name="submit" type="submit" > Ajouter </button>
+											<a class="btn btn-primary addvehicles">Present</a>
 										</td>
 
 										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-								</form>
 							</div>
 						</div>
 					</div>					

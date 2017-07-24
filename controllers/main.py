@@ -22,6 +22,7 @@ class WebsiteContractDarbtech(http.Controller):
                 [
                     ('manager', 'in', current_employee.ids)
                 ])
+        _logger.info("Current teams = " + str(list_teams))
 
         return http.request.render('darb_puthod.pointages', {
             'teams' : list_teams
@@ -32,6 +33,25 @@ class WebsiteContractDarbtech(http.Controller):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
         employes = request.registry.get('hr.employee')
+        _logger.info("POINTER user = " + str(uid))
+
+        return {}
+
+    @http.route('/testajax', type='http', auth="user", website=True)
+    def testajax(self, **kw):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.registry.get('hr.employee')
+        _logger.info("POINTER user = " + str(uid))
+
+        return http.request.render('darb_puthod.testajax', {
+                })
+
+    @http.route(['/ajaxi'], type='json', auth="user", website=True)
+    def ajaxi(self, fiche):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.env['emplacement'].create({'name': fiche})
         _logger.info("POINTER user = " + str(uid))
 
         return {}
