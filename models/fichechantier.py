@@ -396,11 +396,10 @@ class fiche_chantier(models.Model):
 
     state = fields.Selection([
         ('draft', 'A remplir'),
-        ('cancel', 'Annulé'),
-        ('confirmed', 'Rempli. A valider'),
+        ('confirmed', 'Envoyé. A valider'),
         ('ready', 'Validé. A comptabiliser'),
         ('in_production', 'Comptabilisé'),
-        ('done', 'Terminé')], default='draft', copy=False,
+        ('done', 'Terminé'),('cancel', 'Annulé')], default='draft', copy=False,
         string='Status FC', readonly=True, track_visibility='onchange')
 	#change inter_date from datetime to date
     termine = fields.Boolean(string=u"Chantier Terminé", default=False)

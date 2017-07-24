@@ -9,14 +9,14 @@
             <field name="arch" type="xml">
                 <form string="Manufacturing Orders">
                 <header>
-                  <button name="action_confirm" type="object" states="draft" string="Valider" class="oe_highlight"/>
+                  <button name="action_confirm" type="object" states="draft" string="Envoyer" class="oe_highlight"/>
                   <button name="moves_ready" type="object" states="confirmed" string="Valider" class="oe_highlight"/>
-                  <button name="button_back" type="object" states="confirmed" string="Retour" class="oe_highlight"/>
+                  <button name="button_back" type="object" states="confirmed" string="Retour"/>
                   <button name="button_produce" type="object" states="ready" string="Comptabiliser" class="oe_highlight" />
                   <button name="button_done" type="object" states="in_production" string="Terminé" class="oe_highlight"/>
                   <button name="button_cancel" type="object" states="draft,confirmed,ready,in_production" string="Annuler" />
 
-                  <field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,confirmed,done" statusbar_colors='{"draft":"blue"}'/>
+                  <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors='{"cancel":"red","draft":"blue"}'/>
                 </header>
                 <sheet>
                     <div class="oe_title">
