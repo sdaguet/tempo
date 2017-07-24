@@ -87,7 +87,6 @@
                             <field name="PCB_Article"/>
                             <field name="Origine"/>
                             <field name="Prix_ref_marge"/>
-                            <field name="code_barre"/>
                             <field name="Gestion_de_Facteur"/>
                             <field name="Code_Facteur"/>
                             <field name="Remplace_par"/>
