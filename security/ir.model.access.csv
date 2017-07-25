@@ -1,3 +1,14 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fiche_chantier_chef,Chef fiche chantier,model_fiche_chantier,group_chef_chantier,1,1,1,1
-access_equipe_chef,Chef equipe,model_equipe,group_chef_chantier,1,0,0,0
+access_fiche_chantier_chef,Chef.fiche.chantier,model_fiche_chantier,group_chef_chantier,1,1,1,1
+access_equipe_chef,Chef.equipe,model_equipe,group_chef_chantier,1,0,0,0
+
+access_fiche_chantier_directeur,Directeur.fiche.chantier.directeur,model_fiche_chantier,group_directeur,1,1,1,1
+access_chantier_directeur,Directeur.chantier.directeur,model_chantier,group_directeur,1,1,1,1
+access_equipe_directeur,Directeur.equipe,model_equipe,group_directeur,1,1,1,1
+
+access_calendar_event_directeur,Directeur.calendar.event,model_calendar_event,group_directeur,1,1,1,1
+access_res_partner_directeur,Directeur.res.partner,model_res_partner,group_directeur,1,0,0,0
+access_sale_order_directeur,Directeur.sale.order,sale.model_sale_order,group_directeur,1,1,1,1
+access_product_emplacement_directeur,Directeur.product.emplacement,model_product_emplacement,group_directeur,1,1,1,1
+access_hr_employee_directeur,Directeur.hr.employee,model_hr_employee,group_directeur,1,1,0,0
+access_hr_attendance_directeur,Directeur.hr.attendance,hr_attendance.model_hr_attendance,group_directeur,1,1,0,0
