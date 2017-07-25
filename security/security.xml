@@ -16,7 +16,7 @@
 	        <field name="name">Administration</field>
 	        <field name="category_id" ref="module_category_puthod"/>
 	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" />
+			<field name="implied_ids" eval="[(4, ref('base.group_sale_manager')),(4, ref('account.group_account_invoice'))]"/>
 	        <field name="comment">Administration.</field>
    		</record>
 
@@ -24,7 +24,7 @@
 	        <field name="name">Vente</field>
 	        <field name="category_id" ref="module_category_puthod"/>
 	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('group_administration'))]" />
+			<field name="implied_ids" eval="[(4, ref('group_administration'))]"/>
 	        <field name="comment">Vente.</field>
    		</record>
 
@@ -40,7 +40,7 @@
 	        <field name="name">Comptabilité</field>
 	        <field name="category_id" ref="module_category_puthod"/>
 	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('group_administration'))]" />
+			<field name="implied_ids" eval="[(4, ref('account.group_account_manager')),(4, ref('group_administration'))]"/>
 	        <field name="comment">Comptabilité.</field>
    		</record>
 
@@ -80,10 +80,11 @@
 	    </record>
 
 	   	<!-- Menus access -->
-	    <record model="ir.ui.menu" id="darb_puthod.menu_root"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_1"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_10"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_1_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_101_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_root"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_1"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_10"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_1_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="darb_puthod.menu_101_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
+	    <record model="ir.ui.menu" id="hr_attendance.menu_hr_attendance_root"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
 	</data>
 </openerp>
