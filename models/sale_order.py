@@ -19,7 +19,7 @@ class sale_order(models.Model):
         ('amenagement', 'Aménagement'),
         ('plantation', 'Plantation')],
         string='Type', track_visibility='onchange')
-    altitude = fields.Float(string='Altitude', digits=(3, 12))
+    altitude = fields.Float(string='Altitude', digits=(3, 0))
     item_url = fields.Char('View Item')
     iframe = fields.Html('Embedded Webpage', compute='_compute_iframe', sanitize=False, strip_style=False)
 
