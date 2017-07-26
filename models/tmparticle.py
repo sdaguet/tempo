@@ -106,6 +106,10 @@ class TmpArticle(models.Model):
     N_Article_Totalisateur = fields.Char("N° Article Totalisateur")
     Article_Financier = fields.Char("Article Financier")
 
+    _sql_constraints = [
+        ('N_Article_uniq', 'unique(N_Article)', _("A N_Article can only be assigned to one product !")),
+    ]
+
     @api.model
     def create(self, values):
         record = super(TmpArticle, self).create(values)
@@ -116,7 +120,26 @@ class TmpArticle(models.Model):
             Nom_francais = Nom_francais
         else:
             Nom_francais = ""
+
+        Libelle_commercial = values.get('Libelle_commercial')
+        print "Libelle_commercial"
+        print Libelle_commercial
+        if Libelle_commercial:
+            Libelle_commercial = Libelle_commercial
+        else:
+            Libelle_commercial = ""
+
+        Taille = values.get('Taille')
+        print "Taille"
+        print Taille
+        if Taille:
+            Taille = Taille
+        else:
+            Taille = ""
+
+
         tarif = float(values.get('tarif'))
+        Prix_Etiquette = float(values.get('Prix_Etiquette'))
         Code_Barre = values.get('Code_Barre')
         Poids_Brut = float(values.get('Poids_Brut'))
         N_Article = int(values.get('N_Article'))
@@ -156,7 +179,7 @@ class TmpArticle(models.Model):
             'cost_method': False,
             'valuation': False,
             'image_medium': False,
-            'name': Nom_francais,# name
+            'name': Libelle_commercial + " " + Taille + " - " +Nom_francais,# name
             'property_account_expense_id': False,
             #'categ_id': 1,
             'packaging_ids': [],
@@ -164,7 +187,7 @@ class TmpArticle(models.Model):
             #'taxes_id': [[6, False, [6]]],
             'property_stock_account_output': False,
             'seller_ids': [],
-            'list_price': tarif , #tarif
+            'list_price': Prix_Etiquette , #Prix_Etiquette
             # 'barcode': Code_Barre , #Code_Barre
             'weight' : Poids_Brut , #Poids_Brut
             }
