@@ -81,7 +81,7 @@
         </record>
 		
 		<record id="product_MaterialPelleLocation" model="product.product">
-            <field name="name">Pelle Location</field>
+            <field name="name">Pelle location</field>
             <field name="categ_id" ref="darb_puthod.product_category_materiel"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -103,7 +103,7 @@
         </record>
 		
 		<record id="product_MaterialMachineLocation" model="product.product">
-            <field name="name">Machine Location</field>
+            <field name="name">Machine location</field>
             <field name="categ_id" ref="darb_puthod.product_category_materiel"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -270,7 +270,7 @@
 		
 		<!-- produit de type Fournitures de plantation -->
 		<record id="product_FournitureCaisseDeSubstrat" model="product.product">
-            <field name="name">Caisse de substrat(50L)</field>
+            <field name="name">Caisse de substrat (50L)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -281,7 +281,7 @@
         </record>
 		
 		<record id="product_FournitureSacdesubstrat" model="product.product">
-            <field name="name">Sac de substrat(70L)</field>
+            <field name="name">Sac de substrat (70L)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -292,7 +292,7 @@
         </record>
 		
 		<record id="product_FournitureSacdeterreaujardiniere" model="product.product">
-            <field name="name">Sac de terreau jardinière(70L)</field>
+            <field name="name">Sac de terreau jardinière (70L)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -303,7 +303,7 @@
         </record>
 		
 		<record id="product_FournitureBigBagdeterreau" model="product.product">
-            <field name="name">Big Bag de terreau(2.50 m&#179;)</field>
+            <field name="name">Big Bag de terreau (2.50 m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -314,7 +314,7 @@
         </record>
 		
 		<record id="product_FournitureSacdeBiofertil25kg" model="product.product">
-            <field name="name">Sac de Biofertil(25kg)</field>
+            <field name="name">Sac de Biofertil (25kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -325,7 +325,7 @@
         </record>
 		
 		<record id="product_FournitureSac de Biofertil10kg" model="product.product">
-            <field name="name">Sac de Biofertil(10kg)</field>
+            <field name="name">Sac de biofertil (10kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -336,7 +336,7 @@
         </record>
 		
 		<record id="product_FournitureSac de BiofertilBB" model="product.product">
-            <field name="name">Sac de Biofertil(BB 500kg)</field>
+            <field name="name">Sac de biofertil (BB 500kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -358,7 +358,7 @@
         </record>
 		
 		<record id="product_FournitureMulchdecoco" model="product.product">
-            <field name="name">Mulch de coco(70L)(+fin)</field>
+            <field name="name">Mulch de coco (70L) (+fin)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -391,7 +391,7 @@
         </record>
 		
 		<record id="product_FournitureBalledeTourbe" model="product.product">
-            <field name="name">Balle de Tourbe(sac de 250L)</field>
+            <field name="name">Balle de tourbe (sac de 250L)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -402,7 +402,7 @@
         </record>
 		
 		<record id="product_FournitureTerreVegetale" model="product.product">
-            <field name="name">Terre Végétale (le m&#179;)</field>
+            <field name="name">Terre végétale (le m&#179;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -413,7 +413,7 @@
         </record>
 		
 		<record id="product_FournitureBacjardiniere" model="product.product">
-            <field name="name">Bac/jardinière</field>
+            <field name="name">Bac / jardinière</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -424,7 +424,7 @@
         </record>
 		
 		<record id="product_FourniturePouzzolane" model="product.product">
-            <field name="name">Pouzzolane(la caisse 50L)</field>
+            <field name="name">Pouzzolane (la caisse 50L)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -435,7 +435,7 @@
         </record>
 		
 		<record id="product_FournitureGeotextile" model="product.product">
-            <field name="name">Géotextile (=bidim)(m&#178;)</field>
+            <field name="name">Géotextile (=bidim) (m&#178;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_fourniture"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -458,7 +458,7 @@
 		
 		<!-- produit de type Kits RKBS -->
 		<record id="product_KitKit40" model="product.product">
-            <field name="name">Kit40(jaune)</field>
+            <field name="name">Kit 40 (jaune)</field>
             <field name="categ_id" ref="darb_puthod.product_category_kit"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -469,7 +469,7 @@
         </record>
 		
 		<record id="product_KitKit68courtbleu" model="product.product">
-            <field name="name">Kit68 court(bleu)</field>
+            <field name="name">Kit 68 court (bleu)</field>
             <field name="categ_id" ref="darb_puthod.product_category_kit"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -480,7 +480,7 @@
         </record>
 		
 		<record id="product_KitKit68longbleu" model="product.product">
-            <field name="name">Kit68 long(bleu)</field>
+            <field name="name">Kit 68 long (bleu)</field>
             <field name="categ_id" ref="darb_puthod.product_category_kit"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -491,7 +491,7 @@
         </record>
 		
 		<record id="product_KitKit88courtrouge" model="product.product">
-            <field name="name">Kit88 court(rouge)</field>
+            <field name="name">Kit 88 court (rouge)</field>
             <field name="categ_id" ref="darb_puthod.product_category_kit"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -502,7 +502,7 @@
         </record>
 		
 		<record id="product_KitKit88longrouge" model="product.product">
-            <field name="name">Kit88 long(rouge)</field>
+            <field name="name">Kit 88 long (rouge)</field>
             <field name="categ_id" ref="darb_puthod.product_category_kit"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -524,7 +524,7 @@
             <field name="company_id" eval="[]"/>
         </record>
 		
-		<record id="product_tuteuragePerchettes1m50" model="product.product">
+		<record id="product_tuteuragePerchettees1m50" model="product.product">
             <field name="name">Perchettes 1m50</field>
             <field name="categ_id" ref="darb_puthod.product_category_tuteurage"/>
             <field name="type">service</field>
@@ -534,6 +534,7 @@
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="company_id" eval="[]"/>
         </record>
+		
 		
 		<record id="product_tuteuragePerchettes1m50" model="product.product">
             <field name="name">Perchettes 1m75</field>
@@ -647,7 +648,7 @@
 		
 		<!-- produit de type Engrais -->
 		<record id="product_engraisHumigreenClassic" model="product.product">
-            <field name="name">Humigreen Classic(Sac 25 Kg)</field>
+            <field name="name">Humigreen classic (Sac 25 Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_engrais"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -658,7 +659,7 @@
         </record>
 		
 		<record id="product_engraisMultigreenMagic" model="product.product">
-            <field name="name">Multigreen Magic 20/9/20(Kg)</field>
+            <field name="name">Multigreen magic 20/9/20 (Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_engrais"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -669,7 +670,7 @@
         </record>
 		
 		<record id="product_engraisMultigreen" model="product.product">
-            <field name="name">Multigreen 20/9/20(Sac 25 Kg)</field>
+            <field name="name">Multigreen 20/9/20 (Sac 25 Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_engrais"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -680,7 +681,7 @@
         </record>
 		
 		<record id="product_engraisMultigreenEvolution" model="product.product">
-            <field name="name">Multigreen Evolution 12/5/38(Kg)</field>
+            <field name="name">Multigreen evolution 12/5/38 (Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_engrais"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -714,7 +715,7 @@
 		
 		<!-- produit de type Gazons -->
 		<record id="product_gazonsGP100lekilo" model="product.product">
-            <field name="name">GP 100(le kilo)</field>
+            <field name="name">GP 100 (le kilo)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -725,7 +726,7 @@
         </record>
 		
 		<record id="product_gazonsGP100lesacde15Kgs" model="product.product">
-            <field name="name">GP 100(le sac de 15 Kgs)</field>
+            <field name="name">GP 100 (le sac de 15 Kgs)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -736,7 +737,7 @@
         </record>
 		
 		<record id="product_gazonsE10ExGP160lekilo" model="product.product">
-            <field name="name">E10 (Ex GP 160)(le kilo)</field>
+            <field name="name">E10 (Ex. GP 160)(le kilo)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -758,7 +759,7 @@
         </record>
 		
 		<record id="product_gazonsA40BeautyOmbre" model="product.product">
-            <field name="name">A40 Beauty Ombre(sac 15 Kg)</field>
+            <field name="name">A40 beauty ombre (sac 15 Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -769,7 +770,7 @@
         </record>
 		
 		<record id="product_gazonsA50BeautyAgrement" model="product.product">
-            <field name="name">A50 Beauty Agrement(le kilo)</field>
+            <field name="name">A50 beauty agrement (le kilo)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -791,7 +792,7 @@
         </record>
 		
 		<record id="product_gazonsJohnsonSimply" model="product.product">
-            <field name="name">Johnson Simply Espace vert (Kg)</field>
+            <field name="name">Johnson Simply espace vert (Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -812,8 +813,8 @@
             <field name="company_id" eval="[]"/>
         </record>
 		
-		<record id="product_gazonsMINIFLORA" model="product.product">
-            <field name="name">MINIFLORA (gazon fleuri)(le Kg)</field>
+		<record id="product_gazonsMINIFLORAA" model="product.product">
+            <field name="name">MINIFLORA (gazon fleuri) (le Kg)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -858,7 +859,7 @@
         </record>
 		
 		<record id="product_gazonsGazonPlaque" model="product.product">
-            <field name="name">Gazon Plaqué (le m&#178;)</field>
+            <field name="name">Gazon plaqué (le m&#178;)</field>
             <field name="categ_id" ref="darb_puthod.product_category_gazons"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
@@ -1192,7 +1193,7 @@
         </record>
 		
 		<record id="product_outilsscieportative" model="product.product">
-            <field name="name">scie portative</field>
+            <field name="name">Scie portative</field>
             <field name="categ_id" ref="darb_puthod.product_category_outils"/>
             <field name="type">service</field>
             <field name="list_price">0.0</field>
