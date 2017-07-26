@@ -1,3 +1,40 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fiche_chantier_chef,Chef fiche chantier,model_fiche_chantier,group_chef_chantier,1,1,1,1
-access_equipe_chef,Chef equipe,model_equipe,group_chef_chantier,1,0,0,0
+access_fiche_chantier_chef,Chef.fiche.chantier,model_fiche_chantier,group_chef_chantier,1,1,1,1
+access_equipe_chef,Chef.equipe,model_equipe,group_chef_chantier,1,0,0,0
+
+access_fiche_chantier_directeur,Directeur.fiche.chantier.directeur,model_fiche_chantier,group_directeur,1,1,1,1
+access_chantier_directeur,Directeur.chantier.directeur,model_chantier,group_directeur,1,1,1,1
+access_equipe_directeur,Directeur.equipe,model_equipe,group_directeur,1,1,1,1
+access_calendar_event_directeur,Directeur.calendar.event,model_calendar_event,group_directeur,1,1,1,1
+access_res_partner_directeur,Directeur.res.partner,model_res_partner,group_directeur,1,0,0,0
+access_sale_order_directeur,Directeur.sale.order,sale.model_sale_order,group_directeur,1,1,1,1
+access_product_emplacement_directeur,Directeur.product.emplacement,model_product_emplacement,group_directeur,1,1,1,1
+access_hr_employee_directeur,Directeur.hr.employee,model_hr_employee,group_directeur,1,1,0,0
+access_hr_attendance_directeur,Directeur.hr.attendance,hr_attendance.model_hr_attendance,group_directeur,1,1,0,0
+
+access_fiche_chantier_compta,compta.fiche.chantier.compta,model_fiche_chantier,group_compta,1,1,0,0
+access_chantier_compta,compta.chantier.compta,model_chantier,group_compta,1,1,0,0
+access_equipe_compta,compta.equipe,model_equipe,group_compta,1,1,0,0
+access_calendar_event_compta,compta.calendar.event,model_calendar_event,group_compta,1,0,0,0
+access_res_partner_compta,compta.res.partner,model_res_partner,group_compta,1,1,1,1
+access_sale_order_compta,compta.sale.order,sale.model_sale_order,group_compta,1,1,0,0
+access_product_emplacement_compta,compta.product.emplacement,model_product_emplacement,group_compta,1,1,0,0
+access_hr_employee_compta,compta.hr.employee,model_hr_employee,group_compta,1,1,1,1
+access_hr_attendance_compta,compta.hr.attendance,hr_attendance.model_hr_attendance,group_compta,1,1,1,1
+
+access_fiche_chantier_administration,administration.fiche.chantier.administration,model_fiche_chantier,group_administration,1,1,1,1
+access_chantier_administration,administration.chantier.administration,model_chantier,group_administration,1,1,1,1
+access_equipe_administration,administration.equipe,model_equipe,group_administration,1,1,1,1
+access_calendar_event_administration,administration.calendar.event,model_calendar_event,group_administration,1,1,1,1
+access_res_partner_administration,administration.res.partner,model_res_partner,group_administration,1,1,1,1
+access_sale_order_administration,administration.sale.order,sale.model_sale_order,group_administration,1,1,1,1
+access_product_emplacement_administration,administration.product.emplacement,model_product_emplacement,group_administration,1,1,1,1
+access_hr_employee_administration,administration.hr.employee,model_hr_employee,group_administration,1,1,1,1
+access_hr_attendance_administration,administration.hr.attendance,hr_attendance.model_hr_attendance,group_administration,1,1,1,1
+access_account_journal_administration,administration account journal,account.model_account_journal,group_administration,1,0,0,0
+access_account_invoice_administration,administration account invoice,account.model_account_invoice,group_administration,1,0,0,0
+access_account_payment_administration,administration account payment,account.model_account_payment,group_administration,1,0,0,0
+access_account_move_line_administration,administration account move line,account.model_account_move_line,group_administration,1,0,0,0
+access_account_move_administration,administration account move,account.model_account_move,group_administration,1,0,0,0
+access_account_account_administration,administration account account,account.model_account_account,group_administration,1,0,0,0
+access_account_invoice_report_administration,administration account invoice report,account.model_account_invoice_report,group_administration,1,0,0,0

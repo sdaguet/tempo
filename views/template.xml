@@ -132,6 +132,7 @@
 
 	<template id="ficheviewer" name="Saisie Chantier">
 		<t t-call="website.layout">
+			<script type="text/javascript" src="/darb_puthod/static/src/js/website_fiche_deletes.js"></script>
 			<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod_fiche.js"></script>
 			<script type="text/javascript" src="/darb_puthod/static/src/js/jquery.fn.gantt.js"></script>
 			<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
@@ -148,7 +149,7 @@
 				      <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
 				  </div>
 				</div>
-				<div class="row">
+				<div id="main" class="row">
 					<div class="col-md-14">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -311,8 +312,9 @@
 							</div>
 							<div class="panel-body">
 									<!--- DEBUT BOUCLE -->
-									<div class="form-group form-field">
-										<table class="table table-hover status_table">
+									<input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche.id"/>
+									<div id="main_vehicle" class="form-group form-field">
+										<table id="table_vehicle" class="table table-hover status_table">
 										<thead>
 											<tr class="active">
 												<th>Véhicules</th>
@@ -322,12 +324,13 @@
 										</thead>
 										<t t-foreach="fiche.veicule_ids" t-as="veicule">
 											<tr>
-											<td><span t-field="veicule.vehicle_id.name" class="vname" />
+											<td><span t-field="veicule.vehicle_id.name"/>
 											</td>
-											<td><span t-field="veicule.kms" class="kname"/>
+											<td><span t-field="veicule.kms"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{veicule.id}/1" class="btn btn-primary vedit">Supprimer</a>
+												<input id="fiche_veicule_id" type="hidden" name="veicule" t-att-value="veicule.id"/>
+												<a class="btn btn-primary deletevehicles">Supprimer</a>
 											</td>
 
 											</tr>
@@ -341,10 +344,10 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="km" type="float" class="kname"/>
+										<td><input name="vkm" type="float" class="vkm"/>
 										</td>
 										<td>
-											<a class="btn btn-primary addvehicles">Present</a>
+											<a class="btn btn-primary addvehicles">Ajouter</a>
 										</td>
 
 										</tr>
@@ -361,12 +364,10 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/add/materiels" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
-          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
-									<div class="form-group form-field">
-										<table class="table table-hover status_table">
+									<div id="main_materiel" class="form-group form-field">
+										<table id="table_materiel" class="table table-hover status_table">
 										<thead>
 											<tr class="active">
 												<th>Matériels</th>
@@ -376,9 +377,9 @@
 										</thead>
 										<t t-foreach="fiche.materiel_ids" t-as="materiel">
 											<tr>
-											<td><span t-field="materiel.materiel_id.name" class="mname" />
+											<td><span t-field="materiel.materiel_id.name"/>
 											</td>
-											<td><span t-field="materiel.temps" class="tname"/>
+											<td><span t-field="materiel.temps"/>
 											</td>
 											<td>
 												<a t-attf-href="/ficheslist/#{fiche.id}/#{materiel.id}/2" class="btn btn-primary vedit">Supprimer</a>
@@ -388,24 +389,23 @@
 										</t>
 										<tr>
 										<td>
-					                      <select name="materiel_id" class="form-control">
+					                      <select id="materiel_id" name="materiel_id" class="form-control">
 					                          <option value="">Matériels...</option>
 					                          <t t-foreach="materiels or []" t-as="materiel">
 					                              <option t-att-value="materiel.id"><t t-esc="materiel.name"/></option>
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="temps" type="float" class="kname"/>
+										<td><input name="temps" type="float" class="temps"/>
 										</td>
 										<td>
-											<button name="submit" type="submit" > Ajouter </button>
+											<a class="btn btn-primary addmateriel">Ajouter</a>
 										</td>
 
 										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-								</form>
 							</div>
 						</div>
 					</div>					
@@ -416,12 +416,10 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<form action="/add/machines" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
-          							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
-									<div class="form-group form-field">
-										<table class="table table-hover status_table">
+									<div id="main_machine" class="form-group form-field">
+										<table id="table_machine" class="table table-hover status_table">
 										<thead>
 											<tr class="active">
 												<th>Machines</th>
@@ -431,9 +429,9 @@
 										</thead>
 										<t t-foreach="fiche.machine_ids" t-as="machine">
 											<tr>
-											<td><span t-field="machine.machine_id.name" class="mname" />
+											<td><span t-field="machine.machine_id.name"/>
 											</td>
-											<td><span t-field="machine.temps" class="tname"/>
+											<td><span t-field="machine.temps"/>
 											</td>
 											<td>
 												<a t-attf-href="/ficheslist/#{fiche.id}/#{machine.id}/3" class="btn btn-primary vedit">Supprimer</a>
@@ -443,24 +441,23 @@
 										</t>
 										<tr>
 										<td>
-					                      <select name="machine_id" class="form-control">
+					                      <select id="machine_id" name="machine_id" class="form-control">
 					                          <option value="">Machines...</option>
 					                          <t t-foreach="machines or []" t-as="machine">
 					                              <option t-att-value="machine.id"><t t-esc="machine.name"/></option>
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="temps" type="float" class="tname"/>
+										<td><input name="temps" type="float" class="mtemps"/>
 										</td>
 										<td>
-											<button name="submit" type="submit" > Ajouter </button>
+											<a class="btn btn-primary addmachine">Ajouter</a>
 										</td>
 
 										</tr>
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-								</form>
 							</div>
 						</div>
 					</div>					
