@@ -22,7 +22,7 @@
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account','calendar',
 	            'account_accountant', 'hr', 'mrp',
-                'website',
+                'website','hr_attendance',
                 'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet',
 				'website_customer_order_delivery_date',
                 'manufacturing_google_maps'
@@ -44,8 +44,6 @@
 		'views/modif_quotation.xml',
 		'views/modif_hr_employee.xml',
 		'views/tmpputhod.xml',
-        'security/security.xml',
-        'security/ir.model.access.csv',
         'views/template.xml',
         'views/sale_order.xml',
         'views/chantier.xml',
@@ -54,6 +52,8 @@
         'report/report_employee_view.xml',
         'data/puthod_product_data.xml',
         'report/annexes_product_report_view.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
