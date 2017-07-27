@@ -564,6 +564,13 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 
     });
 
+    
+    $("#editcomment").click(function(){
+		console.log("6576gt7rykrjlktjgylktrjhy");
+    	$("#edit").hide()
+    	$("#write").show()
+	});
+
 
     $('.addcomment').on('click', function(ev) {
         ev.preventDefault();
@@ -578,7 +585,10 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			contentType: "application/json",
 			complete: function (data) {
 				console.log(data);
-				$('input.comment').val(data['responseJSON']["result"]["scloture"]);
+				$('#CommentTable tbody').append('<tr class="edit">'+
+													'<td><span type="text" class="read_comment" cols="100">'+data['responseJSON']["result"]["comment"]+'</span></td>'+
+												'</tr>');
+    			$("#write").hide()
 			}
 		});
 
