@@ -133,8 +133,8 @@ class product(models.Model):
     _inherit = 'product.product'
 
     task_ids = fields.One2many('subtask', 'product_id', string="Tâches")
-    altitude_max = fields.Float(string='Altitude MAX', digits=(3, 0))
-    altitude_min = fields.Float(string='Altitude MIN', digits=(3, 0))
+    altitude_max = fields.Float(string='Altitude MAX', digits=(3, 0),default = 0)
+    altitude_min = fields.Float(string='Altitude MIN', digits=(3, 0),default = 0)
     qrcode = fields.Char(string='QR Code')
 
     _sql_constraints = [

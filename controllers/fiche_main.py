@@ -65,8 +65,8 @@ class WebsiteContractDarbtech(http.Controller):
         machine_name = ""
         if machine:
             machine_name = request.env['product.product'].sudo().search([('id','=', int(machine))]).name
-            fiche_id.materiel_ids = [(0, 0, {
-                                    'materiel_id': int(machine),
+            fiche_id.machine_ids = [(0, 0, {
+                                    'machine_id': int(machine),
                                     'temps': temps,
                                     })]
         else:
@@ -75,4 +75,317 @@ class WebsiteContractDarbtech(http.Controller):
             'machine': machine_name,
             'temps': temps,
             'error_message': error_message
+            }
+
+
+    @http.route(['/addfourniture'], type='json', auth="user", website=True)
+    def addfourniture(self, fiche, fourniture, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        fourniture_name = ""
+        if fourniture:
+            fourniture_name = request.env['product.product'].sudo().search([('id','=', int(fourniture))]).name
+            fiche_id.fourniture_ids = [(0, 0, {
+                                    'fourniture_id': int(fourniture),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'fourniture': fourniture_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addkit'], type='json', auth="user", website=True)
+    def addkit(self, fiche, kit, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        kit_name = ""
+        if kit:
+            kit_name = request.env['product.product'].sudo().search([('id','=', int(kit))]).name
+            fiche_id.kit_ids = [(0, 0, {
+                                    'kit_id': int(kit),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'kit': kit_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addtuteurage'], type='json', auth="user", website=True)
+    def addtuteurage(self, fiche, tuteurage, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        tuteurage_name = ""
+        if tuteurage:
+            tuteurage_name = request.env['product.product'].sudo().search([('id','=', int(tuteurage))]).name
+            fiche_id.tuteurage_ids = [(0, 0, {
+                                    'tuteurage_id': int(tuteurage),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'tuteurage': tuteurage_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addvigitaux'], type='json', auth="user", website=True)
+    def addvigitaux(self, fiche, date, vigitaux, comment):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        vigitaux_name = ""
+        if vigitaux:
+            vigitaux_name = request.env['product.product'].sudo().search([('id','=', int(vigitaux))]).name
+            fiche_id.vigitaux_ids = [(0, 0, {
+                                    'date': date,
+                                    'vigitaux_id': int(vigitaux),
+                                    'commentaire': comment,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'vigitaux': vigitaux_name,
+            'date': date,
+            'comment': comment,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addengrai'], type='json', auth="user", website=True)
+    def addengrai(self, fiche, engrais, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        engrais_name = ""
+        if engrais:
+            engrais_name = request.env['product.product'].sudo().search([('id','=', int(engrais))]).name
+            fiche_id.engrais_ids = [(0, 0, {
+                                    'engrais_id': int(engrais),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'engrais': engrais_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addgazon'], type='json', auth="user", website=True)
+    def addgazon(self, fiche, gazons, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        gazons_name = ""
+        if gazons:
+            gazons_name = request.env['product.product'].sudo().search([('id','=', int(gazons))]).name
+            fiche_id.gazons_ids = [(0, 0, {
+                                    'gazons_id': int(gazons),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'gazons': gazons_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addgmateriel'], type='json', auth="user", website=True)
+    def addgmateriel(self, fiche, gmateriel, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        gmateriel_name = ""
+        if gmateriel:
+            gmateriel_name = request.env['product.product'].sudo().search([('id','=', int(gmateriel))]).name
+            fiche_id.gmateriel_ids = [(0, 0, {
+                                    'gmateriel_id': int(gmateriel),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'gmateriel': gmateriel_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addescalier'], type='json', auth="user", website=True)
+    def addescalier(self, fiche, escalier, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        escalier_name = ""
+        if escalier:
+            escalier_name = request.env['product.product'].sudo().search([('id','=', int(escalier))]).name
+            fiche_id.escalier_ids = [(0, 0, {
+                                    'gazons_id': int(escalier),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'escalier': escalier_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addoutils'], type='json', auth="user", website=True)
+    def addoutils(self, fiche, outils, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        outils_name = ""
+        if outils:
+            outils_name = request.env['product.product'].sudo().search([('id','=', int(outils))]).name
+            fiche_id.outils_ids = [(0, 0, {
+                                    'outils_id': int(outils),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'outils': outils_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addclotures'], type='json', auth="user", website=True)
+    def addclotures(self, fiche, cloture, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        cloture_name = ""
+        if cloture:
+            cloture_name = request.env['product.product'].sudo().search([('id','=', int(cloture))]).name
+            fiche_id.cloture_ids = [(0, 0, {
+                                    'cloture_id': int(cloture),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'cloture': cloture_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/adddivers'], type='json', auth="user", website=True)
+    def adddivers(self, fiche, divers, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        divers_name = ""
+        if divers:
+            divers_name = request.env['product.product'].sudo().search([('id','=', int(divers))]).name
+            fiche_id.divers_ids = [(0, 0, {
+                                    'divers_id': int(divers),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'divers': divers_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addterrasses'], type='json', auth="user", website=True)
+    def addterrasses(self, fiche, terrasse, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        terrasse_name = ""
+        if terrasse:
+            terrasse_name = request.env['product.product'].sudo().search([('id','=', int(terrasse))]).name
+            fiche_id.terrasse_ids = [(0, 0, {
+                                    'terrasse_id': int(terrasse),
+                                    'quantity': qty,
+                                    })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'terrasse': terrasse_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addsclotures'], type='json', auth="user", website=True)
+    def addsclotures(self, fiche, scloture, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        scloture_name = ""
+        if scloture:
+            scloture_name = request.env['product.product'].sudo().search([('id','=', int(scloture))]).name
+            fiche_id.scloture_ids = [(0, 0, {
+                                        'scloture_id': int(scloture),
+                                        'quantity': qty,
+                                        })]
+        else:
+            error_message = _(u'Certains champs obligatoires sont vides.')
+        return {
+            'scloture': scloture_name,
+            'qty': qty,
+            'error_message': error_message
+            }
+
+
+    @http.route(['/addcomment'], type='json', auth="user", website=True)
+    def addcomment(self, fiche, comment):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        fiche_id.remarqs = comment
+        return {
+            'comment': comment,
             }
