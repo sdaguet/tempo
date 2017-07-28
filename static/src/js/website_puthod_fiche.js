@@ -593,5 +593,47 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 		});
 
     });
+
+
+    $('.addwork').on('click', function(ev) {
+        ev.preventDefault();
+		console.log("IIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNNN");
+		var fiche_id = $('#fiche_id').val();
+		var employee_id = $(this).closest('tr').attr('id'); // table row ID
+   		var employee = employee_id.split("_").pop();
+		console.log('#tesk'+ employee +' option:selected');
+		var tesk_id = $('#tesk_'+ employee +' option:selected').val();
+		var type = $('#type_'+ employee +' option:selected').val();
+		var heure_deb = $('#heure_deb_'+ employee +' option:selected').val();
+		var heure_fin = $('#heure_fin_'+ employee +' option:selected').val();
+		$.ajax({
+			type: "POST",
+			url: "/addwork",
+			async: false,
+			data: JSON.stringify({"params": {'fiche': fiche_id, 'employee': employee, 'tesk': tesk_id, 'type': type, 'heure_deb': heure_deb, 'heure_fin': heure_fin}}),
+			contentType: "application/json",
+			complete: function (data) {
+				console.log(data);
+				if (data['responseJSON']["result"]["error_message"].length != 0){
+				console.log("ereuuuuuuuuuuuuuuuuuuuuuuuur");
+				$('#main_pointage').before('<div class="col-md-12">'+
+				  '<div id="error_pointage" class="alert alert-danger">'+
+				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
+				  '</div>'+
+				'</div>'
+				);
+				}
+				else {
+				console.log("nooooooooooooooooooooooooooooooo");
+				$("#error_pointage").hide()
+				$("#tesk_"+ employee).val("");
+				$("#type_"+ employee).val("p");
+				$("#heure_deb_"+ employee).val("7:00");
+				$("#heure_fin_"+ employee).val("7:00");
+				}
+			}
+		});
+
+    });
 	
 });
