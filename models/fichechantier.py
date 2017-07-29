@@ -166,8 +166,6 @@ class product_template(models.Model):
     @api.multi
     @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
     def _compute_Article(self):
-        print "self.N_Article_id.Libelle_commercial"
-        print self.N_Article_id.Libelle_commercial
 
         Nom_francais = self.N_Article_id.Nom_francais
         if Nom_francais:
@@ -187,17 +185,14 @@ class product_template(models.Model):
         else:
             Taille_bis = ""
 
-        print Libelle_commercial
-        print Taille_bis
-        print Nom_francais
+
 
 
         name = Libelle_commercial + " " + Taille_bis + " - " +Nom_francais
         list_price = float(self.N_Article_id.Prix_Etiquette)
         weight = float(self.N_Article_id.Poids_Brut)
 
-        print self.list_price
-        print self.weight
+
 
         self.write({'list_price': list_price, 'weight': weight, 'name': name})
 
