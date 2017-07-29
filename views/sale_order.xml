@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
         <record model="ir.ui.view" id="view_order_form_inherit_puthod">
@@ -110,6 +111,20 @@
                     <field name="altitude_min"/>
                     <field name="qrcode"/>
                 </group>
+            </field>
+        </record>
+
+        <record id="puthod_prouct_template_form_inh" model="ir.ui.view">
+            <field name="name">puthod.prouct.template.form.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="N_Article_id" readonly="1"/>
+                    <field name="N_Article_comp_id" invisible="1"/>
+                </xpath>
+
             </field>
         </record>
     </data>
