@@ -11,9 +11,31 @@ $(function() {
 		data: JSON.stringify({'fiche' : rrr}),
 		contentType: "application/json",
 		complete: function (data) {
+			var list = []
+			$.each(data['responseJSON']["result"], function( key, value ) {
+				var today = moment();
+				var andTwoHours = moment().add("hours",key);
+				list.push({
+					name: value.name,
+					desc: value.desc,
+					values: [{
+						from: "/Date(" + today.valueOf() + ")/",
+						to: "/Date(" + andTwoHours.valueOf() + ")/",
+						label: value.values[0].label, 
+						customClass: value.values[0].customClass
+						}]
+					});
+				console.log("1111111111111");
+				console.log("/Date(" + andTwoHours.valueOf() + ")/");
+				console.log(value.values[0].to);
+				console.log(andTwoHours.valueOf());
+				console.log("22222222222222");
+				}
+			);
 			console.log("chart rendering");
 			$(".gantt").gantt({
-				source: data,
+				//source: data,
+				source: list,
 				navigate: "scroll",
 				scale: "hours",
 				maxScale: "hours",

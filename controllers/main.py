@@ -129,67 +129,61 @@ class WebsiteContractDarbtech(http.Controller):
         fiche = request.registry.get('fiche.chantier')
         _logger.info("POINTERfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff user = " + str(fiche))
         return {}
-        
+
     @http.route('/getgantt/<fiche>', type='json', auth="user", website=True)
     def ganttdatas(self, fiche, **kw):
         gantclasses = ["ganttRed","ganttGreen","ganttOrange"]
         i=0
         tailleGantClasses=len(gantclasses)
-        
 
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', 2)])
         list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
         _logger.info("Ramene mon gantt data = ")
         members = list_teams.ressource_list.ids
         members.append(list_teams.manager.id)
         members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
-        
-        rezult = [{
-                    'name': "Sprint 0",
-                    'desc': "Analysis",
-                    'values': [{
-                        'from': "/Date(1320192000000)/",
-                        'to': "/Date(1322401600000)/",
-                        'label': "Requirement Gathering", 
-                        'customClass': "ganttRed"
-                    }]
-                }, {
-                    'name': " ",
-                    'desc': "Warranty Period",
-                    'values': [{
-                        'from': "/Date(1336611200000)/",
-                        'to': "/Date(1349711200000)/",
-                        'label': "Warranty Period", 
-                        'customClass': "ganttOrange"
-                    }]
-                }]
-                
+
+        rezult = []
         for mbr in members_employee:
-            elmt = {
-                'name': mbr.name,
-                'desc': "",
-                'values': []
-            }
-            
-            item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(mbr.id)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
+            first = True
+            item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(mbr.id)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(2))])
+            _logger.info("Generated item_idsitem_idsitem_idsitem_idsitem_ids: " + str(item_ids))
             for itm in item_ids:
                 hdeb = itm.heure_deb
                 hfin = itm.heure_fin
                 if len(hfin) == 4 : hfin = '0' + hfin
                 if len(hdeb) == 4 : hdeb = '0' + hdeb
-                elmt['values'].append({
-                    'from' : hdeb,
-                    'to' : hfin,
-                    'label' : itm.type,
-                    'customClass' : gantclasses[i],
-                })
+                if first:
+                    elmt = {
+                        'name': mbr.name,
+                        'desc': itm.fiche_chantier_subtask_id.subtask_id.name,
+                        'values': [{
+                            'from' : hdeb,
+                            'to' : hfin,
+                            'label' : itm.type,
+                            'customClass' : gantclasses[i],
+                        }]
+                    }
+                    first = False
+                else:
+                    elmt = {
+                        'name': "",
+                        'desc': itm.fiche_chantier_subtask_id.subtask_id.name,
+                        'values': [{
+                            'from' : hdeb,
+                            'to' : hfin,
+                            'label' : itm.type,
+                            'customClass' : gantclasses[i],
+                        }]
+                    }
                 i=(i+1)%tailleGantClasses
-            rezult.append(elmt)
+                rezult.append(elmt)
+            _logger.info("Generated ReSSSSSSSSSSSSSSSSSSSSSSSSSSSSS: " + str(rezult))
         return rezult
-    
-    
+
+
     @http.route(['/chantierslist'], type='http', auth="user", website=True)
     def chantiers_liste(self, product_id=None):
         user = request.env.user
