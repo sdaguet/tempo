@@ -49,6 +49,7 @@
         'views/chantier.xml',
         'views/emplacement.xml',
         'views/calendar.xml',
+        'views/puthod_partner.xml',
         'report/report_employee_view.xml',
         'data/puthod_product_data.xml',
         'report/annexes_product_report_view.xml',

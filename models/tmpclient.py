@@ -60,9 +60,9 @@ class TmpClient(models.Model):
     Date_Dern_Modif_Plafond = fields.Char("Date Dern. Modif. Plafond")
     Objectif_CA = fields.Char("Objectif CA")
     Adresse_Exp = fields.Char("Adresse Exp.")
-    Code_Postal = fields.Char("Code Postal")
-    Ville = fields.Char("Ville")
-    Pays = fields.Char("Pays")
+    Code_Postal_2 = fields.Char("Code Postal 2")
+    Ville_2 = fields.Char("Ville_2")
+    Pays_2 = fields.Char("Pays_2")
     Comment_Livraison = fields.Char("Comment. Livraison")
     Pays_ProvDest = fields.Char("Pays Prov./Dest.")
     Pays_d_origine = fields.Char("Pays d'origine")
@@ -146,23 +146,26 @@ class TmpClient(models.Model):
     def create(self, values):
         record = super(TmpClient, self).create(values)
         Nom_1 = values.get('Nom_1')
+        Nom_2 = values.get('Nom_2')
         Ville = values.get('Ville')
         Code_Postal = values.get('Code_Postal')
         E_mail = values.get('E_mail')
         URL = values.get('URL')
         FAX = values.get('FAX')
         Telephone = values.get('Telephone')
+        Portable = values.get('Portable')
         Adresse_1 = values.get('Adresse_1')
         Adresse_2 = values.get('Adresse_2')
-        N_Client = values.get('N_Client')
+        #N_Client = values.get('N_Client')
 
-        Nom_2 = values.get('Nom_2')
+        code_pays = self.env['res.country'].search([('code','=','FR')])
+        print "code_pays"
+        print code_pays
+
         if Nom_2:
             Nom_2 = Nom_2
         else:
             Nom_2 = ""
-
-
         valuesc = {'comment': False,
                    'function': False,
                    'notify_email': 'always',
@@ -174,11 +177,11 @@ class TmpClient(models.Model):
                    'property_account_position_id': False,
                    'property_payment_term_id': False,
                    'city': Ville,
+                   'country_id': code_pays.id,
                    'user_id': False,
                    'opt_out': False,
                    'zip': Code_Postal, #Code_Postal
                    'title': False,
-                   'country_id': False,
                    # 'company_id': 1,
                    'message_ids': False,
                    'parent_id': False,
@@ -198,7 +201,7 @@ class TmpClient(models.Model):
                    'lang': 'fr_FR',
                    # 'property_stock_supplier': 8,
                    'name': Nom_1 + " " + Nom_2, #nom
-                   'mobile': False,
+                   'mobile': Portable,
                    #'ref': N_Client, #N_Client
                    # 'property_account_payable_id': 292,
                    'state_id': False,
