@@ -121,7 +121,7 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="N_Article_id" readonly="1"/>
+                    <field name="N_Article_id" readonly="1" invisible="1"/>
                     <field name="N_Article_comp_id" invisible="1"/>
                 </xpath>
 

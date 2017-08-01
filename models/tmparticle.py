@@ -2,6 +2,7 @@
 # coding: utf8
 from openerp import fields, models, api, _
 import logging
+import time
 _logger = logging.getLogger(__name__)
 
 class TmpArticle(models.Model):
@@ -114,6 +115,9 @@ class TmpArticle(models.Model):
     def create(self, values):
             record = super(TmpArticle, self).create(values)
 
+            time.time()
+            timestamp1 = time.time()
+
             Nom_francais = values.get('Nom_francais')
             if Nom_francais:
                 Nom_francais = Nom_francais
@@ -133,11 +137,8 @@ class TmpArticle(models.Model):
                 Taille_bis = ""
 
 
-            #tarif = float(values.get('tarif'))
             Prix_Etiquette = float(values.get('Prix_Etiquette'))
-            #Code_Barre = values.get('Code_Barre')
             Poids_Brut = float(values.get('Poids_Brut'))
-            #N_Article = int(values.get('N_Article'))
             valuesp = {
                 #'warranty': 0,
                 #'property_stock_procurement': 6,
@@ -188,6 +189,8 @@ class TmpArticle(models.Model):
                 }
 
             self.env['product.template'].create(valuesp)
+            timestamp2 = time.time()
+            print "This took %.2f seconds" % (timestamp2 - timestamp1)
             return record
 
 
