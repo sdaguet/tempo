@@ -1146,11 +1146,11 @@
 								<!--- DEBUT BOUCLE -->
 								<div class="form-group form-field">
 									<table id="CommentTable" class="table table-hover status_table">
-										<tr id="edit">
+										<tr id="edit" style="display: none">
 											<td><span type="text" class="form-control read_comment" cols="100" t-field="fiche.remarqs"/></td>
 											<td align="right"><a class="btn btn-primary" id="editcomment">Modifier</a></td>
 										</tr>
-										<tr id="write" style="display: none">
+										<tr id="write">
 											<td><textarea id="comment" class="form-control" cols="100" t-field="fiche.remarqs"></textarea></td>
 											<td align="right"><a class="btn btn-primary addcomment">Ajouter</a></td>
 										</tr>
