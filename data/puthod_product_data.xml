@@ -1213,6 +1213,28 @@
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="company_id" eval="[]"/>
         </record>
+		
+		<record id="product_outilsTranconeuse" model="product.product">
+            <field name="name">Tronçonneuse</field>
+            <field name="categ_id" ref="darb_puthod.product_category_outils"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_outilsVisseuse" model="product.product">
+            <field name="name">Visseuse</field>
+            <field name="categ_id" ref="darb_puthod.product_category_outils"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
 
 	</data>
 </openerp>
