@@ -2,8 +2,8 @@
 <openerp>
     <data>
 <template id='iframe'>
-     <iframe t-att-src="url"
-     width="100%" height="500">kmlkfmldkfmlsdkfmlskflmsdkflmmsdkflmds</iframe>
+     <!--iframe t-att-src="url"
+     width="100%" height="500">kmlkfmldkfmlsdkfmlskflmsdkflmmsdkflmds</iframe-->
 </template>
     </data>
 </openerp>

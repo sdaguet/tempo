@@ -2,6 +2,7 @@
 # coding: utf8
 from openerp import fields, models, api, _
 import logging
+import time
 _logger = logging.getLogger(__name__)
 
 class TmpArticle(models.Model):
@@ -19,7 +20,7 @@ class TmpArticle(models.Model):
     Presentation = fields.Char("Présentation")
     Presentation_bis = fields.Char("Présentation")
     Taille = fields.Char("Taille")
-    Taille_bis = fields.Char("Taille")
+    Taille_bis = fields.Char("Taille importé")
     Famille = fields.Char("Famille")
     tarif = fields.Char("tarif")
     type_de_feuillage = fields.Char("type de feuillage")
@@ -112,91 +113,86 @@ class TmpArticle(models.Model):
 
     @api.model
     def create(self, values):
-        record = super(TmpArticle, self).create(values)
-        Nom_francais = values.get('Nom_francais')
-        print "Nom_francais"
-        print Nom_francais
-        if Nom_francais:
-            Nom_francais = Nom_francais
-        else:
-            Nom_francais = ""
+            record = super(TmpArticle, self).create(values)
 
-        Libelle_commercial = values.get('Libelle_commercial')
-        print "Libelle_commercial"
-        print Libelle_commercial
-        if Libelle_commercial:
-            Libelle_commercial = Libelle_commercial
-        else:
-            Libelle_commercial = ""
+            time.time()
+            timestamp1 = time.time()
 
-        Taille = values.get('Taille')
-        print "Taille"
-        print Taille
-        if Taille:
-            Taille = Taille
-        else:
-            Taille = ""
+            Nom_francais = values.get('Nom_francais')
+            if Nom_francais:
+                Nom_francais = Nom_francais
+            else:
+                Nom_francais = ""
+
+            Libelle_commercial = values.get('Libelle_commercial')
+            if Libelle_commercial:
+                Libelle_commercial = Libelle_commercial
+            else:
+                Libelle_commercial = ""
+
+            Taille_bis = values.get('Taille_bis')
+            if Taille_bis:
+                Taille_bis = Taille_bis
+            else:
+                Taille_bis = ""
 
 
-        tarif = float(values.get('tarif'))
-        Prix_Etiquette = float(values.get('Prix_Etiquette'))
-        Code_Barre = values.get('Code_Barre')
-        Poids_Brut = float(values.get('Poids_Brut'))
-        N_Article = int(values.get('N_Article'))
-        valuesp = {
-            #'warranty': 0,
-            #'property_stock_procurement': 6,
-            'message_follower_ids': False,
-            'property_account_creditor_price_difference': False,
-            #'standard_price': 0,
-            'attribute_line_ids': [],
-            #'uom_id': 1,
-            'property_account_income_id': False,
-            'description_purchase': False,
-            #'default_code': N_Article, #N_Article
-            'message_ids': False,
-            'sale_ok': True,
-            'item_ids': [],
-            'description_picking': False,
-            'purchase_method': 'receive',
-            'purchase_ok': True,
-            #'sale_delay': 7,
-            #'company_id': 1,
-            'property_valuation': False,
-            'track_service': 'manual',
-            #'uom_po_id': 1,
-            'property_cost_method': False,
-            'type': u'consu',
-            'property_stock_account_input': False,
-            #'property_stock_production': 7,
-            #'supplier_taxes_id': [[6, False, [11]]],
-            'volume': 0,
-            #'route_ids': [[6, False, [8]]],
-            'tracking': u'none',
-            'description_sale': False,
-            'active': True,
-            #'property_stock_inventory': 5,
-            'cost_method': False,
-            'valuation': False,
-            'image_medium': False,
-            'name': Libelle_commercial + " " + Taille + " - " +Nom_francais,# name
-            'property_account_expense_id': False,
-            #'categ_id': 1,
-            'packaging_ids': [],
-            'invoice_policy': u'order',
-            #'taxes_id': [[6, False, [6]]],
-            'property_stock_account_output': False,
-            'seller_ids': [],
-            'list_price': Prix_Etiquette , #Prix_Etiquette
-            # 'barcode': Code_Barre , #Code_Barre
-            'weight' : Poids_Brut , #Poids_Brut
-            }
-        #article = self.env['product.template'].search([('default_code', '=', self.N_Article)])
-        #if article:
-           # _logger.error("Cet Article existe déjà !")
-        #else:
-        self.env['product.template'].create(valuesp)
-        return record
+            Prix_Etiquette = float(values.get('Prix_Etiquette'))
+            Poids_Brut = float(values.get('Poids_Brut'))
+            valuesp = {
+                #'warranty': 0,
+                #'property_stock_procurement': 6,
+                'message_follower_ids': False,
+                'property_account_creditor_price_difference': False,
+                #'standard_price': 0,
+                'attribute_line_ids': [],
+                #'uom_id': 1,
+                'property_account_income_id': False,
+                'description_purchase': False,
+                'N_Article_id': record.id, #N_Article
+                'message_ids': False,
+                'sale_ok': True,
+                'item_ids': [],
+                'description_picking': False,
+                'purchase_method': 'receive',
+                'purchase_ok': True,
+                #'sale_delay': 7,
+                #'company_id': 1,
+                'property_valuation': False,
+                'track_service': 'manual',
+                #'uom_po_id': 1,
+                'property_cost_method': False,
+                'type': u'consu',
+                'property_stock_account_input': False,
+                #'property_stock_production': 7,
+                #'supplier_taxes_id': [[6, False, [11]]],
+                'volume': 0,
+                #'route_ids': [[6, False, [8]]],
+                'tracking': u'none',
+                'description_sale': False,
+                'active': True,
+                #'property_stock_inventory': 5,
+                'cost_method': False,
+                'valuation': False,
+                'image_medium': False,
+                'name': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
+                'property_account_expense_id': False,
+                #'categ_id': 1,
+                'packaging_ids': [],
+                'invoice_policy': u'order',
+                #'taxes_id': [[6, False, [6]]],
+                'property_stock_account_output': False,
+                'seller_ids': [],
+                'list_price': Prix_Etiquette , #Prix_Etiquette
+                # 'barcode': Code_Barre , #Code_Barre
+                'weight' : Poids_Brut , #Poids_Brut
+                }
+
+            self.env['product.template'].create(valuesp)
+            timestamp2 = time.time()
+            print "This took %.2f seconds" % (timestamp2 - timestamp1)
+            return record
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'

@@ -25,10 +25,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'vehicle_id': int(vehicle),
                                     'kms': km,
                                     })]
+            new_id = fiche_id.veicule_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'vehicle': vehicle_name,
+            'fiche_veicule_id': new_id,
             'km': km,
             'error_message': error_message
             }
@@ -47,10 +49,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'materiel_id': int(materiel),
                                     'temps': temps,
                                     })]
+            new_id = fiche_id.materiel_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'materiel': materiel_name,
+            'fiche_materiel_id': new_id,
             'temps': temps,
             'error_message': error_message
             }
@@ -69,10 +73,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'machine_id': int(machine),
                                     'temps': temps,
                                     })]
+            new_id = fiche_id.machine_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'machine': machine_name,
+            'fiche_machine_id': new_id,
             'temps': temps,
             'error_message': error_message
             }
@@ -92,10 +98,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'fourniture_id': int(fourniture),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.fourniture_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'fourniture': fourniture_name,
+            'fiche_fourniture_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -115,10 +123,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'kit_id': int(kit),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.kit_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'kit': kit_name,
+            'fiche_kit_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -138,10 +148,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'tuteurage_id': int(tuteurage),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.tuteurage_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'tuteurage': tuteurage_name,
+            'fiche_tuteurage_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -162,10 +174,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'vigitaux_id': int(vigitaux),
                                     'commentaire': comment,
                                     })]
+            new_id = fiche_id.vigitaux_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'vigitaux': vigitaux_name,
+            'fiche_vigitaux_id': new_id,
             'date': date,
             'comment': comment,
             'error_message': error_message
@@ -186,10 +200,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'engrais_id': int(engrais),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.engrais_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'engrais': engrais_name,
+            'fiche_engrais_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -209,10 +225,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'gazons_id': int(gazons),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.gazons_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'gazons': gazons_name,
+            'fiche_gazons_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -232,10 +250,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'gmateriel_id': int(gmateriel),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.gmateriel_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'gmateriel': gmateriel_name,
+            'fiche_gmateriel_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -255,10 +275,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'gazons_id': int(escalier),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.escalier_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'escalier': escalier_name,
+            'fiche_escalier_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -278,10 +300,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'outils_id': int(outils),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.outils_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'outils': outils_name,
+            'fiche_outils_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -301,10 +325,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'cloture_id': int(cloture),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.cloture_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'cloture': cloture_name,
+            'fiche_cloture_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -324,10 +350,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'divers_id': int(divers),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.divers_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'divers': divers_name,
+            'fiche_divers_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -347,10 +375,12 @@ class WebsiteContractDarbtech(http.Controller):
                                     'terrasse_id': int(terrasse),
                                     'quantity': qty,
                                     })]
+            new_id = fiche_id.terrasse_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'terrasse': terrasse_name,
+            'fiche_terrasse_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -370,10 +400,12 @@ class WebsiteContractDarbtech(http.Controller):
                                         'scloture_id': int(scloture),
                                         'quantity': qty,
                                         })]
+            new_id = fiche_id.scloture_ids.ids[-1]
         else:
             error_message = _(u'Certains champs obligatoires sont vides.')
         return {
             'scloture': scloture_name,
+            'fiche_scloture_id': new_id,
             'qty': qty,
             'error_message': error_message
             }
@@ -383,9 +415,46 @@ class WebsiteContractDarbtech(http.Controller):
     def addcomment(self, fiche, comment):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("POINTER user = " + str(uid))
+        _logger.info("POINTER comennnnnnnnnnnnnnnnt = " + str(uid))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.remarqs = comment
         return {
             'comment': comment,
+            }
+
+
+    @http.route(['/addwork'], type='json', auth="user", website=True)
+    def addwork(self, fiche, employee, tesk, type, heure_deb, heure_fin):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER WORKKKKKKKKKKKKKKKKKKKKKKKKKKK = " + str(uid))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        error_message = ""
+        item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(employee)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
+        dd = datetime.strptime(heure_deb,'%H:%M')
+        df = datetime.strptime(heure_fin,'%H:%M')
+        #Check time : Start < End 
+        if dd > df:
+            error_message = _(u"Heure début > Heure fin !")
+            _logger.info("POINTER 11111111111111111111111 = ")
+        #Check intersections between time
+        for item in item_ids:
+            idd = datetime.strptime(item.heure_deb,'%H:%M')
+            idf = datetime.strptime(item.heure_fin,'%H:%M')
+            if (df > idd and df < idf) or (dd > idd and dd < idf) or (dd > idd and df < idf) or (dd < idd and df > idf):
+                error_message = _(u"Intersection entre plages horaires !")
+                _logger.info("POINTER 2222222222222222222222 = ")
+        #/Check intersections between time
+        if error_message == "":
+            vals = {
+                    'employee': employee,
+                    'heure_deb': heure_deb,
+                    'heure_fin': heure_fin,
+                    'type': type,
+                    'fiche_chantier_subtask_id': tesk
+                    }
+            request.env['employees.subtasks'].sudo().create(vals)
+        _logger.info("POINTER WORKKKKKKKKKKKKKKKKKKKKKKKKKKK = ")
+        return {
+            'error_message': error_message
             }

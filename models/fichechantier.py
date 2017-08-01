@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
+# coding: utf8
 from openerp import fields, models, api, _
 from openerp.exceptions import ValidationError
 from datetime import datetime
@@ -147,6 +148,54 @@ class product(models.Model):
         if self.altitude_max < self.altitude_min:
             raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
+class product_template(models.Model):
+    _inherit = 'product.template'
+
+    N_Article_id = fields.Many2one(comodel_name="tmparticle", string="N° Article", required=False)
+    N_Article_comp_id = fields.Many2one(comodel_name="tmparticle", string="N° Article", required=False, compute='_compute_Article')
+
+    _sql_constraints = [
+        ('N_Article_id_uniq', 'unique(N_Article_id)', _("A N° Article can only be assigned to one product !")),
+    ]
+
+    @api.multi
+    def unlink(self):
+        self.N_Article_id.unlink()
+        return super(product_template, self).unlink()
+
+    @api.multi
+    @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
+    def _compute_Article(self):
+
+        Nom_francais = self.N_Article_id.Nom_francais
+        if Nom_francais:
+            Nom_francais = Nom_francais
+        else:
+            Nom_francais = ""
+
+        Libelle_commercial = self.N_Article_id.Libelle_commercial
+        if Libelle_commercial:
+            Libelle_commercial = Libelle_commercial
+        else:
+            Libelle_commercial = ""
+
+        Taille_bis = self.N_Article_id.Taille_bis
+        if Taille_bis:
+            Taille_bis = Taille_bis
+        else:
+            Taille_bis = ""
+
+
+
+
+        name = Libelle_commercial + " " + Taille_bis + " - " +Nom_francais
+        list_price = float(self.N_Article_id.Prix_Etiquette)
+        weight = float(self.N_Article_id.Poids_Brut)
+
+
+
+        self.write({'list_price': list_price, 'weight': weight, 'name': name})
+
 
 class subtask(models.Model):
     _name = 'subtask'
@@ -262,8 +311,6 @@ class chantier(models.Model):
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
 
-
-#bug
     @api.one
     @api.depends('fiche_ids', 'fiche_ids.termine', 'order_id')
     def _compute_state(self):

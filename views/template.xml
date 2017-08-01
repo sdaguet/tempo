@@ -168,7 +168,7 @@
 								<h3 class="panel-title">Planning Employés</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
-							<div class="panel-body">
+							<div id="main_pointage" class="panel-body">
 								<table class="table table-hover status_table">
 									<thead>
 										<tr class="active">
@@ -177,19 +177,16 @@
 											<th>Type</th>
 											<th>Heure début</th>
 											<th>Heure fin</th>
-											<th>Valider</th>
+											<th></th>
 										</tr>
 									</thead>
 									<t t-foreach="teams" t-as="membr">
-										<tr>		
-										<form action="/add/work" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data"  data-model_name="fiche.chantier">
-		          						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-		          						<input type="hidden" name="fiche" t-att-value="fiche.id"/>
-										<input type="hidden" name="employee" t-att-value="membr.id"/>
+										<tr t-attf-id="employee_{{ membr.id }}">
+		          						<input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche.id"/>
 										<td><span class="teamname" t-field="membr.name"/>
 										</td>
 										<td>
-					                      <select name="tesk_id" class="form-control">
+					                      <select t-attf-id="tesk_{{ membr.id }}" name="tesk_id" class="form-control">
 					                          <option value="">...</option>
 					                          <t t-foreach="tasks or []" t-as="task">
 					                              <option t-att-value="task.id"><t t-esc="task.name"/></option>
@@ -197,7 +194,7 @@
 					                      </select>
 										</td>
  										<td>
-											<select name="type" class="form-control">
+											<select t-attf-id="type_{{ membr.id }}" name="type" class="form-control">
 												<option value="p">Préparation</option>
 												<option value="d">Déplacement</option>
 												<option value="pl">Plantation</option>
@@ -217,7 +214,7 @@
 											</select>
 										</td>
 										<td>
-											<select name="heure_deb" class="form-control">
+											<select t-attf-id="heure_deb_{{ membr.id }}" name="heure_deb" class="form-control">
 												<option value="7:00">7:00</option>
 												<option value="7:15">7:15</option>
 												<option value="7:30">7:30</option>
@@ -256,7 +253,7 @@
 											</select>
 										</td>
 										<td>
-											<select name="heure_fin" class="form-control">
+											<select t-attf-id="heure_fin_{{ membr.id }}" name="heure_fin" class="form-control">
 												<option value="7:00">7:00</option>
 												<option value="7:15">7:15</option>
 												<option value="7:30">7:30</option>
@@ -295,9 +292,8 @@
 											</select>
 										</td>
 										<td>
-											<button name="submit" type="submit" > Ajouter </button>
+											<a class="btn btn-primary addwork">Ajouter</a>
 										</td>
-										</form>
 										</tr>
 									</t>
 								</table>
@@ -323,13 +319,12 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.veicule_ids" t-as="veicule">
-											<tr>
+											<tr t-attf-id="vehicle_{{ veicule.id }}">
 											<td><span t-field="veicule.vehicle_id.name"/>
 											</td>
 											<td><span t-field="veicule.kms"/>
 											</td>
 											<td>
-												<input id="fiche_veicule_id" type="hidden" name="veicule" t-att-value="veicule.id"/>
 												<a class="btn btn-primary deletevehicles">Supprimer</a>
 											</td>
 
@@ -344,7 +339,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="vkm" type="float" class="vkm"/>
+										<td><input class="form-control vkm" name="vkm" type="float"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addvehicles">Ajouter</a>
@@ -376,13 +371,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.materiel_ids" t-as="materiel">
-											<tr>
+											<tr t-attf-id="materiel_{{ materiel.id }}">
 											<td><span t-field="materiel.materiel_id.name"/>
 											</td>
 											<td><span t-field="materiel.temps"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{materiel.id}/2" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletemateriel">Supprimer</a>
 											</td>
 
 											</tr>
@@ -396,7 +391,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="temps" type="float" class="temps"/>
+										<td><input class="form-control temps" name="temps" type="float"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addmateriel">Ajouter</a>
@@ -428,13 +423,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.machine_ids" t-as="machine">
-											<tr>
+											<tr t-attf-id="machine_{{ machine.id }}">
 											<td><span t-field="machine.machine_id.name"/>
 											</td>
 											<td><span t-field="machine.temps"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{machine.id}/3" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletemachine">Supprimer</a>
 											</td>
 
 											</tr>
@@ -448,7 +443,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="temps" type="float" class="mtemps"/>
+										<td><input class="form-control mtemps" name="temps" type="float"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addmachine">Ajouter</a>
@@ -480,13 +475,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.fourniture_ids" t-as="fourniture">
-											<tr>
+											<tr t-attf-id="fourniture_{{ fourniture.id }}">
 											<td><span t-field="fourniture.fourniture_id.name"/>
 											</td>
 											<td><span t-field="fourniture.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{fourniture.id}/4" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletefourniture">Supprimer</a>
 											</td>
 
 											</tr>
@@ -500,7 +495,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="quantity" type="float" class="qty"/>
+										<td><input name="quantity" type="float" class="form-control qty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addfourniture">Ajouter</a>
@@ -532,13 +527,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.kit_ids" t-as="kit">
-											<tr>
+											<tr t-attf-id="kit_{{ kit.id }}">
 											<td><span t-field="kit.kit_id.name"/>
 											</td>
 											<td><span t-field="kit.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{kit.id}/5" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletekit">Supprimer</a>
 											</td>
 
 											</tr>
@@ -552,7 +547,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="quantity" type="float" class="kqty"/>
+										<td><input name="quantity" type="float" class="form-control kqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addkit">Ajouter</a>
@@ -584,13 +579,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.tuteurage_ids" t-as="tuteurage">
-											<tr>
+											<tr t-attf-id="tuteurage_{{ tuteurage.id }}">
 											<td><span t-field="tuteurage.tuteurage_id.name"/>
 											</td>
 											<td><span t-field="tuteurage.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{tuteurage.id}/6" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletetuteurage">Supprimer</a>
 											</td>
 
 											</tr>
@@ -604,7 +599,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="quantity" type="float" class="tqty"/>
+										<td><input name="quantity" type="float" class="form-control tqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addtuteurage">Ajouter</a>
@@ -634,12 +629,12 @@
 										<tr class="active">
 											<th>Date</th>
 											<th>Végétaux</th>
-											<th>Commentaire</th>
+											<th>Commentaires</th>
 											<th></th>
 										</tr>
 									</thead>
 									<t t-foreach="fiche.vigitaux_ids" t-as="vigitaux">
-										<tr>
+										<tr t-attf-id="vigitaux_{{ vigitaux.id }}">
 										<td><span t-field="vigitaux.date"/>
 										</td>
 										<td><span t-field="vigitaux.vigitaux_id.name"/>
@@ -647,13 +642,13 @@
 										<td><span t-field="vigitaux.commentaire"/>
 										</td>
 										<td>
-											<a t-attf-href="/ficheslist/#{fiche.id}/#{vigitaux.id}/7" class="btn btn-primary vedit">Supprimer</a>
+											<a class="btn btn-primary deletevigitaux">Supprimer</a>
 										</td>
 
 										</tr>
 									</t>
 									<tr>
-									<td><input name="date" type="date" class="date"/>
+									<td><input name="date" type="date" class="form-control date"/>
 									</td>
 									<td>
 				                      <select id="vigitaux_id" name="vigitaux_id" class="form-control">
@@ -663,7 +658,7 @@
 				                          </t>
 				                      </select>
 									</td>
-									<td><input name="commentaire" type="text" class="comment"/>
+									<td><input name="commentaire" type="text" class="form-control comment"/>
 									</td>
 									<td>
 											<a class="btn btn-primary addvigitaux">Ajouter</a>
@@ -697,13 +692,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.engrais_ids" t-as="engrai">
-											<tr>
+											<tr t-attf-id="engrai_{{ engrai.id }}">
 											<td><span t-field="engrai.engrais_id.name"/>
 											</td>
 											<td><span t-field="engrai.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{engrai.id}/8" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deleteengrai">Supprimer</a>
 											</td>
 
 											</tr>
@@ -717,7 +712,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty_temps" type="float" class="eqty"/>
+										<td><input name="qty_temps" type="float" class="form-control eqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addengrai">Ajouter</a>
@@ -742,13 +737,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.gazons_ids" t-as="gazon">
-											<tr>
+											<tr t-attf-id="gazon_{{ gazon.id }}">
 											<td><span t-field="gazon.gazons_id.name"/>
 											</td>
 											<td><span t-field="gazon.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{gazon.id}/9" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletegazon">Supprimer</a>
 											</td>
 
 											</tr>
@@ -762,7 +757,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty_temps" type="float" class="gqty"/>
+										<td><input name="qty_temps" type="float" class="form-control gqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addgazon">Ajouter</a>
@@ -782,18 +777,18 @@
 										<thead>
 											<tr class="active">
 												<th>Matériels</th>
-												<th>Qté/tps</th>
+												<th>Tps</th>
 												<th></th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.gmateriel_ids" t-as="gmateriel">
-											<tr>
+											<tr t-attf-id="gmateriel_{{ gmateriel.id }}">
 											<td><span t-field="gmateriel.gmateriel_id.name"/>
 											</td>
 											<td><span t-field="gmateriel.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{gmateriel.id}/10" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletegmateriel">Supprimer</a>
 											</td>
 
 											</tr>
@@ -807,7 +802,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty_temps" type="float" class="gmqty"/>
+										<td><input name="qty_temps" type="float" class="form-control gmqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addgmateriel">Ajouter</a>
@@ -840,13 +835,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.escalier_ids" t-as="escalier">
-											<tr>
+											<tr t-attf-id="escalier_{{ escalier.id }}">
 											<td><span t-field="escalier.escalier_id.name"/>
 											</td>
 											<td><span t-field="escalier.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{escalier.id}/11" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deleteescalier">Supprimer</a>
 											</td>
 
 											</tr>
@@ -860,7 +855,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty" type="float" class="escqty"/>
+										<td><input name="qty" type="float" class="form-control escqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addescalier">Ajouter</a>
@@ -893,13 +888,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.outils_ids" t-as="outilss">
-											<tr>
+											<tr t-attf-id="outilss_{{ outilss.id }}">
 											<td><span t-field="outilss.outils_id.name"/>
 											</td>
 											<td><span t-field="outilss.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{outilss.id}/12" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deleteoutilss">Supprimer</a>
 											</td>
 
 											</tr>
@@ -913,7 +908,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty" type="float" class="oqty"/>
+										<td><input name="qty" type="float" class="form-control oqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addoutils">Ajouter</a>
@@ -929,7 +924,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Cloture</h3>
+								<h3 class="panel-title">Clôture</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
@@ -940,19 +935,19 @@
 										<table id="table_cloture" class="table table-hover status_table">
 										<thead>
 											<tr class="active">
-												<th>Cloture</th>
+												<th>Clôture</th>
 												<th>Tps</th>
 												<th></th>
 											</tr>
 										</thead>
 										<t t-foreach="fiche.cloture_ids" t-as="cloture">
-											<tr>
+											<tr t-attf-id="cloture_{{ cloture.id }}">
 											<td><span t-field="cloture.cloture_id.name"/>
 											</td>
 											<td><span t-field="cloture.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{cloture.id}/13" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletecloture">Supprimer</a>
 											</td>
 
 											</tr>
@@ -966,7 +961,7 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty" type="float" class="cqty"/>
+										<td><input name="qty" type="float" class="form-control cqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addclotures">Ajouter</a>
@@ -999,13 +994,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.divers_ids" t-as="diverss">
-											<tr>
+											<tr t-attf-id="diverss_{{ diverss.id }}">
 											<td><span t-field="diverss.divers_id.name"/>
 											</td>
 											<td><span t-field="diverss.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{diverss.id}/14" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deletediverss">Supprimer</a>
 											</td>
 
 											</tr>
@@ -1019,10 +1014,63 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty" type="float" class="dqty"/>
+										<td><input name="qty" type="float" class="form-control dqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary adddivers">Ajouter</a>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Suite Clôture</h3>
+								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div id="main_sclotures" class="form-group form-field">
+										<table id="table_sclotures" class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Suite Clôture</th>
+												<th>Qté</th>
+												<th></th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.scloture_ids" t-as="scloture">
+											<tr t-attf-id="scloture_{{ scloture.id }}">
+											<td><span t-field="scloture.scloture_id.name"/>
+											</td>
+											<td><span t-field="scloture.quantity"/>
+											</td>
+											<td>
+												<a class="btn btn-primary deletescloture">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select id="scloture_id" name="scloture_id" class="form-control">
+					                          <option value="">...</option>
+					                          <t t-foreach="clotures or []" t-as="scloture">
+					                              <option t-att-value="scloture.id"><t t-esc="scloture.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="form-control scqty"/>
+										</td>
+										<td>
+											<a class="btn btn-primary addsclotures">Ajouter</a>
 										</td>
 
 										</tr>
@@ -1052,13 +1100,13 @@
 											</tr>
 										</thead>
 										<t t-foreach="fiche.terrasse_ids" t-as="terrasse">
-											<tr>
+											<tr t-attf-id="terrasse_{{ terrasse.id }}">
 											<td><span t-field="terrasse.terrasse_id.name"/>
 											</td>
 											<td><span t-field="terrasse.quantity"/>
 											</td>
 											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{terrasse.id}/15" class="btn btn-primary vedit">Supprimer</a>
+												<a class="btn btn-primary deleteterrasse">Supprimer</a>
 											</td>
 
 											</tr>
@@ -1072,63 +1120,10 @@
 					                          </t>
 					                      </select>
 										</td>
-										<td><input name="qty" type="float" class="terqty"/>
+										<td><input name="qty" type="float" class="form-control terqty"/>
 										</td>
 										<td>
 											<a class="btn btn-primary addterrasses">Ajouter</a>
-										</td>
-
-										</tr>
-										</table>
-									</div>
-									<!--- FIN BOUCLE -->
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Suite Cloture</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-							</div>
-							<div class="panel-body">
-          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
-
-									<!--- DEBUT BOUCLE -->
-									<div id="main_sclotures" class="form-group form-field">
-										<table id="table_sclotures" class="table table-hover status_table">
-										<thead>
-											<tr class="active">
-												<th>Suite Cloture</th>
-												<th>Qté</th>
-												<th></th>
-											</tr>
-										</thead>
-										<t t-foreach="fiche.scloture_ids" t-as="scloture">
-											<tr>
-											<td><span t-field="scloture.scloture_id.name"/>
-											</td>
-											<td><span t-field="scloture.quantity"/>
-											</td>
-											<td>
-												<a t-attf-href="/ficheslist/#{fiche.id}/#{scloture.id}/16" class="btn btn-primary vedit">Supprimer</a>
-											</td>
-
-											</tr>
-										</t>
-										<tr>
-										<td>
-					                      <select id="scloture_id" name="scloture_id" class="form-control">
-					                          <option value="">...</option>
-					                          <t t-foreach="clotures or []" t-as="scloture">
-					                              <option t-att-value="scloture.id"><t t-esc="scloture.name"/></option>
-					                          </t>
-					                      </select>
-										</td>
-										<td><input name="qty" type="float" class="scqty"/>
-										</td>
-										<td>
-											<a class="btn btn-primary addsclotures">Ajouter</a>
 										</td>
 
 										</tr>
@@ -1150,9 +1145,13 @@
 
 								<!--- DEBUT BOUCLE -->
 								<div class="form-group form-field">
-									<table class="table table-hover status_table">
-										<tr>
-											<td><textarea id="comment" cols="100" t-field="fiche.remarqs"></textarea></td>
+									<table id="CommentTable" class="table table-hover status_table">
+										<tr id="edit" style="display: none">
+											<td><span type="text" class="form-control read_comment" cols="100" t-field="fiche.remarqs"/></td>
+											<td align="right"><a class="btn btn-primary" id="editcomment">Modifier</a></td>
+										</tr>
+										<tr id="write">
+											<td><textarea id="comment" class="form-control" cols="100" t-field="fiche.remarqs"></textarea></td>
 											<td align="right"><a class="btn btn-primary addcomment">Ajouter</a></td>
 										</tr>
 									</table>
