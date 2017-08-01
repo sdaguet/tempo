@@ -4,7 +4,8 @@ from openerp.addons.website_project_issue.controllers.main import website_accoun
 from openerp.http import request
 from openerp.addons.web.http import request as reqst
 from openerp import fields, models, api, _
-from datetime import datetime
+from datetime import datetime, date
+import time
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -146,8 +147,14 @@ class WebsiteContractDarbtech(http.Controller):
         members_employee = request.env['hr.employee'].sudo().search([('id', 'in', members)])
 
         rezult = []
+
         for mbr in members_employee:
-            first = True
+            elmt = {
+                'name': mbr.name,
+                'desc': "",
+                'values': []
+            }
+
             item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(mbr.id)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(2))])
             _logger.info("Generated item_idsitem_idsitem_idsitem_idsitem_ids: " + str(item_ids))
             for itm in item_ids:
@@ -155,31 +162,22 @@ class WebsiteContractDarbtech(http.Controller):
                 hfin = itm.heure_fin
                 if len(hfin) == 4 : hfin = '0' + hfin
                 if len(hdeb) == 4 : hdeb = '0' + hdeb
-                if first:
-                    elmt = {
-                        'name': mbr.name,
-                        'desc': itm.fiche_chantier_subtask_id.subtask_id.name,
-                        'values': [{
-                            'from' : hdeb,
-                            'to' : hfin,
-                            'label' : itm.type,
-                            'customClass' : gantclasses[i],
-                        }]
-                    }
-                    first = False
-                else:
-                    elmt = {
-                        'name': "",
-                        'desc': itm.fiche_chantier_subtask_id.subtask_id.name,
-                        'values': [{
-                            'from' : hdeb,
-                            'to' : hfin,
-                            'label' : itm.type,
-                            'customClass' : gantclasses[i],
-                        }]
-                    }
+                hdebtime = datetime.strptime(hdeb,'%H:%M').time()
+                debdatetime = datetime.combine(date.today(), hdebtime)
+
+                hfintime = datetime.strptime(hfin,'%H:%M').time()
+                findatetime = datetime.combine(date.today(), hfintime)
+                deb_timestamp = time.mktime(debdatetime.timetuple()) * 1000
+                _logger.info("Generated fin_timestampfin_timestampfin_timestampfin_timestamp: " + str(deb_timestamp))
+                fin_timestamp = time.mktime(debdatetime.timetuple()) * 1000
+                elmt['values'].append({
+                    'from' : deb_timestamp,
+                    'to' : fin_timestamp,
+                    'label' : itm.fiche_chantier_subtask_id.subtask_id.name,
+                    'customClass' : gantclasses[i],
+                })
                 i=(i+1)%tailleGantClasses
-                rezult.append(elmt)
+            rezult.append(elmt)
             _logger.info("Generated ReSSSSSSSSSSSSSSSSSSSSSSSSSSSSS: " + str(rezult))
         return rezult
 
