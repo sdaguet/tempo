@@ -168,8 +168,9 @@ class WebsiteContractDarbtech(http.Controller):
                 hfintime = datetime.strptime(hfin,'%H:%M').time()
                 findatetime = datetime.combine(date.today(), hfintime)
                 deb_timestamp = time.mktime(debdatetime.timetuple()) * 1000
-                _logger.info("Generated fin_timestampfin_timestampfin_timestampfin_timestamp: " + str(deb_timestamp))
-                fin_timestamp = time.mktime(debdatetime.timetuple()) * 1000
+                _logger.info("Generated DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD: " + str(hdeb))
+                _logger.info("Generated FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF: " + str(hfin))
+                fin_timestamp = time.mktime(findatetime.timetuple()) * 1000
                 elmt['values'].append({
                     'from' : deb_timestamp,
                     'to' : fin_timestamp,

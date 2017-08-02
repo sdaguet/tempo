@@ -37,11 +37,9 @@ $(function() {
 				//source: data,
 				source: list,
 				navigate: "buttons",
-				scale: "hours",
-				maxScale: "days",
-				maxScale: "days",
-				scrollToToday: false,
-				itemsPerPage: 10,
+                scale: 'hours', 
+                maxScale: 'days', 
+                minScale: 'hours',
 				onRender: function() {
 					if (window.console && typeof console.log === "function") {
 						console.log(data);
@@ -56,13 +54,4 @@ $(function() {
 			
 		}
 	});
-	
-	$(".gantt").popover({
-		selector: ".bar",
-		title: "I'm a popover",
-		content: "And I'm the content of said popover.",
-		trigger: "hover"
-	});
-
-	prettyPrint();
 });
