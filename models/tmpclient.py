@@ -156,60 +156,59 @@ class TmpClient(models.Model):
         Portable = values.get('Portable')
         Adresse_1 = values.get('Adresse_1')
         Adresse_2 = values.get('Adresse_2')
-        #N_Client = values.get('N_Client')
-
-        code_pays = self.env['res.country'].search([('code','=','FR')])
-        print "code_pays"
-        print code_pays
+        # N_Client = values.get('N_Client')
 
         if Nom_2:
             Nom_2 = Nom_2
         else:
             Nom_2 = ""
-        valuesc = {'comment': False,
-                   'function': False,
-                   'notify_email': 'always',
-                   'message_follower_ids': False,
-                   'company_type': 'person',
-                   # 'property_stock_customer': 9,
-                   'street': Adresse_1, #Adresse_1
-                   # 'property_account_receivable_id': 227,
-                   'property_account_position_id': False,
-                   'property_payment_term_id': False,
-                   'city': Ville,
-                   'country_id': code_pays.id,
-                   'user_id': False,
-                   'opt_out': False,
-                   'zip': Code_Postal, #Code_Postal
-                   'title': False,
-                   # 'company_id': 1,
-                   'message_ids': False,
-                   'parent_id': False,
-                   'supplier': False,
-                   'property_supplier_payment_term_id': False,
-                   'type': 'contact',
-                   'email': E_mail, #E_mail
-                   'is_company': False,
-                   'website': URL, #v
-                   'customer': True,
-                   'fax': FAX, #FAX
-                   'street2': Adresse_2, #Adresse_2
-                   'child_ids': [],
-                   'phone': Telephone,
-                   'user_ids': [],
-                   'active': True,
-                   'lang': 'fr_FR',
-                   # 'property_stock_supplier': 8,
-                   'name': Nom_1 + " " + Nom_2, #nom
-                   'mobile': Portable,
-                   #'ref': N_Client, #N_Client
-                   # 'property_account_payable_id': 292,
-                   'state_id': False,
-                   'category_id': []}
-        #client = self.env['res.partner'].search([('ref','=',self.N_Client)])
-        #if client:
-         #   _logger.error("Ce Client existe déjà !")
-        #else:
+        valuesc = {  # 'comment': False,
+            # 'function': False,
+            'notify_email': 'always',
+            # 'message_follower_ids': False,
+            'company_type': 'person',
+            'N_Client_id': record.id,  # N_Article
+            # 'property_stock_customer': 9,
+            'street': Adresse_1,  # Adresse_1
+            # 'property_account_receivable_id': 227,
+            # 'property_account_position_id': False,
+            # 'property_payment_term_id': False,
+            'city': Ville,
+            # 'country_id': code_pays.id,
+            # 'user_id': False,
+            # 'opt_out': False,
+            'zip': Code_Postal,  # Code_Postal
+            # 'title': False,
+            # 'company_id': 1,
+            # 'message_ids': False,
+            # 'parent_id': False,
+            # 'supplier': False,
+            # 'property_supplier_payment_term_id': False,
+            'type': 'contact',
+            'email': E_mail,  # E_mail
+            # 'is_company': False,
+            'website': URL,  # v
+            'customer': True,
+            'fax': FAX,  # FAX
+            'street2': Adresse_2,  # Adresse_2
+            # 'child_ids': [],
+            'phone': Telephone,
+            # 'user_ids': [],
+            'active': True,
+            'lang': 'fr_FR',
+            # 'property_stock_supplier': 8,
+            'name': Nom_1 + " " + Nom_2,  # nom
+            'mobile': Portable,
+            # 'ref': N_Client, #N_Client
+            # 'property_account_payable_id': 292,
+            'state_id': False,
+            'category_id': [],
+            'importe': True,
+        }
+        # client = self.env['res.partner'].search([('ref','=',self.N_Client)])
+        # if client:
+        #   _logger.error("Ce Client existe déjà !")
+        # else:
         self.env['res.partner'].create(valuesc)
         return record
 

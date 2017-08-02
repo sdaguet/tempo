@@ -14,6 +14,8 @@ class puthod_partner(models.Model):
     N_Client_id = fields.Many2one(comodel_name="tmpclient", string="N° Client", required=False)
     N_Client_comp_id = fields.Many2one(comodel_name="tmpclient", string="N° Client", required=False,
                                        compute='_compute_Client')
+    importe = fields.Boolean(string="importe",default = False)
+
 
     @api.multi
     def unlink(self):
@@ -25,13 +27,9 @@ class puthod_partner(models.Model):
                  'N_Client_id.Code_Postal', 'N_Client_id.E_mail', 'N_Client_id.URL', 'N_Client_id.Fax',
                  'N_Client_id.Telephone', 'N_Client_id.Portable', 'N_Client_id.Adresse_1', 'N_Client_id.Adresse_2')
     def _compute_Client(self):
-        print "self"
-        print self
 
         for s in self:
             if s.N_Client_id:
-
-
                 Nom_1 = s.N_Client_id.Nom_1
                 Nom_2 = s.N_Client_id.Nom_2
                 Ville = s.N_Client_id.Ville
@@ -43,8 +41,6 @@ class puthod_partner(models.Model):
                 Portable = s.N_Client_id.Portable
                 Adresse_1 = s.N_Client_id.Adresse_1
                 Adresse_2 = s.N_Client_id.Adresse_2
-
-
 
                 s.street = Adresse_1,  # Adresse_1
                 s.city = Ville
