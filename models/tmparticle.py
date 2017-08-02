@@ -87,7 +87,7 @@ class TmpArticle(models.Model):
     PCB_Article = fields.Char("PCB Artifcle")
     Origine = fields.Char("Origine")
     Prix_ref_marge = fields.Char("Prix ref marge")
-    # code_barre = fields.Char("code barre")
+    Code_Barre_2 = fields.Char("code barre 2")
     Gestion_de_Facteur = fields.Char("Gestion de Facteur")
     Code_Facteur = fields.Char("Code Facteur")
     Remplace_par = fields.Char("Remplacé par")
@@ -107,16 +107,23 @@ class TmpArticle(models.Model):
     N_Article_Totalisateur = fields.Char("N° Article Totalisateur")
     Article_Financier = fields.Char("Article Financier")
 
-    _sql_constraints = [
-        ('N_Article_uniq', 'unique(N_Article)', _("A N_Article can only be assigned to one product !")),
-    ]
-
     @api.model
     def create(self, values):
-            record = super(TmpArticle, self).create(values)
 
+
+            #timestampadd = 0
+            count = 0
             time.time()
+
             timestamp1 = time.time()
+            record = super(TmpArticle, self).create(values)
+            timestamp2 = time.time()
+
+            ec1 = timestamp2 -timestamp1
+
+            _logger.info("Objet TMPARTICLE créé: %.2f" %(ec1))
+
+            timestamp3 = time.time()
 
             Nom_francais = values.get('Nom_francais')
             if Nom_francais:
@@ -136,71 +143,100 @@ class TmpArticle(models.Model):
             else:
                 Taille_bis = ""
 
+            timestamp4 = time.time()
+            ec2 = timestamp4 -timestamp3
+
+
+            _logger.info("Champs obligatoires verifié: %.2f " %(ec2))
+
+            timestamp5 = time.time()
 
             Prix_Etiquette = float(values.get('Prix_Etiquette'))
             Poids_Brut = float(values.get('Poids_Brut'))
+            Code_Barre = values.get('Code_Barre')
             valuesp = {
                 #'warranty': 0,
-                #'property_stock_procurement': 6,
-                'message_follower_ids': False,
-                'property_account_creditor_price_difference': False,
+                #'message_follower_ids': False,
+                #'property_account_creditor_price_difference': False,
                 #'standard_price': 0,
-                'attribute_line_ids': [],
+                #'attribute_line_ids': [],
                 #'uom_id': 1,
-                'property_account_income_id': False,
-                'description_purchase': False,
+                #'property_account_income_id': False,
+                #'description_purchase': False,
                 'N_Article_id': record.id, #N_Article
-                'message_ids': False,
+                #'message_ids': False,
                 'sale_ok': True,
-                'item_ids': [],
-                'description_picking': False,
-                'purchase_method': 'receive',
+                #'item_ids': [],
+                #'description_picking': False,
+                #'purchase_method': 'receive',
                 'purchase_ok': True,
                 #'sale_delay': 7,
                 #'company_id': 1,
-                'property_valuation': False,
+                #'property_valuation': False,
                 'track_service': 'manual',
                 #'uom_po_id': 1,
-                'property_cost_method': False,
+                #'property_cost_method': False,
                 'type': u'consu',
-                'property_stock_account_input': False,
+                #'property_stock_account_input': False,
                 #'property_stock_production': 7,
                 #'supplier_taxes_id': [[6, False, [11]]],
                 'volume': 0,
                 #'route_ids': [[6, False, [8]]],
                 'tracking': u'none',
-                'description_sale': False,
+                #'description_sale': False,
                 'active': True,
                 #'property_stock_inventory': 5,
-                'cost_method': False,
-                'valuation': False,
-                'image_medium': False,
+                #'cost_method': False,
+                #'valuation': False,
+                #'image_medium': False,
                 'name': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
-                'property_account_expense_id': False,
-                #'categ_id': 1,
+                #'property_account_expense_id': False,
+                #'categ_id': categ,
                 'packaging_ids': [],
                 'invoice_policy': u'order',
                 #'taxes_id': [[6, False, [6]]],
-                'property_stock_account_output': False,
+                #'property_stock_account_output': False,
                 'seller_ids': [],
-                'list_price': Prix_Etiquette , #Prix_Etiquette
-                # 'barcode': Code_Barre , #Code_Barre
+                'lst_price': Prix_Etiquette , #Prix_Etiquette
+                'barcode': Code_Barre , #Code_Barre
                 'weight' : Poids_Brut , #Poids_Brut
+                'importe' : True ,
                 }
 
-            self.env['product.template'].create(valuesp)
-            timestamp2 = time.time()
-            print "This took %.2f seconds" % (timestamp2 - timestamp1)
+            timestamp6 = time.time()
+            ec3 = timestamp6 - timestamp5
+
+            _logger.info("mapping minimum Términé: %.2f " %(ec3) )
+
+            timestamp7 = time.time()
+
+            self.env['product.product'].create(valuesp)
+            timestamp8 = time.time()
+            ec4 = timestamp8 - timestamp7
+
+
+
+            # timestamp2 = time.time()
+            # timestamp = timestamp2 - timestamp1
+            # timestampadd = timestampadd + timestamp
+
+            # print "This took %.2f seconds" % (timestampadd)
+            # print "Record " + str(count)
+
+            count = count + 1
+
+            _logger.info("Objet product_product créé: %.2f " %(ec4))
+
             return record
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
 
     # @api.model
     # def create(self, values):
     #     _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-    #     return super(ProductTemplate, self).create(values)
+    #     return super(ProductProduct, self).create(values)
 
 class Partner(models.Model):
     _inherit = 'res.partner'
