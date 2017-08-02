@@ -152,13 +152,15 @@ class product(models.Model):
         if self.altitude_max < self.altitude_min:
             raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
-    # @api.multi
-    # def unlink(self):
-    #     self.N_Article_id.unlink()
-    #     return super(product, self).unlink()
+    @api.multi
+    def unlink(self):
+        for s in self:
+            if s.N_Article_id:
+                s.N_Article_id.unlink()
+                return super(product, s).unlink()
 
     @api.multi
-    @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
+    @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Code_Barre','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
     def _compute_Article(self):
 
         if self.N_Article_id:
@@ -190,8 +192,8 @@ class product(models.Model):
             name = Libelle_commercial + " " + Taille_bis + " - " +Nom_francais
             lst_price = float(self.N_Article_id.Prix_Etiquette)
             weight = float(self.N_Article_id.Poids_Brut)
-            #Code_Barre = self.N_Article_id.Code_Barre
-            record = self.write({'lst_price': lst_price, 'weight': weight, 'name': name})
+            Code_Barre = self.N_Article_id.Code_Barre
+            record = self.write({'lst_price': lst_price, 'weight': weight, 'name': name, 'barcode':Code_Barre})
             return record
 
 

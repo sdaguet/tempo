@@ -6,8 +6,6 @@ from datetime import datetime
 # from dateutil.relativedelta import relativedelta
 # from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 import logging
-
-
 class puthod_partner(models.Model):
     _inherit = 'res.partner'
 
@@ -19,8 +17,10 @@ class puthod_partner(models.Model):
 
     @api.multi
     def unlink(self):
-        self.N_Client_id.unlink()
-        return super(puthod_partner, self).unlink()
+        for s in self:
+            if s.N_Client_id:
+                self.N_Client_id.unlink()
+                return super(puthod_partner, s).unlink()
 
     @api.multi
     @api.depends('N_Client_id', 'N_Client_id.Nom_1', 'N_Client_id.Nom_2', 'N_Client_id.Ville',

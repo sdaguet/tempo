@@ -153,7 +153,7 @@ class TmpArticle(models.Model):
 
             Prix_Etiquette = float(values.get('Prix_Etiquette'))
             Poids_Brut = float(values.get('Poids_Brut'))
-            #Code_Barre = values.get('Code_Barre')
+            Code_Barre = values.get('Code_Barre')
             valuesp = {
                 #'warranty': 0,
                 #'message_follower_ids': False,
@@ -198,7 +198,7 @@ class TmpArticle(models.Model):
                 #'property_stock_account_output': False,
                 'seller_ids': [],
                 'lst_price': Prix_Etiquette , #Prix_Etiquette
-                #'barcode': Code_Barre , #Code_Barre
+                'barcode': Code_Barre , #Code_Barre
                 'weight' : Poids_Brut , #Poids_Brut
                 'importe' : True ,
                 }
