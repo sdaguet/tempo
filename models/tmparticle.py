@@ -109,13 +109,21 @@ class TmpArticle(models.Model):
 
     @api.model
     def create(self, values):
-            record = super(TmpArticle, self).create(values)
 
-            # time.time()
-            # timestamp1 = time.time()
-            # timestampadd = 0
-            #
-            # count = 0
+
+            #timestampadd = 0
+            count = 0
+            time.time()
+
+            timestamp1 = time.time()
+            record = super(TmpArticle, self).create(values)
+            timestamp2 = time.time()
+
+            ec1 = timestamp2 -timestamp1
+
+            _logger.info("Objet TMPARTICLE créé: %.2f" %(ec1))
+
+            timestamp3 = time.time()
 
             Nom_francais = values.get('Nom_francais')
             if Nom_francais:
@@ -135,9 +143,17 @@ class TmpArticle(models.Model):
             else:
                 Taille_bis = ""
 
+            timestamp4 = time.time()
+            ec2 = timestamp4 -timestamp3
+
+
+            _logger.info("Champs obligatoires verifié: %.2f " %(ec2))
+
+            timestamp5 = time.time()
+
             Prix_Etiquette = float(values.get('Prix_Etiquette'))
             Poids_Brut = float(values.get('Poids_Brut'))
-            Code_Barre = values.get('Code_Barre')
+            #Code_Barre = values.get('Code_Barre')
             valuesp = {
                 #'warranty': 0,
                 #'message_follower_ids': False,
@@ -182,18 +198,35 @@ class TmpArticle(models.Model):
                 #'property_stock_account_output': False,
                 'seller_ids': [],
                 'lst_price': Prix_Etiquette , #Prix_Etiquette
-                'barcode': Code_Barre , #Code_Barre
+                #'barcode': Code_Barre , #Code_Barre
                 'weight' : Poids_Brut , #Poids_Brut
                 'importe' : True ,
                 }
 
+            timestamp6 = time.time()
+            ec3 = timestamp6 - timestamp5
+
+            _logger.info("mapping minimum Términé: %.2f " %(ec3) )
+
+            timestamp7 = time.time()
+
             self.env['product.product'].create(valuesp)
+            timestamp8 = time.time()
+            ec4 = timestamp8 - timestamp7
+
+
+
             # timestamp2 = time.time()
             # timestamp = timestamp2 - timestamp1
             # timestampadd = timestampadd + timestamp
-            # count= count +1
+
             # print "This took %.2f seconds" % (timestampadd)
             # print "Record " + str(count)
+
+            count = count + 1
+
+            _logger.info("Objet product_product créé: %.2f " %(ec4))
+
             return record
 
 
