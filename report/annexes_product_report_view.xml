@@ -3,10 +3,10 @@
     <!-- Inherit sale order report (from module sale) -->
 	<template id="report_quotation_inherit_annexes" inherit_id="sale.report_saleorder_document">
 		<xpath expr="//div[@class='page']" position="inside">
-			            <t t-foreach="doc.order_line" t-as="l">
+			            <!-- t t-foreach="doc.order_line" t-as="l">
 						<p style="page-break-after:always;">
 							 Annexe: <span t-field="l.name"/>
-			            </p></t>
+			            </p></t -->
                 </xpath>
 	</template>
     </data>
