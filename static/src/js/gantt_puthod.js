@@ -4,11 +4,15 @@ $(function() {
 	var rrr = 3;//$('#ganttx').text();
 	$('#ganttx').toggleClass('hidden');
 	console.log(rrr);
+	var fiche_id = $('#fiche_id').val();
+	console.log("1111111111111");
+	console.log(fiche_id);
+	console.log("1111111111111");
 	$.ajax({
 		type: "POST",
-		url: "/getgantt/" + rrr,
+		url: "/getgantt",
 		async: false,
-		data: JSON.stringify({'fiche' : rrr}),
+		data: JSON.stringify({"params": {'fiche': fiche_id}}),
 		contentType: "application/json",
 		complete: function (data) {
 			var list = []
@@ -37,18 +41,14 @@ $(function() {
 				//source: data,
 				source: list,
 				navigate: "buttons",
-				scale: "hours",
-				maxScale: "days",
-				maxScale: "days",
-				scrollToToday: false,
-				itemsPerPage: 10,
+                scale: 'hours', 
+                maxScale: 'days', 
+                minScale: 'hours',
 				onRender: function() {
 					if (window.console && typeof console.log === "function") {
 						console.log(data);
 					}
 				
-
-					//prettyPrint();
 				}
 				
 		});
@@ -56,13 +56,4 @@ $(function() {
 			
 		}
 	});
-	
-	$(".gantt").popover({
-		selector: ".bar",
-		title: "I'm a popover",
-		content: "And I'm the content of said popover.",
-		trigger: "hover"
-	});
-
-	prettyPrint();
 });

@@ -157,7 +157,7 @@
 								<span class="pull-right clickable ganttshowme"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<div><span id="ganttx" class="fiechce" t-field="fiche.id"/></div>
+								<div><input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche.id"/></div>
 								<div class="gantt"></div>
 							</div>
 						</div>
@@ -303,7 +303,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Véhicules</h3>
+								<h3 class="panel-title">Composants</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
@@ -350,14 +350,6 @@
 									</div>
 									<!--- FIN BOUCLE -->
 							</div>
-						</div>
-					</div>					
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Matériels</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
@@ -402,12 +394,13 @@
 									</div>
 									<!--- FIN BOUCLE -->
 							</div>
+							
 						</div>
-					</div>					
+					</div>				
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Machines</h3>
+								<h3 class="panel-title">Composants</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
@@ -454,14 +447,6 @@
 									</div>
 									<!--- FIN BOUCLE -->
 							</div>
-						</div>
-					</div>					
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Fournitures Plantation</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
@@ -505,15 +490,16 @@
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-							</div>
+						</div>
 						</div>
 					</div>					
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Kit RBKS</h3>
+								<h3 class="panel-title">Composants</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
+							
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 									<!--- DEBUT BOUCLE -->
@@ -557,14 +543,6 @@
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-							</div>
-						</div>
-					</div>					
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Tuteurage</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
@@ -675,7 +653,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Engazonnement</h3>
+								<h3 class="panel-title">Composants</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
@@ -818,7 +796,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Construction Bois</h3>
+								<h3 class="panel-title">Composants</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
@@ -866,14 +844,6 @@
 									</div>
 									<!--- FIN BOUCLE -->
 							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Outils</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
 
@@ -918,67 +888,6 @@
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Clôture</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-							</div>
-							<div class="panel-body">
-          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
-
-									<!--- DEBUT BOUCLE -->
-									<div id="main_cloture" class="form-group form-field">
-										<table id="table_cloture" class="table table-hover status_table">
-										<thead>
-											<tr class="active">
-												<th>Clôture</th>
-												<th>Tps</th>
-												<th></th>
-											</tr>
-										</thead>
-										<t t-foreach="fiche.cloture_ids" t-as="cloture">
-											<tr t-attf-id="cloture_{{ cloture.id }}">
-											<td><span t-field="cloture.cloture_id.name"/>
-											</td>
-											<td><span t-field="cloture.quantity"/>
-											</td>
-											<td>
-												<a class="btn btn-primary deletecloture">Supprimer</a>
-											</td>
-
-											</tr>
-										</t>
-										<tr>
-										<td>
-					                      <select id="cloture_id" name="cloture_id" class="form-control">
-					                          <option value="">...</option>
-					                          <t t-foreach="clotures or []" t-as="cloture">
-					                              <option t-att-value="cloture.id"><t t-esc="cloture.name"/></option>
-					                          </t>
-					                      </select>
-										</td>
-										<td><input name="qty" type="float" class="form-control cqty"/>
-										</td>
-										<td>
-											<a class="btn btn-primary addclotures">Ajouter</a>
-										</td>
-
-										</tr>
-										</table>
-									</div>
-									<!--- FIN BOUCLE -->
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Divers</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
@@ -1030,8 +939,53 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Suite Clôture</h3>
+								<h3 class="panel-title">Composants</h3>
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+							<div class="panel-body">
+          							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
+
+									<!--- DEBUT BOUCLE -->
+									<div id="main_cloture" class="form-group form-field">
+										<table id="table_cloture" class="table table-hover status_table">
+										<thead>
+											<tr class="active">
+												<th>Clôture</th>
+												<th>Tps</th>
+												<th></th>
+											</tr>
+										</thead>
+										<t t-foreach="fiche.cloture_ids" t-as="cloture">
+											<tr t-attf-id="cloture_{{ cloture.id }}">
+											<td><span t-field="cloture.cloture_id.name"/>
+											</td>
+											<td><span t-field="cloture.quantity"/>
+											</td>
+											<td>
+												<a class="btn btn-primary deletecloture">Supprimer</a>
+											</td>
+
+											</tr>
+										</t>
+										<tr>
+										<td>
+					                      <select id="cloture_id" name="cloture_id" class="form-control">
+					                          <option value="">...</option>
+					                          <t t-foreach="clotures or []" t-as="cloture">
+					                              <option t-att-value="cloture.id"><t t-esc="cloture.name"/></option>
+					                          </t>
+					                      </select>
+										</td>
+										<td><input name="qty" type="float" class="form-control cqty"/>
+										</td>
+										<td>
+											<a class="btn btn-primary addclotures">Ajouter</a>
+										</td>
+
+										</tr>
+										</table>
+									</div>
+									<!--- FIN BOUCLE -->
 							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
@@ -1077,14 +1031,6 @@
 										</table>
 									</div>
 									<!--- FIN BOUCLE -->
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Terrasse</h3>
-								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
           							<input type="hidden" name="fiche" t-att-value="fiche.id"/>
