@@ -131,16 +131,15 @@ class WebsiteContractDarbtech(http.Controller):
         _logger.info("POINTERfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff user = " + str(fiche))
         return {}
 
-    @http.route('/getgantt/<fiche>', type='json', auth="user", website=True)
-    def ganttdatas(self, fiche, **kw):
+    @http.route('/getgantt', type='json', auth="user", website=True)
+    def ganttdatas(self, fiche):
         gantclasses = ["ganttRed","ganttGreen","ganttOrange"]
         i=0
         tailleGantClasses=len(gantclasses)
 
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', 2)])
-        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)]).equipe_id
+        list_teams = request.env['fiche.chantier'].sudo().search([('id', '=', int(fiche))]).equipe_id
         _logger.info("Ramene mon gantt data = ")
         members = list_teams.ressource_list.ids
         members.append(list_teams.manager.id)
@@ -155,7 +154,7 @@ class WebsiteContractDarbtech(http.Controller):
                 'values': []
             }
 
-            item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(mbr.id)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(2))])
+            item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(mbr.id)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
             _logger.info("Generated item_idsitem_idsitem_idsitem_idsitem_ids: " + str(item_ids))
             for itm in item_ids:
                 hdeb = itm.heure_deb

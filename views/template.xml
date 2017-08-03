@@ -157,7 +157,7 @@
 								<span class="pull-right clickable ganttshowme"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div class="panel-body">
-								<div><span id="ganttx" class="fiechce" t-field="fiche.id"/></div>
+								<div><input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche.id"/></div>
 								<div class="gantt"></div>
 							</div>
 						</div>

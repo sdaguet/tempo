@@ -1062,6 +1062,7 @@
                                     _bar.css({ 'top': top, 'left': Math.floor(cFrom) });
 
                                     datapanel.append(_bar);
+                                    console.log(datapanel);
                                     break;
 
                                 // **Weekly data**
