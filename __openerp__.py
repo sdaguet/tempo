@@ -25,7 +25,7 @@
                 'website','hr_attendance',
                 'sale_layout', 'hr_timesheet', 'hr_equipment', 'hr_holidays', 'hr_timesheet_sheet',
 				'website_customer_order_delivery_date',
-                'manufacturing_google_maps'
+                'manufacturing_google_maps', 'sale_order_acompte', 'sale_discount_quantity'
                 ],
 
     # always loaded

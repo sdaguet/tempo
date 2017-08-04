@@ -171,7 +171,7 @@
                     <!--  &lt;!&ndash;       <t t-foreach="taxes" t-as="v">
                                 *<t t-esc="v"/> : <t t-esc="int(v_value)"/></t> &ndash;&gt; -->
 
-                    <table class="table table-condensed">
+                    <table class="table table-condensed" style="page-break-inside: avoid !important;">
 
                         <tr class="border-black">
                             <th style="border:thin solid #323232;font-size: 11">

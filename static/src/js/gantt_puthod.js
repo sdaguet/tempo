@@ -1,4 +1,4 @@
-$(function() {	
+function getwebgantt() {	
 	"use strict";
 	
 	var rrr = 3;//$('#ganttx').text();
@@ -44,11 +44,14 @@ $(function() {
                 scale: 'hours', 
                 maxScale: 'days', 
                 minScale: 'hours',
+                itemsPerPage: 10,
 				onRender: function() {
 					if (window.console && typeof console.log === "function") {
 						console.log(data);
 					}
 				
+
+					//prettyPrint();
 				}
 				
 		});
@@ -56,4 +59,15 @@ $(function() {
 			
 		}
 	});
-});
+	
+	$(".gantt").popover({
+		selector: ".bar",
+		title: "I'm a popover",
+		content: "And I'm the content of said popover.",
+		trigger: "hover"
+	});
+
+	prettyPrint();
+};
+
+$(function() {getwebgantt();});

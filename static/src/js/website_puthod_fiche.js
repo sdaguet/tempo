@@ -805,6 +805,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
     })
 
 
+
     $('.addwork').on('click', function(ev) {
         ev.preventDefault();
 		var fiche_id = $('#fiche_id').val();
@@ -814,6 +815,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 		var type = $('#type_'+ employee +' option:selected').val();
 		var heure_deb = $('#heure_deb_'+ employee +' option:selected').val();
 		var heure_fin = $('#heure_fin_'+ employee +' option:selected').val();
+
 		$.ajax({
 			type: "POST",
 			url: "/addwork",
@@ -836,6 +838,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				$("#type_"+ employee).val("p");
 				$("#heure_deb_"+ employee).val("7:00");
 				$("#heure_fin_"+ employee).val("7:00");
+				getwebgantt();
 				}
 			}
 		});

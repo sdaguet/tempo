@@ -22,7 +22,7 @@ access_fiche_chantier_vehicle_chef,chef.fiche.chantier.vehicle.chef,model_fiche_
 access_fiche_chantier_materiel_chef,chef.fiche.chantier.materiel.chef,model_fiche_chantier_materiel,group_chef_chantier,1,1,1,0
 access_equipe_chef,chef.equipe,model_equipe,group_chef_chantier,1,1,1,0
 access_sale_order_chef,chef.sale.order,sale.model_sale_order,group_chef_chantier,1,1,1,0
-access_calendar_event_chef,chef.calendar.event,model_calendar_event,group_chef_chantier,1,0,0,0
+access_calendar_event_chef,chef.calendar.event,calendar.model_calendar_event,group_chef_chantier,1,0,0,0
 
 
 
@@ -50,9 +50,9 @@ access_fiche_chantier_materiel_directeur,Directeur.fiche.chantier.materiel.direc
 
 
 access_puthod_intervention_directeur,Directeur.puthod.intervention.directeur,model_puthod_intervention,group_directeur,1,1,1,1
-access_chantier_directeur,Directeur.chantier.directeur,model_chantier,group_directeur,1,1,1,1
+access_chantier_directeur,Directeur.chantier.directeur,model_chantier,group_directeur,1,1,1,
 access_equipe_directeur,Directeur.equipe,model_equipe,group_directeur,1,1,1,1
-access_calendar_event_directeur,Directeur.calendar.event,model_calendar_event,group_directeur,1,1,1,1
+access_calendar_event_directeur,Directeur.calendar.event,calendar.model_calendar_event,group_directeur,1,1,1,1
 access_res_partner_directeur,Directeur.res.partner,model_res_partner,group_directeur,1,0,0,0
 access_sale_order_directeur,Directeur.sale.order,sale.model_sale_order,group_directeur,1,1,1,1
 access_product_emplacement_directeur,Directeur.product.emplacement,model_product_emplacement,group_directeur,1,1,1,1
@@ -62,30 +62,89 @@ access_hr_attendance_directeur,Directeur.hr.attendance,hr_attendance.model_hr_at
 access_fiche_chantier_compta,compta.fiche.chantier.compta,model_fiche_chantier,group_compta,1,1,0,0
 access_chantier_compta,compta.chantier.compta,model_chantier,group_compta,1,1,0,0
 access_equipe_compta,compta.equipe,model_equipe,group_compta,1,1,0,0
-access_calendar_event_compta,compta.calendar.event,model_calendar_event,group_compta,1,0,0,0
+access_calendar_event_compta,compta.calendar.event,calendar.model_calendar_event,group_compta,1,0,0,0
 access_res_partner_compta,compta.res.partner,model_res_partner,group_compta,1,1,1,1
 access_sale_order_compta,compta.sale.order,sale.model_sale_order,group_compta,1,1,0,0
+access_sale_order_line_compta,compta.sale.order.line,sale.model_sale_order_line,group_compta,1,1,0,0
 access_product_emplacement_compta,compta.product.emplacement,model_product_emplacement,group_compta,1,1,0,0
 access_hr_employee_compta,compta.hr.employee,model_hr_employee,group_compta,1,1,1,1
 access_hr_attendance_compta,compta.hr.attendance,hr_attendance.model_hr_attendance,group_compta,1,1,1,1
 access_hr_action_reason_compta,compta.hr.action.reason,hr_attendance.model_hr_action_reason,group_compta,1,1,1,1
 
+
+access_calendar_attendee_employee,employee.calendar.attendee,calendar.model_calendar_attendee,group_employee,1,0,0,0
+access_calendar_alarm,employee.calendar.alarm,calendar.model_calendar_alarm,group_employee,1,0,0,0
+access_calendar_event_employee,employee.calendar.event,calendar.model_calendar_event,group_employee,1,0,0,0
+access_calendar_event_type_employee,employee.calendar.event.type,calendar.model_calendar_event_type,group_employee,1,0,0,0
+access_calendar_alarm_manager_employee,employee.calendar.alarm.manager,calendar.model_calendar_alarm_manager,group_employee,1,0,0,0
+access_calendar_contacts_employee,employee.calendar.contacts,calendar.model_calendar_contacts,group_employee,1,0,0,0
+
+
+access_puthod_intervention_administration,administration.puthod.intervention.administration,model_puthod_intervention,group_administration,1,1,1,1
 access_fiche_chantier_administration,administration.fiche.chantier.administration,model_fiche_chantier,group_administration,1,1,1,1
 access_chantier_administration,administration.chantier.administration,model_chantier,group_administration,1,1,1,1
 access_equipe_administration,administration.equipe,model_equipe,group_administration,1,1,1,1
-access_calendar_event_administration,administration.calendar.event,model_calendar_event,group_administration,1,0,0,0
+access_calendar_event_administration,administration.calendar.event,calendar.model_calendar_event,group_administration,1,0,0,0
 access_res_partner_administration,administration.res.partner,model_res_partner,group_administration,1,1,1,1
 access_sale_order_administration,administration.sale.order,sale.model_sale_order,group_administration,1,1,1,1
 access_product_emplacement_administration,administration.product.emplacement,model_product_emplacement,group_administration,1,1,1,1
 access_hr_employee_administration,administration.hr.employee,model_hr_employee,group_administration,1,1,1,1
 access_hr_attendance_administration,administration.hr.attendance,hr_attendance.model_hr_attendance,group_administration,1,1,1,1
-access_account_journal_administration,administration account journal,account.model_account_journal,group_administration,1,0,0,0
-access_account_invoice_administration,administration account invoice,account.model_account_invoice,group_administration,1,0,0,0
-access_account_payment_administration,administration account payment,account.model_account_payment,group_administration,1,0,0,0
-access_account_move_line_administration,administration account move line,account.model_account_move_line,group_administration,1,0,0,0
-access_account_move_administration,administration account move,account.model_account_move,group_administration,1,0,0,0
-access_account_account_administration,administration account account,account.model_account_account,group_administration,1,0,0,0
-access_account_invoice_report_administration,administration account invoice report,account.model_account_invoice_report,group_administration,1,0,0,0
+
+
+access_account_journal_administration,administration.account.journal,account.model_account_journal,group_administration,1,0,0,0
+access_account_invoice_administration,administration.account.invoice,account.model_account_invoice,group_administration,1,0,0,0
+access_account_payment_administration,administration.account.payment,account.model_account_payment,group_administration,1,0,0,0
+access_account_payment_term_administration,administration.account.payment.term,account.model_account_payment_term,group_administration,1,0,0,0
+access_account_payment_term_line_administration,administration.account.payment.term.line,account.model_account_payment_term_line,group_administration,1,0,0,0
+access_account_move_line_administration,administration.account.move.line,account.model_account_move_line,group_administration,1,0,0,0
+access_account_move_administration,administration.account.move,account.model_account_move,group_administration,1,0,0,0
+access_account_account_administration,administration.account.account,account.model_account_account,group_administration,1,0,0,0
+access_account_invoice_report_administration,administration.account.invoice.report,account.model_account_invoice_report,group_administration,1,0,0,0
+access_account_account_type_administration,administration.account.account.type,account.model_account_account_type,group_administration,1,0,0,0
+access_account_tax_administration,administration.account.tax.type,account.model_account_tax,group_administration,1,0,0,0
+
+
+
+access_account_account_type,account.account.type,account.model_account_account_type,group_administration,1,0,0,0
+access_account_account_administration,account.account partner manager,account.model_account_account,group_administration,1,0,0,0
+access_account_tax,account.tax,account.model_account_tax,group_administration,1,0,0,0
+access_account_account_template,account.account.template,account.model_account_account_template,group_administration,1,0,0,0
+access_account_chart_template,account.chart.template,account.model_account_chart_template,group_administration,1,0,0,0
+access_account_tax_template,account.tax.template,account.model_account_tax_template,group_administration,1,0,0,0
+access_account_bank_statement_group_invoice,account.bank.statement.group.invoice,account.model_account_bank_statement,group_administration,1,0,0,0
+access_account_bank_statement_line_group_invoice,account.bank.statement.line.group.invoice,account.model_account_bank_statement_line,group_administration,1,0,0,0
+access_account_analytic_line_manager,account.analytic.line manager,account.model_account_analytic_line,group_administration,1,0,0,0
+access_account_analytic_account,account.analytic.account,analytic.model_account_analytic_account,group_administration,1,0,0,0
+access_account_invoice_tax_uinvoice,account.invoice.tax,account.model_account_invoice_tax,group_administration,1,0,0,0
+access_account_move_uinvoice,account.move,account.model_account_move,group_administration,1,0,0,0
+access_account_move_line_uinvoice,account.move.line invoice,account.model_account_move_line,group_administration,1,0,0,0
+access_account_journal_manager,account.journal,account.model_account_journal,group_administration,1,0,0,0
+access_res_currency_administration,res.currency account manager,base.model_res_currency,group_administration,1,0,0,0
+access_res_currency_rate_administration,res.currency.rate account manager,base.model_res_currency_rate,group_administration,1,0,0,0
+access_account_invoice_administration,account.invoice administration,account.model_account_invoice,group_administration,1,0,0,0
+access_account_invoice_administration,account.invoice.line administration,account.model_account_invoice_line,group_administration,1,0,0,0
+access_account_payment_term_administration,account.payment.term partner manager,account.model_account_payment_term,group_administration,1,0,0,0
+access_account_payment_term_line_administration,account.payment.term.line partner manager,account.model_account_payment_term_line,group_administration,1,0,0,0
+access_account_fiscal_position,account.fiscal.position all,account.model_account_fiscal_position,group_administration,1,0,0,0
+access_account_fiscal_position_tax,account.fiscal.position.tax all,account.model_account_fiscal_position_tax,group_administration,1,0,0,0
+access_account_fiscal_position_account,account.fiscal.position all,account.model_account_fiscal_position_account,group_administration,1,0,0,0
+access_account_fiscal_position_template,account.fiscal.position.template,account.model_account_fiscal_position_template,group_administration,1,0,0,0
+access_account_fiscal_position_tax_template,account.fiscal.position.tax.template,account.model_account_fiscal_position_tax_template,group_administration,1,0,0,0
+access_account_fiscal_position_account_template,account.fiscal.position.account.template,account.model_account_fiscal_position_account_template,group_administration,1,0,0,0
+access_account_invoice_report_administration,account.invoice.report_administration,account.model_account_invoice_report,group_administration,1,0,0,0
+access_account_financial_report,account.financial.report,account.model_account_financial_report,group_administration,1,0,0,0
+access_account_account_tax,account.account.tag,account.model_account_account_tag,group_administration,1,0,0,0
+access_account_operation_template,account.operation.template,account.model_account_operation_template,group_administration,1,0,0,0
+access_account_partial_reconcile_group_invoice,account.partial.reconcile.group.invoice,account.model_account_partial_reconcile,group_administration,1,1,1,0
+access_account_payment_method,account.payment.method,account.model_account_payment_method,group_administration,1,0,0,0
+access_account_payment,account.payment,account.model_account_payment,group_administration,1,0,0,0
+access_account_cashbox,account.bank.statement.cashbox,account.model_account_bank_statement_cashbox,group_administration,1,0,0,0
+access_account_cashbox_line,account.bank.statement.cashbox.line,account.model_account_cashbox_line,group_administration,1,0,0,0
+access_account_tax_group_internal_administration,account.tax.group internal administration,account.model_account_tax_group,group_administration,1,0,0,0
+
+
+
 
 access_fiche_chantier_machine_administration,administration.fiche.chantier.machine.administration,model_fiche_chantier_machine,group_administration,1,1,1,1
 access_fiche_chantier_fourniture_administration,administration.fiche.chantier.fourniture.administration,model_fiche_chantier_fourniture,group_administration,1,1,1,1
