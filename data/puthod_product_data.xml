@@ -1235,6 +1235,570 @@
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="company_id" eval="[]"/>
         </record>
-
+		
+		<!-- Produit de type divers-->
+		<record id="product_diversLauzedalle" model="product.product">
+            <field name="name">Lauze dalle pierre plate (T)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversGaletboule" model="product.product">
+            <field name="name">Galet boule d'Arve (la tonne)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversGaletbianco2540" model="product.product">
+            <field name="name">Galet bianco 25/40 (T)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversGaletbianco4060" model="product.product">
+            <field name="name">Galet bianco 40/60 (T)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversBlocdegranit" model="product.product">
+            <field name="name">Bloc de granit=rocher (T)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversRocher" model="product.product">
+            <field name="name">Rocher (unité)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversDeltaMSH1m00" model="product.product">
+            <field name="name">Delta MS H1m00 (ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversDeltaMSH1m50" model="product.product">
+            <field name="name">Delta MS H1m50 (ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversGravier" model="product.product">
+            <field name="name">Gravier (le m&#179;)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversSable" model="product.product">
+            <field name="name">Sable (le m&#179;)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversTerre" model="product.product">
+            <field name="name">Terre végétale (le m&#179;)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversBetonachete" model="product.product">
+            <field name="name">Béton acheté (le m&#179;)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_diversSacdeciment" model="product.product">
+            <field name="name">Sac de ciment (25kgs)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_divers"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<!-- Produit de type terasse-->
+		<record id="product_terasselamecheneD18e80l130" model="product.product">
+            <field name="name">lame chêne D18*e80*l130</field>
+            <field name="categ_id" ref="darb_puthod.product_category_terrasse"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_terasselamecheneD18e80l110" model="product.product">
+            <field name="name">lame chêne D18*e80*l110</field>
+            <field name="categ_id" ref="darb_puthod.product_category_terrasse"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_terasselamechenelissee22l145" model="product.product">
+            <field name="name">lame chêne lisse e22*l145</field>
+            <field name="categ_id" ref="darb_puthod.product_category_terrasse"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<!-- Produit de type cloture-->
+		<record id="product_clotureJambedeforce3m00" model="product.product">
+            <field name="name">Jambe de force 3m00</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturetuteur150m" model="product.product">
+            <field name="name">Tuteur 1.50m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturetuteur2m" model="product.product">
+            <field name="name">Tuteur 2m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturetuteur250m" model="product.product">
+            <field name="name">Tuteur 2.50m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturetuteur3m" model="product.product">
+            <field name="name">Tuteur 3m</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureFildetensionplastique" model="product.product">
+            <field name="name">Fil de tension plastique</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturediam3mm" model="product.product">
+            <field name="name">diam 3 mm (ml) </field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureOlivetendeur" model="product.product">
+            <field name="name">Olive tendeur</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureClouscavaliers" model="product.product">
+            <field name="name">Clous cavaliers</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturevis" model="product.product">
+            <field name="name">Vis</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureboulon" model="product.product">
+            <field name="name">Boulon</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturerondelle" model="product.product">
+            <field name="name">Rondelle</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureecrou" model="product.product">
+            <field name="name">Ecrou</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur0m50" model="product.product">
+            <field name="name">Clais chataigner hauteur 0m50 (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur0m50lerouleau10m" model="product.product">
+            <field name="name">Clais chataigner hauteur 0m50 (le rouleau 10m)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur080mleml" model="product.product">
+            <field name="name">Clais chataigner hauteur 0.80m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur080mlerouleau" model="product.product">
+            <field name="name">Clais chataigner hauteur 0.80m (le rouleau)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur1mleml" model="product.product">
+            <field name="name">Clais chataigner hauteur 1m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur1mlerouleau10m" model="product.product">
+            <field name="name">Clais chataigner hauteur 1m (le rouleau 10m)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur120mleml" model="product.product">
+            <field name="name">Clais chataigner hauteur 1.20m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur120mlerouleau" model="product.product">
+            <field name="name">Clais chataigner hauteur 1.20m (le rouleau)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur150mleml" model="product.product">
+            <field name="name">Clais chataigner hauteur 1.50m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur150mlerouleau" model="product.product">
+            <field name="name">Clais chataigner hauteur 1.50m (le rouleau)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur175mleml" model="product.product">
+            <field name="name">Clais chataigner hauteur 1.75m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureclaischataignerhauteur175mlerouleau" model="product.product">
+            <field name="name">Clais chataigner hauteur 1.75m (le rouleau)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureGrillageshauteur1mleml" model="product.product">
+            <field name="name">Grillages hauteur 1m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureGrillageshauteur1mlerouleau10m" model="product.product">
+            <field name="name">Grillages hauteur 1m (le rouleau 10m)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureGrillageshauteur1m20leml" model="product.product">
+            <field name="name">Grillages hauteur 1.20m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureGrillageshauteur120mlerouleau10m" model="product.product">
+            <field name="name">Grillages hauteur 1.20m (le rouleau)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureGrillageshauteur1m50leml" model="product.product">
+            <field name="name">Grillages hauteur 1.50m (le ml)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureGrillageshauteur1m50lerouleau10m" model="product.product">
+            <field name="name">Grillages hauteur 1.50m (le rouleau)</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+			
+		
+		<record id="product_cloturePanneauchatH1m20" model="product.product">
+            <field name="name">Panneau chât. H1m20</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturePoteaudemaintien1101101m50" model="product.product">
+            <field name="name">Poteau de maintien 110*110*1m50</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_cloturePlatinegalva" model="product.product">
+            <field name="name">Platine galva</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
+		
+		<record id="product_clotureMarcherainuree" model="product.product">
+            <field name="name">Marche rainurée</field>
+            <field name="categ_id" ref="darb_puthod.product_category_cloture"/>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="company_id" eval="[]"/>
+        </record>
 	</data>
 </openerp>

@@ -8,82 +8,154 @@
             <field name="sequence">10</field>
         </record>
 
-		<!--ajouts de groupes hierarchiques pas de roles exclusif !-->
+        <!--ajouts de groupes hierarchiques pas de roles exclusif !-->
 
 
+        <record id="group_administration" model="res.groups">
+            <field name="name">Administration</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_sale_manager')),(4, ref('base.group_hr_attendance')),(4, ref('base.group_hr_user'))]"/>
+            <field name="comment">Administration.</field>
+        </record>
 
-		<record id="group_administration" model="res.groups">
-	        <field name="name">Administration</field>
-	        <field name="category_id" ref="module_category_puthod"/>
-	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('base.group_sale_manager')),(4, ref('account.group_account_invoice')),(4, ref('base.group_hr_attendance')),(4, ref('base.group_hr_user'))]"/>
-	        <field name="comment">Administration.</field>
-   		</record>
+        <record id="group_vente" model="res.groups">
+            <field name="name">Vente</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('group_administration'))]"/>
+            <field name="comment">Vente.</field>
+        </record>
 
-		<record id="group_vente" model="res.groups">
-	        <field name="name">Vente</field>
-	        <field name="category_id" ref="module_category_puthod"/>
-	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('group_administration'))]"/>
-	        <field name="comment">Vente.</field>
-   		</record>
+        <record id="group_achat" model="res.groups">
+            <field name="name">Achat</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('group_administration'))]"/>
+            <field name="comment">Achat.</field>
+        </record>
 
-		<record id="group_achat" model="res.groups">
-	        <field name="name">Achat</field>
-	        <field name="category_id" ref="module_category_puthod"/>
-	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('group_administration'))]" />
-	        <field name="comment">Achat.</field>
-   		</record>
-
-		<record id="group_compta" model="res.groups">
-	        <field name="name">Comptabilité</field>
-	        <field name="category_id" ref="module_category_puthod"/>
-	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('account.group_account_manager')),(4, ref('group_administration'))]"/>
-	        <field name="comment">Comptabilité.</field>
-   		</record>
-
-
-
-
-		<record id="group_chef_chantier" model="res.groups">
-	        <field name="name">Chef chantier</field>
-	        <field name="category_id" ref="module_category_puthod"/>
-	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="comment">Chef chantier.</field>
-   		</record>
-
-		<record id="group_directeur" model="res.groups">
-	        <field name="name">Directeur</field>
-	        <field name="category_id" ref="module_category_puthod"/>
-	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-			<field name="implied_ids" eval="[(4, ref('base.group_sale_manager')),(4, ref('account.group_account_invoice'))]"/>
-			<field name="comment">Directeur.</field>
-   		</record>
-
-	    <record id="fiche_chantier_visibility" model="ir.rule">
-	        <field name="name">l'utilisateur peut voir ses propre fiche de chantier</field>
-	        <field name="model_id" ref="model_fiche_chantier"/>
-	        <field name="groups" eval="[(4, ref('group_chef_chantier'))]"/>
-	        <field name="perm_read" eval="True"/>
-	        <field name="perm_write" eval="True"/>
-	        <field name="perm_create" eval="True"/>
-	        <field name="perm_unlink" eval="True"/>
-	    	<field name="domain_force">[('equipe_id.manager.user_id','=',user.id)]</field>
-	    </record>
-
-	   	<!-- Menus access -->
-	    <record model="ir.ui.menu" id="darb_puthod.menu_root"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_1"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_10"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_1_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="darb_puthod.menu_101_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-	    <record model="ir.ui.menu" id="hr_attendance.menu_hr_attendance_root"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-		<record  model="ir.ui.menu" id="darb_puthod.chantier"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
-		<record  model="ir.ui.menu" id="darb_puthod.chantier_list"><field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]" name="groups_id"/></record>
+        <record id="group_compta" model="res.groups">
+            <field name="name">Comptabilité</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('account.group_account_manager')),(4, ref('base.group_hr_attendance')),(4, ref('base.group_hr_user'))]"/>
+            <field name="comment">Comptabilité.</field>
+        </record>
 
 
+        <record id="group_chef_chantier" model="res.groups">
+            <field name="name">Chef chantier</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="comment">Chef chantier.</field>
+        </record>
 
-	</data>
+        <record id="group_directeur" model="res.groups">
+            <field name="name">Directeur</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_sale_manager')),(4, ref('account.group_account_invoice'))]"/>
+            <field name="comment">Directeur.</field>
+        </record>
+
+        <record id="group_employee" model="res.groups">
+            <field name="name">Employé</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Employé.</field>
+        </record>
+
+        <record id="make_invisible" model="res.groups">
+            <field name="name">Invisible</field>
+        </record>
+
+        <record model="ir.ui.menu" id="hr_equipment.menu_equipment_title">
+            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+        </record>
+
+        <record id="fiche_chantier_visibility" model="ir.rule">
+            <field name="name">l'utilisateur peut voir ses propre fiche de chantier</field>
+            <field name="model_id" ref="model_fiche_chantier"/>
+            <field name="groups" eval="[(4, ref('group_chef_chantier'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[('equipe_id.manager.user_id','=',user.id)]</field>
+        </record>
+
+        <record id="calendar_event_rule" model="ir.rule">
+            <field name="name">Puthod Employee can't create modify or create calendar</field>
+            <field name="model_id" ref="model_calendar_event"/>
+            <field name="groups" eval="[(4, ref('group_employee'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Menus access -->
+        <record model="ir.ui.menu" id="darb_puthod.menu_root">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="darb_puthod.menu_1">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="darb_puthod.menu_10">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="darb_puthod.menu_1_list">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="darb_puthod.menu_101_list">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="hr_attendance.menu_hr_attendance_root">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="darb_puthod.chantier">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+        <record model="ir.ui.menu" id="darb_puthod.chantier_list">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+                   name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="sale.menu_sale_order">
+            <field eval="[(4, ref('group_compta'))]" name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="base.menu_base_partner">
+            <field eval="[(4, ref('group_compta'))]" name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="account.menu_finance">
+            <field eval="[(4, ref('group_administration'))]" name="groups_id"/>
+        </record>
+
+        <!--<record model="ir.ui.menu" id="mail.menu_contacts">
+            <field eval="[(3,ref('group_employee')),(3,ref('base.group_user')),(3,ref('base.group_partner_manager'))]" name="groups_id"/>
+        </record>-->
+
+
+      <!--  <record model="ir.ui.menu" id="calendar.mail_menu_calendar">
+            <field eval="[(6, 0, [ref('group_employee')])]"
+                   name="groups_id"/>
+        </record>-->
+
+
+    </data>
 </openerp>
