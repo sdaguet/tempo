@@ -17,8 +17,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_vehicle").remove()
 				$('#main_vehicle').before('<div class="col-md-12">'+
-				  '<div id="error_vehicle" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_vehicle">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -26,7 +27,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_vehicle tr:last').before('<tr id="vehicle_'+data['responseJSON']["result"]["fiche_veicule_id"]+'"><td>'+ data['responseJSON']["result"]["vehicle"] +'</td><td>'+ data['responseJSON']["result"]["km"] +'</td><td><a class="btn btn-primary deletevehicle">Supprimer</a></td></tr>');
-				$("#error_vehicle").hide()
+				$(".error_vehicle").remove()
 				$("#vehicle_id").val("");
 				$('input.vkm').val('');
 				var fiche_veicule_id = data['responseJSON']["result"]["fiche_veicule_id"];
@@ -40,7 +41,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						contentType: "application/json",
 						complete: function (data) {
 							console.log("#vehicle_"+fiche_veicule_id);
-							$("#vehicle_"+fiche_veicule_id).hide()
+							$("#vehicle_"+fiche_veicule_id).remove()
 						}
 					});
 			
@@ -66,8 +67,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_materiel").remove()
 				$('#main_materiel').before('<div class="col-md-12">'+
-				  '<div id="error_materiel" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_materiel">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -75,7 +77,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_materiel tr:last').before('<tr id="materiel_'+data['responseJSON']["result"]["fiche_materiel_id"]+'"><td>'+ data['responseJSON']["result"]["materiel"] +'</td><td>'+ data['responseJSON']["result"]["temps"] +'</td><td><a class="btn btn-primary deletemateriel">Supprimer</a></td></tr>');
-				$("#error_materiel").hide()
+				$(".error_materiel").remove()
 				$("#materiel_id").val("");
 				$('input.temps').val('');
 				var fiche_materiel_id = data['responseJSON']["result"]["fiche_materiel_id"];
@@ -88,7 +90,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_materiel': fiche_materiel_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#materiel_" +fiche_materiel_id).hide()
+							$("#materiel_" +fiche_materiel_id).remove()
 						}
 					});
 			
@@ -114,8 +116,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_machine").remove()
 				$('#main_machine').before('<div class="col-md-12">'+
-				  '<div id="error_machine" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_machine">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -123,7 +126,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_machine tr:last').before('<tr id="machine_'+data['responseJSON']["result"]["fiche_machine_id"]+'"><td>'+ data['responseJSON']["result"]["machine"] +'</td><td>'+ data['responseJSON']["result"]["temps"] +'</td><td><a class="btn btn-primary deletemachine">Supprimer</a></td></tr>');
-				$("#error_machine").hide()
+				$(".error_machine").remove()
 				$("#machine_id").val("");
 				$('input.mtemps').val('');
 				var fiche_machine_id = data['responseJSON']["result"]["fiche_machine_id"];
@@ -136,7 +139,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_machine': fiche_machine_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#machine_" +fiche_machine_id).hide() 
+							$("#machine_" +fiche_machine_id).remove() 
 						}
 					});
 			
@@ -162,8 +165,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_fourniture").remove()
 				$('#main_fourniture').before('<div class="col-md-12">'+
-				  '<div id="error_fourniture" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_fourniture">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -171,7 +175,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_fourniture tr:last').before('<tr id="fourniture_'+data['responseJSON']["result"]["fiche_fourniture_id"]+'"><td>'+ data['responseJSON']["result"]["fourniture"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletefourniture">Supprimer</a></td></tr>');
-				$("#error_fourniture").hide()
+				$(".error_fourniture").remove()
 				$("#fourniture_id").val("");
 				$('input.qty').val('');
 				var fiche_fourniture_id = data['responseJSON']["result"]["fiche_fourniture_id"];
@@ -184,7 +188,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_fourniture': fiche_fourniture_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#fourniture_" +fiche_fourniture_id).hide() 
+							$("#fourniture_" +fiche_fourniture_id).remove() 
 						}
 					});
 			
@@ -210,8 +214,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_kit").remove()
 				$('#main_kit').before('<div class="col-md-12">'+
-				  '<div id="error_kit" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_kit">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -219,7 +224,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_kit tr:last').before('<tr id="kit_'+data['responseJSON']["result"]["fiche_kit_id"]+'"><td>'+ data['responseJSON']["result"]["kit"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletekit">Supprimer</a></td></tr>');
-				$("#error_kit").hide()
+				$(".error_kit").remove()
 				$("#kit_id").val("");
 				$('input.kqty').val('');
 				var fiche_kit_id = data['responseJSON']["result"]["fiche_kit_id"];
@@ -232,7 +237,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_kit': fiche_kit_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#kit_" +fiche_kit_id).hide() 
+							$("#kit_" +fiche_kit_id).remove() 
 						}
 					});
 			
@@ -258,8 +263,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_tuteurage").remove()
 				$('#main_tuteurage').before('<div class="col-md-12">'+
-				  '<div id="error_tuteurage" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_tuteurage">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -267,7 +273,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_tuteurage tr:last').before('<tr id="tuteurage_'+data['responseJSON']["result"]["fiche_tuteurage_id"]+'"><td>'+ data['responseJSON']["result"]["tuteurage"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletetuteurage">Supprimer</a></td></tr>');
-				$("#error_tuteurage").hide()
+				$(".error_tuteurage").remove()
 				$("#tuteurage_id").val("");
 				$('input.tqty').val('');
 				var fiche_tuteurage_id = data['responseJSON']["result"]["fiche_tuteurage_id"];
@@ -284,7 +290,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_tuteurage': fiche_tuteurage_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#tuteurage_" +fiche_tuteurage_id).hide() 
+							$("#tuteurage_" +fiche_tuteurage_id).remove() 
 						}
 					});
 			
@@ -311,8 +317,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_vigitaux").remove()
 				$('#main_vigitaux').before('<div class="col-md-12">'+
-				  '<div id="error_vigitaux" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_vigitaux">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -320,7 +327,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_vigitaux tr:last').before('<tr id="vigitau_'+data['responseJSON']["result"]["fiche_vigitaux_id"]+'"><td>'+ data['responseJSON']["result"]["date"] +'</td><td>'+ data['responseJSON']["result"]["vigitaux"] +'</td><td>'+ data['responseJSON']["result"]["comment"] +'</td><td><a class="btn btn-primary deletevigitau">Supprimer</a></td></tr>');
-				$("#error_vigitaux").hide()
+				$(".error_vigitaux").remove()
 				$("#vigitaux_id").val("");
 				$('input.date').val('');
 				$('input.comment').val('');
@@ -334,7 +341,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_vigitaux': fiche_vigitaux_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#vigitau_" +fiche_vigitaux_id).hide() 
+							$("#vigitau_" +fiche_vigitaux_id).remove() 
 						}
 					});
 			
@@ -361,8 +368,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_engrais").remove()
 				$('#main_engrai').before('<div class="col-md-12">'+
-				  '<div id="error_engrais" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_engrais">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -370,7 +378,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_engrai tr:last').before('<tr id="engrai_'+data['responseJSON']["result"]["fiche_engrais_id"]+'"><td>'+ data['responseJSON']["result"]["engrais"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deleteengrai">Supprimer</a></td></tr>');
-				$("#error_engrais").hide()
+				$(".error_engrais").remove()
 				$("#engrais_id").val("");
 				$('input.eqty').val('');
 				var fiche_engrais_id = data['responseJSON']["result"]["fiche_engrais_id"];
@@ -383,7 +391,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_engrai': fiche_engrais_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#engrai_" +fiche_engrais_id).hide() 
+							$("#engrai_" +fiche_engrais_id).remove() 
 						}
 					});
 			
@@ -409,8 +417,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_gazon").remove()
 				$('#main_gazon').before('<div class="col-md-12">'+
-				  '<div id="error_gazon" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_gazon">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -418,7 +427,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_gazon tr:last').before('<tr id="gazon_'+data['responseJSON']["result"]["fiche_gazons_id"]+'"><td>'+ data['responseJSON']["result"]["gazons"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletegazon">Supprimer</a></td></tr>');
-				$("#error_gazon").hide()
+				$(".error_gazon").remove()
 				$("#gazons_id").val("");
 				$('input.gqty').val('');
 				var fiche_gazons_id = data['responseJSON']["result"]["fiche_gazons_id"];
@@ -431,7 +440,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_gazon': fiche_gazons_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#gazon_" +fiche_gazons_id).hide() 
+							$("#gazon_" +fiche_gazons_id).remove() 
 						}
 					});
 			
@@ -457,8 +466,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_gmateriel").remove()
 				$('#main_gmateriel').before('<div class="col-md-12">'+
-				  '<div id="error_gmateriel" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_gmateriel">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -466,7 +476,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_gmateriel tr:last').before('<tr id="gmateriel_'+data['responseJSON']["result"]["fiche_gmateriel_id"]+'"><td>'+ data['responseJSON']["result"]["gmateriel"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletegmateriel">Supprimer</a></td></tr>');
-				$("#error_gmateriel").hide()
+				$(".error_gmateriel").remove()
 				$("#gmateriel_id").val("");
 				$('input.gmqty').val('');
 				var fiche_gmateriel_id = data['responseJSON']["result"]["fiche_gmateriel_id"];
@@ -479,7 +489,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_gmaterie': fiche_gmateriel_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#gmateriel_" +fiche_gmateriel_id).hide() 
+							$("#gmateriel_" +fiche_gmateriel_id).remove() 
 						}
 					});
 			
@@ -505,8 +515,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_escalier").remove()
 				$('#main_escalier').before('<div class="col-md-12">'+
-				  '<div id="error_escalier" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_escalier">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -514,7 +525,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_escalier tr:last').before('<tr id="escalier_'+data['responseJSON']["result"]["fiche_escalier_id"]+'"><td>'+ data['responseJSON']["result"]["escalier"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deleteescalier">Supprimer</a></td></tr>');
-				$("#error_escalier").hide()
+				$(".error_escalier").remove()
 				$("#escalier_id").val("");
 				$('input.escqty').val('');
 				var fiche_escalier_id = data['responseJSON']["result"]["fiche_escalier_id"];
@@ -527,7 +538,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_escalier': fiche_escalier_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#escalier_" +fiche_escalier_id).hide() 
+							$("#escalier_" +fiche_escalier_id).remove() 
 						}
 					});
 			
@@ -554,8 +565,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_outilss").remove()
 				$('#main_outilss').before('<div class="col-md-12">'+
-				  '<div id="error_outilss" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_outilss">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -563,7 +575,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_outilss tr:last').before('<tr id="outil_'+data['responseJSON']["result"]["fiche_outils_id"]+'"><td>'+ data['responseJSON']["result"]["outils"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deleteoutil">Supprimer</a></td></tr>');
-				$("#error_outilss").hide()
+				$(".error_outilss").remove()
 				$("#outils_id").val("");
 				$('input.oqty').val('');
 				var fiche_outils_id = data['responseJSON']["result"]["fiche_outils_id"];
@@ -576,7 +588,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_outilss': fiche_outils_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#outil_" +fiche_outils_id).hide() 
+							$("#outil_" +fiche_outils_id).remove() 
 						}
 					});
 			
@@ -603,8 +615,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_cloture").remove()
 				$('#main_cloture').before('<div class="col-md-12">'+
-				  '<div id="error_cloture" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_cloture">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -612,7 +625,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_cloture tr:last').before('<tr id="cloture_'+data['responseJSON']["result"]["fiche_cloture_id"]+'"><td>'+ data['responseJSON']["result"]["cloture"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletecloture">Supprimer</a></td></tr>');
-				$("#error_cloture").hide()
+				$(".error_cloture").remove()
 				$("#cloture_id").val("");
 				$('input.cqty').val('');
 				var fiche_cloture_id = data['responseJSON']["result"]["fiche_cloture_id"];
@@ -625,7 +638,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_cloture': fiche_cloture_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#cloture_" +fiche_cloture_id).hide() 
+							$("#cloture_" +fiche_cloture_id).remove() 
 						}
 					});
 			
@@ -651,8 +664,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_diverss").remove()
 				$('#main_diverss').before('<div class="col-md-12">'+
-				  '<div id="error_diverss" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_diverss">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -660,7 +674,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_diverss tr:last').before('<tr id="diver_'+data['responseJSON']["result"]["fiche_divers_id"]+'"><td>'+ data['responseJSON']["result"]["divers"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletediver">Supprimer</a></td></tr>');
-				$("#error_diverss").hide()
+				$(".error_diverss").remove()
 				$("#divers_id").val("");
 				$('input.dqty').val('');
 				var fiche_divers_id = data['responseJSON']["result"]["fiche_divers_id"];
@@ -673,7 +687,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_diverss': fiche_divers_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#diver_" +fiche_divers_id).hide() 
+							$("#diver_" +fiche_divers_id).remove() 
 						}
 					});
 			
@@ -699,8 +713,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_terrasse").remove()
 				$('#main_terrasse').before('<div class="col-md-12">'+
-				  '<div id="error_terrasse" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_terrasse">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -708,7 +723,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_terrasse tr:last').before('<tr id="terrasse_'+data['responseJSON']["result"]["fiche_terrasse_id"]+'"><td>'+ data['responseJSON']["result"]["terrasse"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deleteterrasse">Supprimer</a></td></tr>');
-				$("#error_terrasse").hide()
+				$(".error_terrasse").remove()
 				$("#terrasse_id").val("");
 				$('input.terqty').val('');
 				var fiche_terrasse_id = data['responseJSON']["result"]["fiche_terrasse_id"];
@@ -721,7 +736,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_terrasse': fiche_terrasse_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#terrasse_" +fiche_terrasse_id).hide() 
+							$("#terrasse_" +fiche_terrasse_id).remove() 
 						}
 					});
 			
@@ -747,8 +762,9 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_sclotures").remove()
 				$('#main_sclotures').before('<div class="col-md-12">'+
-				  '<div id="error_sclotures" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_sclotures">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
@@ -756,7 +772,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				}
 				else {
 				$('#table_sclotures tr:last').before('<tr id="scloture_'+data['responseJSON']["result"]["fiche_scloture_id"]+'"><td>'+ data['responseJSON']["result"]["scloture"] +'</td><td>'+ data['responseJSON']["result"]["qty"] +'</td><td><a class="btn btn-primary deletescloture">Supprimer</a></td></tr>');
-				$("#error_sclotures").hide()
+				$(".error_sclotures").remove()
 				$("#scloture_id").val("");
 				$('input.scqty').val('');
 				var fiche_scloture_id = data['responseJSON']["result"]["fiche_scloture_id"];
@@ -769,7 +785,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_scloture': fiche_scloture_id}}),
 						contentType: "application/json",
 						complete: function (data) {
-							$("#scloture_" +fiche_scloture_id).hide() 
+							$("#scloture_" +fiche_scloture_id).remove() 
 						}
 					});
 			
@@ -825,15 +841,16 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 			complete: function (data) {
 				console.log(data);
 				if (data['responseJSON']["result"]["error_message"].length != 0){
+				$(".error_pointage").remove()
 				$('#main_pointage').before('<div class="col-md-12">'+
-				  '<div id="error_pointage" class="alert alert-danger">'+
+				  '<div class="alert alert-danger error_pointage">'+
 				      '<p>'+data['responseJSON']["result"]["error_message"]+'</p>'+
 				  '</div>'+
 				'</div>'
 				);
 				}
 				else {
-				$("#error_pointage").hide()
+				$(".error_pointage").remove()
 				$("#tesk_"+ employee).val("");
 				$("#type_"+ employee).val("p");
 				$("#heure_deb_"+ employee).val("7:00");
