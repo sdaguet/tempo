@@ -50,6 +50,10 @@
                     <field name="inter_ids"/>
                 </xpath>
 
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="n_client" readonly="1"/>
+                </xpath>
+
             </field>
         </record>
 
@@ -65,7 +69,7 @@
 
                 <xpath expr="//tree" position="attributes">
                     <attribute name="colors">
-                        Fuchsia:order_type=='amenagement';GoldenRod:order_type=='plantation';blue:order_type=='entretien'
+                        Fuchsia:order_type=='amenagement';GoldenRod:order_type=='plantation';blue:order_type=='entretien';LightSeaGreen:order_type=='sous_traitance'
                     </attribute>
                 </xpath>
             </field>
@@ -83,7 +87,7 @@
 
                 <xpath expr="//tree" position="attributes">
                     <attribute name="colors">
-                        Fuchsia:order_type=='amenagement';GoldenRod:order_type=='plantation';blue:order_type=='entretien'
+                        Fuchsia:order_type=='amenagement';GoldenRod:order_type=='plantation';blue:order_type=='entretien';LightSeaGreen:order_type=='sous_traitance'
                     </attribute>
                 </xpath>
             </field>
@@ -114,18 +118,82 @@
             </field>
         </record>
 
-        <record id="puthod_prouct_product_form_inh" model="ir.ui.view">
+<!--        <record id="puthod_prouct_product_form_inh" model="ir.ui.view">
             <field name="name">puthod.prouct.product.form.inh</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="N_Article_id" readonly="1" invisible="1"/>
-                    <field name="N_Article_comp_id" invisible="1"/>
+                    <label class="oe_edit_only" for="N_Article"/>
+                    <field name="N_Article" readonly="1"/>
                     <field name="importe" invisible="1"/>
                 </xpath>
 
+            </field>
+        </record>
+
+        <record id="puthod_product_product_tree_view_inh" model="ir.ui.view">
+            <field name="name">puthod.product.product.tree.view.inh</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="N_Article"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="puthod_product_search_form_view_inh" model="ir.ui.view">
+            <field name="name">puthod.product.search.form.view.inh</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                    <field name="N_Article" string = "N° Article"/>
+                </xpath>
+
+            </field>
+        </record>-->
+
+
+        <record id="puthod_prouct_template_form_inh" model="ir.ui.view">
+            <field name="name">puthod.prouct.template.form.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <label class="oe_edit_only" for="N_Article"/>
+                    <field name="N_Article" readonly="1"/>
+                    <field name="importe" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="puthod_product_template_tree_view_inh" model="ir.ui.view">
+            <field name="name">puthod.product.template.tree.view.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="N_Article"/>
+                    <field name="famille"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="puthod_product_search_form_view_inh" model="ir.ui.view">
+            <field name="name">puthod.product.search.form.view.inh</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pricelist_id']" position="after">
+                    <field name="N_Article" string = "N° Article"/>
+                    <field name="famille" string = "Famille"/>
+                </xpath>
             </field>
         </record>
     </data>

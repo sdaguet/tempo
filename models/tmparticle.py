@@ -107,101 +107,157 @@ class TmpArticle(models.Model):
     N_Article_Totalisateur = fields.Char("N° Article Totalisateur")
     Article_Financier = fields.Char("Article Financier")
 
+
+    @api.multi
+    def is_empty_char(self,value):
+        if value:
+            return value
+        else:
+            return ""
+
+    @api.multi
+    def is_empty_float(self,value):
+        if value:
+            return float(value)
+        else:
+            return 0
+
+
     @api.model
     def create(self, values):
-
-
-            #timestampadd = 0
             count = 0
             time.time()
-
             timestamp1 = time.time()
+            #create tmparticle
             record = super(TmpArticle, self).create(values)
             timestamp2 = time.time()
-
             ec1 = timestamp2 -timestamp1
-
             _logger.info("Objet TMPARTICLE créé: %.2f" %(ec1))
-
             timestamp3 = time.time()
 
-            Nom_francais = values.get('Nom_francais')
-            if Nom_francais:
-                Nom_francais = Nom_francais
-            else:
-                Nom_francais = ""
-
-            Libelle_commercial = values.get('Libelle_commercial')
-            if Libelle_commercial:
-                Libelle_commercial = Libelle_commercial
-            else:
-                Libelle_commercial = ""
-
-            Taille_bis = values.get('Taille_bis')
-            if Taille_bis:
-                Taille_bis = Taille_bis
-            else:
-                Taille_bis = ""
+            Nom_francais = self.is_empty_char(values.get('Nom_francais'))
+            Libelle_commercial = self.is_empty_char(values.get('Libelle_commercial'))
+            Taille_bis = self.is_empty_char(values.get('Taille_bis'))
+            Famille = self.is_empty_char(values.get('Famille'))
 
             timestamp4 = time.time()
-            ec2 = timestamp4 -timestamp3
-
-
+            ec2 = timestamp4 - timestamp3
             _logger.info("Champs obligatoires verifié: %.2f " %(ec2))
-
             timestamp5 = time.time()
 
-            Prix_Etiquette = float(values.get('Prix_Etiquette'))
-            Poids_Brut = float(values.get('Poids_Brut'))
-            Code_Barre = values.get('Code_Barre')
+            Prix_Etiquette = self.is_empty_float(values.get('Prix_Etiquette'))
+            Poids_Brut = self.is_empty_float(values.get('Poids_Brut'))
+
+            Code_Barre = self.is_empty_char(values.get('Code_Barre'))
+            N_Article = self.is_empty_char(values.get('N_Article'))
+
+            TVA = self.is_empty_float(values.get('TVA'))
+            taxe_id = []
+
+            if TVA == 4:
+                taxe_id = self.env['account.tax'].search([('amount','=','10')]).ids
+            elif TVA == 2:
+                taxe_id = self.env['account.tax'].search([('amount', '=', '20')]).ids
+
             valuesp = {
-                #'warranty': 0,
-                #'message_follower_ids': False,
-                #'property_account_creditor_price_difference': False,
-                #'standard_price': 0,
-                #'attribute_line_ids': [],
-                #'uom_id': 1,
-                #'property_account_income_id': False,
-                #'description_purchase': False,
-                'N_Article_id': record.id, #N_Article
-                #'message_ids': False,
+                # 'warranty': 0,
+                # 'message_follower_ids': False,
+                # 'property_account_creditor_price_difference': False,
+                # 'standard_price': 0,
+                # 'attribute_line_ids': [],
+                # 'uom_id': 1,
+                # 'property_account_income_id': False,
+                # 'description_purchase': False,
+                'N_Article': N_Article,  # N_Article
+                # 'message_ids': False,
                 'sale_ok': True,
-                #'item_ids': [],
-                #'description_picking': False,
-                #'purchase_method': 'receive',
+                # 'item_ids': [],
+                # 'description_picking': False,
+                # 'purchase_method': 'receive',
                 'purchase_ok': True,
-                #'sale_delay': 7,
-                #'company_id': 1,
-                #'property_valuation': False,
+                # 'sale_delay': 7,
+                # 'company_id': 1,
+                # 'property_valuation': False,
                 'track_service': 'manual',
-                #'uom_po_id': 1,
-                #'property_cost_method': False,
+                # 'uom_po_id': 1,
+                # 'property_cost_method': False,
                 'type': u'consu',
-                #'property_stock_account_input': False,
-                #'property_stock_production': 7,
-                #'supplier_taxes_id': [[6, False, [11]]],
+                # 'property_stock_account_input': False,
+                # 'property_stock_production': 7,
+                # 'supplier_taxes_id': [[6, False, [11]]],
                 'volume': 0,
-                #'route_ids': [[6, False, [8]]],
+                # 'route_ids': [[6, False, [8]]],
                 'tracking': u'none',
-                #'description_sale': False,
+                # 'description_sale': False,
                 'active': True,
-                #'property_stock_inventory': 5,
-                #'cost_method': False,
-                #'valuation': False,
-                #'image_medium': False,
-                'name': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
-                #'property_account_expense_id': False,
-                #'categ_id': categ,
+                # 'property_stock_inventory': 5,
+                # 'cost_method': False,
+                # 'valuation': False,
+                # 'image_medium': False,
+                'name': Libelle_commercial + " " + Taille_bis + " - " + Nom_francais,  # name
+                # 'property_account_expense_id': False,
+                'famille': Famille,
+                # 'categ_id': categ,
                 'packaging_ids': [],
                 'invoice_policy': u'order',
-                #'taxes_id': [[6, False, [6]]],
-                #'property_stock_account_output': False,
+                'taxes_id': [[6, False, taxe_id]],
+                # 'property_stock_account_output': False,
                 'seller_ids': [],
-                'lst_price': Prix_Etiquette , #Prix_Etiquette
-                'barcode': Code_Barre , #Code_Barre
-                'weight' : Poids_Brut , #Poids_Brut
-                'importe' : True ,
-                }
+                'list_price': Prix_Etiquette,  # Prix_Etiquette
+                'barcode': Code_Barre,  # Code_Barre
+                'weight': Poids_Brut,  # Poids_Brut
+                'importe': True,
+            }
+
+            # valuesp = {
+            #     #'warranty': 0,
+            #     #'message_follower_ids': False,
+            #     #'property_account_creditor_price_difference': False,
+            #     #'standard_price': 0,
+            #     #'attribute_line_ids': [],
+            #     #'uom_id': 1,
+            #     #'property_account_income_id': False,
+            #     #'description_purchase': False,
+            #     'N_Article': N_Article, #N_Article
+            #     #'message_ids': False,
+            #     'sale_ok': True,
+            #     #'item_ids': [],
+            #     #'description_picking': False,
+            #     #'purchase_method': 'receive',
+            #     'purchase_ok': True,
+            #     #'sale_delay': 7,
+            #     #'company_id': 1,
+            #     #'property_valuation': False,
+            #     'track_service': 'manual',
+            #     #'uom_po_id': 1,
+            #     #'property_cost_method': False,
+            #     'type': u'consu',
+            #     #'property_stock_account_input': False,
+            #     #'property_stock_production': 7,
+            #     #'supplier_taxes_id': [[6, False, [11]]],
+            #     'volume': 0,
+            #     #'route_ids': [[6, False, [8]]],
+            #     'tracking': u'none',
+            #     #'description_sale': False,
+            #     'active': True,
+            #     #'property_stock_inventory': 5,
+            #     #'cost_method': False,
+            #     #'valuation': False,
+            #     #'image_medium': False,
+            #     'name': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
+            #     #'property_account_expense_id': False,
+            #     'famille' : Famille,
+            #     #'categ_id': categ,
+            #     'packaging_ids': [],
+            #     'invoice_policy': u'order',
+            #     'taxes_id': [[6, False, taxe_id]],
+            #     #'property_stock_account_output': False,
+            #     'seller_ids': [],
+            #     'lst_price': Prix_Etiquette , #Prix_Etiquette
+            #     'barcode': Code_Barre , #Code_Barre
+            #     'weight' : Poids_Brut , #Poids_Brut
+            #     'importe' : True ,
+            #     }
 
             timestamp6 = time.time()
             ec3 = timestamp6 - timestamp5
@@ -210,7 +266,8 @@ class TmpArticle(models.Model):
 
             timestamp7 = time.time()
 
-            self.env['product.product'].create(valuesp)
+            #self.env['product.product'].create(valuesp)
+            self.env['product.template'].create(valuesp)
             timestamp8 = time.time()
             ec4 = timestamp8 - timestamp7
 

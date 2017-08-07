@@ -23,7 +23,7 @@
                         <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
                             <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing address:</strong>
                             <div t-field="doc.partner_invoice_id"
-                                 t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "fax", "website"], "no_marker": true, "phone_icons": true}'/>
+                                 t-field-options='{"widget": "contact", "fields": ["address", "name", "website"], "no_marker": true, "phone_icons": true}'/>
                             <p t-if="doc.partner_id.vat">VAT:
                                 <span t-field="doc.partner_id.vat"/>
                             </p>
@@ -55,7 +55,7 @@
                        t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
                 </div>
 
-                <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
+                <div name="payment_term" class="col-xs-3">
                     <strong>Date d'édition : </strong>
                     <p t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/> 
                 </div>
@@ -305,7 +305,31 @@
 
 			</div>
             </xpath>
+			<xpath expr="//div[@name='total']" position="after">
+			<div>
 			
+					<table style="display:none;"><tbody class="sale_tbody"></tbody></table>
+					<table style="page-break-inside:avoid; border: 1px solid black" class="table">
+						
+						
+						<tbody class="sale_tbody">
+															<tr>
+																	<td style="width: 70%;border-top: 1px solid black;">Limite de validité de notre offre :</td>
+																	<td style="border-right: 1px solid black;border-top: 1px solid black;">Bon pour accord, le</td>
+															</tr>
+															<tr>
+																	<td colspan="4" style="border: 0px; border-right: 1px solid black">Acompte de 30% à la commande <t t-esc="str(doc.amount_total*30/100)+' €'"/> <br/> encaissé au démarrage du chantier  </td>
+															</tr>
+															<tr>
+																	<td  style="width: 70%;border: 0px"> </td>
+																	<td style="border: 0px; border-right: 1px solid black">Signature</td>
+															</tr>
+															
+							
+						</tbody>
+					</table>		
+			</div>
+			</xpath>
 			
 			
         </template>
