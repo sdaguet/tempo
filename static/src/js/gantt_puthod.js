@@ -1,13 +1,7 @@
 function getwebgantt() {	
 	"use strict";
 	
-	var rrr = 3;//$('#ganttx').text();
-	$('#ganttx').toggleClass('hidden');
-	console.log(rrr);
 	var fiche_id = $('#fiche_id').val();
-	console.log("1111111111111");
-	console.log(fiche_id);
-	console.log("1111111111111");
 	$.ajax({
 		type: "POST",
 		url: "/getgantt",
@@ -32,8 +26,6 @@ function getwebgantt() {
 						customClass: value2.customClass
 						});
 					});
-				console.log("1111111111111");
-				console.log(list);
 				}
 			);
 			console.log("chart rendering");
