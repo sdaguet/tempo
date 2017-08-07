@@ -415,7 +415,6 @@ class WebsiteContractDarbtech(http.Controller):
     def addcomment(self, fiche, comment):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("POINTER comennnnnnnnnnnnnnnnt = " + str(uid))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.remarqs = comment
         return {
@@ -427,7 +426,6 @@ class WebsiteContractDarbtech(http.Controller):
     def addwork(self, fiche, employee, tesk, type, heure_deb, heure_fin):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("POINTER WORKKKKKKKKKKKKKKKKKKKKKKKKKKK = " + str(uid))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         item_ids = request.env['employees.subtasks'].sudo().search([('employee', '=', int(employee)), ('fiche_chantier_subtask_id.fiche_chantier_id', '=', int(fiche))])
@@ -436,14 +434,12 @@ class WebsiteContractDarbtech(http.Controller):
         #Check time : Start < End 
         if dd > df:
             error_message = _(u"Heure début > Heure fin !")
-            _logger.info("POINTER 11111111111111111111111 = ")
         #Check intersections between time
         for item in item_ids:
             idd = datetime.strptime(item.heure_deb,'%H:%M')
             idf = datetime.strptime(item.heure_fin,'%H:%M')
             if (df > idd and df < idf) or (dd > idd and dd < idf) or (dd > idd and df < idf) or (dd < idd and df > idf):
                 error_message = _(u"Intersection entre plages horaires !")
-                _logger.info("POINTER 2222222222222222222222 = ")
         #/Check intersections between time
         if error_message == "":
             vals = {
@@ -454,7 +450,6 @@ class WebsiteContractDarbtech(http.Controller):
                     'fiche_chantier_subtask_id': tesk
                     }
             request.env['employees.subtasks'].sudo().create(vals)
-        _logger.info("POINTER WORKKKKKKKKKKKKKKKKKKKKKKKKKKK = ")
         return {
             'error_message': error_message
             }

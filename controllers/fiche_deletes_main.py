@@ -15,7 +15,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletevehicles(self, fiche, fiche_veicule):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_veicule))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.veicule_ids = [(2, int(fiche_veicule))]
         return {
@@ -25,7 +24,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletemateriel(self, fiche, fiche_materiel):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_materiel))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.materiel_ids = [(2, int(fiche_materiel))]
         return {
@@ -35,7 +33,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletemachine(self, fiche, fiche_machine):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_machine))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.machine_ids = [(2, int(fiche_machine))]
         return {
@@ -45,7 +42,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletefourniture(self, fiche, fiche_fourniture):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_fourniture))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.fourniture_ids = [(2, int(fiche_fourniture))]
         return {
@@ -55,7 +51,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletekit(self, fiche, fiche_kit):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_kit))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.kit_ids = [(2, int(fiche_kit))]
         return {
@@ -65,7 +60,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletetuteurage(self, fiche, fiche_tuteurage):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_tuteurage))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.tuteurage_ids = [(2, int(fiche_tuteurage))]
         return {
@@ -75,7 +69,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletevigitaux(self, fiche, fiche_vigitaux):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_vigitaux))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.vigitaux_ids = [(2, int(fiche_vigitaux))]
         return {
@@ -85,7 +78,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deleteengrai(self, fiche, fiche_engrai):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_engrai))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.engrais_ids = [(2, int(fiche_engrai))]
         return {
@@ -95,7 +87,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletegazon(self, fiche, fiche_gazon):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_gazon))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.gazons_ids = [(2, int(fiche_gazon))]
         return {
@@ -105,7 +96,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletegmateriel(self, fiche, fiche_gmaterie):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_gmaterie))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.gmateriel_ids = [(2, int(fiche_gmaterie))]
         return {
@@ -115,7 +105,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deleteescalier(self, fiche, fiche_escalier):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_escalier))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.escalier_ids = [(2, int(fiche_escalier))]
         return {
@@ -125,7 +114,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deleteoutilss(self, fiche, fiche_outilss):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_outilss))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.outils_ids = [(2, int(fiche_outilss))]
         return {
@@ -135,7 +123,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletecloture(self, fiche, fiche_cloture):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_cloture))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.cloture_ids = [(2, int(fiche_cloture))]
         return {
@@ -145,7 +132,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletediverss(self, fiche, fiche_diverss):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_diverss))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.divers_ids = [(2, int(fiche_diverss))]
         return {
@@ -155,7 +141,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deleteterrasse(self, fiche, fiche_terrasse):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_terrasse))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.terrasse_ids = [(2, int(fiche_terrasse))]
         return {
@@ -165,7 +150,6 @@ class WebsiteFicheDeletes(http.Controller):
     def deletescloture(self, fiche, fiche_scloture):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("DELAAAAAAAAAAAAAAAAAAAAAT = " + str(fiche_scloture))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         fiche_id.scloture_ids = [(2, int(fiche_scloture))]
         return {

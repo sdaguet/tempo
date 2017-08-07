@@ -44,43 +44,8 @@
 	              Equipes
 	          </a>
 	      </li>
-	      
-          <li>
-	          <a href="/testajax">
-	              <i class="fa"></i>
-	              AJAX
-	          </a>
-	      </li>
 	  </xpath>
     </template>
-    
-	<template id="testajax" name="AJAX" page="True">
-		<t t-call="website.layout">
-
-		<script type="text/javascript" src="/darb_puthod/static/src/js/website_puthod_ajax.js"></script>
-		  <div id="wrap">
-			<div class="oe_structure"/>
-			<div class="container">
-				<h1>Ajax</h1>
-				<div class="row">
-					<div class="col-md-8">
-						<div class="oe_structure">
-							<div>
-								<p class="tesxt">Vous pouvez marquer un NOM ci-après.</p>
-								<input name="nom" type="char" class="kname"/>
-								<a class="btn btn-primary ajaxi">Present</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 mb32">
-						<t t-call="website.company_description"/>
-					</div>
-				</div>
-			</div>
-			<div class="oe_structure"/>
-		  </div>
-		</t>
-	</template>
 
 	<template id="pointages" name="Pointage des Equipes" page="True">
 		<t t-call="website.layout">
