@@ -19,15 +19,21 @@ class WebsiteContractDarbtech(http.Controller):
         employes = request.registry.get('hr.employee')
         _logger.info("Current user = " + str(uid))
         current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
+        group_admin = request.env.ref('darb_puthod.group_administration')
+        group_chef = request.env.ref('darb_puthod.group_chef_chantier')
         _logger.info("Current employee = " + str(current_employee))
-        list_teams = request.env['equipe'].sudo().search(
-                [
-                    ('manager', 'in', current_employee.ids)
-                ])
+        list_teams = []
+        if current_employee in group_admin.users:
+            list_teams = request.env['hr.employee'].sudo().search([])
+        elif current_employee in group_chef.users:
+            list_teams = request.env['equipe'].sudo().search(
+                    [
+                        ('manager', 'in', current_employee.ids)
+                    ])
         _logger.info("Current teams = " + str(list_teams))
 
         return http.request.render('darb_puthod.pointages', {
-            'teams' : list_teams
+            'teams': list_teams
                 })
 
     @http.route('/pointer', type='json', auth="user", website=True)
@@ -35,25 +41,6 @@ class WebsiteContractDarbtech(http.Controller):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
         employes = request.registry.get('hr.employee')
-        _logger.info("POINTER user = " + str(uid))
-
-        return {}
-
-    @http.route('/testajax', type='http', auth="user", website=True)
-    def testajax(self, **kw):
-        user = request.env.user
-        cr, uid, context = request.cr, request.uid, request.context
-        employes = request.registry.get('hr.employee')
-        _logger.info("POINTER user = " + str(uid))
-
-        return http.request.render('darb_puthod.testajax', {
-                })
-
-    @http.route(['/ajaxi'], type='json', auth="user", website=True)
-    def ajaxi(self, fiche):
-        user = request.env.user
-        cr, uid, context = request.cr, request.uid, request.context
-        employes = request.env['emplacement'].create({'name': fiche})
         _logger.info("POINTER user = " + str(uid))
 
         return {}
