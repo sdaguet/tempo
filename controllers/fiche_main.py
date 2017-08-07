@@ -19,6 +19,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         vehicle_name = ""
+        new_id = 0
         if vehicle:
             vehicle_name = request.env['product.product'].sudo().search([('id','=', int(vehicle))]).name
             fiche_id.veicule_ids = [(0, 0, {
@@ -43,6 +44,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         materiel_name = ""
+        new_id = 0
         if materiel:
             materiel_name = request.env['product.product'].sudo().search([('id','=', int(materiel))]).name
             fiche_id.materiel_ids = [(0, 0, {
@@ -67,6 +69,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         machine_name = ""
+        new_id = 0
         if machine:
             machine_name = request.env['product.product'].sudo().search([('id','=', int(machine))]).name
             fiche_id.machine_ids = [(0, 0, {
@@ -92,6 +95,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         fourniture_name = ""
+        new_id = 0
         if fourniture:
             fourniture_name = request.env['product.product'].sudo().search([('id','=', int(fourniture))]).name
             fiche_id.fourniture_ids = [(0, 0, {
@@ -117,6 +121,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         kit_name = ""
+        new_id = 0
         if kit:
             kit_name = request.env['product.product'].sudo().search([('id','=', int(kit))]).name
             fiche_id.kit_ids = [(0, 0, {
@@ -142,6 +147,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         tuteurage_name = ""
+        new_id = 0
         if tuteurage:
             tuteurage_name = request.env['product.product'].sudo().search([('id','=', int(tuteurage))]).name
             fiche_id.tuteurage_ids = [(0, 0, {
@@ -167,6 +173,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         vigitaux_name = ""
+        new_id = 0
         if vigitaux:
             vigitaux_name = request.env['product.product'].sudo().search([('id','=', int(vigitaux))]).name
             fiche_id.vigitaux_ids = [(0, 0, {
@@ -194,6 +201,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         engrais_name = ""
+        new_id = 0
         if engrais:
             engrais_name = request.env['product.product'].sudo().search([('id','=', int(engrais))]).name
             fiche_id.engrais_ids = [(0, 0, {
@@ -219,6 +227,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         gazons_name = ""
+        new_id = 0
         if gazons:
             gazons_name = request.env['product.product'].sudo().search([('id','=', int(gazons))]).name
             fiche_id.gazons_ids = [(0, 0, {
@@ -244,6 +253,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         gmateriel_name = ""
+        new_id = 0
         if gmateriel:
             gmateriel_name = request.env['product.product'].sudo().search([('id','=', int(gmateriel))]).name
             fiche_id.gmateriel_ids = [(0, 0, {
@@ -269,6 +279,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         escalier_name = ""
+        new_id = 0
         if escalier:
             escalier_name = request.env['product.product'].sudo().search([('id','=', int(escalier))]).name
             fiche_id.escalier_ids = [(0, 0, {
@@ -294,6 +305,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         outils_name = ""
+        new_id = 0
         if outils:
             outils_name = request.env['product.product'].sudo().search([('id','=', int(outils))]).name
             fiche_id.outils_ids = [(0, 0, {
@@ -319,6 +331,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         cloture_name = ""
+        new_id = 0
         if cloture:
             cloture_name = request.env['product.product'].sudo().search([('id','=', int(cloture))]).name
             fiche_id.cloture_ids = [(0, 0, {
@@ -344,6 +357,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         divers_name = ""
+        new_id = 0
         if divers:
             divers_name = request.env['product.product'].sudo().search([('id','=', int(divers))]).name
             fiche_id.divers_ids = [(0, 0, {
@@ -369,6 +383,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         terrasse_name = ""
+        new_id = 0
         if terrasse:
             terrasse_name = request.env['product.product'].sudo().search([('id','=', int(terrasse))]).name
             fiche_id.terrasse_ids = [(0, 0, {
@@ -394,6 +409,7 @@ class WebsiteContractDarbtech(http.Controller):
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         error_message = ""
         scloture_name = ""
+        new_id = 0
         if scloture:
             scloture_name = request.env['product.product'].sudo().search([('id','=', int(scloture))]).name
             fiche_id.scloture_ids = [(0, 0, {
