@@ -2195,3 +2195,7 @@ msgstr ""
 "</div>\n"
 "            "
 
+#. module: darb_puthod
+#: model:ir.ui.view,arch_db:darb_puthod.sale_report_quotation
+msgid "<strong>Total Without Taxes</strong>"
+msgstr "<strong>Total hors taxe</strong>"
