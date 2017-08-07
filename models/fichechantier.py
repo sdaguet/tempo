@@ -137,11 +137,10 @@ class product(models.Model):
     altitude_max = fields.Float(string='Altitude MAX', digits=(3, 0),default = 0)
     altitude_min = fields.Float(string='Altitude MIN', digits=(3, 0),default = 0)
     qrcode = fields.Char(string='QR Code')
-    N_Article_id = fields.Many2one(comodel_name="tmparticle", string="N° Article", required=False)
-    N_Article_comp_id = fields.Many2one(comodel_name="tmparticle", string="N° Article", required=False,
-                                        compute='_compute_Article')
-    importe = fields.Boolean(string="importe",default = False)
-
+    # N_Article = fields.Char(string='N° Article')
+    # importe = fields.Boolean(string="importe",default = False)
+    # famille = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False, )
+    # marque_savoie = fields.Boolean(string="Marque Savoie",  )
     _sql_constraints = [
         ('qrcode_uniq', 'unique(qrcode)', _("A qrcode can only be assigned to one product !")),
     ]
@@ -152,49 +151,42 @@ class product(models.Model):
         if self.altitude_max < self.altitude_min:
             raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
-    @api.multi
-    def unlink(self):
-        for s in self:
-            if s.N_Article_id:
-                s.N_Article_id.unlink()
-                return super(product, s).unlink()
-
-    @api.multi
-    @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Code_Barre','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
-    def _compute_Article(self):
-
-        if self.N_Article_id:
-
-            #pour les categ
-            # xml_record = self.env.ref("darb_puthod.product_category_vehicle")
-            #
-            # print "xml_record"
-            # print xml_record
-
-            Nom_francais = self.N_Article_id.Nom_francais
-            if Nom_francais:
-                Nom_francais = Nom_francais
-            else:
-                Nom_francais = ""
-
-            Libelle_commercial = self.N_Article_id.Libelle_commercial
-            if Libelle_commercial:
-                Libelle_commercial = Libelle_commercial
-            else:
-                Libelle_commercial = ""
-
-            Taille_bis = self.N_Article_id.Taille_bis
-            if Taille_bis:
-                Taille_bis = Taille_bis
-            else:
-                Taille_bis = ""
-
-            name = Libelle_commercial + " " + Taille_bis + " - " +Nom_francais
-            lst_price = float(self.N_Article_id.Prix_Etiquette)
-            weight = float(self.N_Article_id.Poids_Brut)
-            Code_Barre = self.N_Article_id.Code_Barre
-            record = self.write({'lst_price': lst_price, 'weight': weight, 'name': name, 'barcode':Code_Barre})
-            return record
+    # @api.multi
+    # @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Code_Barre','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
+    # def _compute_Article(self):
+    #
+    #     if self.N_Article_id:
+    #
+    #         #pour les categ
+    #         # xml_record = self.env.ref("darb_puthod.product_category_vehicle")
+    #         #
+    #         # print "xml_record"
+    #         # print xml_record
+    #
+    #         Nom_francais = self.N_Article_id.Nom_francais
+    #         if Nom_francais:
+    #             Nom_francais = Nom_francais
+    #         else:
+    #             Nom_francais = ""
+    #
+    #         Libelle_commercial = self.N_Article_id.Libelle_commercial
+    #         if Libelle_commercial:
+    #             Libelle_commercial = Libelle_commercial
+    #         else:
+    #             Libelle_commercial = ""
+    #
+    #         Taille_bis = self.N_Article_id.Taille_bis
+    #         if Taille_bis:
+    #             Taille_bis = Taille_bis
+    #         else:
+    #             Taille_bis = ""
+    #
+    #         name = Libelle_commercial + " " + Taille_bis + " - " +Nom_francais
+    #         lst_price = float(self.N_Article_id.Prix_Etiquette)
+    #         weight = float(self.N_Article_id.Poids_Brut)
+    #         Code_Barre = self.N_Article_id.Code_Barre
+    #         record = self.write({'lst_price': lst_price, 'weight': weight, 'name': name, 'barcode':Code_Barre})
+    #         return record
 
 
 class subtask(models.Model):

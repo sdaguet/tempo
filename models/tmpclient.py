@@ -142,32 +142,43 @@ class TmpClient(models.Model):
     Animation_6 = fields.Char("Animation 6")
     Mode_d_expedition = fields.Char("Mode d'expédition")
 
+    @api.multi
+    def is_empty_char(self,value):
+        if value:
+            return value
+        else:
+            return ""
+
+    @api.multi
+    def is_empty_float(self,value):
+        if value:
+            return float(value)
+        else:
+            return 0
+
     @api.model
     def create(self, values):
         record = super(TmpClient, self).create(values)
-        Nom_1 = values.get('Nom_1')
-        Nom_2 = values.get('Nom_2')
-        Ville = values.get('Ville')
-        Code_Postal = values.get('Code_Postal')
-        E_mail = values.get('E_mail')
-        URL = values.get('URL')
-        FAX = values.get('FAX')
-        Telephone = values.get('Telephone')
-        Portable = values.get('Portable')
-        Adresse_1 = values.get('Adresse_1')
-        Adresse_2 = values.get('Adresse_2')
-        # N_Client = values.get('N_Client')
+        Nom_1 = self.is_empty_char(values.get('Nom_1'))
+        Nom_2 = self.is_empty_char(values.get('Nom_2'))
+        Ville = self.is_empty_char(values.get('Ville'))
+        Code_Postal = self.is_empty_char(values.get('Code_Postal'))
+        E_mail = self.is_empty_char(values.get('E_mail'))
+        URL = self.is_empty_char(values.get('URL'))
+        FAX = self.is_empty_char(values.get('FAX'))
+        Telephone = self.is_empty_char(values.get('Telephone'))
+        Portable = self.is_empty_char(values.get('Portable'))
+        Adresse_1 = self.is_empty_char(values.get('Adresse_1'))
+        Adresse_2 = self.is_empty_char(values.get('Adresse_2'))
+        N_Client = self.is_empty_char(values.get('N_Client'))
 
-        if Nom_2:
-            Nom_2 = Nom_2
-        else:
-            Nom_2 = ""
+
         valuesc = {  # 'comment': False,
             # 'function': False,
             'notify_email': 'always',
             # 'message_follower_ids': False,
             'company_type': 'person',
-            'N_Client_id': record.id,  # N_Article
+            'N_Client': N_Client,  # N_Client
             # 'property_stock_customer': 9,
             'street': Adresse_1,  # Adresse_1
             # 'property_account_receivable_id': 227,

@@ -17,10 +17,12 @@ class sale_order(models.Model):
     order_type = fields.Selection([
         ('entretien', 'Entretien'),
         ('amenagement', 'Aménagement'),
-        ('plantation', 'Plantation')],
+        ('plantation', 'Plantation'),
+        ('sous_traitance', u'Sous-traitance')],
         string='Type', track_visibility='onchange')
     altitude = fields.Float(string='Altitude', digits=(3, 0))
     item_url = fields.Char('View Item')
+    n_client = fields.Char(string="N° Client", required=False, related = 'partner_id.N_Client' )
     iframe = fields.Html('Embedded Webpage', compute='_compute_iframe', sanitize=False, strip_style=False)
 
     @api.multi
