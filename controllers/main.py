@@ -284,3 +284,102 @@ class WebsiteContractDarbtech(http.Controller):
             'employees': employees,
             'equipe': equipe_id.id,
                 })
+
+    @http.route('/scanne_qrcode/<int:fiche>/', type='http', auth="user", website=True)
+    def scanne_qrcode(self, fiche):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        _logger.info("POINTER user  QQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRR= " + str(uid))
+
+        return http.request.render('darb_puthod.qr_code', {
+            'fiche': fiche,
+                })
+
+    @http.route('/qrcode', type='json', auth="user", website=True)
+    def qrcode(self, fiche, qrcode, qty):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.registry.get('hr.employee')
+        _logger.info("ggggggggggggggggg QQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRR= " + str(qrcode))
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        product = request.env['product.product'].sudo().search([('qrcode','=', qrcode)])
+        error_message = ""
+        if product:
+            _logger.info("111111111111111111111111111111111111 ")
+            if product.categ_id.id == request.env.ref('darb_puthod.product_category_vehicle').id:
+                fiche_id.veicule_ids = [(0, 0, {
+                        'veicule_id': product.id,
+                        'kms': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_materiel').id:
+                fiche_id.materiel_ids = [(0, 0, {
+                        'materiel_id': product.id,
+                        'temps': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_machine').id:
+                fiche_id.machine_ids = [(0, 0, {
+                        'machine_id': product.id,
+                        'temps': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_fourniture').id:
+                fiche_id.fourniture_ids = [(0, 0, {
+                        'fourniture_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_kit').id:
+                fiche_id.kit_ids = [(0, 0, {
+                        'kit_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_tuteurage').id:
+                fiche_id.tuteurage_ids = [(0, 0, {
+                        'tuteurage_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_gazons').id:
+                fiche_id.gazons_ids = [(0, 0, {
+                        'gazons_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_engrais').id:
+                fiche_id.engrais_ids = [(0, 0, {
+                        'engrais_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_gmateriel').id:
+                fiche_id.gmateriel_ids = [(0, 0, {
+                        'gmateriel_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_escalier').id:
+                fiche_id.escalier_ids = [(0, 0, {
+                        'escalier_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_outils').id:
+                fiche_id.outils_ids = [(0, 0, {
+                        'outils_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_cloture').id:
+                fiche_id.cloture_ids = [(0, 0, {
+                        'cloture_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_divers').id:
+                fiche_id.divers_ids = [(0, 0, {
+                        'divers_id': product.id,
+                        'quantity': qty,
+                        })]
+            elif product.categ_id.id == request.env.ref('darb_puthod.product_category_terrasse').id:
+                fiche_id.terrasse_ids = [(0, 0, {
+                        'terrasse_id': product.id,
+                        'quantity': qty,
+                        })]
+            else:
+                error_message = _(u'QR Code / Catégorie produit incorrect!')
+        else:
+            error_message = _(u'QR Code incorrect!')
+        return {
+            'error_message': error_message
+            }

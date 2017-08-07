@@ -46,6 +46,40 @@
 	      </li>
 	  </xpath>
     </template>
+    
+	<template id="qr_code" name="QRCODE" page="True">
+		<t t-call="website.layout">
+		<script type="text/javascript" src="/darb_puthod/static/src/js/qr_code.js"></script>
+
+		  <div id="wrap">
+			<div class="oe_structure"/>
+			<div class="container">
+				<h1>QR Code</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="oe_structure">
+							<div><input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche"/></div>
+							<div id="main_qrcode">
+								<p class="tesxt">Vous pouvez marquer un QR Code ci-après.</p>
+								<table class="table table-hover status_table">
+									<tr>
+										<td><input id="qrcode" type="char" class="form-control"/></td>
+										<td><input id="qty" type="float" class="form-control"/></td>
+										<td><a class="btn btn-primary qrcode">Ajouter</a></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 mb32">
+						<t t-call="website.company_description"/>
+					</div>
+				</div>
+			</div>
+			<div class="oe_structure"/>
+		  </div>
+		</t>
+	</template>
 
 	<template id="pointages" name="Pointage des Equipes" page="True">
 		<t t-call="website.layout">
@@ -1175,15 +1209,10 @@
 								<th>Responsable</th>
 								<th>Equipe</th>
 								<th>Status FC</th>
+								<th></th>
 							</tr>
 						</thead>
-						<t t-set="hour_variable" t-value="0" />
-						<t t-set="cycle_variable" t-value="0" />
-						<t t-set="qte_variable" t-value="0" />
 						<t t-foreach="fiches" t-as="fiche">
-							<t t-set="hour_variable" t-value="hour_variable+fiche.hour_total" />
-							<t t-set="cycle_variable" t-value="cycle_variable+fiche.cycle_total" />
-							<t t-set="qte_variable" t-value="qte_variable+fiche.product_qty" />
 							<tr>
 							<td><a t-attf-href="/ficheslist/#{fiche.id}"><span t-field="fiche.name"/></a>
 							</td>
@@ -1195,21 +1224,11 @@
 							</td>
 							<td><span t-field="fiche.state"/>
 							</td>
+							<td>
+								<a t-attf-href="/scanne_qrcode/#{fiche.id}" class="btn btn-primary">Scanne QR Code</a>
+							</td>
 							</tr>
 						</t>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th>
-								<t t-esc="qte_variable"/>
-							</th>
-							<th class="text-left">
-								<t t-esc="hour_variable"/>
-							</th>
-							<th class="text-left">
-								<t t-esc="cycle_variable"/>
-							</th>
-							<td></td>
 						</table>
 					</div>
 					<div class="col-md-1 mb32">
