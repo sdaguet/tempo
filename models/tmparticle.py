@@ -73,9 +73,9 @@ class TmpArticle(models.Model):
     CA_N_Fourn = fields.Char("CA N Fourn.")
     CA_N_1_Fourn = fields.Char("CA N-1 Fourn.")
     CA_N_2_Fourn = fields.Char("CA N-2 Fourn.")
-    # Qte_N = fields.Char("Qté N")
-    # Qte_N_1 = fields.Char("Qté N-1")
-    # Qte_N_2 = fields.Char("Qté N-2")
+    Qte_N_bis = fields.Char("Qté N")
+    Qte_N_1_bis = fields.Char("Qté N-1")
+    Qte_N_2_bis = fields.Char("Qté N-2")
     CA_N_A_Nouveau = fields.Char("CA N A-Nouveau")
     Qte_N_A_Nouveau = fields.Char("Qté N A-Nouveau")
     Qte_N_Fourn_A_Nouveau = fields.Char("Qté N Fourn. A-Nouveau")
@@ -106,6 +106,8 @@ class TmpArticle(models.Model):
     Article_Totalise = fields.Char("Article Totalisé")
     N_Article_Totalisateur = fields.Char("N° Article Totalisateur")
     Article_Financier = fields.Char("Article Financier")
+
+
 
 
     @api.multi
@@ -159,12 +161,64 @@ class TmpArticle(models.Model):
             elif TVA == 2:
                 taxe_id = self.env['account.tax'].search([('amount', '=', '20')]).ids
 
+
+
+            # pour les categ
+            xml_genre = self.env.ref("darb_puthod.product_attribute_genre")
+            xml_espece = self.env.ref("darb_puthod.product_attribute_espece")
+            xml_variete = self.env.ref("darb_puthod.product_attribute_variete")
+            xml_taille = self.env.ref("darb_puthod.product_attribute_taille")
+            xml_taille_bis = self.env.ref("darb_puthod.product_attribute_taille_bis")
+            xml_type_de_feuillage = self.env.ref("darb_puthod.product_attribute_type_de_feuillage")
+            xml_critere_7 = self.env.ref("darb_puthod.product_attribute_critere_7")
+            xml_critere_8 = self.env.ref("darb_puthod.product_attribute_critere_8")
+            xml_critere_9 = self.env.ref("darb_puthod.product_attribute_critere_9")
+            xml_nom_francais = self.env.ref("darb_puthod.product_attribute_nom_francais")
+            xml_modele_etiquette = self.env.ref("darb_puthod.product_attribute_modele_etiquette")
+            xml_Hauteur_mm = self.env.ref("darb_puthod.product_attribute_Hauteur_mm")
+            xml_poids_brut = self.env.ref("darb_puthod.product_attribute_poids_brut")
+            xml_ca_n = self.env.ref("darb_puthod.product_attribute_ca_n")
+            xml_ca_n_1 = self.env.ref("darb_puthod.product_attribute_ca_n_1")
+            xml_ca_n_2 = self.env.ref("darb_puthod.product_attribute_ca_n_2")
+            xml_qte_n = self.env.ref("darb_puthod.product_attribute_qte_n")
+            xml_qte_n_1 = self.env.ref("darb_puthod.product_attribute_qte_n_1")
+            xml_qte_n_2 = self.env.ref("darb_puthod.product_attribute_qte_n_2")
+            xml_critere_18 = self.env.ref("darb_puthod.product_attribute_critere_18")
+            xml_sous_famille_article = self.env.ref("darb_puthod.product_attribute_sous_famille_article")
+            xml_pays_d_origine = self.env.ref("darb_puthod.product_attribute_pays_d_origine")
+            xml_fourn_principal = self.env.ref("darb_puthod.product_attribute_fourn_principal")
+            print "xml_record"
+            print xml_genre
+
             valuesp = {
                 # 'warranty': 0,
                 # 'message_follower_ids': False,
                 # 'property_account_creditor_price_difference': False,
                 # 'standard_price': 0,
-                # 'attribute_line_ids': [],
+                'attribute_line_ids': [[0, False, {u'attribute_id': xml_genre.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_espece.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_variete.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_taille.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_taille_bis.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_type_de_feuillage.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_critere_7.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_critere_8.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_critere_9.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_nom_francais.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_modele_etiquette.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_Hauteur_mm.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_poids_brut.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_ca_n.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_ca_n_1.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_ca_n_2.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_qte_n.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_qte_n_1.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_qte_n_2.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_critere_18.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_sous_famille_article.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_pays_d_origine.id, u'value_ids': []}],
+                                       [0, False, {u'attribute_id': xml_fourn_principal.id, u'value_ids': []}]
+                                       ], #attributes
                 # 'uom_id': 1,
                 # 'property_account_income_id': False,
                 # 'description_purchase': False,
@@ -266,8 +320,20 @@ class TmpArticle(models.Model):
 
             timestamp7 = time.time()
 
+            #pour les attributs
             #self.env['product.product'].create(valuesp)
+            #name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
+            #obj_template = self.env['product.template'].search([('name','=',name)])
+            # if not obj_template :
+            #     self.env['product.attribute.value'].
+
+            print "obj_template"
+            print obj_template
+
             self.env['product.template'].create(valuesp)
+
+
+
             timestamp8 = time.time()
             ec4 = timestamp8 - timestamp7
 
@@ -287,18 +353,26 @@ class TmpArticle(models.Model):
             return record
 
 
-class ProductProduct(models.Model):
-    _inherit = 'product.product'
-
-    # @api.model
-    # def create(self, values):
-    #     _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-    #     return super(ProductProduct, self).create(values)
-
-class Partner(models.Model):
-    _inherit = 'res.partner'
-
-    # @api.model
-    # def create(self, values):
-    #     _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-    #     return super(Partner, self).create(values)
+# class ProductProduct(models.Model):
+#     _inherit = 'product.template'
+#
+#     @api.model
+#     def create(self, values):
+#         _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+#         return super(ProductProduct, self).create(values)
+#
+# class Partner(models.Model):
+#     _inherit = 'product.attribute.value'
+#
+#     @api.model
+#     def create(self, values):
+#         _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+#         return super(Partner, self).create(values)
+#
+# class Partner_attribute(models.Model):
+#     _inherit = 'product.attribute'
+#
+#     @api.model
+#     def create(self, values):
+#         _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+#         return super(Partner_attribute, self).create(values)
