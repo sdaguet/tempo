@@ -52,6 +52,7 @@
         'views/puthod_partner.xml',
         'report/report_employee_view.xml',
         'data/puthod_product_data.xml',
+        'data/puthod_product_attribute.xml',
         'report/annexes_product_report_view.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
