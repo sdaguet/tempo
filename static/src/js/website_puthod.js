@@ -5,14 +5,17 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 
     $('.pointer').on('click', function(ev) {
         ev.preventDefault();
-        $(this).parents('tr').find(".pointer").toggleClass('hidden');
-        $(this).parents('tr').find(".depointer").toggleClass('hidden',false);
 		console.log($(this).parents('tr').find(".membrid").val());
+		var employee_id = $(this).closest('tr').attr('id'); // table row ID
+   		var employee = employee_id.split("_").pop();
+		console.log(employee);
+        $("#pointer_"+employee).hide()
+        $("#depointer_"+employee).show()
 		$.ajax({
 			type: "POST",
 			url: "/pointer",
 			async: false,
-			data: JSON.stringify({}),
+			data: JSON.stringify({"params": {'employee': employee}}),
 			contentType: "application/json",
 			complete: function (data) {
 				console.log(data);
@@ -23,15 +26,17 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 
 	$('.depointer').on('click', function(ev) {
         ev.preventDefault();
-        $(this).parents('tr').find(".depointer").toggleClass('hidden');
-        $(this).parents('tr').find(".pointer").toggleClass('hidden',false);
-
 		console.log($(this).parents('tr').find(".membrid").val());
+		var employee_id = $(this).closest('tr').attr('id'); // table row ID
+   		var employee = employee_id.split("_").pop();
+		console.log(employee);
+        $("#depointer_"+employee).hide()
+        $("#pointer_"+employee).show()
 		$.ajax({
 			type: "POST",
-			url: "/pointer",
+			url: "/depointer",
 			async: false,
-			data: JSON.stringify({}),
+			data: JSON.stringify({"params": {'employee': employee}}),
 			contentType: "application/json",
 			complete: function (data) {
 				console.log(data);

@@ -23,13 +23,13 @@ class WebsiteContractDarbtech(http.Controller):
         group_chef = request.env.ref('darb_puthod.group_chef_chantier')
         _logger.info("Current employee = " + str(current_employee))
         list_teams = []
-        if current_employee in group_admin.users:
+        if uid in group_admin.users.ids:
             list_teams = request.env['hr.employee'].sudo().search([])
-        elif current_employee in group_chef.users:
+        elif uid in group_chef.users.ids:
             list_teams = request.env['equipe'].sudo().search(
                     [
                         ('manager', 'in', current_employee.ids)
-                    ])
+                    ]).ressource_list
         _logger.info("Current teams = " + str(list_teams))
 
         return http.request.render('darb_puthod.pointages', {
@@ -37,12 +37,45 @@ class WebsiteContractDarbtech(http.Controller):
                 })
 
     @http.route('/pointer', type='json', auth="user", website=True)
-    def pointer(self, **kw):
+    def pointer(self, employee):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
         employes = request.registry.get('hr.employee')
         _logger.info("POINTER user = " + str(uid))
+        datetime_8 = datetime.combine(date.today(), datetime.strptime('08:00','%H:%M').time())
+        datetime_12 = datetime.combine(date.today(), datetime.strptime('12:00','%H:%M').time())
+        datetime_14 = datetime.combine(date.today(), datetime.strptime('14:00','%H:%M').time())
+        datetime_18 = datetime.combine(date.today(), datetime.strptime('18:00','%H:%M').time())
+        vals = [{
+                'name': str(datetime_8),
+                'employee_id': int(employee),
+                'action': 'sign_in',
+                },
+                {
+                'name': str(datetime_12),
+                'employee_id': int(employee),
+                'action': 'sign_out',
+                },
+                {
+                'name': str(datetime_14),
+                'employee_id': int(employee),
+                'action': 'sign_in',
+                },
+                {
+                'name': str(datetime_18),
+                'employee_id': int(employee),
+                'action': 'sign_out',
+                }]
+        for val in vals: request.env['hr.attendance'].sudo().create(val)
+        return {}
 
+    @http.route('/depointer', type='json', auth="user", website=True)
+    def depointer(self, employee):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        employes = request.registry.get('hr.employee')
+        _logger.info("POINTER user = " + str(uid))
+        todays_records = request.env['hr.attendance'].sudo().search([('name','&gt;=',datetime.datetime.now().replace(hour=0, minute=0, second=0)),('name','&lt;=',datetime.datetime.now().replace(hour=23, minute=59, second=59))])
         return {}
 
     @http.route(['/ficheslist'], type='http', auth="user", website=True)

@@ -105,15 +105,15 @@
 							</tr>
 						</thead>
 						<t t-foreach="teams" t-as="team">
-							<t t-foreach="team.ressource_list" t-as="membr">
-							<tr>
+							<t t-foreach="team" t-as="membr">
+							<tr t-attf-id="employee_{{ membr.id }}">
 							<td><span t-att-value="membr.id" class="membrid" t-field="membr.name"/>
 							</td>
-							<td><span class="teamname" t-field="team.name"/>
+							<td><span class="teamname" t-field="membr.equipe_id.name"/>
 							</td>
 							<td>
-								<a class="btn btn-primary pointer">Present</a>
-								<a class="btn btn-primary depointer">Absent</a>
+								<a t-attf-id="pointer_{{ membr.id }}" class="btn btn-primary pointer">Present</a>
+								<a t-attf-id="depointer_{{ membr.id }}" class="btn btn-primary depointer" style="display: none">Absent</a>
 							</td>
 							</tr>
 						</t></t>
