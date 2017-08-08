@@ -87,7 +87,7 @@
             <xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
 
                 <tr>
-                    <th width="2%" style="border:thin solid #323232;font-size: 11">N°Lig</th>
+                    <th width="2%" style="border:thin solid #323232;font-size: 11" t-if="doc.state not in ['draft','sent']">N°Lig</th>
                     <th width="40%" style="border:thin solid #323232;font-size: 11">Désignation</th>
                     <th width="2%" class="text-right" style="border:thin solid #323232;font-size: 11">Quantité</th>
                     <th class="text-center" style="border:thin solid #323232;font-size: 11">Prix Brut HT</th>
@@ -128,7 +128,7 @@
 
 
             <xpath expr="//t/t/tr/td" position="before">
-                <td style="border:thin solid #323232">
+                <td style="border:thin solid #323232" t-if="doc.state not in ['draft','sent']">
                     <span t-esc="i"/>
                     <t t-set="i" t-value="i+1"/>
                 </td>
