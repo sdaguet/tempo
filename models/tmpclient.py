@@ -26,17 +26,17 @@ class TmpClient(models.Model):
     URL = fields.Char("URL")
     Code_Categorie = fields.Char("Code Catégorie")
     Contfichier = fields.Char("Cont.fichier")
-    Contfichier = fields.Char("(Cont.fichier)")
+    #Contfichier = fields.Char("(Cont.fichier)")
     altitude_du_jardin = fields.Char("altitude du jardin")
-    altitude_du_jardin = fields.Char("(altitude du jardin)")
+    #altitude_du_jardin = fields.Char("(altitude du jardin)")
     surface_du_jardin = fields.Char("surface du jardin")
-    surface_du_jardin = fields.Char("(surface du jardin)")
+    #surface_du_jardin = fields.Char("(surface du jardin)")
     Critere_4 = fields.Char("Critère 4")
-    Critere_4 = fields.Char("(Critère 4)")
+    #Critere_4 = fields.Char("(Critère 4)")
     age_du_jardin = fields.Char("âge du jardin")
-    age_du_jardin = fields.Char("(âge du jardin)")
+    #age_du_jardin = fields.Char("(âge du jardin)")
     type_de_client = fields.Char("type de client")
-    type_de_client = fields.Char("(type de client)")
+    #type_de_client = fields.Char("(type de client)")
     Code_Representant = fields.Char("Code Représentant")
     Code_Etiquette = fields.Char("Code Etiquette")
     Mode_de_Reglement = fields.Char("Mode de Règlement")
@@ -143,14 +143,14 @@ class TmpClient(models.Model):
     Mode_d_expedition = fields.Char("Mode d'expédition")
 
     @api.multi
-    def is_empty_char(self,value):
+    def is_empty_char(self, value):
         if value:
             return value
         else:
             return ""
 
     @api.multi
-    def is_empty_float(self,value):
+    def is_empty_float(self, value):
         if value:
             return float(value)
         else:
@@ -172,6 +172,20 @@ class TmpClient(models.Model):
         Adresse_2 = self.is_empty_char(values.get('Adresse_2'))
         N_Client = self.is_empty_char(values.get('N_Client'))
 
+        #livraison
+
+        Nom_Livraison = self.is_empty_char(values.get('Nom_Livraison'))
+        Prenom_Livraison = self.is_empty_char(values.get('Prenom_Livraison'))
+        Ad_Liv_1 = self.is_empty_char(values.get('Ad_Liv_1'))
+        Ad_Liv_2 = self.is_empty_char(values.get('Ad_Liv_2'))
+        CP_Livraison = self.is_empty_char(values.get('CP_Livraison'))
+        Ville_Liv = self.is_empty_char(values.get('Ville_Liv'))
+        Code_pays_Livraison = self.is_empty_char(values.get('Code_pays_Livraison'))
+        Telephone_Livraison = self.is_empty_char(values.get('Telephone_Livraison'))
+        Fax_Livraison = self.is_empty_char(values.get('Fax_Livraison'))
+        Portable_Livraison = self.is_empty_char(values.get('Portable_Livraison'))
+        E_mail_Livraison = self.is_empty_char(values.get('E_mail_Livraison'))
+        Commentaire_Livraison = self.is_empty_char(values.get('Commentaire_Livraison'))
 
         valuesc = {  # 'comment': False,
             # 'function': False,
@@ -202,7 +216,12 @@ class TmpClient(models.Model):
             'customer': True,
             'fax': FAX,  # FAX
             'street2': Adresse_2,  # Adresse_2
-            # 'child_ids': [],
+            'child_ids': [[0, False,
+                           {u'function': False, u'city': Ville_Liv, u'name': Nom_Livraison + " " + Prenom_Livraison, u'zip': CP_Livraison, u'title': False,
+                            u'mobile': Portable_Livraison, u'street2': Ad_Liv_2, u'country_id': False, u'comment': False,
+                            u'phone': Telephone_Livraison, u'street': Ad_Liv_1, u'customer': Commentaire_Livraison,
+                            u'supplier': False, u'state_id': False, u'type': u'delivery', u'email': E_mail_Livraison,
+                            u'lang': u'fr_FR'}]], #adress liv
             'phone': Telephone,
             # 'user_ids': [],
             'active': True,
@@ -223,7 +242,7 @@ class TmpClient(models.Model):
         self.env['res.partner'].create(valuesc)
         return record
 
-#
+
 # class Partner(models.Model):
 #     _inherit = 'res.partner'
 #
