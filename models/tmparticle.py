@@ -161,9 +161,7 @@ class TmpArticle(models.Model):
             elif TVA == 2:
                 taxe_id = self.env['account.tax'].search([('amount', '=', '20')]).ids
 
-
-
-            # pour les categ
+            #attributs
             xml_genre = self.env.ref("darb_puthod.product_attribute_genre")
             xml_espece = self.env.ref("darb_puthod.product_attribute_espece")
             xml_variete = self.env.ref("darb_puthod.product_attribute_variete")
@@ -187,15 +185,23 @@ class TmpArticle(models.Model):
             xml_sous_famille_article = self.env.ref("darb_puthod.product_attribute_sous_famille_article")
             xml_pays_d_origine = self.env.ref("darb_puthod.product_attribute_pays_d_origine")
             xml_fourn_principal = self.env.ref("darb_puthod.product_attribute_fourn_principal")
-            print "xml_record"
-            print xml_genre
+
+            genre = self.is_empty_char(values.get('Genre'))
+            genre_value_exist = self.env['product.attribute.value'].search(
+                [('name', '=', genre), ('attribute_id', '=', xml_genre.id)])
+
+            if not genre_value_exist:
+                value_genre = self.env['product.attribute.value'].create({u'color': False, u'attribute_id': xml_genre.id, u'name': genre})
+            elif genre_value_exist:
+                value_genre = genre_value_exist
+
 
             valuesp = {
                 # 'warranty': 0,
                 # 'message_follower_ids': False,
                 # 'property_account_creditor_price_difference': False,
                 # 'standard_price': 0,
-                'attribute_line_ids': [[0, False, {u'attribute_id': xml_genre.id, u'value_ids': []}],
+                'attribute_line_ids': [[0, False, {u'attribute_id': xml_genre.id, u'value_ids': [[6, False,[value_genre.id]]]}],
                                        [0, False, {u'attribute_id': xml_espece.id, u'value_ids': []}],
                                        [0, False, {u'attribute_id': xml_variete.id, u'value_ids': []}],
                                        [0, False, {u'attribute_id': xml_taille.id, u'value_ids': []}],
@@ -263,55 +269,6 @@ class TmpArticle(models.Model):
                 'importe': True,
             }
 
-            # valuesp = {
-            #     #'warranty': 0,
-            #     #'message_follower_ids': False,
-            #     #'property_account_creditor_price_difference': False,
-            #     #'standard_price': 0,
-            #     #'attribute_line_ids': [],
-            #     #'uom_id': 1,
-            #     #'property_account_income_id': False,
-            #     #'description_purchase': False,
-            #     'N_Article': N_Article, #N_Article
-            #     #'message_ids': False,
-            #     'sale_ok': True,
-            #     #'item_ids': [],
-            #     #'description_picking': False,
-            #     #'purchase_method': 'receive',
-            #     'purchase_ok': True,
-            #     #'sale_delay': 7,
-            #     #'company_id': 1,
-            #     #'property_valuation': False,
-            #     'track_service': 'manual',
-            #     #'uom_po_id': 1,
-            #     #'property_cost_method': False,
-            #     'type': u'consu',
-            #     #'property_stock_account_input': False,
-            #     #'property_stock_production': 7,
-            #     #'supplier_taxes_id': [[6, False, [11]]],
-            #     'volume': 0,
-            #     #'route_ids': [[6, False, [8]]],
-            #     'tracking': u'none',
-            #     #'description_sale': False,
-            #     'active': True,
-            #     #'property_stock_inventory': 5,
-            #     #'cost_method': False,
-            #     #'valuation': False,
-            #     #'image_medium': False,
-            #     'name': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
-            #     #'property_account_expense_id': False,
-            #     'famille' : Famille,
-            #     #'categ_id': categ,
-            #     'packaging_ids': [],
-            #     'invoice_policy': u'order',
-            #     'taxes_id': [[6, False, taxe_id]],
-            #     #'property_stock_account_output': False,
-            #     'seller_ids': [],
-            #     'lst_price': Prix_Etiquette , #Prix_Etiquette
-            #     'barcode': Code_Barre , #Code_Barre
-            #     'weight' : Poids_Brut , #Poids_Brut
-            #     'importe' : True ,
-            #     }
 
             timestamp6 = time.time()
             ec3 = timestamp6 - timestamp5
@@ -321,16 +278,33 @@ class TmpArticle(models.Model):
             timestamp7 = time.time()
 
             #pour les attributs
-            #self.env['product.product'].create(valuesp)
-            #name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
-            #obj_template = self.env['product.template'].search([('name','=',name)])
-            # if not obj_template :
-            #     self.env['product.attribute.value'].
+            name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
+            obj_template = self.env['product.template'].search([('name','=',name)])
 
             print "obj_template"
             print obj_template
 
-            self.env['product.template'].create(valuesp)
+            print "obj_template.attribute_line_ids"
+            print obj_template.attribute_line_ids
+
+            if obj_template :
+                #genre_value = self.env['product.attribute.value'].search([('name','=',genre),('attribute_id','=',xml_genre.id)])
+                print "valuesp.get('attribute_line_ids')"
+                print valuesp.get('attribute_line_ids')
+                for al in obj_template.attribute_line_ids:
+                    if al.attribute_id.id == xml_genre.id:
+                        print "al.value_ids"
+                        print al.value_ids
+                        al.value_ids = al.value_ids + value_genre
+                obj_template.create_variant_ids()
+
+                print " obj_template.attribute_line_ids new"
+                print  obj_template.attribute_line_ids
+            else :
+                self.env['product.template'].create(valuesp)
+
+
+
 
 
 
@@ -353,26 +327,34 @@ class TmpArticle(models.Model):
             return record
 
 
-# class ProductProduct(models.Model):
-#     _inherit = 'product.template'
-#
-#     @api.model
-#     def create(self, values):
-#         _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-#         return super(ProductProduct, self).create(values)
-#
-# class Partner(models.Model):
-#     _inherit = 'product.attribute.value'
-#
-#     @api.model
-#     def create(self, values):
-#         _logger.info("------------> Article iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-#         return super(Partner, self).create(values)
-#
-# class Partner_attribute(models.Model):
-#     _inherit = 'product.attribute'
-#
-#     @api.model
-#     def create(self, values):
-#         _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
-#         return super(Partner_attribute, self).create(values)
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    @api.model
+    def create(self, values):
+        _logger.info("------------> Article template iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        return super(ProductTemplate, self).create(values)
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    @api.model
+    def create(self, values):
+        _logger.info("------------> Article product iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        return super(ProductProduct, self).create(values)
+
+class Partner(models.Model):
+    _inherit = 'product.attribute.value'
+
+    @api.model
+    def create(self, values):
+        _logger.info("------------> Article values iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        return super(Partner, self).create(values)
+
+class Partner_attribute(models.Model):
+    _inherit = 'product.attribute'
+
+    @api.model
+    def create(self, values):
+        _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        return super(Partner_attribute, self).create(values)
