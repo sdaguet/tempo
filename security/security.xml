@@ -53,6 +53,13 @@
             <field name="comment">Chef chantier.</field>
         </record>
 
+        <record id="group_preparateur" model="res.groups">
+            <field name="name">Préparateur</field>
+            <field name="category_id" ref="module_category_puthod"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="comment">Préparateur.</field>
+        </record>
+
         <record id="group_directeur" model="res.groups">
             <field name="name">Directeur</field>
             <field name="category_id" ref="module_category_puthod"/>
@@ -102,35 +109,35 @@
 
         <!-- Menus access -->
         <record model="ir.ui.menu" id="darb_puthod.menu_root">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="darb_puthod.menu_1">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="darb_puthod.menu_10">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="darb_puthod.menu_1_list">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="darb_puthod.menu_101_list">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="hr_attendance.menu_hr_attendance_root">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="darb_puthod.chantier">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
         <record model="ir.ui.menu" id="darb_puthod.chantier_list">
-            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
 

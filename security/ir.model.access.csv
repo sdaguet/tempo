@@ -24,6 +24,31 @@ access_equipe_chef,chef.equipe,model_equipe,group_chef_chantier,1,1,1,0
 access_sale_order_chef,chef.sale.order,sale.model_sale_order,group_chef_chantier,1,1,1,0
 access_calendar_event_chef,chef.calendar.event,calendar.model_calendar_event,group_chef_chantier,1,0,0,0
 
+access_fiche_chantier_preparateur,preparateur.fiche.chantier,model_fiche_chantier,group_preparateur,1,1,1,0
+access_chantier_preparateur,preparateur.chantier,model_chantier,group_preparateur,1,1,1,0
+access_fiche_chantier_machine_preparateur,preparateur.fiche.chantier.machine.preparateur,model_fiche_chantier_machine,group_preparateur,1,1,1,0
+access_fiche_chantier_fourniture_preparateur,preparateur.fiche.chantier.fourniture.preparateur,model_fiche_chantier_fourniture,group_preparateur,1,1,1,0
+access_fiche_chantier_kit_preparateur,preparateur.fiche.chantier.kit.preparateur,model_fiche_chantier_kit,group_preparateur,1,1,1,0
+access_fiche_chantier_tuteurage_preparateur,preparateur.fiche.chantier.tuteurage.preparateur,model_fiche_chantier_tuteurage,group_preparateur,1,1,1,0
+access_fiche_chantier_vigitaux_preparateur,preparateur.fiche.chantier.vigitaux.preparateur,model_fiche_chantier_vigitaux,group_preparateur,1,1,1,0
+access_fiche_chantier_engrais_preparateur,preparateur.fiche.chantier.engrais.preparateur,model_fiche_chantier_engrais,group_preparateur,1,1,1,0
+access_fiche_chantier_gazons_preparateur,preparateur.fiche.chantier.gazons.preparateur,model_fiche_chantier_gazons,group_preparateur,1,1,1,0
+access_fiche_chantier_gmateriel_preparateur,preparateur.fiche.chantier.gmateriel.preparateur,model_fiche_chantier_gmateriel,group_preparateur,1,1,1,0
+access_fiche_chantier_escalier_preparateur,preparateur.fiche.chantier.escalier.preparateur,model_fiche_chantier_escalier,group_preparateur,1,1,1,0
+access_fiche_chantier_outils_preparateur,preparateur.fiche.chantier.outils.preparateur,model_fiche_chantier_outils,group_preparateur,1,1,1,0
+access_fiche_chantier_cloture_preparateur,preparateur.fiche.chantier.cloture.preparateur,model_fiche_chantier_cloture,group_preparateur,1,1,1,0
+access_fiche_chantier_divers_preparateur,preparateur.fiche.chantier.divers.preparateur,model_fiche_chantier_divers,group_preparateur,1,1,1,0
+access_subtask_preparateur,preparateur.subtask.preparateur,model_subtask,group_preparateur,1,1,1,0
+access_employees_subtasks_preparateur,preparateur.employees.subtasks.preparateur,model_employees_subtasks,group_preparateur,1,1,1,0
+access_fiche_chantier_subtasks_preparateur,preparateur.fiche.chantier.subtasks.preparateur,model_fiche_chantier_subtasks,group_preparateur,1,1,1,0
+access_fiche_chantier_terrasse_preparateur,preparateur.fiche.chantier.terrasse.preparateur,model_fiche_chantier_terrasse,group_preparateur,1,1,1,0
+access_fiche_chantier_scloture_preparateur,preparateur.fiche.chantier.scloture.preparateur,model_fiche_chantier_scloture,group_preparateur,1,1,1,0
+access_fiche_chantier_vehicle_preparateur,preparateur.fiche.chantier.vehicle.preparateur,model_fiche_chantier_vehicle,group_preparateur,1,1,1,0
+access_fiche_chantier_materiel_preparateur,preparateur.fiche.chantier.materiel.preparateur,model_fiche_chantier_materiel,group_preparateur,1,1,1,0
+access_equipe_preparateur,preparateur.equipe,model_equipe,group_preparateur,1,1,1,0
+access_sale_order_preparateur,preparateur.sale.order,sale.model_sale_order,group_preparateur,1,1,1,0
+access_calendar_event_preparateur,preparateur.calendar.event,calendar.model_calendar_event,group_preparateur,1,0,0,0
+
 
 
 access_fiche_chantier_directeur,Directeur.fiche.chantier.directeur,model_fiche_chantier,group_directeur,1,1,1,1
