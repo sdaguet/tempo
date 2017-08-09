@@ -117,6 +117,9 @@ access_hr_employee_administration,administration.hr.employee,model_hr_employee,g
 access_hr_attendance_administration,administration.hr.attendance,hr_attendance.model_hr_attendance,group_administration,1,1,1,1
 
 
+access_tmparticle_administration,administration.tmparticle,model_tmparticle,group_administration,1,1,1,1
+
+
 access_account_journal_administration,administration.account.journal,account.model_account_journal,group_administration,1,0,0,0
 access_account_invoice_administration,administration.account.invoice,account.model_account_invoice,group_administration,1,0,0,0
 access_account_payment_administration,administration.account.payment,account.model_account_payment,group_administration,1,0,0,0
