@@ -175,8 +175,8 @@
             </field>
         </record>-->
 
-
-        <record id="puthod_prouct_template_form_inh" model="ir.ui.view">
+        <!--pour l'import d'articles-->
+        <record id="puthod_product_template_form_inh" model="ir.ui.view">
             <field name="name">puthod.prouct.template.form.inh</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
@@ -185,6 +185,7 @@
                     <label class="oe_edit_only" for="N_Article"/>
                     <field name="N_Article" readonly="1"/>
                     <field name="importe" invisible="1"/>
+                    <field name="libelle_commercial" invisible="1"/>
                 </xpath>
             </field>
         </record>
@@ -197,6 +198,7 @@
                 <xpath expr="//field[@name='name']" position="after">
                     <field name="N_Article"/>
                     <field name="famille"/>
+                    <field name="libelle_commercial" invisible="1"/>
                 </xpath>
             </field>
         </record>

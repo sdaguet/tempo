@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from openerp import api, fields, models
 import collections
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class EntretienReport(models.AbstractModel):
     _name = 'report.darb_puthod.report_entretien'
@@ -9,7 +10,9 @@ class EntretienReport(models.AbstractModel):
     @api.multi
     def col(products):
         counter = collections.Counter(products)
-        print(counter)
+        #logger ajouté
+		#print(counter)
+        _logger.info("col(products): %r" % counter)
         return counter
 
     @api.multi
@@ -18,37 +21,47 @@ class EntretienReport(models.AbstractModel):
         e = []
 
         count = 0
-
-        print "counttttttttttttttt"
-        print count
+        #logger ajouté
+        #print "counttttttttttttttt"
+        #print count
+        _logger.info("a_faire(self,doc,tache): %r" % count)		
 
         fiches = self.env['fiche.chantier'].search([('chantier_id','=',doc.id)])
-
-        print "fichessssssssssssssss"
-        print fiches
-
-        print "tacheeeeeeeeeeeeeeeee"
-        print tache.id
-
+        
+        #logger ajouté
+        #print "fichessssssssssssssss"
+        #print fiches
+        _logger.info("a_faire(self,doc,tache): %r" % fiches)
+        
+        #logger ajouté		
+		#print "tacheeeeeeeeeeeeeeeee"
+        #print tache.id
+        _logger.info("a_faire(self,doc,tache): %r" % tache.id)         
+        
         if fiches:
 
             for f in fiches:
                 if f :
                     for s in f.subtasks:
-                        print "subtasksssssssssssssssss"
-                        print s.subtask_id
+                        #logger ajouté
+						#print "subtasksssssssssssssssss"
+                        #print s.subtask_id
+                        _logger.info("a_faire(self,doc,tache): %r" % s.subtask_id)
                         if s.subtask_id.id == tache.id:
                             count = count + 1
                             if s.employee_subtask_ids.ids:
                                 for tmp in s.employee_subtask_ids.ids:
                                     e.append(self.env['employees.subtasks'].browse(tmp))
                 else: break
-        print "counttttttttttttttt2"
-        print count
+        #logger ajouté
+		#print "counttttttttttttttt2"
+        #print count
+		_logger.info("a_faire(self,doc,tache): %r" % count)
 
-        print "subtaskssssssssssssssssse"
-        print e
-
+        #print "subtaskssssssssssssssssse"
+        #print e
+        _logger.info("a_faire(self,doc,tache): %r" % e)
+        
         return count,e
 
     @api.multi
