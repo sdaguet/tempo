@@ -84,7 +84,7 @@
             <field name="value_ids" eval="[]"/>
             <field name="sequence">0</field>
         </record>
-        <record id="product_attribute_Hauteur_mm" model="product.attribute">
+        <record id="product_attribute_hauteur_mm" model="product.attribute">
             <field name="type">radio</field>
             <field name="attribute_line_ids" eval="[]"/>
             <field name="name">Hauteur mm</field>
