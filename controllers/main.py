@@ -40,42 +40,41 @@ class WebsiteContractDarbtech(http.Controller):
     def pointer(self, employee):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        employes = request.registry.get('hr.employee')
-        _logger.info("POINTER user = " + str(uid))
-        datetime_8 = datetime.combine(date.today(), datetime.strptime('08:00','%H:%M').time())
-        datetime_12 = datetime.combine(date.today(), datetime.strptime('12:00','%H:%M').time())
-        datetime_14 = datetime.combine(date.today(), datetime.strptime('14:00','%H:%M').time())
-        datetime_18 = datetime.combine(date.today(), datetime.strptime('18:00','%H:%M').time())
-        vals = [{
-                'name': str(datetime_8),
-                'employee_id': int(employee),
-                'action': 'sign_in',
-                },
-                {
-                'name': str(datetime_12),
-                'employee_id': int(employee),
-                'action': 'sign_out',
-                },
-                {
-                'name': str(datetime_14),
-                'employee_id': int(employee),
-                'action': 'sign_in',
-                },
-                {
-                'name': str(datetime_18),
-                'employee_id': int(employee),
-                'action': 'sign_out',
-                }]
-        for val in vals: request.env['hr.attendance'].sudo().create(val)
+        todays_records = request.env['hr.attendance'].sudo().search([('employee_id', '=', int(employee)),('name','>=',datetime.now().replace(hour=0, minute=0, second=0).strftime("%Y-%m-%d %H:%M:%S")),('name','<=',datetime.now().replace(hour=23, minute=59, second=59).strftime("%Y-%m-%d %H:%M:%S"))])
+        if len(todays_records) == 0:
+            datetime_8 = datetime.combine(date.today(), datetime.strptime('08:00','%H:%M').time())
+            datetime_12 = datetime.combine(date.today(), datetime.strptime('12:00','%H:%M').time())
+            datetime_14 = datetime.combine(date.today(), datetime.strptime('14:00','%H:%M').time())
+            datetime_18 = datetime.combine(date.today(), datetime.strptime('18:00','%H:%M').time())
+            vals = [{
+                    'name': str(datetime_8),
+                    'employee_id': int(employee),
+                    'action': 'sign_in',
+                    },
+                    {
+                    'name': str(datetime_12),
+                    'employee_id': int(employee),
+                    'action': 'sign_out',
+                    },
+                    {
+                    'name': str(datetime_14),
+                    'employee_id': int(employee),
+                    'action': 'sign_in',
+                    },
+                    {
+                    'name': str(datetime_18),
+                    'employee_id': int(employee),
+                    'action': 'sign_out',
+                    }]
+            for val in vals: request.env['hr.attendance'].sudo().create(val)
         return {}
 
     @http.route('/depointer', type='json', auth="user", website=True)
     def depointer(self, employee):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        employes = request.registry.get('hr.employee')
-        _logger.info("POINTER user = " + str(uid))
-        todays_records = request.env['hr.attendance'].sudo().search([('name','&gt;=',datetime.datetime.now().replace(hour=0, minute=0, second=0)),('name','&lt;=',datetime.datetime.now().replace(hour=23, minute=59, second=59))])
+        todays_records = request.env['hr.attendance'].sudo().search([('employee_id', '=', int(employee)),('name','>=',datetime.now().replace(hour=0, minute=0, second=0).strftime("%Y-%m-%d %H:%M:%S")),('name','<=',datetime.now().replace(hour=23, minute=59, second=59).strftime("%Y-%m-%d %H:%M:%S"))])
+        todays_records.unlink()
         return {}
 
     @http.route(['/ficheslist'], type='http', auth="user", website=True)
