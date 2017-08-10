@@ -28,14 +28,18 @@ class sale_order(models.Model):
     @api.multi
     def _compute_iframe(self):
             url = self.item_url
-            print "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
-            print url
+            #log ajouté a cette place
+			#print "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
+            _logger.info("_compute_iframe : %r" % url)
+            #print url
             template = self.env.ref('darb_puthod.iframe')
-            print "tttttttttttttttttttttttttttttttttttttt"
-            print template
+            #print "tttttttttttttttttttttttttttttttttttttt"
+            _logger.info("_compute_iframe : %r" % template)
+            #print template
             self.iframe = template.render({'url': url})
-            print "iffffffffffffffffffffffffff"
-            print self.iframe
+            #print "iffffffffffffffffffffffffff"
+            _logger.info("_compute_iframe : %r" % self.iframe)
+            #print self.iframe
 
     @api.multi
     def create_fiche_chantier(self):

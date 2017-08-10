@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from openerp import api, fields, models
 import collections
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class ParserOrder(models.Model):
     _inherit = 'fiche.chantier'
@@ -302,17 +303,28 @@ class BilanReport(models.AbstractModel):
                 date_e.append(et.employee.name)
         tmp = self.get_tmp(employee_tasks)
         tmp_cost = self.get_tmp_cost(employee_tasks)
-
-        print "tmp"
-        print tmp
-        print "date_e"
-        print date_e
+        
+		#logger ajouté
+        #print "tmp"
+        #print tmp
+        _logger.info("bilan_main_oeuvre(self, sub): %r" % tmp)
+		
+		#logger ajouté
+		#print "date_e"
+        #print date_e
+        _logger.info("bilan_main_oeuvre(self, sub): %r" % date_e)
+        
         date_e = list(set(date_e))
-        print "date_e"
-        print len(date_e)
+        #logger ajouté
+		#print "date_e"
+        #print len(date_e)
+        _logger.info("bilan_main_oeuvre(self, sub): %r" % len(date_e))
+		
         plus = self.add_plus(date_e)
-        print "date_e"
-        print plus
+        #logger ajouté
+		#print "date_e"
+        #print plus
+        _logger.info("bilan_main_oeuvre(self, sub): %r" % plus)
         return (date, plus, tmp, tmp_cost, comment)
 
     @api.multi

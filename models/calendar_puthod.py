@@ -19,7 +19,9 @@ class CalendarPuthod(models.Model):
         for f in fiches:
             users.append(f.user_id.partner_id.id)
         self.partner_p_ids = users
-        print "iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-        print self.partner_p_ids.ids
-        print self.partner_ids.ids
+        #print "iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+        # logger ajouté
+        _logger.info("_compute_users : %r" % users)
+        #print self.partner_p_ids.ids
+        #print self.partner_ids.ids
         pass

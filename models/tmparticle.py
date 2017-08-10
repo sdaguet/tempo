@@ -281,25 +281,37 @@ class TmpArticle(models.Model):
             name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
             obj_template = self.env['product.template'].search([('name','=',name)])
 
-            print "obj_template"
-            print obj_template
-
-            print "obj_template.attribute_line_ids"
-            print obj_template.attribute_line_ids
-
+            #logger ajouté			
+            #print "obj_template"
+            #print obj_template
+            _logger.info("create(self, values): %r " % obj_template  )
+            
+			#logger ajouté
+			#print "obj_template.attribute_line_ids"
+            #print obj_template.attribute_line_ids
+            _logger.info("create(self, values): %r " % obj_template.attribute_line_ids  )
+            
             if obj_template :
                 #genre_value = self.env['product.attribute.value'].search([('name','=',genre),('attribute_id','=',xml_genre.id)])
-                print "valuesp.get('attribute_line_ids')"
-                print valuesp.get('attribute_line_ids')
+                
+				#logger ajouté
+				#print "valuesp.get('attribute_line_ids')"
+                #print valuesp.get('attribute_line_ids')
+                _logger.info("create(self, values): %r " % valuesp.get('attribute_line_ids') )
+				
                 for al in obj_template.attribute_line_ids:
                     if al.attribute_id.id == xml_genre.id:
-                        print "al.value_ids"
-                        print al.value_ids
+                        #logger ajouté
+					    #print "al.value_ids"
+                        #print al.value_ids
                         al.value_ids = al.value_ids + value_genre
+                        _logger.info("create(self, values): %r " % al.value_ids )
+                        
                 obj_template.create_variant_ids()
-
-                print " obj_template.attribute_line_ids new"
-                print  obj_template.attribute_line_ids
+                #logger ajouté
+                #print " obj_template.attribute_line_ids new"
+                #print  obj_template.attribute_line_ids
+                _logger.info("create(self, values): %r " % obj_template.attribute_line_ids )
             else :
                 self.env['product.template'].create(valuesp)
 
@@ -332,7 +344,7 @@ class ProductTemplate(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Article template iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values) : " + str(values))
         return super(ProductTemplate, self).create(values)
 
 class ProductProduct(models.Model):
@@ -340,7 +352,7 @@ class ProductProduct(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Article product iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values) : " + str(values))
         return super(ProductProduct, self).create(values)
 
 class Partner(models.Model):
@@ -348,7 +360,7 @@ class Partner(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Article values iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values) : " + str(values))
         return super(Partner, self).create(values)
 
 class Partner_attribute(models.Model):
@@ -356,5 +368,5 @@ class Partner_attribute(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values) : " + str(values))
         return super(Partner_attribute, self).create(values)
