@@ -92,7 +92,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         context = dict(self._context or {})
         active_ids = context.get('active_ids', []) or []
         related_chantier = self.env['chantier'].browse(active_ids)
-        tasks_list = [line.product_id.task_ids for line in related_chantier.order_id.order_line]
+        tasks_list = [line.product_id.task_ids for line in related_chantier.order_id.order_line if line.tasks]
         task_ids = []
         for x in tasks_list:
             for y in x:
@@ -133,7 +133,8 @@ class wizard_create_fiche_chantier(models.TransientModel):
 class product(models.Model):
     _inherit = 'product.product'
 
-    task_ids = fields.One2many('subtask', 'product_id', string="Tâches")
+    tasks = fields.Boolean(string=u"Peut avoir des tâches")
+    task_ids = fields.One2many('subtask', 'product_id', string=u"Tâches")
     altitude_max = fields.Float(string='Altitude MAX', digits=(3, 0),default = 0)
     altitude_min = fields.Float(string='Altitude MIN', digits=(3, 0),default = 0)
     qrcode = fields.Char(string='QR Code')

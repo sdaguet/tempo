@@ -25,7 +25,6 @@
                     </notebook>-->
                 </field>
 
-
                 <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
                     <attribute name="domain">[('altitude_max', '&gt;=', parent.altitude), ('altitude_min', '&lt;=',
                         parent.altitude)]
@@ -60,6 +59,10 @@
 				<xpath expr="//button[@name='action_confirm' and @states='draft']"  position="replace">
                 	<button name="%(action_confirm_sale_order)d" states="draft" string="Confirmer la vente" type="action" context="{'show_sale': True}"/>
 				</xpath>
+
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="after">
+                    <field name="tasks" readonly="0"/>
+                </xpath>
 
             </field>
         </record>
@@ -106,7 +109,7 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <page string="Tâches">
+                    <page string="Tâches" attrs="{'invisible': [('tasks','=',False)]}">
                         <field name="task_ids">
                             <tree editable="bottom">
                                 <field name="name"/>
@@ -122,6 +125,12 @@
                     <field name="altitude_min"/>
                     <field name="qrcode"/>
                 </group>
+				<div name="options" position="inside">
+	                <div>
+	                    <field name="tasks"/>
+	                    <label for="tasks"/>
+	                </div>
+                </div>
             </field>
         </record>
 

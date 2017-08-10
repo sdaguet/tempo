@@ -124,7 +124,16 @@ class PuthodOrderLine(models.Model):
     inter_restant = fields.Integer(string="Restantes")
     type = fields.Selection(related='product_id.type')
     inter_ids  = fields.One2many(comodel_name="puthod.intervention", inverse_name="order_line_id", string="Interventions", required=False )
+    tasks = fields.Boolean(string=u"Peut avoir des tâches")
 
+    @api.multi
+    @api.onchange('product_id')
+    def product_id_change(self):
+        res = super(PuthodOrderLine, self).product_id_change()
+        for line in self:
+            if line.product_id.tasks:
+                line.tasks = True
+        return res
 
 
 
