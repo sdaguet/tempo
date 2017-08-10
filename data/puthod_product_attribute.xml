@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!--
+            Resource: product.attribute
+
+            -->
+
+        <record id="product_attribute_genre" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Genre</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_espece" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Espèce</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_variete" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Variété</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_taille" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Taille</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_taille_bis" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Taille_bis</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_type_de_feuillage" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Type de feuillage</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_critere_7" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Critere_7</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_critere_8" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Critere_8</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_critere_9" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Critere_9</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_nom_francais" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Nom français</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_modele_etiquette" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Modele étiquette</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_Hauteur_mm" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Hauteur mm</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_poids_brut" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Poids Brut</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_ca_n" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">CA_N</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_ca_n_1" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">CA_N_1</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_ca_n_2" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">CA_N_2</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_qte_n" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Qte_N</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_qte_n_1" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Qte_N_1</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_qte_n_2" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Qte_N_2</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_critere_18" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Critere_18</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_sur_appellation" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Sur Appellation</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_sous_famille_article" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Sous Famille article</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_pays_d_origine" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Pays d'origine</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+        <record id="product_attribute_fourn_principal" model="product.attribute">
+            <field name="type">radio</field>
+            <field name="attribute_line_ids" eval="[]"/>
+            <field name="name">Fourn principal</field>
+            <field name="value_ids" eval="[]"/>
+            <field name="sequence">0</field>
+        </record>
+
+
+    </data>
+</openerp>
