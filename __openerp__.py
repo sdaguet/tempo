@@ -30,6 +30,7 @@
 
     # always loaded
     'data': [
+        'wizard/sale_order_confirm.xml',
         'data/menus.xml',
 		'data/product.xml',
         'views/fichechantier.xml',
