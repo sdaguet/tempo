@@ -447,6 +447,10 @@
                         help="Manufacturing Orders which are currently in production."/>
                     <filter string="En cours" name="IN" domain="[('inter_date','&lt;=',current_date)]"/>
                     <filter string="A venir" name="OUT" domain="[('inter_date','&gt;',current_date)]"/>
+                    <filter string="Clôturante" name="cloturante" domain="[('type_inter','=','cloturante')]"/>
+                    <filter string="Rapide" name="rapide" domain="[('type_inter','=','rapide')]"/>
+                    <filter string="Maintenance" name="maintenance" domain="[('type_inter','=','maintenance')]"/>
+                    <filter string="Normale" name="normale" domain="[('type_inter','=','normale')]"/>
                     <separator/>
                     <filter string="Late" domain="['&amp;', ('date_planned','&lt;', current_date), ('state', 'in', ('draft', 'confirmed', 'ready'))]"
                         help="Production started late"/>
@@ -457,6 +461,7 @@
                         <filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
                         <filter string="Routing" domain="[]" context="{'group_by':'routing_id'}"/>
                         <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Type" domain="[]" context="{'group_by':'type_inter'}"/>
                         <filter string="Scheduled Month" domain="[]" context="{'group_by':'date_planned'}" help="Scheduled Date by Month"/>
                     </group>
                </search>
