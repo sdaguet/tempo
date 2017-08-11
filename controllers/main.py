@@ -269,7 +269,10 @@ class WebsiteContractDarbtech(http.Controller):
         user = request.env.user
         cr, uid, context = reqst.cr, reqst.uid, reqst.context
 
-        employees = request.env['hr.employee'].sudo().search(['|', ('equipe_id','=',False), ('equipe_id.active','=',False)])
+        group_employee = request.env.ref('darb_puthod.group_employee')
+        group_chef = request.env.ref('darb_puthod.group_chef_chantier')
+        group_ids = group_employee.users.ids + group_chef.users.ids
+        employees = request.env['hr.employee'].sudo().search([('user_id','in', group_ids), '|', ('equipe_id','=',False), ('equipe_id.active','=',False)])
 
         return http.request.render('darb_puthod.newequipes', {
             'employees': employees,
