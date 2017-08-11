@@ -143,21 +143,21 @@ class TmpClient(models.Model):
     Mode_d_expedition = fields.Char("Mode d'expédition")
 
     @api.multi
-    def is_empty_char(self, value):
+    def is_empty_char(self, value):			# Cette fonction retourne value si elle contient une valeur ou une chaine vide si non 
         if value:
             return value
         else:
             return ""
 
     @api.multi
-    def is_empty_float(self, value):
+    def is_empty_float(self, value):	# Cette fonction retourne value si elle contient un nombre ou 0 si non 
         if value:
             return float(value)
         else:
             return 0
 
     @api.model
-    def create(self, values):
+    def create(self, values):	# Cette fonction retourne un record et permet la création d'un client
         record = super(TmpClient, self).create(values)
         Nom_1 = self.is_empty_char(values.get('Nom_1'))
         Nom_2 = self.is_empty_char(values.get('Nom_2'))
