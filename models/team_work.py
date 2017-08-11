@@ -18,14 +18,14 @@ class Equipe(models.Model):
 
     @api.multi
     @api.depends('manager')
-    def _get_name(self):
+    def _get_name(self):      #Cette fonction permet de remplir automatiquement le champ name en concaténant "Equipe" avec le nom du manager
         for record in self:
             if record.manager:
                 record.name = 'Equipe ' + record.manager.name
 
     @api.one
     @api.constrains('active', 'manager')
-    def _check_active(self):
+    def _check_active(self):  #Cette fonction permet de voir si une équipe est  déjà active ou non 
         if self.active is True:
             actives = self.sudo().search([('active', '=', True), ('manager', '=', self.manager.id)])
             if actives and actives != self:
@@ -44,7 +44,7 @@ class employee(models.Model):
         string='Profile')
 
     @api.multi
-    def print_coeff_k(self):
+    def print_coeff_k(self):   #Cette fonction retourne un dictionnaire de donnée d'un enregistrement
         return {
             'name': 'Chantier',
             'view_type': 'form',
@@ -56,7 +56,7 @@ class employee(models.Model):
         }
 
     @api.multi
-    def pointer_entree(self, datetime=None):
+    def pointer_entree(self, datetime=None):     #Cette fonction permet de pointer l'entrée d'un employé et insérer un nouveau enregistrement avec action sign_in
         datetime = fields.Datetime.now()
         vals = {
                 'name': datetime,
@@ -67,7 +67,7 @@ class employee(models.Model):
         return True
 
     @api.multi
-    def pointer_sortie(self, datetime=None):
+    def pointer_sortie(self, datetime=None):    #Cette fonction permet de pointer l'entrée d'un employé et insérer un nouveau enregistrement avec action sign_out
         datetime = fields.Datetime.now()
         vals = {
                 'name': datetime,
@@ -86,7 +86,7 @@ class wizard_print_coeffk(models.TransientModel):
     employee = fields.Char(u'Employé')
 
     @api.model
-    def default_get(self, fields_list):
+    def default_get(self, fields_list):        #Cette fonction retourne res['employee'] = related_employee.name
         res = models.TransientModel.default_get(self, fields_list)
         context = dict(self._context or {})
         active_ids = context.get('active_ids', []) or []
@@ -95,7 +95,7 @@ class wizard_print_coeffk(models.TransientModel):
         return res
 
     @api.multi
-    def print_coeff_k(self):
+    def print_coeff_k(self):          #Cette fonction permet d'afficher le coeff k 
         """ ...
         """
         context = dict(self._context or {})

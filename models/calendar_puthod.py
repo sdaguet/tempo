@@ -13,7 +13,7 @@ class CalendarPuthod(models.Model):
 
     @api.one
     @api.depends('partner_p_ids')
-    def _compute_users(self):
+    def _compute_users(self):         #Cette fonction permet de calculer automatiquement le champ partner_p_ids
         users = []
         fiches = self.env['fiche.chantier'].search([('user_id','!=', False)])
         for f in fiches:

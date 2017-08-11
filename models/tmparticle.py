@@ -135,15 +135,17 @@ class TmpArticle(models.Model):
                     {u'color': False, u'attribute_id': value_id.id, u'name': value})
             elif value_exist:
                 value_attr = value_exist
-            print "ici check full"
-            print value_id.name
-
+            #logger_ajouté
+			#print "ici check full"
+            #print value_id.name
+            _logger.info("check_value(self, value, value_id) : %r" % value_id.name)
             return [[6, False,[value_attr.id]]],value_attr
         else:
             empty_attr = self.env['product.attribute.value'].browse()
-            print "ici check empty"
-            print value_id.name
-
+            #logger_ajouté
+			#print "ici check empty"
+            #print value_id.name
+            _logger.info("check_value(self, value, value_id) : %r" % value_id.name)
             return [],empty_attr
 
 
@@ -344,23 +346,32 @@ class TmpArticle(models.Model):
 
             #pour les attributs
             obj_template = self.env['product.template'].search([('libelle_commercial','=',Libelle_commercial)])
-            print "obj_template"
-            print obj_template
-
+            #logger ajouté
+			#print "obj_template"
+            #print obj_template
+            _logger.info("create(self, values): %r" % obj_template)
 
 
 
             if obj_template.id :
                 for al in obj_template.attribute_line_ids:
                     if al.attribute_id.id == xml_genre.id:
-                        print "al.value_ids bef"
-                        print al.value_ids
-
-                        print "value_genre[1]"
-                        print value_genre[1]
+                        #logger_ajouté
+						#print "al.value_ids bef"
+                        #print al.value_ids
+                        _logger.info("create(self, values): %r" % al.value_ids)
+   
+                        #logger_ajouté
+						#print "value_genre[1]"
+                        #print value_genre[1]
+                        _logger.info("create(self, values): %r" % value_genre[1])
+                        
                         al.value_ids = al.value_ids + value_genre[1]
-                        print "al.value_ids"
-                        print al.value_ids
+                        
+						#logger_ajouté
+						#print "al.value_ids"
+                        #print al.value_ids
+                        _logger.info("create(self, values): %r" % al.value_ids)
 
                     if al.attribute_id.id == xml_espece.id:
                         al.value_ids = al.value_ids + value_espece[1]
@@ -431,9 +442,9 @@ class TmpArticle(models.Model):
                 obj_template.create_variant_ids()
 
             else :
-                print "iciiiiiiiiiii creation"
+                #print "iciiiiiiiiiii creation"
                 self.env['product.template'].create(valuesp)
-
+                
             # timestamp8 = time.time()
             # ec4 = timestamp8 - timestamp7
 
@@ -455,7 +466,7 @@ class ProductTemplate(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Article template iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values):" + str(values))
         return super(ProductTemplate, self).create(values)
 
 class ProductProduct(models.Model):
@@ -463,7 +474,7 @@ class ProductProduct(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Article product iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values):" + str(values))
         return super(ProductProduct, self).create(values)
 
 class Partner(models.Model):
@@ -471,7 +482,7 @@ class Partner(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Article values iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values):" + str(values))
         return super(Partner, self).create(values)
 
 class Partner_attribute(models.Model):
@@ -479,5 +490,5 @@ class Partner_attribute(models.Model):
 
     @api.model
     def create(self, values):
-        _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+        _logger.info("create(self, values):" + str(values))
         return super(Partner_attribute, self).create(values)

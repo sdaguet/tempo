@@ -22,7 +22,7 @@ class HrEmployee(models.Model):
 
     @api.one
     @api.depends('attendance_id.name')
-    def _compute_months(self):
+    def _compute_months(self):          #cette fonction permet de calculer les valeurs des champs mois et les remplir automatiquement
         count_1 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-01-%')])
         count_2 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-02-%')])
         count_3 = self.env['hr.attendance'].search_count([('employee_id', '=', self.id), ('name', 'like', '%-03-%')])
