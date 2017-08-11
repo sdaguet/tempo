@@ -44,6 +44,26 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 		});
     });
 
+	$('.affecter').on('click', function(ev) {
+        ev.preventDefault();
+		var employee_id = $(this).closest('tr').attr('id'); // table row ID
+   		var employee = employee_id.split("_").pop();
+        var equipe_id = $('#equipe_id').val();
+		console.log(employee);
+		$.ajax({
+			type: "POST",
+			url: "/affecter",
+			async: false,
+			data: JSON.stringify({"params": {'equipe_id': equipe_id, 'employee_id': employee}}),
+			contentType: "application/json",
+			complete: function (data) {
+				console.log(data);
+				$("#" +employee_id).hide()
+				$('#equipe_id').val(data['responseJSON']["result"]["equipe"]);
+			}
+		});
+    });
+
     $('.edit').on('click', function(ev) {
         var text_value = $(".vname").val();
         if(text_value=='') {

@@ -279,13 +279,13 @@ class WebsiteContractDarbtech(http.Controller):
             'equipe': 0,
             })
 
-    @http.route(['/equipes/<int:equipe_id>/<int:employee_id>'], type='http', auth="user", website=True)
+    @http.route(['/affecter'], type='json', auth="user", website=True)
     def createequip(self, equipe_id, employee_id):
         user = request.env.user
         cr, uid, context = reqst.cr, reqst.uid, reqst.context
-
-        equipe_id = request.env['equipe'].sudo().search([('id','=',equipe_id)])
-        employee = request.env['hr.employee'].sudo().search([('id','=',employee_id)])
+        equipe_id = equipe_id if equipe_id else 0
+        equipe_id = request.env['equipe'].sudo().search([('id', '=', int(equipe_id))])
+        employee = request.env['hr.employee'].sudo().search([('id', '=', int(employee_id))])
         current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
         if equipe_id:
             employee.equipe_id = equipe_id.id
@@ -294,24 +294,20 @@ class WebsiteContractDarbtech(http.Controller):
             if manager_equipe_id: manager_equipe_id.active = False
             vals = {
                 'manager': current_employee[0].id if current_employee else 1,
-                'ressource_list': [(4, employee_id)],
+                'ressource_list': [(4, int(employee_id))],
                 'active': True
                 }
             equipe_id = request.env['equipe'].create(vals)
-        form = [1,2,3]
 
-        employees = request.env['hr.employee'].sudo().search(['|', ('equipe_id','=',False), ('equipe_id.active','=',False)])
-
-        return http.request.render('darb_puthod.newequipes', {
-            'employees': employees,
+        return {
+            'employees': employee_id,
             'equipe': equipe_id.id,
-                })
+                }
 
     @http.route('/scanne_qrcode/<int:fiche>/', type='http', auth="user", website=True)
     def scanne_qrcode(self, fiche):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
-        _logger.info("POINTER user  QQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRR= " + str(uid))
 
         return http.request.render('darb_puthod.qr_code', {
             'fiche': fiche,
@@ -322,12 +318,10 @@ class WebsiteContractDarbtech(http.Controller):
         user = request.env.user
         cr, uid, context = request.cr, request.uid, request.context
         employes = request.registry.get('hr.employee')
-        _logger.info("ggggggggggggggggg QQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRR= " + str(qrcode))
         fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
         product = request.env['product.product'].sudo().search([('qrcode','=', qrcode)])
         error_message = ""
         if product:
-            _logger.info("111111111111111111111111111111111111 ")
             if product.categ_id.id == request.env.ref('darb_puthod.product_category_vehicle').id:
                 fiche_id.veicule_ids = [(0, 0, {
                         'veicule_id': product.id,
