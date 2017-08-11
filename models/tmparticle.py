@@ -111,14 +111,14 @@ class TmpArticle(models.Model):
 
 
     @api.multi
-    def is_empty_char(self,value):
+    def is_empty_char(self,value): # Cette fonction retourne value si elle contient une valeur ou une chaine vide si non 
         if value:
             return value
         else:
             return ""
 
     @api.multi
-    def is_empty_float(self,value):
+    def is_empty_float(self,value):		# Cette fonction retourne value si elle contient un nombre ou 0 si non 
         if value:
             return float(value)
         else:
@@ -150,7 +150,7 @@ class TmpArticle(models.Model):
 
 
     @api.model
-    def create(self, values):
+    def create(self, values):	# Cette fonction retourne un record et permet la création d'un article
             # time.time()
             # timestamp1 = time.time()
             #create tmparticle
@@ -465,7 +465,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     @api.model
-    def create(self, values):
+    def create(self, values):  # Cette fonction retourne super(ProductTemplate, self).create(values)
         _logger.info("create(self, values):" + str(values))
         return super(ProductTemplate, self).create(values)
 
@@ -473,7 +473,7 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.model
-    def create(self, values):
+    def create(self, values):  # Cette fonction retourne super(ProductProduct, self).create(values)
         _logger.info("create(self, values):" + str(values))
         return super(ProductProduct, self).create(values)
 
@@ -481,7 +481,7 @@ class Partner(models.Model):
     _inherit = 'product.attribute.value'
 
     @api.model
-    def create(self, values):
+    def create(self, values):	# Cette fonction retourne super(Partner, self).create(values)
         _logger.info("create(self, values):" + str(values))
         return super(Partner, self).create(values)
 
@@ -489,6 +489,6 @@ class Partner_attribute(models.Model):
     _inherit = 'product.attribute'
 
     @api.model
-    def create(self, values):
+    def create(self, values):   # Cette fonction retourne super(Partner_attribute, self).create(values)
         _logger.info("create(self, values):" + str(values))
         return super(Partner_attribute, self).create(values)

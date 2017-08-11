@@ -8,7 +8,7 @@ class EntretienReport(models.AbstractModel):
     _name = 'report.darb_puthod.report_entretien'
 
     @api.multi
-    def col(products):
+    def col(products):    # Cette fonction permet de calculer le nombre de recurrences du dictionnaire produit
         counter = collections.Counter(products)
         #logger ajouté
 		#print(counter)
@@ -16,7 +16,7 @@ class EntretienReport(models.AbstractModel):
         return counter
 
     @api.multi
-    def a_faire(self,doc,tache):
+    def a_faire(self,doc,tache):	# Cette fonction retourne un compteur count qui compte le nombre des fiches si s.subtask_id.id = tache.id et une liste e qui se compose de browse(tmp)
 
         e = []
 
@@ -65,7 +65,7 @@ class EntretienReport(models.AbstractModel):
         return count,e
 
     @api.multi
-    def render_html(self, data=None):
+    def render_html(self, data=None):	# Cette fonction permet de retourner la variable self.env['report'].render('darb_puthod.report_entretien', docargs)
         report = self.env['report']._get_report_from_name('darb_puthod.report_entretien')
 
         docargs = {

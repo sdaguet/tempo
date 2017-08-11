@@ -14,7 +14,7 @@ class BilanReport(models.AbstractModel):
     _name = 'report.darb_puthod.report_bilan_chantier'
 
     @api.multi
-    def get_sum_product(self, doc):
+    def get_sum_product(self, doc):	    # Cette fonction retourne la somme des produits selon son type : Végétaux /  Préparation/Déplacement / Tonte / Taille ...
         sum_v = 0
         sum_p_d = 0
         sum_t = 0
@@ -130,7 +130,7 @@ class BilanReport(models.AbstractModel):
                 sum_c)
 
     @api.multi
-    def get_time(self, heure):
+    def get_time(self, heure):   # Cette fonction retourne un dictionnaire de donnée indiquant l'heure
         return {
             '7:00': 7,
             '7:15': 7.15,
@@ -170,7 +170,7 @@ class BilanReport(models.AbstractModel):
         }[heure]
 
     @api.multi
-    def add_plus(self, date_e):
+    def add_plus(self, date_e):			# Cette fonction retourne une chaîne de caractère res qui est la concaténation de date_e selon la taille de cette variable
         lenn = len(date_e)
         i = 0
         res = ""
@@ -188,7 +188,7 @@ class BilanReport(models.AbstractModel):
         return res
 
     @api.multi
-    def get_tmp(self, etss):
+    def get_tmp(self, etss):	# Cette fonction retourne la liste tmps qui se compose de [tmp_p_d, tmp_t,tmp_cta,tmp_pl,tmp_dh,tmp_pr,tmp_g,tmp_a,tmp_divers]
         tmp_p_d = 0
         tmp_t = 0
         tmp_ta = 0
@@ -234,7 +234,7 @@ class BilanReport(models.AbstractModel):
         return tmps
 
     @api.multi
-    def get_tmp_cost(self, etss):
+    def get_tmp_cost(self, etss):# Cette fonction retourne la liste tmp_costs qui se compose de [tmp_cost_p_d, tmp_cost_t,tmp_cost_ta,tmp_cost_pl,tmp_cost_dh,tmp_cost_pr,tmp_cost_g,tmp_cost_a,tmp_cost_divers]
 
         tmp_cost_p_d = 0
         tmp_cost_t = 0
@@ -287,7 +287,7 @@ class BilanReport(models.AbstractModel):
             return tmp_costs
 
     @api.multi
-    def bilan_main_oeuvre(self, sub):
+    def bilan_main_oeuvre(self, sub):		# Cette fonction retourne [date, plus, tmp, tmp_cost, comment] d'une fiche de chanier
         employee_tasks = []
         date_e = []
         comment = ""
@@ -328,7 +328,7 @@ class BilanReport(models.AbstractModel):
         return (date, plus, tmp, tmp_cost, comment)
 
     @api.multi
-    def render_html(self, data=None):
+    def render_html(self, data=None):		# Cette fonction retourne le paramètre self.env['report'].render('darb_puthod.report_bilan_chantier', docargs)
         report = self.env['report']._get_report_from_name('darb_puthod.report_bilan_chantier')
 
         docargs = {
