@@ -87,7 +87,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
     subtasks = fields.One2many('subtask.wizard', 'wizard_id', string="Tâches")
 
     @api.model
-    def default_get(self, fields_list):   # Cette fonction retourne le tableau res qui est égal à models.TransientModel.default_get(self, fields_list)
+    def default_get(self, fields_list):
         res = models.TransientModel.default_get(self, fields_list)
         context = dict(self._context or {})
         active_ids = context.get('active_ids', []) or []
@@ -101,7 +101,7 @@ class wizard_create_fiche_chantier(models.TransientModel):
         return res
 
     @api.multi
-    def create_fiche_chantier(self):    # Cette fonction permet de créer une fiche chantier à partir du wizard elle retourne un enregistrement
+    def create_fiche_chantier(self):
         """ ...
         """
         context = dict(self._context or {})
@@ -138,17 +138,35 @@ class product(models.Model):
     altitude_max = fields.Float(string='Altitude MAX', digits=(3, 0),default = 0)
     altitude_min = fields.Float(string='Altitude MIN', digits=(3, 0),default = 0)
     qrcode = fields.Char(string='QR Code')
-    # N_Article = fields.Char(string='N° Article')
-    # importe = fields.Boolean(string="importe",default = False)
-    # famille = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False, )
-    # marque_savoie = fields.Boolean(string="Marque Savoie",  )
+
+    #fields puthod
+    n_article = fields.Char(string='N° Article')
+    famille_p = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False, )
+    importe = fields.Boolean(string="importe",default = False)
+    marque_savoie = fields.Boolean(string="Marque Savoie",  )
+    name_puthod = fields.Char(string="Nom complet", required=False)
+
+
+    @api.multi
+    @api.depends('name_puthod','name')
+    def name_get(self):
+        result = []
+        for p in self:
+            if not p.name_puthod:
+                result.append((p.id, p.name))
+            else:
+                print p.name_puthod
+                result.append((p.id,p.name_puthod))
+        return result
+
+
     _sql_constraints = [
         ('qrcode_uniq', 'unique(qrcode)', _("A qrcode can only be assigned to one product !")),
     ]
-    
+    # La fonction _check_altitude permet de voir si l'altitude max est supérieur à l'altitude min sinon elle lève une exception
     @api.one
     @api.constrains('altitude_max', 'altitude_min')
-    def _check_altitude(self):		# La fonction _check_altitude permet de voir si l'altitude max est supérieur à l'altitude min sinon elle lève une exception
+    def _check_altitude(self):
         if self.altitude_max < self.altitude_min:
             raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
@@ -205,7 +223,7 @@ class fiche_chantier_subtasks(models.Model):
 
     @api.multi
     @api.depends('subtask_id')
-    def _get_name(self):         # Cette fonction permet de calculer automatiquement la valeur du champ name en appelant l'attribut compute
+    def _get_name(self):
         for record in self:
             if record.subtask_id:
                 record.name = record.subtask_id.name
@@ -227,7 +245,7 @@ class employees_subtasks(models.Model):
 
     @api.multi
     @api.depends('employee', 'heure_deb', 'heure_fin')
-    def _get_name(self):	# Cette fonction permet de calculer automatiquement la valeur du champ name en appelant l'attribut compute
+    def _get_name(self):
         for record in self:
             if record.employee and record.heure_deb and record.heure_fin:
                 record.name = str(record.employee.name) + ' : ' + str(record.type) + ' (' + str(record.heure_deb) + ' - ' + str(record.heure_fin) + ')'
@@ -273,7 +291,7 @@ class chantier(models.Model):
     _description = 'Chantier'
 
     @api.depends('address')
-    def _compute_glatlng(self):     # Cette fonction permet de remplir automatiquement les champs g_lat et g_lng de latitude et longitude respectivement à partir d'une adresse
+    def _compute_glatlng(self):
         for record in self:
             address = record.address
             if address:
@@ -306,7 +324,7 @@ class chantier(models.Model):
 
     @api.one
     @api.depends('fiche_ids', 'fiche_ids.termine', 'order_id')
-    def _compute_state(self):		# Cette fonction permet de remplir automatiquement les champs state soit en progress, done, draft
+    def _compute_state(self):
         done = 1;
         if self.fiche_ids.ids != []:
             for fiche in self.fiche_ids:
@@ -328,18 +346,18 @@ class chantier(models.Model):
     valid_click  = fields.Boolean(string="valid", default = False )
 
     @api.one
-    def action_dispatch(self):		# Cette fonction modifie les deux champs de l'enregistrement valid_click et state
+    def action_dispatch(self):
         self.write({'valid_click':True, 'state':'progress'})
         #self.state = 'progress'
 
     done_click  = fields.Boolean(string="done", default = False )
     @api.one
-    def action_done(self):			# Cette fonction modifie les deux champs de l'enregistrement valid_click et state
+    def action_done(self):
         self.write({'done_click':True, 'state':'done'})
         #self.state = 'done'
 
     @api.model
-    def get_google_maps_data(self, domain=[]):  # Cette fonction retourne la location des chantiers : latitude,longitude et zoom
+    def get_google_maps_data(self, domain=[]):
         # get all partners need to display google maps
         chantiers = self.search([('is_display_gm', '=', True), ('state', '!=', 'done')])
         locations = []
@@ -357,7 +375,7 @@ class chantier(models.Model):
         return locations, (gm_c_lat, gm_c_lng, gm_zoom)
 
     @api.multi
-    def create_fiche_chantier(self):     # Cette fonction retourne un enregistrement et permet de créer une fiche de chantier
+    def create_fiche_chantier(self):
         return {
             'name': 'Fiche Chantier',
             'view_type': 'form',
@@ -375,42 +393,42 @@ class fiche_chantier(models.Model):
     _description = 'Fiche de Chantier'
 
     @api.multi
-    def action_confirm(self):        # Cette fonction modifie le champ de l'enregistrement state à l'etat confirmed
+    def action_confirm(self):
         res = self.write({'state': 'confirmed'})
         return res
 
     @api.multi
-    def moves_ready(self):           # Cette fonction modifie le champ de l'enregistrement state à l'etat ready
+    def moves_ready(self):
         res = self.write({'state': 'ready'})
         return res
 
     @api.multi
-    def button_produce(self):        # Cette fonction modifie le champ de l'enregistrement state à l'etat in_production
+    def button_produce(self):
         res = self.write({'state': 'in_production'})
         return res
 
     @api.multi
-    def button_done(self):			# Cette fonction modifie le champ de l'enregistrement state à l'etat done
+    def button_done(self):
         res = self.write({'state': 'done'})
         return res
 
     @api.multi
-    def button_cancel(self):		# Cette fonction modifie le champ de l'enregistrement state à l'etat cancel
+    def button_cancel(self):
         res = self.write({'state': 'cancel'})
         return res
 
     @api.multi
-    def button_back(self):			# Cette fonction modifie le champ de l'enregistrement state à l'etat draft
+    def button_back(self):
         res = self.write({'state': 'draft'})
         return res
 
     @api.model
-    def _get_default_uom_id(self):  # Cette fonction retourne self.env.ref("product.product_uom_kgm", raise_if_not_found=False)
+    def _get_default_uom_id(self):
         # _logger.info('self.env.ref("product.product_uom_kgm", raise_if_not_found=False)' + self.env.ref("product.product_uom_kgm", raise_if_not_found=False))
         return self.env.ref("product.product_uom_kgm", raise_if_not_found=False)
 
     @api.model
-    def _get_default_product_id(self):  # Cette fonction retourne self.env.ref("darb_puthod.product_default_product", raise_if_not_found=False)
+    def _get_default_product_id(self):
         return self.env.ref("darb_puthod.product_default_product", raise_if_not_found=False)
 
     product_id = fields.Many2one(
@@ -429,7 +447,7 @@ class fiche_chantier(models.Model):
 
     @api.multi
     @api.depends('equipe_id.manager.user_id')
-    def _compute_user(self):    # Cette fonction permet de calculer automatiquement la valeur du champ user_id en appelant l'attribut compute
+    def _compute_user(self):
         for record in self:
             if record.equipe_id:
                 record.user_id = record.equipe_id.manager.user_id
@@ -464,12 +482,12 @@ class fiche_chantier(models.Model):
     terrasse_ids = fields.One2many('fiche.chantier.terrasse', 'fiche_chantier_id', string=u'Terrasse')
     scloture_ids = fields.One2many('fiche.chantier.scloture', 'fiche_chantier_id', string=u'Suite Cloture')
     subtasks = fields.One2many('fiche.chantier.subtasks', 'fiche_chantier_id', string=u"Tâches")
-    type_inter = fields.Selection(string="Type d'intervention",compute="_compute_type_inter", selection=[('cloturante', 'Clôturante'), ('rapide', 'Rapide'),('maintenance', 'Maintenance'), ('normale', 'Normale')], required=False, store=True)
+    type_inter = fields.Selection(string="Type d'intervention",compute="_compute_type_inter", selection=[('cloturante', 'Clôturante'), ('rapide', 'Rapide'),('maintenance', 'Maintenance'), ('normale', 'Normale')], required=False, )
     remarqs = fields.Text('Commentaire')
 
     @api.one
     @api.depends('subtasks','termine','chantier_id.order_id.order_type')
-    def _compute_type_inter(self):     # Cette fonction permet de calculer automatiquement la valeur du champ type_inter en appelant l'attribut compute
+    def _compute_type_inter(self):
         rapide = False
         for s in self.subtasks:
             if s.subtask_id.rapide != True:

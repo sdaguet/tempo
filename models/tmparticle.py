@@ -111,14 +111,14 @@ class TmpArticle(models.Model):
 
 
     @api.multi
-    def is_empty_char(self,value): # Cette fonction retourne value si elle contient une valeur ou une chaine vide si non 
+    def is_empty_char(self,value):
         if value:
             return value
         else:
             return ""
 
     @api.multi
-    def is_empty_float(self,value):		# Cette fonction retourne value si elle contient un nombre ou 0 si non 
+    def is_empty_float(self,value):
         if value:
             return float(value)
         else:
@@ -135,22 +135,20 @@ class TmpArticle(models.Model):
                     {u'color': False, u'attribute_id': value_id.id, u'name': value})
             elif value_exist:
                 value_attr = value_exist
-            #logger_ajouté
-			#print "ici check full"
-            #print value_id.name
-            _logger.info("check_value(self, value, value_id) : %r" % value_id.name)
+            print "ici check full"
+            print value_id.name
+
             return [[6, False,[value_attr.id]]],value_attr
         else:
             empty_attr = self.env['product.attribute.value'].browse()
-            #logger_ajouté
-			#print "ici check empty"
-            #print value_id.name
-            _logger.info("check_value(self, value, value_id) : %r" % value_id.name)
+            print "ici check empty"
+            print value_id.name
+
             return [],empty_attr
 
 
     @api.model
-    def create(self, values):	# Cette fonction retourne un record et permet la création d'un article
+    def create(self, values):
             # time.time()
             # timestamp1 = time.time()
             #create tmparticle
@@ -174,7 +172,9 @@ class TmpArticle(models.Model):
             Poids_Brut = self.is_empty_float(values.get('Poids_Brut'))
 
             Code_Barre = self.is_empty_char(values.get('Code_Barre'))
+            Code_article = self.is_empty_char(values.get('Code_article'))
             N_Article = self.is_empty_char(values.get('N_Article'))
+            Marque_Savoie = self.is_empty_char(values.get('Marque_Savoie'))
 
             TVA = self.is_empty_float(values.get('TVA'))
             taxe_id = []
@@ -268,28 +268,26 @@ class TmpArticle(models.Model):
                 'attribute_line_ids': [[0, False, {u'attribute_id': xml_genre.id, u'value_ids': value_genre[0]}],
                                        [0, False, {u'attribute_id': xml_espece.id, u'value_ids': value_espece[0]}],
                                        [0, False, {u'attribute_id': xml_variete.id, u'value_ids': value_variete[0]}],
-                                       [0, False, {u'attribute_id': xml_taille.id, u'value_ids': value_taille[0]}],
+                                       # [0, False, {u'attribute_id': xml_taille.id, u'value_ids': value_taille[0]}],
                                        [0, False, {u'attribute_id': xml_taille_bis.id, u'value_ids': value_taille_bis[0]}],
-                                       [0, False, {u'attribute_id': xml_type_de_feuillage.id, u'value_ids': value_type_de_feuillage[0]}],
-                                       [0, False, {u'attribute_id': xml_critere_7.id, u'value_ids': value_critere_7[0]}],
-                                       [0, False, {u'attribute_id': xml_critere_8.id, u'value_ids': value_critere_8[0]}],
-                                       [0, False, {u'attribute_id': xml_critere_9.id, u'value_ids': value_critere_9[0]}],
-                                       [0, False, {u'attribute_id': xml_nom_francais.id, u'value_ids': value_nom_francais[0]}],
-                                       [0, False, {u'attribute_id': xml_modele_etiquette.id, u'value_ids': value_modele_etiquette[0]}],
-                                       [0, False, {u'attribute_id': xml_hauteur_mm.id, u'value_ids': value_hauteur_mm[0]}],
-                                       [0, False, {u'attribute_id': xml_poids_brut.id, u'value_ids': value_poids_brut[0]}],
-                                       [0, False, {u'attribute_id': xml_ca_n.id, u'value_ids': value_ca_n[0]}],
-                                       [0, False, {u'attribute_id': xml_ca_n_1.id, u'value_ids': value_ca_n_1[0]}],
-                                       [0, False, {u'attribute_id': xml_ca_n_2.id, u'value_ids': value_ca_n_2[0]}],
-                                       [0, False, {u'attribute_id': xml_qte_n.id, u'value_ids': value_qte_n[0]}],
-                                       [0, False, {u'attribute_id': xml_qte_n_1.id, u'value_ids': value_qte_n_1[0]}],
-                                       [0, False, {u'attribute_id': xml_qte_n_2.id, u'value_ids': value_qte_n_2[0]}],
-                                       [0, False, {u'attribute_id': xml_critere_18.id, u'value_ids': value_critere_18[0]}],
-                                       [0, False, {u'attribute_id': xml_sous_famille_article.id, u'value_ids': value_sous_famille_article[0]}],
-                                       [0, False, {u'attribute_id': xml_pays_d_origine.id, u'value_ids': value_pays_d_origine[0]}],
-                                       [0, False, {u'attribute_id': xml_fourn_principal.id, u'value_ids': value_fourn_principal[0]}],
-
-
+                                       # [0, False, {u'attribute_id': xml_type_de_feuillage.id, u'value_ids': value_type_de_feuillage[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_7.id, u'value_ids': value_critere_7[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_8.id, u'value_ids': value_critere_8[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_9.id, u'value_ids': value_critere_9[0]}],
+                                       # [0, False, {u'attribute_id': xml_nom_francais.id, u'value_ids': value_nom_francais[0]}],
+                                       # [0, False, {u'attribute_id': xml_modele_etiquette.id, u'value_ids': value_modele_etiquette[0]}],
+                                       # [0, False, {u'attribute_id': xml_hauteur_mm.id, u'value_ids': value_hauteur_mm[0]}],
+                                       # [0, False, {u'attribute_id': xml_poids_brut.id, u'value_ids': value_poids_brut[0]}],
+                                       # [0, False, {u'attribute_id': xml_ca_n.id, u'value_ids': value_ca_n[0]}],
+                                       # [0, False, {u'attribute_id': xml_ca_n_1.id, u'value_ids': value_ca_n_1[0]}],
+                                       # [0, False, {u'attribute_id': xml_ca_n_2.id, u'value_ids': value_ca_n_2[0]}],
+                                       # [0, False, {u'attribute_id': xml_qte_n.id, u'value_ids': value_qte_n[0]}],
+                                       # [0, False, {u'attribute_id': xml_qte_n_1.id, u'value_ids': value_qte_n_1[0]}],
+                                       # [0, False, {u'attribute_id': xml_qte_n_2.id, u'value_ids': value_qte_n_2[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_18.id, u'value_ids': value_critere_18[0]}],
+                                       # [0, False, {u'attribute_id': xml_sous_famille_article.id, u'value_ids': value_sous_famille_article[0]}],
+                                       # [0, False, {u'attribute_id': xml_pays_d_origine.id, u'value_ids': value_pays_d_origine[0]}],
+                                       # [0, False, {u'attribute_id': xml_fourn_principal.id, u'value_ids': value_fourn_principal[0]}],
                                        ], #attributes
                 # 'uom_id': 1,
                 # 'property_account_income_id': False,
@@ -320,7 +318,7 @@ class TmpArticle(models.Model):
                 # 'cost_method': False,
                 # 'valuation': False,
                 # 'image_medium': False,
-                'name': Libelle_commercial + " " + Taille_bis + " - " + Nom_francais,  # name
+                'name': Libelle_commercial,  # name
                 # 'property_account_expense_id': False,
                 'famille': Famille,
                 'libelle_commercial': Libelle_commercial,
@@ -336,7 +334,6 @@ class TmpArticle(models.Model):
                 'importe': True,
             }
 
-
             # timestamp6 = time.time()
             # ec3 = timestamp6 - timestamp5
             #
@@ -346,32 +343,21 @@ class TmpArticle(models.Model):
 
             #pour les attributs
             obj_template = self.env['product.template'].search([('libelle_commercial','=',Libelle_commercial)])
-            #logger ajouté
-			#print "obj_template"
-            #print obj_template
-            _logger.info("create(self, values): %r" % obj_template)
-
-
+            print "obj_template"
+            print obj_template
 
             if obj_template.id :
+                name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
                 for al in obj_template.attribute_line_ids:
                     if al.attribute_id.id == xml_genre.id:
-                        #logger_ajouté
-						#print "al.value_ids bef"
-                        #print al.value_ids
-                        _logger.info("create(self, values): %r" % al.value_ids)
-   
-                        #logger_ajouté
-						#print "value_genre[1]"
-                        #print value_genre[1]
-                        _logger.info("create(self, values): %r" % value_genre[1])
-                        
+                        print "al.value_ids bef"
+                        print al.value_ids
+
+                        print "value_genre[1]"
+                        print value_genre[1]
                         al.value_ids = al.value_ids + value_genre[1]
-                        
-						#logger_ajouté
-						#print "al.value_ids"
-                        #print al.value_ids
-                        _logger.info("create(self, values): %r" % al.value_ids)
+                        print "al.value_ids"
+                        print al.value_ids
 
                     if al.attribute_id.id == xml_espece.id:
                         al.value_ids = al.value_ids + value_espece[1]
@@ -436,28 +422,88 @@ class TmpArticle(models.Model):
                     if al.attribute_id.id == xml_pays_d_origine.id:
                         al.value_ids = al.value_ids + value_pays_d_origine[1]
 
-
                     if al.attribute_id.id == xml_fourn_principal.id:
                         al.value_ids = al.value_ids + value_fourn_principal[1]
                 obj_template.create_variant_ids()
+                record_product_last = obj_template.product_variant_ids.ids
+                lent = len(record_product_last)
+                last = record_product_last[lent - 1]
 
+                last_product = self.env['product.product'].browse(last)
+
+                #dict product product
+
+                valuespp = {
+                    #'warranty': 0,
+                    #'message_follower_ids': False,
+                    #'property_account_creditor_price_difference': False,
+                    #'standard_price': 0,
+                    #'attribute_line_ids': [],
+                    #'uom_id': 1,
+                    #'property_account_income_id': False,
+                    #'description_purchase': False,
+                    'n_article': N_Article, #N_Article
+                    #'message_ids': False,
+                    'sale_ok': True,
+                    #'item_ids': [],
+                    #'description_picking': False,
+                    #'purchase_method': 'receive',
+                    'purchase_ok': True,
+                    #'sale_delay': 7,
+                    #'company_id': 1,
+                    #'property_valuation': False,
+                    'track_service': 'manual',
+                    #'uom_po_id': 1,
+                    #'property_cost_method': False,
+                    'type': u'consu',
+                    #'property_stock_account_input': False,
+                    #'property_stock_production': 7,
+                    #'supplier_taxes_id': [[6, False, [11]]],
+                    'volume': 0,
+                    #'route_ids': [[6, False, [8]]],
+                    'tracking': u'none',
+                    #'description_sale': False,
+                    'active': True,
+                    #'property_stock_inventory': 5,
+                    #'cost_method': False,
+                    #'valuation': False,
+                    #'image_medium': False,
+                    'name_puthod': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
+                    #'property_account_expense_id': False,
+                    'famille_p' : Famille,
+                    #'categ_id': categ,
+                    'packaging_ids': [],
+                    'invoice_policy': u'order',
+                    'taxes_id': [[6, False, taxe_id]],
+                    #'property_stock_account_output': False,
+                    'seller_ids': [],
+                    'lst_price': Prix_Etiquette , #Prix_Etiquette
+                    #'barcode': Code_Barre , #Code_Barre
+                    'weight' : Poids_Brut , #Poids_Brut
+                    'default_code': Code_article,
+                    'importe' : True,
+                    'marque_savoie' : Marque_Savoie,
+                    }
+
+                last_product.write(valuespp)
+
+                #on peut compute sur les valeurs concérné et fixer le n_article
+
+                print "record_product last"
+                print last
             else :
-                #print "iciiiiiiiiiii creation"
+                print "iciiiiiiiiiii creation"
                 self.env['product.template'].create(valuesp)
-                
+
             # timestamp8 = time.time()
             # ec4 = timestamp8 - timestamp7
-
-
-
             # timestamp2 = time.time()
             # timestamp = timestamp2 - timestamp1
             # timestampadd = timestampadd + timestamp
-
             # print "This took %.2f seconds" % (timestampadd)
             # print "Record " + str(count)
-
             # _logger.info("Objet product_product créé: %.2f " %(ec4))
+
             return record
 
 
@@ -465,30 +511,37 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     @api.model
-    def create(self, values):  # Cette fonction retourne super(ProductTemplate, self).create(values)
-        _logger.info("create(self, values):" + str(values))
+    def create(self, values):
+        _logger.info("------------> Article template iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
         return super(ProductTemplate, self).create(values)
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.model
-    def create(self, values):  # Cette fonction retourne super(ProductProduct, self).create(values)
-        _logger.info("create(self, values):" + str(values))
-        return super(ProductProduct, self).create(values)
+    def create(self, values):
+        _logger.info("------------> Article product iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+
+        record = super(ProductProduct, self).create(values)
+
+        print "record product"
+        print record
+
+        return record
+
 
 class Partner(models.Model):
     _inherit = 'product.attribute.value'
 
     @api.model
-    def create(self, values):	# Cette fonction retourne super(Partner, self).create(values)
-        _logger.info("create(self, values):" + str(values))
+    def create(self, values):
+        _logger.info("------------> Article values iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
         return super(Partner, self).create(values)
 
 class Partner_attribute(models.Model):
     _inherit = 'product.attribute'
 
     @api.model
-    def create(self, values):   # Cette fonction retourne super(Partner_attribute, self).create(values)
-        _logger.info("create(self, values):" + str(values))
+    def create(self, values):
+        _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
         return super(Partner_attribute, self).create(values)
