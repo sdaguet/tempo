@@ -145,7 +145,14 @@ class product(models.Model):
     _sql_constraints = [
         ('qrcode_uniq', 'unique(qrcode)', _("A qrcode can only be assigned to one product !")),
     ]
-    
+
+    @api.one
+    def get_product_taille(self):
+        attribute_ids = self.attribute_value_ids
+        res = [attribute.name for attribute in attribute_ids if attribute.attribute_id == self.env.ref('darb_puthod.product_attribute_taille')]
+        taille = res[0] if res else None
+        return taille
+
     @api.one
     @api.constrains('altitude_max', 'altitude_min')
     def _check_altitude(self):		# La fonction _check_altitude permet de voir si l'altitude max est supérieur à l'altitude min sinon elle lève une exception
