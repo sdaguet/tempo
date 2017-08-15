@@ -111,14 +111,14 @@ class TmpArticle(models.Model):
 
 
     @api.multi
-    def is_empty_char(self,value):
+    def is_empty_char(self,value):  # Cette fonction retourne value si elle contient une valeur ou une chaine vide si non 
         if value:
             return value
         else:
             return ""
 
     @api.multi
-    def is_empty_float(self,value):
+    def is_empty_float(self,value):  # Cette fonction retourne value si elle contient un nombre ou 0 si non
         if value:
             return float(value)
         else:
@@ -135,20 +135,24 @@ class TmpArticle(models.Model):
                     {u'color': False, u'attribute_id': value_id.id, u'name': value})
             elif value_exist:
                 value_attr = value_exist
-            print "ici check full"
-            print value_id.name
+         
+            #logger_ajouté
+			#print "ici check full"
+            #print value_id.name
+            _logger.info("check_value(self, value, value_id) : %r" % value_id.name)
 
             return [[6, False,[value_attr.id]]],value_attr
         else:
             empty_attr = self.env['product.attribute.value'].browse()
-            print "ici check empty"
-            print value_id.name
-
+			#logger_ajouté
+			#print "ici check empty"
+            #print value_id.name
+            _logger.info("check_value(self, value, value_id) : %r" % value_id.name)
             return [],empty_attr
 
 
     @api.model
-    def create(self, values):
+    def create(self, values):   # Cette fonction retourne un record et permet la création d'un article
             # time.time()
             # timestamp1 = time.time()
             #create tmparticle
@@ -343,21 +347,32 @@ class TmpArticle(models.Model):
 
             #pour les attributs
             obj_template = self.env['product.template'].search([('libelle_commercial','=',Libelle_commercial)])
-            print "obj_template"
-            print obj_template
+
+			#logger ajouté
+			#print "obj_template"
+            #print obj_template
+            _logger.info("create(self, values): %r" % obj_template)
 
             if obj_template.id :
                 name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
                 for al in obj_template.attribute_line_ids:
                     if al.attribute_id.id == xml_genre.id:
-                        print "al.value_ids bef"
-                        print al.value_ids
+						#logger_ajouté
+						#print "al.value_ids bef"
+                        #print al.value_ids
+                        _logger.info("create(self, values): %r" % al.value_ids)
 
-                        print "value_genre[1]"
-                        print value_genre[1]
+						#logger_ajouté
+						#print "value_genre[1]"
+                        #print value_genre[1]
+                        _logger.info("create(self, values): %r" % value_genre[1])
+						
                         al.value_ids = al.value_ids + value_genre[1]
-                        print "al.value_ids"
-                        print al.value_ids
+                        
+						#logger_ajouté
+						#print "al.value_ids"
+                        #print al.value_ids
+                        _logger.info("create(self, values): %r" % al.value_ids)
 
                     if al.attribute_id.id == xml_espece.id:
                         al.value_ids = al.value_ids + value_espece[1]
@@ -489,10 +504,13 @@ class TmpArticle(models.Model):
 
                 #on peut compute sur les valeurs concérné et fixer le n_article
 
-                print "record_product last"
-                print last
+                #logger ajouté
+				#print "record_product last"
+                #print last
+                _logger.info("create(self, values): %r " %(last))
+				
             else :
-                print "iciiiiiiiiiii creation"
+                #print "iciiiiiiiiiii creation"
                 self.env['product.template'].create(valuesp)
 
             # timestamp8 = time.time()
@@ -511,21 +529,23 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     @api.model
-    def create(self, values):
-        _logger.info("------------> Article template iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+    def create(self, values):  # Cette fonction retourne super(ProductTemplate, self).create(values)
+        _logger.info("create(self, values): " + str(values))
         return super(ProductTemplate, self).create(values)
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.model
-    def create(self, values):
-        _logger.info("------------> Article product iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+    def create(self, values):  # Cette fonction retourne super(ProductProduct, self).create(values)
+        _logger.info("create(self, values): " + str(values))
 
         record = super(ProductProduct, self).create(values)
 
-        print "record product"
-        print record
+        #logger ajouté
+		#print "record product"
+        #print record
+        _logger.info("create(self, values): %r " %(record))
 
         return record
 
@@ -534,14 +554,14 @@ class Partner(models.Model):
     _inherit = 'product.attribute.value'
 
     @api.model
-    def create(self, values):
-        _logger.info("------------> Article values iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+    def create(self, values):  # Cette fonction retourne super(Partner, self).create(values) 
+        _logger.info("create(self, values): " + str(values))
         return super(Partner, self).create(values)
 
 class Partner_attribute(models.Model):
     _inherit = 'product.attribute'
 
     @api.model
-    def create(self, values):
-        _logger.info("------------> Attribute iciiiiiiiiiiiiiiiiiiiiiiii : " + str(values))
+    def create(self, values):  # Cette fonction retourne super(Partner_attribute, self).create(values)
+        _logger.info("create(self, values): " + str(values))
         return super(Partner_attribute, self).create(values)
