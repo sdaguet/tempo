@@ -26,7 +26,7 @@ class sale_order(models.Model):
     iframe = fields.Html('Embedded Webpage', compute='_compute_iframe', sanitize=False, strip_style=False)
 
     @api.multi
-    def _compute_iframe(self):		# Cette fonction permet de calculer automatiquement la valeur du champ iframe
+    def _compute_iframe(self):  # Cette fonction permet de calculer automatiquement la valeur du champ iframe
             url = self.item_url
             #log ajouté a cette place
 			#print "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
@@ -65,7 +65,7 @@ class wizard_create_chantier(models.TransientModel):
                          multi='glatlng', digits=(3, 12))
 
     @api.model
-    def default_get(self, fields_list):		# Cette fonction permet de retourner la variable models.TransientModel.default_get(self, fields_list)
+    def default_get(self, fields_list):   # Cette fonction permet de retourner la variable models.TransientModel.default_get(self, fields_list)
         res = models.TransientModel.default_get(self, fields_list)
         context = dict(self._context or {})
         active_ids = context.get('active_ids', []) or []
@@ -132,7 +132,7 @@ class PuthodOrderLine(models.Model):
 
     @api.multi
     @api.onchange('product_id')
-    def product_id_change(self):   # Cette fonction permet de retourner la variable res qui est super(PuthodOrderLine, self).product_id_change() 
+    def product_id_change(self):  # Cette fonction permet de retourner la variable res qui est super(PuthodOrderLine, self).product_id_change() 
         res = super(PuthodOrderLine, self).product_id_change()
         for line in self:
             if line.product_id.tasks:

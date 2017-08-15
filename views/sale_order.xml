@@ -13,9 +13,9 @@
                 <field name="validity_date" position="replace">
                     <field name="order_type"/>
                     <field name="altitude"/>
-<!--
-                    <field name="item_url"/>
--->
+                    <!--
+                                        <field name="item_url"/>
+                    -->
                     <!--<notebook>
                         <page string="Live Site">
                             <form string="Embedded Webpage" version="7.0" edit="false">
@@ -52,13 +52,15 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="n_client" readonly="1"/>
                 </xpath>
-                
-                <xpath expr="//button[@name='action_confirm' and @states='sent']"  position="replace">
-                	<button name="%(action_confirm_sale_order)d" states="sent" string="Confirmer la vente" class="btn-primary" type="action" context="{'show_sale': True}"/>
-				</xpath>
-				<xpath expr="//button[@name='action_confirm' and @states='draft']"  position="replace">
-                	<button name="%(action_confirm_sale_order)d" states="draft" string="Confirmer la vente" type="action" context="{'show_sale': True}"/>
-				</xpath>
+
+                <xpath expr="//button[@name='action_confirm' and @states='sent']" position="replace">
+                    <button name="%(action_confirm_sale_order)d" states="sent" string="Confirmer la vente"
+                            class="btn-primary" type="action" context="{'show_sale': True}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm' and @states='draft']" position="replace">
+                    <button name="%(action_confirm_sale_order)d" states="draft" string="Confirmer la vente"
+                            type="action" context="{'show_sale': True}"/>
+                </xpath>
 
                 <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="after">
                     <field name="tasks" readonly="0"/>
@@ -125,92 +127,124 @@
                     <field name="altitude_min"/>
                     <field name="qrcode"/>
                 </group>
-				<div name="options" position="inside">
-	                <div>
-	                    <field name="tasks"/>
-	                    <label for="tasks"/>
-	                </div>
+                <div name="options" position="inside">
+                    <div>
+                        <field name="tasks"/>
+                        <label for="tasks"/>
+                    </div>
                 </div>
             </field>
         </record>
 
-<!--        <record id="puthod_prouct_product_form_inh" model="ir.ui.view">
-            <field name="name">puthod.prouct.product.form.inh</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
-            <field name="arch" type="xml">
+        <!--        <record id="puthod_prouct_product_form_inh" model="ir.ui.view">
+                    <field name="name">puthod.prouct.product.form.inh</field>
+                    <field name="model">product.product</field>
+                    <field name="inherit_id" ref="product.product_normal_form_view"/>
+                    <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='name']" position="after">
-                    <label class="oe_edit_only" for="N_Article"/>
-                    <field name="N_Article" readonly="1"/>
-                    <field name="importe" invisible="1"/>
-                </xpath>
+                        <xpath expr="//field[@name='name']" position="after">
+                            <label class="oe_edit_only" for="N_Article"/>
+                            <field name="N_Article" readonly="1"/>
+                            <field name="importe" invisible="1"/>
+                        </xpath>
 
-            </field>
-        </record>
+                    </field>
+                </record>
 
-        <record id="puthod_product_product_tree_view_inh" model="ir.ui.view">
-            <field name="name">puthod.product.product.tree.view.inh</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_product_tree_view"/>
-            <field name="arch" type="xml">
+                <record id="puthod_product_product_tree_view_inh" model="ir.ui.view">
+                    <field name="name">puthod.product.product.tree.view.inh</field>
+                    <field name="model">product.product</field>
+                    <field name="inherit_id" ref="product.product_product_tree_view"/>
+                    <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='name']" position="after">
-                    <field name="N_Article"/>
-                </xpath>
+                        <xpath expr="//field[@name='name']" position="after">
+                            <field name="N_Article"/>
+                        </xpath>
 
-            </field>
-        </record>
+                    </field>
+                </record>
 
-        <record id="puthod_product_search_form_view_inh" model="ir.ui.view">
-            <field name="name">puthod.product.search.form.view.inh</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_search_form_view"/>
-            <field name="arch" type="xml">
+                <record id="puthod_product_search_form_view_inh" model="ir.ui.view">
+                    <field name="name">puthod.product.search.form.view.inh</field>
+                    <field name="model">product.product</field>
+                    <field name="inherit_id" ref="product.product_search_form_view"/>
+                    <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='product_tmpl_id']" position="after">
-                    <field name="N_Article" string = "N° Article"/>
-                </xpath>
+                        <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                            <field name="N_Article" string = "N° Article"/>
+                        </xpath>
 
-            </field>
-        </record>-->
+                    </field>
+                </record>-->
 
         <!--pour l'import d'articles-->
+
+
         <record id="puthod_product_template_form_inh" model="ir.ui.view">
-            <field name="name">puthod.prouct.template.form.inh</field>
+            <field name="name">puthod.product.template.form.inh</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="after">
+                <xpath position="after" expr="//field[@name='name']">
                     <label class="oe_edit_only" for="N_Article"/>
-                    <field name="N_Article" readonly="1"/>
+                    <field name="N_Article"/>
                     <field name="importe" invisible="1"/>
                     <field name="libelle_commercial" invisible="1"/>
                 </xpath>
             </field>
         </record>
 
+
+        <record id="puthod_product_product_form_inh" model="ir.ui.view">
+            <field name="name">puthod.product.product.form.inh</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='name']">
+                    <label class="oe_edit_only" for="n_article"/>
+                    <field name="name_puthod" attrs="{'invisible':[('name_puthod', '=', False)]}"/>
+                    <field name="n_article"/>
+                </xpath>
+                <xpath position="attributes" expr="//field[@name='name']">
+                    <attribute name="attrs">{'invisible':[('name_puthod', '!=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
         <record id="puthod_product_template_tree_view_inh" model="ir.ui.view">
             <field name="name">puthod.product.template.tree.view.inh</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="after">
+                <xpath position="after" expr="//field[@name='name']">
                     <field name="N_Article"/>
                     <field name="famille"/>
                     <field name="libelle_commercial" invisible="1"/>
                 </xpath>
             </field>
         </record>
-
+        <record id="puthod_product_product_tree_view_inh" model="ir.ui.view">
+            <field name="name">puthod.product.product.tree.view.inh</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='name']">
+                    <field name="name_puthod"/>
+                    <field name="n_article"/>
+                </xpath>
+            </field>
+        </record>
         <record id="puthod_product_search_form_view_inh" model="ir.ui.view">
             <field name="name">puthod.product.search.form.view.inh</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_search_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='pricelist_id']" position="after">
-                    <field name="N_Article" string = "N° Article"/>
-                    <field name="famille" string = "Famille"/>
+                <xpath position="after" expr="//field[@name='pricelist_id']">
+                    <field name="N_Article" string="N° Article"/>
+                    <field name="famille" string="Famille"/>
+                </xpath>
+                <xpath position="replace" expr="//field[@name='name']">
+                    <field name="name" string="Product"
+                           filter_domain="['|','|',('default_code','ilike',self),('name','ilike',self),('name_puthod','ilike',self)]"/>
                 </xpath>
             </field>
         </record>
