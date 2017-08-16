@@ -13,12 +13,13 @@
                         <button name="action_dispatch" states="draft" string="Valider" type="object" icon="gtk-go-forward" class="oe_highlight"/>
                         <button name="action_done" states="progress" string="Terminer" type="object" icon="gtk-go-forward" class="oe_highlight"/>
 						<!--bug-->
-                    	<button name="create_fiche_chantier" string="Créer une fiche chantier" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
+                    	<button name="create_fiche_chantier" string="Créer une fiche chantier" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '!=', 'progress'),('order_type', '=', 'sous_traitance')]}"/>
 	                	<field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
 	                </header>
         			<group>
 			          <field name="name"/>
 			          <field name="order_id" readonly="1"/>
+			          <field name="order_type" invisible="1"/>
 			          <field name="address"/>
                       <field name="g_lat" readonly="0"/>
                       <field name="g_lng" readonly="0"/>

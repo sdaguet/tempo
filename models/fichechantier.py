@@ -326,6 +326,7 @@ class chantier(models.Model):
         compute='_compute_glatlng', string='G Longitude', store=True,
         multi='glatlng', digits=(3, 12))
     order_id = fields.Many2one('sale.order', string="Order")
+    order_type = fields.Selection(string="Type de chantier", related='order_id.order_type', required=False, )
     fiche_ids = fields.One2many('fiche.chantier', 'chantier_id', string="Fiches de Chantier")
 
 
