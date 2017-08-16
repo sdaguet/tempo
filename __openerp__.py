@@ -57,6 +57,8 @@
         'report/annexes_product_report_view.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/report_productlabel.xml',
+        'views/puthod_product_report.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode

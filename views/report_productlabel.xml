@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_productlabel">
+    <t t-call="report.html_container">
+        <div class="page">
+            <t t-foreach="docs" t-as="product">
+                <div class="oe_structure">
+                    <table style="margin-left:20%; width:80%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img t-if="product.company_id.logo" t-att-src="'data:image/png;base64,%s' % product.company_id.logo" style="max-height: 45px;"/>
+                                </td>
+                                <td>
+                                    <strong t-field="product.name"/>
+                                </td>
+                                <t t-foreach="product.attribute_value_ids" t-as="var">
+	                                <td>
+	                                    <strong t-field="var.name"/>
+	                                </td>
+                                </t>
+                                <td>
+                                    <strong t-field="product.qrcode"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </div>
+    </t>
+</template>
+</data>
+</openerp>

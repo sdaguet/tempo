@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="puthod_report_product_label"
+            string="Puthod étiquettes"
+            model="product.product"
+            report_type="qweb-pdf"
+            name="darb_puthod.report_productlabel"
+            file="darb_puthod.report_productlabel"/>
+    </data>
+</openerp>
