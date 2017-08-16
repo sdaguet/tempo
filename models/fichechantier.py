@@ -369,9 +369,11 @@ class chantier(models.Model):
         chantiers = self.search([('is_display_gm', '=', True), ('state', '!=', 'done')])
         locations = []
         for chantier in chantiers:
+
             location = [
                 chantier.address, chantier.g_lat, chantier.g_lng, chantier.id, chantier.name,
                 chantier.order_id.partner_id.name]
+
             locations.append(location)
 
         IC = self.env['ir.config_parameter']
