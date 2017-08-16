@@ -89,6 +89,7 @@
                 <tr>
                     <th width="2%" style="border:thin solid #323232;font-size: 11" t-if="doc.state not in ['draft','sent']">N°Lig</th>
                     <th width="40%" style="border:thin solid #323232;font-size: 11">Désignation</th>
+                    <th width="40%" style="border:thin solid #323232;font-size: 11;border-left-style: hidden;">Taille</th>
                     <th width="2%" class="text-right" style="border:thin solid #323232;font-size: 11">Quantité</th>
                     <th class="text-center" style="border:thin solid #323232;font-size: 11">Prix Brut HT</th>
                     <th t-if="display_discount" groups="sale.group_discount_per_so_line" style="border:thin solid #323232;font-size: 11">Remise</th>
@@ -115,6 +116,9 @@
 						<td width="25%" style="text-align: left;border:thin solid #323232">
 							<span t-field="l.name"/>
 						</td>
+		                <td style="text-align:left;border:thin solid #323232;border-left-style: hidden;">
+		                	<span t-esc="l.product_id.get_product_taille()[0]"/>
+		                </td>
 						<td style="text-align: right;border:thin solid #323232">
 							<span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>
 							<span groups="product.group_uom" t-field="l.product_uom"/>
@@ -319,16 +323,6 @@
 					</table>		
 			</div>
 			</xpath>
-			
-            
-           <!-- <xpath expr="//table[1][@class='table table-condensed']/thead/tr/th[2]" position="after">
-                <th width="40%" style="border:thin solid #323232;font-size: 11;border-left-style: hidden;">Taille</th>
-            </xpath>
-             <xpath expr="//t/t/tr/td[2]" position="after">
-                <td style="text-align:left;border:thin solid #323232;border-left-style: hidden;">
-                	<span t-esc="l.product_id.get_product_taille()[0]"/>
-                </td>
-            </xpath> -->
 			
         </template>
 		
