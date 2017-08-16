@@ -100,94 +100,52 @@
 			<!-- to modify -->
             <xpath expr="//t/t/tr" position="replace">
             	<t t-if="l.product_id.id == %(product_product_designation)d">
-                <td colspan="100" style="text-align:left;border:thin solid #323232">
+                
+				
+				<td colspan="100" style="text-align:left;border:thin solid #323232">
                 	<span t-esc="l.product_id.name"/>
                 </td>
                 </t>
             	<t t-if="l.product_id.id != %(product_product_designation)d">
 					<tr t-if="l.product_uom_qty">
-						<td>
-						   <span t-field="l.name"/>
+						<td style="border:thin solid #323232" t-if="doc.state not in ['draft','sent']">
+							<span t-esc="i"/>
+							<t t-set="i" t-value="i+1"/>
 						</td>
-						<td class="text-right">
-							<span t-field="l.product_uom_qty"/>
+						<td width="25%" style="text-align: left;border:thin solid #323232">
+							<span t-field="l.name"/>
+						</td>
+						<td style="text-align: right;border:thin solid #323232">
+							<span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>
 							<span groups="product.group_uom" t-field="l.product_uom"/>
 						</td>
-						<td class="text-right">
+						<td class="text-right" style="text-align: center;border:thin solid #323232">
 							<span t-field="l.price_unit"/>
 						</td>
-						<td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
-							<span t-field="l.discount"/>
-						</td>
-						<td class="text-right">
+						<td t-if="display_discount" style="text-align: center;border:thin solid #323232" groups="sale.group_discount_per_so_line">
+                            <span t-esc="str(l.discount)+'%'"/>
+                        </td>
+						<td class="text-right" style="border:thin solid #323232">
 							<span t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_id))"/>
 						</td>
-						<td class="text-right">
+						<td style="text-align:center;border:thin solid #323232">
+
+                            <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/>
+
+                        </td>
+						<td  class="text-right" style="border:thin solid #323232" >
 							<span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>
 						</td>
 					</tr>
                 </t>
             </xpath>
             <!-- / to modify -->
-            
-            <xpath expr="//t/t/tr/td[6]" position="before">
-                <td style="text-align:center;border:thin solid #323232">
-
-                    <span t-esc="l.price_unit - (l.price_unit * l.discount /100)"/>
-
-                </td>
-            </xpath>
-
-            <xpath expr="//t/t/tr/td[4]" position="replace">
-                <td t-if="display_discount" style="text-align: center;border:thin solid #323232" groups="sale.group_discount_per_so_line">
-                    <span t-esc="str(l.discount)+'%'"/>
-                </td>
-            </xpath>
-
-            <xpath expr="//t/t/tr/td[2]" position="attributes">
-                <attribute name="style">text-align: center</attribute>
-            </xpath>
-			
-			<xpath expr="//t/t/tr/td[2]/span" position="replace">
-                <span t-field="l.product_uom_qty" t-esc="int(l.product_uom_qty)"/>
-            </xpath>
-
+                       
 
             <xpath expr="//t/t" position="before">
                 <t t-set="i" t-value="1"/>
             </xpath>
 
-
-            <xpath expr="//t/t/tr/td" position="before">
-                <td style="border:thin solid #323232" t-if="doc.state not in ['draft','sent']">
-                    <span t-esc="i"/>
-                    <t t-set="i" t-value="i+1"/>
-                </td>
-            </xpath>
-
-            <xpath expr="//t/t/tr/td[2]" position="replace">
-                <td width="25%" style="border:thin solid #323232">
-                    <span t-field="l.name"/>
-                </td>
-            </xpath>
-			
-			<xpath expr="//t/t/tr/td[3]" position="attributes">
-                <attribute name="style">border:thin solid #323232</attribute>        
-            </xpath>
-
-            <xpath expr="//t/t/tr/td[4]" position="replace">
-                <td class="text-right" style="text-align: center;border:thin solid #323232">
-                    <span t-field="l.price_unit"/>
-                </td>
-            </xpath>
-			
-			<xpath expr="//t/t/tr/td[6]" position="attributes">
-                <attribute name="style">border:thin solid #323232</attribute>        
-            </xpath>
-			
-			<xpath expr="//t/t/tr/td[8]" position="attributes">
-                <attribute name="style">border:thin solid #323232</attribute>        
-            </xpath>
 			
 
             <!-- Pour ajouter le nouveau tableau de la TVA -->
@@ -363,14 +321,14 @@
 			</xpath>
 			
             
-            <xpath expr="//table[1][@class='table table-condensed']/thead/tr/th[2]" position="after">
+           <!-- <xpath expr="//table[1][@class='table table-condensed']/thead/tr/th[2]" position="after">
                 <th width="40%" style="border:thin solid #323232;font-size: 11;border-left-style: hidden;">Taille</th>
             </xpath>
-            <xpath expr="//t/t/tr/td[2]" position="after">
+             <xpath expr="//t/t/tr/td[2]" position="after">
                 <td style="text-align:left;border:thin solid #323232;border-left-style: hidden;">
                 	<span t-esc="l.product_id.get_product_taille()[0]"/>
                 </td>
-            </xpath>
+            </xpath> -->
 			
         </template>
 		
