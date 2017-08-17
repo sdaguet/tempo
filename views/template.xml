@@ -1282,7 +1282,8 @@
 					for (i = 0; i &lt; locations.length; i++) {
 					  	marker = new google.maps.Marker({
 					  		position : new google.maps.LatLng(locations[i][1], locations[i][2]),
-					  		map : map
+					  		map : map,
+			  				icon: "/darb_puthod/static/images/"+ locations[i][4] + ".png"
 					  	});
 						var location = "../ficheslist/" + locations[i][3];
 					  	google.maps.event.addListener(marker, 'click', (function(marker, i) {

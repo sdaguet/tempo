@@ -439,12 +439,12 @@
             <field name="arch" type="xml">
                 <search string="Search Production">
                     <field name="name" string="Production" filter_domain="['|',('name','ilike',self),('origin','ilike',self)]"/>
-                    <filter string="Pending" name="pending" domain="[('state','=','confirmed')]"
-                        help="Manufacturing Orders which are waiting for raw materials."/>
-                    <filter string="Ready" name="ready" domain="[('state','=','ready')]"
-                        help="Manufacturing Orders which are ready to start production."/>
-                    <filter string="In Production" name="inprogress" domain="[('state','=','in_production')]"
-                        help="Manufacturing Orders which are currently in production."/>
+                    <filter string="Envoyé. A valider" name="pending" domain="[('state','=','confirmed')]"/>
+                    <filter string="Validé. A comptabiliser" name="ready" domain="[('state','=','ready')]"/>
+                    <filter string="Comptabilisé" name="inprogress" domain="[('state','=','in_production')]"/>
+                    <filter string="A remplir" name="draft" domain="[('state','=','draft')]"/>
+                    <filter string="Terminé" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Annulé" name="cancel" domain="[('state','=','cancel')]"/>
                     <filter string="En cours" name="IN" domain="[('inter_date','&lt;=',current_date)]"/>
                     <filter string="A venir" name="OUT" domain="[('inter_date','&gt;',current_date)]"/>
                     <filter string="Clôturante" name="cloturante" domain="[('type_inter','=','cloturante')]"/>
@@ -452,10 +452,10 @@
                     <filter string="Maintenance" name="maintenance" domain="[('type_inter','=','maintenance')]"/>
                     <filter string="Normale" name="normale" domain="[('type_inter','=','normale')]"/>
                     <separator/>
-                    <filter string="Late" domain="['&amp;', ('date_planned','&lt;', current_date), ('state', 'in', ('draft', 'confirmed', 'ready'))]"
-                        help="Production started late"/>
+                    <filter string="Late" domain="['&amp;', ('date_planned','&lt;', current_date), ('state', 'in', ('draft', 'confirmed', 'ready'))]"/>
                     <field name="product_tmpl_id"/>
                     <field name="product_id"/>
+                    <field name="state"/>
                     <field name="routing_id" groups="mrp.group_mrp_routings"/>
                     <group expand="0" string="Group By...">
                         <filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
