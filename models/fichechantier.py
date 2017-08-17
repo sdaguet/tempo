@@ -141,10 +141,11 @@ class product(models.Model):
 
     #fields puthod
     n_article = fields.Char(string='N° Article')
-    famille_p = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False, )
+    famille_p = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False)
     importe = fields.Boolean(string="importe",default = False)
     marque_savoie = fields.Boolean(string="Marque Savoie",  )
     name_puthod = fields.Char(string="Nom complet", required=False)
+    compute_famille_p = fields.Char(string="_compute_famille_p", compute='_compute_famille_p')
 
 
     @api.multi
@@ -177,43 +178,47 @@ class product(models.Model):
         if self.altitude_max < self.altitude_min:
             raise ValidationError(u"Altitude MAX est inférieur à Altitude MIN !")
 
-    # @api.multi
-    # @api.depends('N_Article_id','N_Article_id.Poids_Brut','N_Article_id.Code_Barre','N_Article_id.Libelle_commercial','N_Article_id.Taille_bis','N_Article_id.Nom_francais', 'N_Article_id.Prix_Etiquette')
-    # def _compute_Article(self):
-    #
-    #     if self.N_Article_id:
-    #
-    #         #pour les categ
-    #         # xml_record = self.env.ref("darb_puthod.product_category_vehicle")
-    #         #
-    #         # print "xml_record"
-    #         # print xml_record
-    #
-    #         Nom_francais = self.N_Article_id.Nom_francais
-    #         if Nom_francais:
-    #             Nom_francais = Nom_francais
-    #         else:
-    #             Nom_francais = ""
-    #
-    #         Libelle_commercial = self.N_Article_id.Libelle_commercial
-    #         if Libelle_commercial:
-    #             Libelle_commercial = Libelle_commercial
-    #         else:
-    #             Libelle_commercial = ""
-    #
-    #         Taille_bis = self.N_Article_id.Taille_bis
-    #         if Taille_bis:
-    #             Taille_bis = Taille_bis
-    #         else:
-    #             Taille_bis = ""
-    #
-    #         name = Libelle_commercial + " " + Taille_bis + " - " +Nom_francais
-    #         lst_price = float(self.N_Article_id.Prix_Etiquette)
-    #         weight = float(self.N_Article_id.Poids_Brut)
-    #         Code_Barre = self.N_Article_id.Code_Barre
-    #         record = self.write({'lst_price': lst_price, 'weight': weight, 'name': name, 'barcode':Code_Barre})
-    #         return record
+    @api.multi
+    @api.depends('famille_p')
+    def _compute_famille_p(self):
 
+        famille = self.famille_p
+
+        if famille == 'eng':
+            xml_record_eng = self.env.ref("darb_puthod.product_category_engrais")
+            print "xml_record_eng"
+            print xml_record_eng
+
+            self.categ_id = xml_record_eng
+            print "xml_record_eng"
+            self.type = 'consu'
+
+        elif famille == 'F':
+                    xml_record_F = self.env.ref("darb_puthod.product_category_fourniture")
+                    self.categ_id = xml_record_F
+                    self.type = 'consu'
+
+
+        elif famille == 'OP-SPE':
+                    xml_record_OP_SPE = self.env.ref("darb_puthod.product_category_divers")
+                    self.categ_id = xml_record_OP_SPE
+                    #type a definir
+
+        elif famille == 'TRA':
+                    xml_record_TRA = self.env.ref("darb_puthod.product_category_vehicle")
+                    self.categ_id = xml_record_TRA
+                    self.type = 'service'
+
+        elif famille == 'Z':
+                    xml_record_Z = self.env.ref("darb_puthod.product_category_prestations")
+                    self.categ_id = xml_record_Z
+                    self.type = 'service'
+        else:
+            xml_record_vigitaux = self.env.ref("darb_puthod.product_category_vigitaux")
+            print "xml_record_vigitaux"
+            print xml_record_vigitaux
+            self.categ_id = xml_record_vigitaux
+            self.type = 'product'
 
 class subtask(models.Model):
     _name = 'subtask'

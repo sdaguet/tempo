@@ -332,6 +332,7 @@ class TmpArticle(models.Model):
                 'taxes_id': [[6, False, taxe_id]],
                 # 'property_stock_account_output': False,
                 'seller_ids': [],
+                'default_code': Code_article,
                 'list_price': Prix_Etiquette,  # Prix_Etiquette
                 'barcode': Code_Barre,  # Code_Barre
                 'weight': Poids_Brut,  # Poids_Brut

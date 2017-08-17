@@ -190,6 +190,8 @@
                     <field name="N_Article"/>
                     <field name="importe" invisible="1"/>
                     <field name="libelle_commercial" invisible="1"/>
+                    <field name="famille"/>
+                    <field name="compute_famille" invisible="1"/>
                 </xpath>
             </field>
         </record>
@@ -204,6 +206,8 @@
                     <label class="oe_edit_only" for="n_article"/>
                     <field name="name_puthod" attrs="{'invisible':[('name_puthod', '=', False)]}"/>
                     <field name="n_article"/>
+                    <field name="famille_p" string="Famille"/>
+                    <field name="compute_famille_p" invisible="1"/>
                 </xpath>
                 <xpath position="attributes" expr="//field[@name='name']">
                     <attribute name="attrs">{'invisible':[('name_puthod', '!=', False)]}</attribute>
