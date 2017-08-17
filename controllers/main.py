@@ -288,7 +288,7 @@ class WebsiteContractDarbtech(http.Controller):
         employee = request.env['hr.employee'].sudo().search([('id', '=', int(employee_id))])
         current_employee = request.env['hr.employee'].sudo().search([('user_id', '=', uid)])
         if equipe_id:
-            employee.equipe_id = equipe_id.id
+            employee.sudo().write({'equipe_id': equipe_id.id})
         else:
             manager_equipe_id = request.env['equipe'].sudo().search([('manager','in',current_employee.ids), ('active','=',True)])
             if manager_equipe_id: manager_equipe_id.active = False
@@ -297,7 +297,7 @@ class WebsiteContractDarbtech(http.Controller):
                 'ressource_list': [(4, int(employee_id))],
                 'active': True
                 }
-            equipe_id = request.env['equipe'].create(vals)
+            equipe_id = request.env['equipe'].sudo().create(vals)
 
         return {
             'employees': employee_id,
