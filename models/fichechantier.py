@@ -213,6 +213,10 @@ class product(models.Model):
                     xml_record_Z = self.env.ref("darb_puthod.product_category_prestations")
                     self.categ_id = xml_record_Z
                     self.type = 'service'
+
+        elif famille == False:
+            pass
+
         else:
             xml_record_vigitaux = self.env.ref("darb_puthod.product_category_vigitaux")
             print "xml_record_vigitaux"
