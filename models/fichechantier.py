@@ -323,7 +323,7 @@ class chantier(models.Model):
         string='Status', readonly=True, track_visibility='onchange', compute="_compute_state")
 
     address = fields.Text(string='Adresse')
-    is_display_gm = fields.Boolean('Display Google Maps?')
+    is_display_gm = fields.Boolean('Display Google Maps?', default=True)
     g_lat = fields.Float(
         compute='_compute_glatlng', string='G Latitude', store=True,
         multi='glatlng', digits=(3, 12))
@@ -420,6 +420,22 @@ class fiche_chantier(models.Model):
     @api.multi
     def button_produce(self):  # Cette fonction modifie le champ de l'enregistrement state à l'etat in_production
         res = self.write({'state': 'in_production'})
+        order_id = self.chantier_id.order_id
+        picking_id = self.env['stock.picking'].search([('group_id', '=', order_id.procurement_group_id.id),('state', '=', 'assigned')]) if order_id.procurement_group_id else []
+        for pack in picking_id.pack_operation_product_ids:
+            prod_vegetaux = [vigitaux.vigitaux_id for vigitaux in self.vigitaux_ids]
+            tot_vegetaux = sum([1 for vigitaux in self.vigitaux_ids if pack.product_id == vigitaux.vigitaux_id])
+
+            prod_fournitures = [fourniture.fourniture_id for fourniture in self.fourniture_ids]
+            tot_fournitures = sum([1 for fourniture in self.fourniture_ids if pack.product_id == fourniture.fourniture_id])
+            if pack.product_id in prod_vegetaux:
+                pack.qty_done = tot_vegetaux
+            if pack.product_id in prod_fournitures:
+                pack.qty_done = tot_fournitures
+        wiz_act = picking_id.do_new_transfer()
+        if wiz_act:
+            wiz = self.env[wiz_act['res_model']].browse(wiz_act['res_id'])
+            wiz.process()
         return res
 
     @api.multi
