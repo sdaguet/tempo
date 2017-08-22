@@ -425,17 +425,64 @@ class fiche_chantier(models.Model):
     def button_produce(self):  # Cette fonction modifie le champ de l'enregistrement state à l'etat in_production
         res = self.write({'state': 'in_production'})
         order_id = self.chantier_id.order_id
-        picking_id = self.env['stock.picking'].search([('group_id', '=', order_id.procurement_group_id.id),('state', '=', 'assigned')]) if order_id.procurement_group_id else []
+        picking_id = self.env['stock.picking'].search([('group_id', '=', order_id.procurement_group_id.id),('state', 'in', ('assigned', 'confirmed', 'partially_available'))]) if order_id.procurement_group_id else []
+        picking_id.force_assign()
         for pack in picking_id.pack_operation_product_ids:
             prod_vegetaux = [vigitaux.vigitaux_id for vigitaux in self.vigitaux_ids]
             tot_vegetaux = sum([1 for vigitaux in self.vigitaux_ids if pack.product_id == vigitaux.vigitaux_id])
 
             prod_fournitures = [fourniture.fourniture_id for fourniture in self.fourniture_ids]
-            tot_fournitures = sum([1 for fourniture in self.fourniture_ids if pack.product_id == fourniture.fourniture_id])
+            tot_fournitures = sum([fourniture.quantity for fourniture in self.fourniture_ids if pack.product_id == fourniture.fourniture_id])
+
+            prod_kits = [kit.kit_id for kit in self.kit_ids]
+            tot_kits = sum([kit.quantity for kit in self.kit_ids if pack.product_id == kit.kit_id])
+
+            prod_tuteurages = [tuteurage.tuteurage_id for tuteurage in self.tuteurage_ids]
+            tot_tuteurages = sum([tuteurage.quantity for tuteurage in self.tuteurage_ids if pack.product_id == tuteurage.tuteurage_id])
+
+            prod_engrais = [engrais.engrais_id for engrais in self.engrais_ids]
+            tot_engrais = sum([engrais.quantity for engrais in self.engrais_ids if pack.product_id == engrais.engrais_id])
+
+            prod_gazons = [gazons.gazons_id for gazons in self.gazons_ids]
+            tot_gazons = sum([gazons.quantity for gazons in self.gazons_ids if pack.product_id == gazons.gazons_id])
+
+            prod_escaliers = [escalier.escalier_id for escalier in self.escalier_ids]
+            tot_escaliers = sum([escalier.quantity for escalier in self.escalier_ids if pack.product_id == escalier.escalier_id])
+
+            prod_divers = [divers.divers_id for divers in self.divers_ids]
+            tot_divers = sum([divers.quantity for divers in self.divers_ids if pack.product_id == divers.divers_id])
+
+            prod_terrasses = [terrasse.terrasse_id for terrasse in self.terrasse_ids]
+            tot_terrasses = sum([terrasse.quantity for terrasse in self.terrasse_ids if pack.product_id == terrasse.terrasse_id])
+
+            prod_sclotures = [scloture.scloture_id for scloture in self.scloture_ids]
+            sclotures = sum([scloture.quantity for scloture in self.scloture_ids if pack.product_id == scloture.scloture_id])
+
+            prod_clotures = [cloture.cloture_id for cloture in self.cloture_ids]
+            clotures = sum([cloture.quantity for cloture in self.cloture_ids if pack.product_id == cloture.cloture_id])
+            list_clotures = prod_sclotures + prod_clotures
+            tot_clotures = sclotures + clotures
+
             if pack.product_id in prod_vegetaux:
                 pack.qty_done = tot_vegetaux
             if pack.product_id in prod_fournitures:
                 pack.qty_done = tot_fournitures
+            if pack.product_id in list_clotures:
+                pack.qty_done = tot_clotures
+            if pack.product_id in prod_kits:
+                pack.qty_done = tot_kits
+            if pack.product_id in prod_tuteurages:
+                pack.qty_done = tot_tuteurages
+            if pack.product_id in prod_engrais:
+                pack.qty_done = tot_engrais
+            if pack.product_id in prod_gazons:
+                pack.qty_done = tot_gazons
+            if pack.product_id in prod_escaliers:
+                pack.qty_done = tot_escaliers
+            if pack.product_id in prod_divers:
+                pack.qty_done = tot_divers
+            if pack.product_id in prod_terrasses:
+                pack.qty_done = tot_terrasses
         wiz_act = picking_id.do_new_transfer()
         if wiz_act:
             wiz = self.env[wiz_act['res_model']].browse(wiz_act['res_id'])
