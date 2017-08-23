@@ -28,7 +28,7 @@ function getwebgantt() {
 					});
 				}
 			);
-			console.log("chart rendering");
+			console.log(list);
 			$(".gantt").gantt({
 				//source: data,
 				source: list,

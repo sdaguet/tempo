@@ -154,3 +154,12 @@ class WebsiteFicheDeletes(http.Controller):
         fiche_id.scloture_ids = [(2, int(fiche_scloture))]
         return {
             }
+
+    @http.route(['/deletework'], type='json', auth="user", website=True)
+    def deletework(self, fiche, fiche_subtask):
+        user = request.env.user
+        cr, uid, context = request.cr, request.uid, request.context
+        fiche_id = request.env['fiche.chantier'].sudo().search([('id', '=', fiche)])
+        request.env['employees.subtasks'].sudo().search([('id', '=', int(fiche_subtask))]).unlink()
+        return {
+            }

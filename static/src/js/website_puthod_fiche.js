@@ -829,6 +829,7 @@ odoo.define('darb_puthod.responsivejson', function(require) {
    		var employee = employee_id.split("_").pop();
 		var tesk_id = $('#tesk_'+ employee +' option:selected').val();
 		var type = $('#type_'+ employee +' option:selected').val();
+		var type_text = $('#type_'+ employee +' option:selected').text();
 		var heure_deb = $('#heure_deb_'+ employee +' option:selected').val();
 		var heure_fin = $('#heure_fin_'+ employee +' option:selected').val();
 
@@ -855,6 +856,26 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 				$("#type_"+ employee).val("p");
 				$("#heure_deb_"+ employee).val("7:00");
 				$("#heure_fin_"+ employee).val("7:00");
+				
+				$('#works tr:last').before('<tr id="subtask_'+data['responseJSON']["result"]["new_id"]+'"><td>'+ data['responseJSON']["result"]["employee"] +'</td><td>'+ data['responseJSON']["result"]["subtask"] +'</td><td>'+ type_text +'</td><td>'+ heure_deb +'</td><td>'+ heure_fin +'</td><td><a class="btn btn-primary deletework">Supprimer</a></td></tr>');
+				var new_id = data['responseJSON']["result"]["new_id"]
+				$('.deletework').on('click', function(ev) {
+			        ev.preventDefault();
+					$.ajax({
+						type: "POST",
+						url: "/deletework",
+						async: false,
+						data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_subtask': data['responseJSON']["result"]["new_id"]}}),
+						contentType: "application/json",
+						complete: function (data) {
+							$("#subtask_" +new_id).hide()
+							$(".gantt").load();
+							getwebgantt();
+							console.log("#subtask_" +new_id);
+						}
+					});
+			
+			    });
 				getwebgantt();
 				}
 			}

@@ -118,6 +118,7 @@ class WebsiteContractDarbtech(http.Controller):
         divers = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_divers').id)])
         terrasse = request.env['product.product'].sudo().search([('categ_id','=', request.env.ref('darb_puthod.product_category_terrasse').id)])
         tasks = fiche_id.subtasks
+        employees_subtasks = [subtask.employee_subtask_ids for subtask in tasks if subtask.employee_subtask_ids]
 
         return http.request.render('darb_puthod.ficheviewer', {
             'teams': members_employee,
@@ -138,6 +139,7 @@ class WebsiteContractDarbtech(http.Controller):
             'divers': divers,
             'terrasses': terrasse,
             'tasks': tasks,
+            'employees_subtasks': employees_subtasks,
         })
 
     @http.route('/ficheviewer', type='json', auth="user", website=True)
@@ -182,8 +184,6 @@ class WebsiteContractDarbtech(http.Controller):
                 hfintime = datetime.strptime(hfin,'%H:%M').time()
                 findatetime = datetime.combine(date.today(), hfintime)
                 deb_timestamp = time.mktime(debdatetime.timetuple()) * 1000
-                _logger.info("Generated DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD: " + str(hdeb))
-                _logger.info("Generated FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF: " + str(hfin))
                 fin_timestamp = time.mktime(findatetime.timetuple()) * 1000
                 elmt['values'].append({
                     'from' : deb_timestamp,

@@ -62,6 +62,13 @@
 							<div id="main_qrcode">
 								<p class="tesxt">Vous pouvez marquer un QR Code ci-après.</p>
 								<table class="table table-hover status_table">
+									<thead>
+										<tr class="active">
+											<th>QR Code</th>
+											<th>Quantité</th>
+											<th></th>
+										</tr>
+									</thead>
 									<tr>
 										<td><input id="qrcode" type="char" class="form-control"/></td>
 										<td><input id="qty" type="float" class="form-control"/></td>
@@ -155,7 +162,7 @@
 								<h3 class="panel-title">Gantt Employés</h3>
 								<span class="pull-right clickable ganttshowme"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
-							<div class="panel-body">
+							<div id="gantt" class="panel-body">
 								<div><input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche.id"/></div>
 								<div class="gantt"></div>
 							</div>
@@ -168,7 +175,7 @@
 								<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 							</div>
 							<div id="main_pointage" class="panel-body">
-								<table class="table table-hover status_table">
+								<table id="works" class="table table-hover status_table">
 									<thead>
 										<tr class="active">
 											<th>Employés</th>
@@ -179,9 +186,32 @@
 											<th></th>
 										</tr>
 									</thead>
+									<t t-foreach="employees_subtasks" t-as="subtasks">
+										<t t-foreach="subtasks" t-as="subtask">
+											<tr t-attf-id="subtask_{{ subtask.id }}">
+												<td>
+													<span t-field="subtask.employee.name"/>
+												</td>
+												<td>
+													<span t-field="subtask.fiche_chantier_subtask_id.name"/>
+												</td>
+												<td>
+													<span t-field="subtask.type"/>
+												</td>
+												<td>
+													<span t-field="subtask.heure_deb"/>
+												</td>
+												<td>
+													<span t-field="subtask.heure_fin"/>
+												</td>
+												<td>
+													<a class="btn btn-primary deletework">Supprimer</a>
+												</td>
+											</tr>
+										</t>
+									</t>
 									<t t-foreach="teams" t-as="membr">
 										<tr t-attf-id="employee_{{ membr.id }}">
-		          						<input id="fiche_id" type="hidden" name="fiche" t-att-value="fiche.id"/>
 										<td><span class="teamname" t-field="membr.name"/>
 										</td>
 										<td>

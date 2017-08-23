@@ -305,5 +305,26 @@ odoo.define('darb_puthod.responsivejson', function(require) {
 		});
 
     });
+
+
+    $('.deletework').on('click', function(ev) {
+        ev.preventDefault();
+        var fiche_id = $('#fiche_id').val();
+   		var fiche_subtask = $(this).closest('tr').attr('id'); // table row ID
+   		var fiche_subtask_id = fiche_subtask.split("_").pop();
+		$.ajax({
+			type: "POST",
+			url: "/deletework",
+			async: false,
+			data: JSON.stringify({"params": {'fiche': fiche_id, 'fiche_subtask': fiche_subtask_id}}),
+			contentType: "application/json",
+			complete: function (data) {
+				$("#" +fiche_subtask).hide() 
+				getwebgantt();
+				$(".gantt").load();
+			}
+		});
+
+    });
 	
 });

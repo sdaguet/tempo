@@ -454,7 +454,7 @@ class WebsiteContractDarbtech(http.Controller):
         for item in item_ids:
             idd = datetime.strptime(item.heure_deb,'%H:%M')
             idf = datetime.strptime(item.heure_fin,'%H:%M')
-            if (df > idd and df < idf) or (dd > idd and dd < idf) or (dd > idd and df < idf) or (dd < idd and df > idf):
+            if (df >= idd and df <= idf) or (dd >= idd and dd <= idf) or (dd >= idd and df <= idf) or (dd <= idd and df >= idf):
                 error_message = _(u"Intersection entre plages horaires !")
         #/Check intersections between time
         if error_message == "":
@@ -465,7 +465,17 @@ class WebsiteContractDarbtech(http.Controller):
                     'type': type,
                     'fiche_chantier_subtask_id': tesk
                     }
-            request.env['employees.subtasks'].sudo().create(vals)
+            new_id = request.env['employees.subtasks'].sudo().create(vals)
+            subtask_id = new_id.id
+            employee = new_id.employee.name
+            subtask = new_id.fiche_chantier_subtask_id.name
+        else:
+            subtask_id = False
+            employee = False
+            subtask = False
         return {
-            'error_message': error_message
+            'error_message': error_message,
+            'new_id': subtask_id,
+            'employee': employee,
+            'subtask': subtask,
             }
