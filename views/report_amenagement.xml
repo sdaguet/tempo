@@ -89,7 +89,7 @@
                 <tr style="background-color:#D8D8D8;">
                     <th width="2%" style="border:thin solid #323232;font-size: 11" t-if="doc.state not in ['draft','sent']">N°Lig</th>
                     <th width="40%" style="border:thin solid #323232;font-size: 11">Désignation</th>
-                    <th width="40%" style="border:thin solid #323232;font-size: 11;border-left-style: hidden;">Taille</th>
+                    <th class="text-center" width="40%" style="border:thin solid #323232;font-size: 11;border-left-style: hidden;">Taille</th>
                     <th width="2%" class="text-right" style="border:thin solid #323232;font-size: 11">Quantité</th>
                     <th class="text-center" style="border:thin solid #323232;font-size: 11">Prix Brut HT</th>
                     <th t-if="display_discount" groups="sale.group_discount_per_so_line" style="border:thin solid #323232;font-size: 11">Remise</th>
@@ -116,7 +116,7 @@
 						<td width="25%" style="text-align: left;border:thin solid #323232">
 							<span t-field="l.name"/>
 						</td>
-		                <td style="text-align:left;border:thin solid #323232;border-left-style: hidden;">
+		                <td class="text-center" style="border:thin solid #323232;border-left-style: hidden;">
 		                	<span t-esc="l.product_id.get_product_taille()[0]"/>
 		                </td>
 						<td style="text-align: right;border:thin solid #323232">
@@ -459,7 +459,8 @@
             </xpath>
             
             <xpath expr="//tr[@class='active']" position="attributes">
-                <attribute name="style">background-color:#58FA58;</attribute>
+                <attribute name="class"></attribute>
+                <attribute name="style">background-color:#9FF781 !important;</attribute>
             </xpath>
 
 
