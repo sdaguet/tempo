@@ -142,7 +142,7 @@ class product(models.Model):
     #fields puthod
     n_article = fields.Char(string='N° Article')
     famille_p = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False)
-    importe = fields.Boolean(string="importe",default = False)
+    #importe = fields.Boolean(string="importe",default = False)
     marque_savoie = fields.Boolean(string="Marque Savoie",  )
     name_puthod = fields.Char(string="Nom complet", required=False)
     compute_famille_p = fields.Char(string="_compute_famille_p", compute='_compute_famille_p')

@@ -8,107 +8,104 @@ _logger = logging.getLogger(__name__)
 class TmpArticle(models.Model):
 
     _name = 'tmparticle'
-    _rec_name = 'N_Article'
-    N_Article = fields.Char("N° Article")
-    Code_article = fields.Char("Code article")
-    Code_Barre = fields.Char("Code Barre")
-    Genre = fields.Char("Genre")
-    Espece = fields.Char("Espece")
-    Variete = fields.Char("Variete")
-    Catalogue = fields.Char("Catalogue")
-    Marque_Savoie = fields.Char("Marque Savoie")
-    Presentation = fields.Char("Présentation")
-    Presentation_bis = fields.Char("Présentation")
-    Taille = fields.Char("Taille")
-    Taille_bis = fields.Char("Taille importé")
-    Famille = fields.Char("Famille")
-    tarif = fields.Char("tarif")
-    type_de_feuillage = fields.Char("type de feuillage")
-    Famille_Presta = fields.Char("Famille/Presta")
-    Promo_automne = fields.Char("Promo automne")
-    Critere_7 = fields.Char("Critère 7")
-    Critere_8 = fields.Char("Critère 8")
-    Critere_9 = fields.Char("Critère 9")
-    Libelle_commercial = fields.Char("Libellé commercial")
-    Nom_francais = fields.Char("Nom français")
-    N_conseil = fields.Char("N° conseil")
-    Modele_etiquette = fields.Char("Modèle étiquette")
-    Prix_Etiquette = fields.Char("Prix Etiquette")
-    Code_comptable = fields.Char("Code comptable")
-    Remise = fields.Char("Remise")
-    TVA = fields.Char("TVA")
-    Hauteur_mm = fields.Char("Hauteur mm")
-    Poids_Brut = fields.Char("Poids Brut")
-    Complement = fields.Char("Complément")
-    Code_vente = fields.Char("Code vente")
-    Conditionnement = fields.Char("Conditionnement")
-    CA_N = fields.Char("CA N")
-    CA_N_1 = fields.Char("CA N-1")
-    CA_N_2 = fields.Char("CA N-2")
-    Qte_N = fields.Char("Qté N")
-    Qte_N_1 = fields.Char("Qté N-1")
-    Qte_N_2 = fields.Char("Qté N-2")
-    Masquer_dans_les_listes = fields.Char("Masquer dans les listes")
-    Date_de_creation = fields.Char("Date de création")
-    Derniere_modification = fields.Char("Dernière modification")
-    Groupe_tarifaire = fields.Char("Groupe tarifaire")
-    N_article_destockage = fields.Char("N° article déstockage")
-    Coeff_destockage = fields.Char("Coeff. déstockage")
-    Poids_Net = fields.Char("Poids Net")
-    Type_fiscal = fields.Char("Type fiscal")
-    Critere_10 = fields.Char("Critère 10")
-    Critere_11 = fields.Char("Critère 11")
-    Critere_12 = fields.Char("Critère 12")
-    Critere_13 = fields.Char("Critère 13")
-    Critere_14 = fields.Char("Critère 14")
-    Critere_15 = fields.Char("Critère 15")
-    Critere_16 = fields.Char("Critère 16")
-    Critere_17 = fields.Char("Critère 17")
-    Critere_18 = fields.Char("Critère 18")
-    Gestion_du_stock = fields.Char("Gestion du stock")
-    Unite_de_tarification = fields.Char("Unité de tarification")
-    Sur_Appellation = fields.Char("Sur Appellation")
-    Sous_Famille_article = fields.Char("Sous Famille article")
-    Pays_d_origine = fields.Char("Pays d'origine")
-    CA_N_Fourn = fields.Char("CA N Fourn.")
-    CA_N_1_Fourn = fields.Char("CA N-1 Fourn.")
-    CA_N_2_Fourn = fields.Char("CA N-2 Fourn.")
-    Qte_N_bis = fields.Char("Qté N")
-    Qte_N_1_bis = fields.Char("Qté N-1")
-    Qte_N_2_bis = fields.Char("Qté N-2")
-    CA_N_A_Nouveau = fields.Char("CA N A-Nouveau")
-    Qte_N_A_Nouveau = fields.Char("Qté N A-Nouveau")
-    Qte_N_Fourn_A_Nouveau = fields.Char("Qté N Fourn. A-Nouveau")
-    CA_N_Fourn_A_Nouveau = fields.Char("CA N Fourn. A-Nouveau")
-    Domaine_util_achat = fields.Char("Domaine util. achat")
-    Domaine_util_vente = fields.Char("Domaine util. vente")
-    Taux_prix_achat = fields.Char("Taux prix achat")
-    Code_achat = fields.Char("Code achat")
-    PCB_Article = fields.Char("PCB Artifcle")
-    Origine = fields.Char("Origine")
-    Prix_ref_marge = fields.Char("Prix ref marge")
-    Code_Barre_2 = fields.Char("code barre 2")
-    Gestion_de_Facteur = fields.Char("Gestion de Facteur")
-    Code_Facteur = fields.Char("Code Facteur")
-    Remplace_par = fields.Char("Remplacé par")
-    N_Proprietaire = fields.Char("N° Propriétaire")
-    Fourn_principal = fields.Char("Fourn. principal")
-    Date_de_fin_d_achat = fields.Char("Date de fin d'achat")
-    No_FPP = fields.Char("No FPP")
-    Coef_FPP = fields.Char("Coef. FPP")
-    Sem_Deb_Validite = fields.Char("Sem. Deb. Validité")
-    Sem_Fin_Validite = fields.Char("Sem. Fin Validité")
-    Secteur_par_defaut = fields.Char("Secteur par défaut")
-    Critere_20 = fields.Char("Critère 20")
-    Critere_21 = fields.Char("Critère 21")
-    Commentaire_logistique = fields.Char("Commentaire logistique")
-    Identifiant_XOL = fields.Char("Identifiant XOL")
-    Article_Totalise = fields.Char("Article Totalisé")
-    N_Article_Totalisateur = fields.Char("N° Article Totalisateur")
-    Article_Financier = fields.Char("Article Financier")
-
-
-
+    _rec_name = 'n___article_0'
+    n___article_0 = fields.Char("N° Article")
+    code_article_1 = fields.Char("Code article")
+    code_barre_2 = fields.Char("Code Barre")
+    genre_3 = fields.Char("Genre")
+    espece_4 = fields.Char("Espece")
+    variete_5 = fields.Char("Variete")
+    catalogue_6 = fields.Char("Catalogue")
+    marque_savoie_7 = fields.Char("Marque Savoie")
+    pr__sentation_8 = fields.Char("Présentation")
+    _pr__sentation__9 = fields.Char("Présentation")
+    taille_10 = fields.Char("Taille")
+    _taille__11 = fields.Char("Taille")
+    famille_12 = fields.Char("Famille")
+    tarif_13 = fields.Char("tarif")
+    type_de_feuillage_14 = fields.Char("type de feuillage")
+    famille_presta_15 = fields.Char("Famille/Presta")
+    promo_automne_16 = fields.Char("Promo automne")
+    crit__re_7_17 = fields.Char("Critère 7")
+    crit__re_8_18 = fields.Char("Critère 8")
+    crit__re_9_19 = fields.Char("Critère 9")
+    libell___commercial_20 = fields.Char("Libellé commercial")
+    nom_fran__ais_21 = fields.Char("Nom français")
+    n___conseil_22 = fields.Char("N° conseil")
+    mod__le___tiquette_23 = fields.Char("Modèle étiquette")
+    prix_etiquette_24 = fields.Char("Prix Etiquette")
+    code_comptable_25 = fields.Char("Code comptable")
+    remise_26 = fields.Char("Remise")
+    tva_27 = fields.Char("TVA")
+    hauteur__mm__28 = fields.Char("Hauteur mm")
+    poids_brut_29 = fields.Char("Poids Brut")
+    compl__ment_30 = fields.Char("Complément")
+    code_vente_31 = fields.Char("Code vente")
+    conditionnement_32 = fields.Char("Conditionnement")
+    ca_n_33 = fields.Char("CA N")
+    ca_n_1_34 = fields.Char("CA N-1")
+    ca_n_2_35 = fields.Char("CA N-2")
+    qt___n_36 = fields.Char("Qté N")
+    qt___n_1_37 = fields.Char("Qté N-1")
+    qt___n_2_38 = fields.Char("Qté N-2")
+    masquer_dans_les_listes_39 = fields.Char("Masquer dans les listes")
+    date_de_cr__ation_40 = fields.Char("Date de création")
+    derni__re_modification_41 = fields.Char("Dernière modification")
+    groupe_tarifaire_42 = fields.Char("Groupe tarifaire")
+    n___article_d__stockage_43 = fields.Char("N° article déstockage")
+    coeff__d__stockage_44 = fields.Char("Coeff. déstockage")
+    poids_net_45 = fields.Char("Poids Net")
+    type_fiscal_46 = fields.Char("Type fiscal")
+    crit__re_10_47 = fields.Char("Critère 10")
+    crit__re_11_48 = fields.Char("Critère 11")
+    crit__re_12_49 = fields.Char("Critère 12")
+    crit__re_13_50 = fields.Char("Critère 13")
+    crit__re_14_51 = fields.Char("Critère 14")
+    crit__re_15_52 = fields.Char("Critère 15")
+    crit__re_16_53 = fields.Char("Critère 16")
+    crit__re_17_54 = fields.Char("Critère 17")
+    crit__re_18_55 = fields.Char("Critère 18")
+    gestion_du_stock_56 = fields.Char("Gestion du stock")
+    unit___de_tarification_57 = fields.Char("Unité de tarification")
+    sur_appellation_58 = fields.Char("Sur Appellation")
+    sous_famille_article_59 = fields.Char("Sous Famille article")
+    pays_d_origine_60 = fields.Char("Pays d'origine")
+    ca_n_fourn__61 = fields.Char("CA N Fourn.")
+    ca_n_1_fourn__62 = fields.Char("CA N-1 Fourn.")
+    ca_n_2_fourn__63 = fields.Char("CA N-2 Fourn.")
+    qt___n_64 = fields.Char("Qté N")
+    qt___n_1_65 = fields.Char("Qté N-1")
+    qt___n_2_66 = fields.Char("Qté N-2")
+    ca_n__a_nouveau__67 = fields.Char("CA N A-Nouveau")
+    qt___n__a_nouveau__68 = fields.Char("Qté N A-Nouveau")
+    qt___n_fourn___a_nouveau__69 = fields.Char("Qté N Fourn. A-Nouveau")
+    ca_n_fourn___a_nouveau__70 = fields.Char("CA N Fourn. A-Nouveau")
+    domaine_util__achat_71 = fields.Char("Domaine util. achat")
+    domaine_util__vente_72 = fields.Char("Domaine util. vente")
+    taux_prix_achat_73 = fields.Char("Taux prix achat")
+    code_achat_74 = fields.Char("Code achat")
+    pcb_article_75 = fields.Char("PCB Article")
+    origine_76 = fields.Char("Origine")
+    prix_ref_marge_77 = fields.Char("Prix ref marge")
+    code_barre_78 = fields.Char("code barre")
+    gestion_de_facteur_79 = fields.Char("Gestion de Facteur")
+    code_facteur_80 = fields.Char("Code Facteur")
+    remplac___par_81 = fields.Char("Remplacé par")
+    n___propri__taire_82 = fields.Char("N° Propriétaire")
+    fourn__principal_83 = fields.Char("Fourn. principal")
+    date_de_fin_d_achat_84 = fields.Char("Date de fin d'achat")
+    no_fpp_85 = fields.Char("No FPP")
+    coef__fpp_86 = fields.Char("Coef. FPP")
+    sem__deb__validit___87 = fields.Char("Sem. Deb. Validité")
+    sem__fin_validit___88 = fields.Char("Sem. Fin Validité")
+    secteur_par_d__faut_89 = fields.Char("Secteur par défaut")
+    crit__re_20_90 = fields.Char("Critère 20")
+    crit__re_21_91 = fields.Char("Critère 21")
+    commentaire_logistique_92 = fields.Char("Commentaire logistique")
+    identifiant_xol_93 = fields.Char("Identifiant XOL")
+    article_totalis___94 = fields.Char("Article Totalisé")
+    n___article_totalisateur_95 = fields.Char("N° Article Totalisateur")
+    article_financier_96 = fields.Char("Article Financier")
 
     @api.multi
     def is_empty_char(self,value):  # Cette fonction retourne value si elle contient une valeur ou une chaine vide si non 
@@ -162,25 +159,25 @@ class TmpArticle(models.Model):
             # _logger.info("Objet TMPARTICLE créé: %.2f" %(ec1))
             # timestamp3 = time.time()
 
-            Nom_francais = self.is_empty_char(values.get('Nom_francais'))
-            Libelle_commercial = self.is_empty_char(values.get('Libelle_commercial'))
-            Taille_bis = self.is_empty_char(values.get('Taille_bis'))
-            Famille = self.is_empty_char(values.get('Famille'))
+            nom_fran__ais_21 = self.is_empty_char(values.get('nom_fran__ais_21'))
+            libell___commercial_20 = self.is_empty_char(values.get('libell___commercial_20'))
+            _taille__11 = self.is_empty_char(values.get('_taille__11'))
+            famille_12 = self.is_empty_char(values.get('famille_12'))
 
             # timestamp4 = time.time()
             # ec2 = timestamp4 - timestamp3
             # _logger.info("Champs obligatoires verifié: %.2f " %(ec2))
             # timestamp5 = time.time()
 
-            Prix_Etiquette = self.is_empty_float(values.get('Prix_Etiquette'))
-            Poids_Brut = self.is_empty_float(values.get('Poids_Brut'))
+            prix_etiquette_24 = self.is_empty_float(values.get('prix_etiquette_24'))
+            poids_brut_29 = self.is_empty_float(values.get('poids_brut_29'))
 
-            Code_Barre = self.is_empty_char(values.get('Code_Barre'))
-            Code_article = self.is_empty_char(values.get('Code_article'))
-            N_Article = self.is_empty_char(values.get('N_Article'))
-            Marque_Savoie = self.is_empty_char(values.get('Marque_Savoie'))
+            code_barre_2 = self.is_empty_char(values.get('code_barre_2'))
+            code_article_1 = self.is_empty_char(values.get('code_article_1'))
+            n___article_0 = self.is_empty_char(values.get('n___article_0'))
+            marque_savoie_7 = self.is_empty_char(values.get('marque_savoie_7'))
 
-            TVA = self.is_empty_float(values.get('TVA'))
+            TVA = self.is_empty_float(values.get('tva_27'))
             taxe_id = []
 
             if TVA == 4:
@@ -215,29 +212,29 @@ class TmpArticle(models.Model):
 
             #attribute values
 
-            genre = self.is_empty_char(values.get('Genre'))
-            espece = self.is_empty_char(values.get('Espece'))
-            variete = self.is_empty_char(values.get('Variete'))
-            taille = self.is_empty_char(values.get('Taille'))
-            taille_bis = self.is_empty_char(values.get('Taille_bis'))
-            type_de_feuillage = self.is_empty_char(values.get('type_de_feuillage'))
-            critere_7 = self.is_empty_char(values.get('Critere_7'))
-            critere_8 = self.is_empty_char(values.get('Critere_8'))
-            critere_9 = self.is_empty_char(values.get('Critere_9'))
-            nom_francais = self.is_empty_char(values.get('Nom_francais'))
-            modele_etiquette = self.is_empty_char(values.get('Modele_etiquette'))
-            hauteur_mm = self.is_empty_char(values.get('Hauteur_mm'))
-            poids_brut = self.is_empty_char(values.get('Poids_Brut'))
-            ca_n = self.is_empty_char(values.get('CA_N'))
-            ca_n_1 = self.is_empty_char(values.get('CA_N_1'))
-            ca_n_2 = self.is_empty_char(values.get('CA_N_2'))
-            qte_n = self.is_empty_char(values.get('Qte_N'))
-            qte_n_1 = self.is_empty_char(values.get('Qte_N_1'))
-            qte_n_2 = self.is_empty_char(values.get('Qte_N_2'))
-            critere_18 = self.is_empty_char(values.get('Critere_18'))
-            sous_famille_article = self.is_empty_char(values.get('Sous_Famille_article'))
-            pays_d_origine = self.is_empty_char(values.get('Pays_d_origine'))
-            fourn_principal = self.is_empty_char(values.get('Fourn_principal'))
+            genre = self.is_empty_char(values.get('genre_3'))
+            espece = self.is_empty_char(values.get('espece_4'))
+            variete = self.is_empty_char(values.get('variete_5'))
+            taille = self.is_empty_char(values.get('taille_10'))
+            taille_bis = self.is_empty_char(values.get('_taille__11'))
+            type_de_feuillage = self.is_empty_char(values.get('type_de_feuillage_14'))
+            critere_7 = self.is_empty_char(values.get('crit__re_7_17'))
+            critere_8 = self.is_empty_char(values.get('crit__re_8_18'))
+            critere_9 = self.is_empty_char(values.get('crit__re_9_19'))
+            nom_francais = self.is_empty_char(values.get('nom_fran__ais_21'))
+            modele_etiquette = self.is_empty_char(values.get('mod__le___tiquette_23'))
+            hauteur_mm = self.is_empty_char(values.get('hauteur__mm__28'))
+            poids_brut = self.is_empty_char(values.get('poids_brut_29'))
+            ca_n = self.is_empty_char(values.get('ca_n_33'))
+            ca_n_1 = self.is_empty_char(values.get('ca_n_1_34'))
+            ca_n_2 = self.is_empty_char(values.get('ca_n_2_35'))
+            qte_n = self.is_empty_char(values.get('qt___n_36'))
+            qte_n_1 = self.is_empty_char(values.get('qt___n_1_37'))
+            qte_n_2 = self.is_empty_char(values.get('qt___n_2_38'))
+            critere_18 = self.is_empty_char(values.get('crit__re_18_55'))
+            sous_famille_article = self.is_empty_char(values.get('sous_famille_article_59'))
+            pays_d_origine = self.is_empty_char(values.get('pays_d_origine_60'))
+            fourn_principal = self.is_empty_char(values.get('fourn__principal_83'))
 
             #check values or create
             value_genre = self.check_value(genre,xml_genre)
@@ -296,7 +293,7 @@ class TmpArticle(models.Model):
                 # 'uom_id': 1,
                 # 'property_account_income_id': False,
                 # 'description_purchase': False,
-                'N_Article': N_Article,  # N_Article
+                'N_Article':n___article_0,  # N_Article
                 # 'message_ids': False,
                 'sale_ok': True,
                 # 'item_ids': [],
@@ -322,20 +319,20 @@ class TmpArticle(models.Model):
                 # 'cost_method': False,
                 # 'valuation': False,
                 # 'image_medium': False,
-                'name': Libelle_commercial,  # name
+                'name': libell___commercial_20,  # name
                 # 'property_account_expense_id': False,
-                'famille': Famille,
-                'libelle_commercial': Libelle_commercial,
+                'famille': famille_12,
+                'libelle_commercial': libell___commercial_20,
                 # 'categ_id': categ,
                 'packaging_ids': [],
                 'invoice_policy': u'order',
                 'taxes_id': [[6, False, taxe_id]],
                 # 'property_stock_account_output': False,
                 'seller_ids': [],
-                'default_code': Code_article,
-                'list_price': Prix_Etiquette,  # Prix_Etiquette
-                'barcode': Code_Barre,  # Code_Barre
-                'weight': Poids_Brut,  # Poids_Brut
+                'default_code': code_article_1,
+                'list_price': prix_etiquette_24,  # Prix_Etiquette
+                'barcode': code_barre_2,  # Code_Barre
+                'weight': poids_brut_29,  # Poids_Brut
                 'importe': True,
             }
 
@@ -347,7 +344,7 @@ class TmpArticle(models.Model):
             # timestamp7 = time.time()
 
             #pour les attributs
-            obj_template = self.env['product.template'].search([('libelle_commercial','=',Libelle_commercial)])
+            obj_template = self.env['product.template'].search([('libelle_commercial','=',libell___commercial_20)])
 
 			#logger ajouté
 			#print "obj_template"
@@ -355,10 +352,10 @@ class TmpArticle(models.Model):
             _logger.info("create(self, values): %r" % obj_template)
 
             if obj_template.id :
-                name = Libelle_commercial + " " + Taille_bis + " - " + Nom_francais
+                name = libell___commercial_20 + " " + _taille__11 + " - " + nom_fran__ais_21
                 for al in obj_template.attribute_line_ids:
                     if al.attribute_id.id == xml_genre.id:
-						#logger_ajouté
+						#logger_ajoutéf
 						#print "al.value_ids bef"
                         #print al.value_ids
                         _logger.info("create(self, values): %r" % al.value_ids)
@@ -458,7 +455,7 @@ class TmpArticle(models.Model):
                     #'uom_id': 1,
                     #'property_account_income_id': False,
                     #'description_purchase': False,
-                    'n_article': N_Article, #N_Article
+                    'n_article': n___article_0, #N_Article
                     #'message_ids': False,
                     'sale_ok': True,
                     #'item_ids': [],
@@ -484,21 +481,21 @@ class TmpArticle(models.Model):
                     #'cost_method': False,
                     #'valuation': False,
                     #'image_medium': False,
-                    'name_puthod': Libelle_commercial + " " + Taille_bis + " - " +Nom_francais,# name
+                    'name_puthod': libell___commercial_20 + " " + _taille__11 + " - " +nom_fran__ais_21,# name
                     #'property_account_expense_id': False,
-                    'famille_p' : Famille,
+                    'famille_p' : famille_12,
                     #'categ_id': categ,
                     'packaging_ids': [],
                     'invoice_policy': u'order',
                     'taxes_id': [[6, False, taxe_id]],
                     #'property_stock_account_output': False,
                     'seller_ids': [],
-                    'lst_price': Prix_Etiquette , #Prix_Etiquette
+                    'lst_price': prix_etiquette_24 , #Prix_Etiquette
                     #'barcode': Code_Barre , #Code_Barre
-                    'weight' : Poids_Brut , #Poids_Brut
-                    'default_code': Code_article,
-                    'importe' : True,
-                    'marque_savoie' : Marque_Savoie,
+                    'weight' : poids_brut_29 , #Poids_Brut
+                    'default_code': code_article_1,
+                    #'importe' : True,
+                    'marque_savoie' : marque_savoie_7,
                     }
 
                 last_product.write(valuespp)
