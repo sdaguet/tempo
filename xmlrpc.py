@@ -6,7 +6,6 @@ import xml.etree.cElementTree as ET
 import csv
 from collections import defaultdict
 import xmlrpclib
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -43,40 +42,67 @@ clients = models.execute_kw(
 for client in clients:
     print client
 
-for tva_file in ["Clients.csv", "Articles.csv"]:
+for tva_file in ["client-test.csv"]:
     f = open(tva_file, 'rt')
     i = 0
     rez = []
 
     reader = csv.reader(f, dialect='pointvirg')
-    if tva_file == 'Clients.csv' :
+    if tva_file == 'client-test.csv' :
         modl = 'tmpclient'
-    else : 
+        modl_std = 'res.partner'
+        fild_cxt = 'N_Client'
+        fild_tmp_cxt = '_n_client_0'
+    else :
         modl = 'tmparticle'
+        fild_cxt = 'n_article'
+        modl_std = 'product.product'
+        fild_tmp_cxt = 'n_article_0'
+
     for row in reader:
         print 'Current Line : ' + str(i)
         i += 1
         if i == 1:
             keys = row
             ki = 0
-            for k in keys:
-                for ch in k:
+            for ks in keys:
+                for ch in ks:
                     if ch not in alphabet:
-                        k = k.replace(ch ,"_")
-                k = k.lower() + "_" + str(ki)
-                keys[ki] = k
+                        ks = ks.replace(ch ,"_")
+                ks = ks.lower() + "_" + str(ki)
+                ks = ks.replace("___","_")
+                ks = ks.replace("__","_")
+                keys[ki] = ks
                 ki += 1
             print keys
         else:
             try:
                 obj = {}
-                for k in range(min(len(keys),len(row))):
+                for k in range(min(len(keys), len(row))):
                     obj[keys[k]] = row[k]
                 rez.append(obj)
-                # for fild in ['Prix_Etiquette','Poids_Brut']:
-                #     if obj[fild] == '':
-                #         obj[fild] = 0
-                id = models.execute_kw(db, uid, password, modl, 'create', [obj])
+                print "obj"
+                print obj
+                filds_exist = models.execute_kw(
+                    db, uid, password,
+                    modl_std, 'search_read',
+                    [[(fild_cxt, '=', row[0])]],{'limit': 10,'fields': ['id']})
+                print "ici search"
+                if filds_exist:
+                    filds_exist_tmp = models.execute_kw(
+                        db, uid, password,
+                        modl, 'search_read',
+                        [[(fild_tmp_cxt, '=', row[0])]], {'limit': 10, 'fields': ['id']})
+                    if filds_exist_tmp :
+                        print "ici update"
+                        models.execute_kw(db, uid, password, modl, 'write', [[filds_exist_tmp[0]['id']], obj])
+                        print "ici update after"
+                    else:
+                        id = models.execute_kw(db, uid, password, modl, 'create', [obj])
+                else:
+                    id = models.execute_kw(db, uid, password, modl, 'create', [obj])
+                    print "ici create"
+
             except Exception as ex:
                 print 'Error in FILE : ' + tva_file
                 print 'Error in Line : ' + str(i)
@@ -84,7 +110,3 @@ for tva_file in ["Clients.csv", "Articles.csv"]:
                 pass
     print rez
     f.close()
-        
-id = models.execute_kw(db, uid, password, 'res.partner', 'create', [{
-    'name': "New Partner",
-}])

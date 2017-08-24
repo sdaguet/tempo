@@ -457,7 +457,7 @@
                     </t>
                 </td>
             </xpath>
-            
+
             <xpath expr="//tr[@class='active']" position="attributes">
                 <attribute name="class"></attribute>
                 <attribute name="style">background-color:#9FF781 !important;</attribute>

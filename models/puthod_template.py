@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class PuthodTemplate(models.Model):
     _inherit = 'product.template'
-    N_Article = fields.Char(string='N° Article')
+    n_article = fields.Char(string='N° Article')
     importe = fields.Boolean(string="importe",default = False)
     famille = fields.Selection(string="Famille", selection=[('0', 'FERTIL-POTS'), ('1', 'PLTS FORESTIRS'),('2', 'HAIES'), ('3', 'PLTAPISSANTES'),('4', 'CONIFERES'), ('5', 'ARB.FRUITIERS'),('6', 'SAPINS DE NOEL'), ('7', 'ARBUSTES'),('8', 'ARB.FEUILLUS'), ('9', 'SAPINS DE NOEL'),('ARB', 'ARBUSTES'), ('eng', 'engrais'),('F', 'FOURNITURES-AIDE PLANTATION'), ('JAR', 'J.PLARBUSTES'),('OP-SPE', 'OPERATIONS SPECIALES'), ('TOP', 'topiaire'),('TRA', 'Transport'), ('VIV', 'vivaces'),('Z', 'PRESTATIONS'), ], required=False, )
     compute_famille = fields.Char(string="_compute_famille", compute='_compute_famille')

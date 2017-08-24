@@ -2,52 +2,52 @@
 # coding: utf8
 from openerp import fields, models, api, _
 import logging
-
+import time
 _logger = logging.getLogger(__name__)
 
 
 class TmpClient(models.Model):
     _name = 'tmpclient'
-    _rec_name = 'n___client_0'
+    _rec_name = '_n_client_0'
 
-    __ge_du_jardin_24 = fields.Char("âge du jardin")
-    ___ge_du_jardin__25 = fields.Char("(âge du jardin)")
-    n___client_0 = fields.Char("N° Client")
-    civilit___1 = fields.Char("Civilité")
+    _ge_du_jardin_24 = fields.Char("âge du jardin")
+    _ge_du_jardin_25 = fields.Char("(âge du jardin)")
+    _n_client_0 = fields.Char("N° Client")
+    civilit_1 = fields.Char("Civilité")
     nom_1_2 = fields.Char("Nom 1")
     nom_2_3 = fields.Char("Nom 2")
-    rais__soc__4 = fields.Char("Rais. Soc.")
-    adresse__1__5 = fields.Char("Adresse (1)")
-    adresse__2__6 = fields.Char("Adresse (2)")
+    rais_soc_4 = fields.Char("Rais. Soc.")
+    adresse_1_5 = fields.Char("Adresse (1)")
+    adresse_2_6 = fields.Char("Adresse (2)")
     code_postal_7 = fields.Char("Code Postal")
     ville_8 = fields.Char("Ville")
     pays_9 = fields.Char("Pays")
-    t__l__phone_10 = fields.Char("Téléphone")
+    t_l_phone_10 = fields.Char("Téléphone")
     portable_11 = fields.Char("Portable")
     fax_12 = fields.Char("Fax")
     e_mail_13 = fields.Char("E-mail")
     url_14 = fields.Char("URL")
-    code_cat__gorie_15 = fields.Char("Code Catégorie")
+    code_cat_gorie_15 = fields.Char("Code Catégorie")
     cont_fichier_16 = fields.Char("Cont.fichier")
-    _cont_fichier__17 = fields.Char("(Cont.fichier)")
+    _cont_fichier_17 = fields.Char("(Cont.fichier)")
     altitude_du_jardin_18 = fields.Char("altitude du jardin")
-    _altitude_du_jardin__19 = fields.Char("(altitude du jardin)")
+    _altitude_du_jardin_19 = fields.Char("(altitude du jardin)")
     surface_du_jardin_20 = fields.Char("surface du jardin")
-    _surface_du_jardin__21 = fields.Char("(surface du jardin)")
-    crit__re_4_22 = fields.Char("Critère 4")
-    _crit__re_4__23 = fields.Char("(Critère 4)")
+    _surface_du_jardin_21 = fields.Char("(surface du jardin)")
+    crit_re_4_22 = fields.Char("Critère 4")
+    _crit_re_4_23 = fields.Char("(Critère 4)")
     type_de_client_26 = fields.Char("type de client")
-    _type_de_client__27 = fields.Char("(type de client)")
-    code_repr__sentant_28 = fields.Char("Code Représentant")
+    _type_de_client_27 = fields.Char("(type de client)")
+    code_repr_sentant_28 = fields.Char("Code Représentant")
     code_etiquette_29 = fields.Char("Code Etiquette")
-    mode_de_r__glement_30 = fields.Char("Mode de Règlement")
+    mode_de_r_glement_30 = fields.Char("Mode de Règlement")
     type_classe_31 = fields.Char("Type Classe")
-    taux_remise_lig__32 = fields.Char("Taux Remise Lig.")
+    taux_remise_lig_32 = fields.Char("Taux Remise Lig.")
     taux_remise_pied_33 = fields.Char("Taux Remise Pied")
     interdit_34 = fields.Char("Interdit")
     compte_tiers_35 = fields.Char("Compte Tiers")
-    date_ent__36 = fields.Char("Date Ent.")
-    date_dern__modif__37 = fields.Char("Date Dern. Modif.")
+    date_ent_36 = fields.Char("Date Ent.")
+    date_dern_modif_37 = fields.Char("Date Dern. Modif.")
     ca_n_38 = fields.Char("CA N")
     ca_n_1_39 = fields.Char("CA N-1")
     ca_n_2_40 = fields.Char("CA N-2")
@@ -55,84 +55,84 @@ class TmpClient(models.Model):
     identification_tva_42 = fields.Char("Identification TVA")
     assurance_43 = fields.Char("Assurance")
     devise_44 = fields.Char("Devise")
-    compte_factur___45 = fields.Char("Compte Facturé")
-    regroup__facture_46 = fields.Char("Regroup. Facture")
+    compte_factur_45 = fields.Char("Compte Facturé")
+    regroup_facture_46 = fields.Char("Regroup. Facture")
     plafond_47 = fields.Char("Plafond")
-    date_dern__modif__plafond_48 = fields.Char("Date Dern. Modif. Plafond")
+    date_dern_modif_plafond_48 = fields.Char("Date Dern. Modif. Plafond")
     objectif_ca_49 = fields.Char("Objectif CA")
-    adresse_exp__50 = fields.Char("Adresse Exp.")
+    adresse_exp_50 = fields.Char("Adresse Exp.")
     code_postal_51 = fields.Char("Code Postal")
     ville_52 = fields.Char("Ville")
     pays_53 = fields.Char("Pays")
-    comment__livraison_54 = fields.Char("Comment. Livraison")
-    pays_prov__dest__55 = fields.Char("Pays Prov./Dest.")
+    comment_livraison_54 = fields.Char("Comment. Livraison")
+    pays_prov_dest_55 = fields.Char("Pays Prov./Dest.")
     pays_d_origine_56 = fields.Char("Pays d'origine")
     port_57 = fields.Char("Port")
-    code_cond__58 = fields.Char("Code Cond.")
+    code_cond_58 = fields.Char("Code Cond.")
     nbre_factures_59 = fields.Char("Nbre Factures")
-    rempl__taille_60 = fields.Char("Rempl. Taille")
-    rempl__vari__t___61 = fields.Char("Rempl. Variété")
-    code_pays___code_barre_62 = fields.Char("Code Pays - code barre")
+    rempl_taille_60 = fields.Char("Rempl. Taille")
+    rempl_vari_t_61 = fields.Char("Rempl. Variété")
+    code_pays_code_barre_62 = fields.Char("Code Pays - code barre")
     masquer_dans_les_listes_63 = fields.Char("Masquer dans les listes")
     cnuf_64 = fields.Char("CNUF")
-    n___r__f__65 = fields.Char("N° Réf.")
+    n_r_f_65 = fields.Char("N° Réf.")
     logo_66 = fields.Char("Logo")
-    n___tarification_67 = fields.Char("N° Tarification")
-    mod__le_etiquette_68 = fields.Char("Modèle Etiquette")
-    mod__le_de_facture_69 = fields.Char("Modèle de Facture")
+    n_tarification_67 = fields.Char("N° Tarification")
+    mod_le_etiquette_68 = fields.Char("Modèle Etiquette")
+    mod_le_de_facture_69 = fields.Char("Modèle de Facture")
     code_client_70 = fields.Char("Code Client")
     type_de_plantation_71 = fields.Char("type de plantation")
     type_d_entretien_72 = fields.Char("type d'entretien")
     parrainage_73 = fields.Char("parrainage")
     type_de_profil_74 = fields.Char("type de profil")
-    interm__diaire_75 = fields.Char("intermédiaire")
-    interm__diaire_2_76 = fields.Char("Intermédiaire 2")
+    interm_diaire_75 = fields.Char("intermédiaire")
+    interm_diaire_2_76 = fields.Char("Intermédiaire 2")
     newsletter_77 = fields.Char("NEWSLETTER")
-    crit__re_14_78 = fields.Char("Critère 14")
-    crit__re_15_79 = fields.Char("Critère 15")
-    crit__re_16_80 = fields.Char("Critère 16")
-    crit__re_17_81 = fields.Char("Critère 17")
-    crit__re_18_82 = fields.Char("Critère 18")
+    crit_re_14_78 = fields.Char("Critère 14")
+    crit_re_15_79 = fields.Char("Critère 15")
+    crit_re_16_80 = fields.Char("Critère 16")
+    crit_re_17_81 = fields.Char("Critère 17")
+    crit_re_18_82 = fields.Char("Critère 18")
     nom_livraison_83 = fields.Char("Nom Livraison")
-    pr__nom_livraison_84 = fields.Char("Prénom Livraison")
-    ad__liv__1_85 = fields.Char("Ad. Liv. 1")
-    ad__liv__2_86 = fields.Char("Ad. Liv. 2")
+    pr_nom_livraison_84 = fields.Char("Prénom Livraison")
+    ad_liv_1_85 = fields.Char("Ad. Liv. 1")
+    ad_liv_2_86 = fields.Char("Ad. Liv. 2")
     cp_livraison_87 = fields.Char("CP Livraison")
-    ville_liv__88 = fields.Char("Ville Liv.")
+    ville_liv_88 = fields.Char("Ville Liv.")
     code_pays_livraison_89 = fields.Char("Code pays Livraison")
-    t__l__phone_livraison_90 = fields.Char("Téléphone Livraison")
+    t_l_phone_livraison_90 = fields.Char("Téléphone Livraison")
     fax_livraison_91 = fields.Char("Fax Livraison")
     portable_livraison_92 = fields.Char("Portable Livraison")
     e_mail_livraison_93 = fields.Char("E-mail Livraison")
     commentaire_livraison_94 = fields.Char("Commentaire Livraison")
-    zone_exp__95 = fields.Char("Zone Exp.")
+    zone_exp_95 = fields.Char("Zone Exp.")
     incoterm_96 = fields.Char("Incoterm")
     type_transport_97 = fields.Char("Type transport")
-    code_lieu_liv__ue_98 = fields.Char("Code lieu liv. UE")
+    code_lieu_liv_ue_98 = fields.Char("Code lieu liv. UE")
     lieu_livraison_99 = fields.Char("Lieu Livraison")
     transporteur_100 = fields.Char("Transporteur")
-    n___ordre_tourn__e_livraison_101 = fields.Char("N° Ordre Tournée Livraison")
-    n___adresse_livraison_102 = fields.Char("N° adresse livraison")
-    n___ordre_livraison_103 = fields.Char("N° ordre Livraison")
+    n_ordre_tourn_e_livraison_101 = fields.Char("N° Ordre Tournée Livraison")
+    n_adresse_livraison_102 = fields.Char("N° adresse livraison")
+    n_ordre_livraison_103 = fields.Char("N° ordre Livraison")
     ca_n_avoir_104 = fields.Char("CA N Avoir")
     taux_avoir_105 = fields.Char("Taux Avoir")
     commentaire_client_2_106 = fields.Char("Commentaire client 2")
-    date_der__commande_107 = fields.Char("Date Der. commande")
+    date_der_commande_107 = fields.Char("Date Der. commande")
     commentaire_client_3_108 = fields.Char("Commentaire client 3")
-    num__rique_1_109 = fields.Char("Numérique 1")
+    num_rique_1_109 = fields.Char("Numérique 1")
     mouvementer_des_consignes_110 = fields.Char("Mouvementer des Consignes")
-    consignes_valoris__es_111 = fields.Char("Consignes valorisées")
+    consignes_valoris_es_111 = fields.Char("Consignes valorisées")
     statut_de_relance_112 = fields.Char("Statut de relance")
-    statut_rel__pr__c__dent_113 = fields.Char("Statut rel. précédent")
+    statut_rel_pr_c_dent_113 = fields.Char("Statut rel. précédent")
     consignes_en_compte_114 = fields.Char("Consignes en compte")
     facture_edi_115 = fields.Char("Facture EDI")
     url2_116 = fields.Char("URL2")
-    periodicit___relev___117 = fields.Char("Periodicité relevé")
-    li___au_client_n___118 = fields.Char("Lié au client N°")
+    periodicit_relev_117 = fields.Char("Periodicité relevé")
+    li_au_client_n_118 = fields.Char("Lié au client N°")
     taux_d_escompte_119 = fields.Char("Taux d'escompte")
-    escompte_pr__compt___120 = fields.Char("Escompte précompté")
+    escompte_pr_compt_120 = fields.Char("Escompte précompté")
     identifiant_xol_121 = fields.Char("Identifiant Xol")
-    n___de_soci__t___xol_122 = fields.Char("N° de société XoL")
+    n_de_soci_t_xol_122 = fields.Char("N° de société XoL")
     qualification_client_123 = fields.Char("Qualification Client")
     ancienne_qualification_124 = fields.Char("Ancienne Qualification")
     animation_1_125 = fields.Char("Animation 1")
@@ -141,7 +141,7 @@ class TmpClient(models.Model):
     animation_4_128 = fields.Char("Animation 4")
     animation_5_129 = fields.Char("Animation 5")
     animation_6_130 = fields.Char("Animation 6")
-    mode_d_exp__dition_131 = fields.Char("Mode d'expédition")
+    mode_d_exp_dition_131 = fields.Char("Mode d'expédition")
 
     @api.multi
     def get_pays(self, pays):
@@ -417,8 +417,6 @@ class TmpClient(models.Model):
     def create(self, values):	# Cette fonction retourne un record et permet la création d'un client
         record = super(TmpClient, self).create(values)
 
-        self.n___client_0
-
         nom_1_2 = self.is_empty_char(values.get('nom_1_2'))
         nom_2_3 = self.is_empty_char(values.get('nom_2_3'))
         ville_8 = self.is_empty_char(values.get('ville_8'))
@@ -426,23 +424,24 @@ class TmpClient(models.Model):
         e_mail_13 = self.is_empty_char(values.get('e_mail_13'))
         url_14 = self.is_empty_char(values.get('url_14'))
         fax_12 = self.is_empty_char(values.get('fax_12'))
-        t__l__phone_10 = self.is_empty_char(values.get('t__l__phone_10'))
+        t_l_phone_10 = self.is_empty_char(values.get('t_l_phone_10'))
         portable_11 = self.is_empty_char(values.get('portable_11'))
-        adresse__1__5 = self.is_empty_char(values.get('adresse__1__5'))
-        adresse__2__6 = self.is_empty_char(values.get('adresse__2__6'))
-        n___client_0 = self.is_empty_char(values.get('n___client_0'))
+        adresse_1_5 = self.is_empty_char(values.get('adresse_1_5'))
+        adresse_2_6 = self.is_empty_char(values.get('adresse_2_6'))
+        _n_client_0 = self.is_empty_char(values.get('_n_client_0'))
+        type_de_client_26 = self.is_empty_char(values.get('type_de_client_26'))
 
         #livraison
 
         nom_livraison_83 = self.is_empty_char(values.get('nom_livraison_83'))
-        pr__nom_livraison_84 = self.is_empty_char(values.get('pr__nom_livraison_84'))
-        ad__liv__1_85 = self.is_empty_char(values.get('ad__liv__1_85'))
-        ad__liv__2_86 = self.is_empty_char(values.get('ad__liv__2_86'))
+        pr_nom_livraison_84 = self.is_empty_char(values.get('pr_nom_livraison_84'))
+        ad_liv_1_85 = self.is_empty_char(values.get('ad_liv_1_85'))
+        ad_liv_2_86 = self.is_empty_char(values.get('ad_liv_2_86'))
         cp_livraison_87 = self.is_empty_char(values.get('cp_livraison_87'))
-        ville_liv__88 = self.is_empty_char(values.get('ville_liv__88'))
+        ville_liv_88 = self.is_empty_char(values.get('ville_liv_88'))
         code_pays_livraison_89 = self.is_empty_char(values.get('code_pays_livraison_89'))
         pays_9 = self.is_empty_char(values.get('pays_9'))
-        t__l__phone_livraison_90 = self.is_empty_char(values.get('t__l__phone_livraison_90'))
+        t_l_phone_livraison_90 = self.is_empty_char(values.get('t_l_phone_livraison_90'))
         fax_livraison_91 = self.is_empty_char(values.get('fax_livraison_91'))
         portable_livraison_92 = self.is_empty_char(values.get('portable_livraison_92'))
         e_mail_livraison_93 = self.is_empty_char(values.get('e_mail_livraison_93'))
@@ -457,9 +456,9 @@ class TmpClient(models.Model):
             'notify_email': 'always',
             # 'message_follower_ids': False,
             'company_type': 'person',
-            'N_Client': n___client_0,  # N_Client
+            'N_Client': _n_client_0,  # N_Client
             # 'property_stock_customer': 9,
-            'street': adresse__1__5,  # Adresse_1
+            'street': adresse_1_5,  # Adresse_1
             # 'property_account_receivable_id': 227,
             # 'property_account_position_id': False,
             # 'property_payment_term_id': False,
@@ -480,14 +479,14 @@ class TmpClient(models.Model):
             'website': url_14,  # v
             'customer': True,
             'fax': fax_12,  # FAX
-            'street2': adresse__2__6,  # Adresse_2
+            'street2': adresse_2_6,  # Adresse_2
             'child_ids': [[0, False,
-                           {u'function': False, u'city': ville_liv__88, u'name': nom_livraison_83 + " " + pr__nom_livraison_84, u'zip': cp_livraison_87, u'title': False,
-                            u'mobile': portable_livraison_92, u'street2': ad__liv__2_86, u'country_id': code_pays_Livraison.id, u'comment': False,
-                            u'phone': t__l__phone_livraison_90, u'street': ad__liv__1_85, u'customer': commentaire_livraison_94,
+                           {u'function': False, u'city': ville_liv_88, u'name': nom_livraison_83 + " " + pr_nom_livraison_84, u'zip': cp_livraison_87, u'title': False,
+                            u'mobile': portable_livraison_92, u'street2': ad_liv_2_86, u'country_id': code_pays_Livraison.id, u'comment': False,
+                            u'phone': t_l_phone_livraison_90, u'street': ad_liv_1_85, u'customer': commentaire_livraison_94,
                             u'supplier': False, u'state_id': False, u'type': u'delivery', u'email': e_mail_livraison_93,
                             u'lang': u'fr_FR'}]], #adress liv
-            'phone': t__l__phone_10,
+            'phone': t_l_phone_10,
             # 'user_ids': [],
             'active': True,
             'lang': 'fr_FR',
@@ -499,12 +498,136 @@ class TmpClient(models.Model):
             'state_id': False,
             'category_id': [],
             'importe': True,
+            'type_client': type_de_client_26,
         }
         # client = self.env['res.partner'].search([('ref','=',self.N_Client)])
         # if client:
         #   _logger.error("Ce Client existe déjà !")
         # else:
-        self.env['res.partner'].create(valuesc)
+
+        obj_partner = self.env['res.partner'].search([('N_Client', '=', _n_client_0)])
+        print "obj_partner"
+        print obj_partner
+        if obj_partner:
+            obj_partner.child_ids.unlink()
+            obj_partner.write(valuesc)
+        else:
+            self.env['res.partner'].create(valuesc)
+        return record
+
+    @api.multi
+    def write(self, values):
+        print "values"
+        print values
+
+        record = super(TmpClient, self).write(values)
+
+        print "values"
+        print values
+
+        nom_1_2 = self.is_empty_char(values.get('nom_1_2'))
+        nom_2_3 = self.is_empty_char(values.get('nom_2_3'))
+        ville_8 = self.is_empty_char(values.get('ville_8'))
+        code_postal_7 = self.is_empty_char(values.get('code_postal_7'))
+        e_mail_13 = self.is_empty_char(values.get('e_mail_13'))
+        url_14 = self.is_empty_char(values.get('url_14'))
+        fax_12 = self.is_empty_char(values.get('fax_12'))
+        t_l_phone_10 = self.is_empty_char(values.get('t_l_phone_10'))
+        portable_11 = self.is_empty_char(values.get('portable_11'))
+        adresse_1_5 = self.is_empty_char(values.get('adresse_1_5'))
+        adresse_2_6 = self.is_empty_char(values.get('adresse_2_6'))
+        _n_client_0 = self.is_empty_char(values.get('_n_client_0'))
+        type_de_client_26 = self.is_empty_char(values.get('type_de_client_26'))
+
+        # livraison
+
+        nom_livraison_83 = self.is_empty_char(values.get('nom_livraison_83'))
+        pr_nom_livraison_84 = self.is_empty_char(values.get('pr_nom_livraison_84'))
+        ad_liv_1_85 = self.is_empty_char(values.get('ad_liv_1_85'))
+        ad_liv_2_86 = self.is_empty_char(values.get('ad_liv_2_86'))
+        cp_livraison_87 = self.is_empty_char(values.get('cp_livraison_87'))
+        ville_liv_88 = self.is_empty_char(values.get('ville_liv_88'))
+        code_pays_livraison_89 = self.is_empty_char(values.get('code_pays_livraison_89'))
+        pays_9 = self.is_empty_char(values.get('pays_9'))
+        t_l_phone_livraison_90 = self.is_empty_char(values.get('t_l_phone_livraison_90'))
+        fax_livraison_91 = self.is_empty_char(values.get('fax_livraison_91'))
+        portable_livraison_92 = self.is_empty_char(values.get('portable_livraison_92'))
+        e_mail_livraison_93 = self.is_empty_char(values.get('e_mail_livraison_93'))
+        commentaire_livraison_94 = self.is_empty_char(values.get('commentaire_livraison_94'))
+        code_pays = self.env['res.country'].search([('code', '=', self.get_pays(pays_9))])
+        code_pays_Livraison = self.env['res.country'].search([('code', '=', self.get_pays(code_pays_livraison_89))])
+
+        valuesc = {  # 'comment': False,
+            # 'function': False,
+            'notify_email': 'always',
+            # 'message_follower_ids': False,
+            'company_type': 'person',
+            'N_Client': _n_client_0,  # N_Client
+            # 'property_stock_customer': 9,
+            'street': adresse_1_5,  # Adresse_1
+            # 'property_account_receivable_id': 227,
+            # 'property_account_position_id': False,
+            # 'property_payment_term_id': False,
+            'city': ville_8,
+            'country_id': code_pays.id,
+            # 'user_id': False,
+            # 'opt_out': False,
+            'zip': code_postal_7,  # Code_Postal
+            # 'title': False,
+            # 'company_id': 1,
+            # 'message_ids': False,
+            # 'parent_id': False,
+            # 'supplier': False,
+            # 'property_supplier_payment_term_id': False,
+            'type': 'contact',
+            'email': e_mail_13,  # E_mail
+            # 'is_company': False,
+            'website': url_14,  # v
+            'customer': True,
+            'fax': fax_12,  # FAX
+            'street2': adresse_2_6,  # Adresse_2
+            'child_ids': [[0, False,
+                           {u'function': False, u'city': ville_liv_88,
+                            u'name': nom_livraison_83 + " " + pr_nom_livraison_84, u'zip': cp_livraison_87,
+                            u'title': False,
+                            u'mobile': portable_livraison_92, u'street2': ad_liv_2_86,
+                            u'country_id': code_pays_Livraison.id, u'comment': False,
+                            u'phone': t_l_phone_livraison_90, u'street': ad_liv_1_85,
+                            u'customer': commentaire_livraison_94,
+                            u'supplier': False, u'state_id': False, u'type': u'delivery', u'email': e_mail_livraison_93,
+                            u'lang': u'fr_FR'}]],  # adress liv
+            'phone': t_l_phone_10,
+            # 'user_ids': [],
+            'active': True,
+            'lang': 'fr_FR',
+            # 'property_stock_supplier': 8,
+            'name': nom_1_2 + " " + nom_2_3,  # nom
+            'mobile': portable_11,
+            # 'ref': N_Client, #N_Client
+            # 'property_account_payable_id': 292,
+            'state_id': False,
+            'category_id': [],
+            'importe': True,
+            'type_client': type_de_client_26,
+        }
+
+        print "valuesc"
+        print valuesc
+
+        obj_partner = self.env['res.partner'].search([('N_Client', '=', _n_client_0)])
+        print "obj_partner"
+        print obj_partner
+        if obj_partner:
+            obj_partner.child_ids.unlink()
+            obj_partner.write(valuesc)
+        else:
+            self.env['res.partner'].create(valuesc)
+
+        # client = self.env['res.partner'].search([('ref','=',self.N_Client)])
+        # if client:
+        #   _logger.error("Ce Client existe déjà !")
+        # else:
+        #self.env['res.partner'].write(valuesc)
         return record
 
 
