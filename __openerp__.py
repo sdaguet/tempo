@@ -59,6 +59,7 @@
         'security/ir.model.access.csv',
         'views/report_productlabel.xml',
         'views/puthod_product_report.xml',
+        'views/report_saleorder_mail.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode

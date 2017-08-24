@@ -77,12 +77,11 @@
 			<!-- <xpath expr="//table" position="attributes">
 				<attribute name="style">border-right:thin solid #323232;border-top:thin solid #323232</attribute>
                 
-            </xpath>  -->
+            </xpath>  --> 
 			
 			<xpath expr="//table[1][@class='table table-condensed']" position="attributes">
 				<attribute name="style">border-top:thin solid #323232</attribute>
-                
-            </xpath> 
+            </xpath>
 			
             <xpath expr="//table[1][@class='table table-condensed']/thead/tr" position="replace">
 
@@ -323,6 +322,16 @@
 					</table>		
 			</div>
 			</xpath>
+            
+			<xpath expr="//table[1][@class='table table-condensed']" position="before">
+				<table class='table table-condensed'>
+                <thead>
+                    <tr>
+                    	<td style="font-weight:bold;background-color:#FFB833;border:1px solid black;border-top:thin solid #323232" class="text-center">Plantation <span t-field="doc.date_order" t-field-options='{"format": "YYYY"}'/></td>
+                    </tr>
+                </thead>
+                </table>
+            </xpath>
 			
         </template>
 		
@@ -379,24 +388,11 @@
        <template id="new_footer" inherit_id="report.external_layout_footer">
             <xpath expr="//div[@class='footer']" position="replace">
                 <div class="footer">
-                    <div class="text-center" style="border-top: 1px solid black; font-size: 11">
-                        RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139
-                        2044 335
-                        <br/>
-                        CMCIFR2A (Merci de rappeler le numéro de facture lors de votre règlement)
-                        <ul class="list-inline text-center">
-                            <li>Page:</li>
-                            <li>
-                                <span class="page"/>
-                            </li>
-                            <li>de</li>
-                            <li>
-                                <span class="topage"/>
-                            </li>
-                        </ul>
+                    <div class="text-center" style="border: 1px dashed black; font-size: 11;background-color:#2db300">
+                    	1605 rue Michel CARQUILLAT 74130 LE PETIT BORNAND Tel:04.50.03.50.31 - Fax:04.50.03.54.80 infos@puthod.com - www.puthod.com
+						<br/>RIB CREDIT MUTUEL : 10278-02413-00013920443-35-CCM DU FAUCIGNY IBAN : FR76 1027 8024 1300 0139 2044 335
+						<br/>CMCIFR2A (Merci de rappeler le n° de facture lors de votre règlement)
                     </div>
-
-
                 </div>
             </xpath>
         </template> 

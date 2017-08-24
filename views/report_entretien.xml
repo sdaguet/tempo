@@ -107,7 +107,7 @@
         </template>
 
 
-        <template id="x_footer" inherit_id="report.external_layout_footer">
+        <!--<template id="x_footer" inherit_id="report.external_layout_footer">
             <xpath expr="//div[@class='footer']" position="replace">
                 <div class="footer">
                     <div class="text-left" style="border-top: 1px solid black; font-size: 10px;">
@@ -130,7 +130,7 @@
 
                 </div>
             </xpath>
-        </template>
+        </template>-->
 
         <template id="x_header" inherit_id="report.external_layout_header">
             <xpath expr="//div[@class='header']" position="replace">

@@ -9,6 +9,15 @@
                 report_type="qweb-pdf"
                 file="darb_puthod.report_entretien"
                 name="darb_puthod.report_entretien"
+        /> 
+         
+		<report
+                id="sale_report_quotation_email"
+                string="Devis / Commande Email"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="darb_puthod.report_quotation_email"
+                name="darb_puthod.report_quotation_email"
         />
 
     </data>
