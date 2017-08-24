@@ -125,7 +125,7 @@
                 <group name="group_standard_price" position="inside">
                     <field name="altitude_max"/>
                     <field name="altitude_min"/>
-                    <field name="qrcode"/>
+                    <field name="qrcode" attrs="{'invisible': [('categ_id','=', %(darb_puthod.product_category_vigitaux)d)]}"/>
                 </group>
                 <div name="options" position="inside">
                     <div>
