@@ -134,6 +134,30 @@
                     </t>
                 </tbody>
             </table>
+            
+			<div>
+			
+					<table style="display:none;"><tbody class="sale_tbody"></tbody></table>
+					<table style="page-break-inside:avoid; border: 1px solid black" class="table">
+						
+						
+						<tbody class="sale_tbody">
+															<tr>
+																	<td style="width: 70%;border-top: 1px solid black;">Limite de validité de notre offre :</td>
+																	<td style="border-right: 1px solid black;border-top: 1px solid black;">Bon pour accord, le</td>
+															</tr>
+															<tr>
+																	<td colspan="4" style="border: 0px; border-right: 1px solid black">Acompte de 30% à la commande <t t-esc="str(doc.amount_total*30/100)+' €'"/> <br/> encaissé au démarrage du chantier  </td>
+															</tr>
+															<tr>
+																	<td  style="width: 70%;border: 0px"> </td>
+																	<td style="border: 0px; border-right: 1px solid black">Signature</td>
+															</tr>
+															
+							
+						</tbody>
+					</table>		
+			</div>
 			<div class="row" name="total">
                 <!-- &lt;!&ndash; TAXES &ndash;&gt;
 
@@ -275,31 +299,7 @@
                     </body>
                 </html> -->
 
-			</div>
-
-			<div>
-			
-					<table style="display:none;"><tbody class="sale_tbody"></tbody></table>
-					<table style="page-break-inside:avoid; border: 1px solid black" class="table">
-						
-						
-						<tbody class="sale_tbody">
-															<tr>
-																	<td style="width: 70%;border-top: 1px solid black;">Limite de validité de notre offre :</td>
-																	<td style="border-right: 1px solid black;border-top: 1px solid black;">Bon pour accord, le</td>
-															</tr>
-															<tr>
-																	<td colspan="4" style="border: 0px; border-right: 1px solid black">Acompte de 30% à la commande <t t-esc="str(doc.amount_total*30/100)+' €'"/> <br/> encaissé au démarrage du chantier  </td>
-															</tr>
-															<tr>
-																	<td  style="width: 70%;border: 0px"> </td>
-																	<td style="border: 0px; border-right: 1px solid black">Signature</td>
-															</tr>
-															
-							
-						</tbody>
-					</table>		
-			</div>		
+			</div>	
 
             <p t-field="doc.note" />
             <p t-if="doc.payment_term_id.note">
@@ -325,5 +325,11 @@
         </t>
     </t>
 </template>
+
+<!--Sale order Email template -->
+        <record id="sale.email_template_edi_sale" model="mail.template">
+            <field name="name">Sales Order - Send by Email (hhhhhhhhhhhhhhh)</field>
+            <field name="report_template" ref="darb_puthod.report_quotation_email"/>
+        </record>
 </data>
 </openerp>

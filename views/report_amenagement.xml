@@ -297,7 +297,7 @@
 
 			</div>
             </xpath>
-			<xpath expr="//div[@name='total']" position="after">
+			<xpath expr="//table[1][@class='table table-condensed']" position="after">
 			<div>
 			
 					<table style="display:none;"><tbody class="sale_tbody"></tbody></table>
