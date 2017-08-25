@@ -328,8 +328,8 @@
 
 <!--Sale order Email template -->
         <record id="sale.email_template_edi_sale" model="mail.template">
-            <field name="name">Sales Order - Send by Email (hhhhhhhhhhhhhhh)</field>
-            <field name="report_template" ref="darb_puthod.report_quotation_email"/>
+            <field name="name">Sales Order - Send by Email</field>
+            <field name="report_template" ref="darb_puthod.sale_report_quotation_email"/>
         </record>
 </data>
 </openerp>
