@@ -11,6 +11,7 @@ class puthod_partner(models.Model):
 
     N_Client= fields.Char(string="N° Client", required=False)
     importe = fields.Boolean(string="importe",default = False)
+    type_client = fields.Selection(string="Type de client", selection=[('FR', 'clt fruitiers'), ('PF', 'clt plt forestier'), ('PO', 'clt pltes ornementales'), ('PP', 'clt puthod paysage'), ], required=False, )
 
 
     # @api.multi

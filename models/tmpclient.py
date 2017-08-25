@@ -2,145 +2,146 @@
 # coding: utf8
 from openerp import fields, models, api, _
 import logging
-
+import time
 _logger = logging.getLogger(__name__)
 
 
 class TmpClient(models.Model):
     _name = 'tmpclient'
-    _rec_name = 'N_Client'
-    N_Client = fields.Char("N° Client")
-    Civilite = fields.Char("Civilité")
-    Nom_1 = fields.Char("Nom 1")
-    Nom_2 = fields.Char("Nom 2")
-    Rais_Soc = fields.Char("Rais. Soc.")
-    Adresse_1 = fields.Char("Adresse (1)")
-    Adresse_2 = fields.Char("Adresse (2)")
-    Code_Postal = fields.Char("Code Postal")
-    Ville = fields.Char("Ville")
-    Pays = fields.Char("Pays")
-    Telephone = fields.Char("Téléphone")
-    Portable = fields.Char("Portable")
-    Fax = fields.Char("Fax")
-    E_mail = fields.Char("E-mail")
-    URL = fields.Char("URL")
-    Code_Categorie = fields.Char("Code Catégorie")
-    Contfichier = fields.Char("Cont.fichier")
-    Contfichier_bis = fields.Char("(Cont.fichier)")
-    altitude_du_jardin = fields.Char("altitude du jardin")
-    altitude_du_jardin_bis = fields.Char("(altitude du jardin)")
-    surface_du_jardin = fields.Char("surface du jardin")
-    surface_du_jardin_bis = fields.Char("(surface du jardin)")
-    Critere_4 = fields.Char("Critère 4")
-    Critere_4_bis = fields.Char("(Critère 4)")
-    age_du_jardin = fields.Char("âge du jardin")
-    age_du_jardin_bis = fields.Char("(âge du jardin)")
-    type_de_client = fields.Char("type de client")
-    type_de_client_bis = fields.Char("(type de client)")
-    Code_Representant = fields.Char("Code Représentant")
-    Code_Etiquette = fields.Char("Code Etiquette")
-    Mode_de_Reglement = fields.Char("Mode de Règlement")
-    Type_Classe = fields.Char("Type Classe")
-    Taux_Remise_Lig = fields.Char("Taux Remise Lig.")
-    Taux_Remise_Pied = fields.Char("Taux Remise Pied")
-    Interdit = fields.Char("Interdit")
-    Compte_Tiers = fields.Char("Compte Tiers")
-    Date_Ent = fields.Char("Date Ent.")
-    Date_Dern_Modif = fields.Char("Date Dern. Modif.")
-    CA_N = fields.Char("CA N")
-    CA_N_1 = fields.Char("CA N-1")
-    CA_N_2 = fields.Char("CA N-2")
-    Commentaire_client = fields.Char("Commentaire client")
-    Identification_TVA = fields.Char("Identification TVA")
-    Assurance = fields.Char("Assurance")
-    Devise = fields.Char("Devise")
-    Compte_Facture = fields.Char("Compte Facturé")
-    Regroup_Facture = fields.Char("Regroup. Facture")
-    Plafond = fields.Char("Plafond")
-    Date_Dern_Modif_Plafond = fields.Char("Date Dern. Modif. Plafond")
-    Objectif_CA = fields.Char("Objectif CA")
-    Adresse_Exp = fields.Char("Adresse Exp.")
-    Code_Postal_2 = fields.Char("Code Postal 2")
-    Ville_2 = fields.Char("Ville_2")
-    Pays_2 = fields.Char("Pays_2")
-    Comment_Livraison = fields.Char("Comment. Livraison")
-    Pays_ProvDest = fields.Char("Pays Prov./Dest.")
-    Pays_d_origine = fields.Char("Pays d'origine")
-    Port = fields.Char("Port")
-    Code_Cond = fields.Char("Code Cond.")
-    Nbre_Factures = fields.Char("Nbre Factures")
-    Rempl_Taille = fields.Char("Rempl. Taille")
-    Rempl_Variete = fields.Char("Rempl. Variété")
-    Code_Pays_code_barre = fields.Char("Code Pays - code barre")
-    Masquer_dans_les_listes = fields.Char("Masquer dans les listes")
-    CNUF = fields.Char("CNUF")
-    N_Ref = fields.Char("N° Réf.")
-    Logo = fields.Char("Logo")
-    N_Tarification = fields.Char("N° Tarification")
-    Modele_Etiquette = fields.Char("Modèle Etiquette")
-    Modele_de_Facture = fields.Char("Modèle de Facture")
-    Code_Client = fields.Char("Code Client")
-    type_de_plantation = fields.Char("type de plantation")
-    type_d_entretien = fields.Char("type d'entretien")
-    parrainage = fields.Char("parrainage")
-    type_de_profil = fields.Char("type de profil")
-    intermediaire = fields.Char("intermédiaire")
-    Intermediaire_2 = fields.Char("Intermédiaire 2")
-    NEWSLETTER = fields.Char("NEWSLETTER")
-    Critere_14 = fields.Char("Critère 14")
-    Critere_15 = fields.Char("Critère 15")
-    Critere_16 = fields.Char("Critère 16")
-    Critere_17 = fields.Char("Critère 17")
-    Critere_18 = fields.Char("Critère 18")
-    Nom_Livraison = fields.Char("Nom Livraison")
-    Prenom_Livraison = fields.Char("Prénom Livraison")
-    Ad_Liv_1 = fields.Char("Ad. Liv. 1")
-    Ad_Liv_2 = fields.Char("Ad. Liv. 2")
-    CP_Livraison = fields.Char("CP Livraison")
-    Ville_Liv = fields.Char("Ville Liv.")
-    Code_pays_Livraison = fields.Char("Code pays Livraison")
-    Telephone_Livraison = fields.Char("Téléphone Livraison")
-    Fax_Livraison = fields.Char("Fax Livraison")
-    Portable_Livraison = fields.Char("Portable Livraison")
-    E_mail_Livraison = fields.Char("E-mail Livraison")
-    Commentaire_Livraison = fields.Char("Commentaire Livraison")
-    Zone_Exp = fields.Char("Zone Exp.")
-    Incoterm = fields.Char("Incoterm")
-    Type_transport = fields.Char("Type transport")
-    Code_lieu_liv_UE = fields.Char("Code lieu liv. UE")
-    Lieu_Livraison = fields.Char("Lieu Livraison")
-    Transporteur = fields.Char("Transporteur")
-    N_Ordre_Tournee_Livraison = fields.Char("N° Ordre Tournée Livraison")
-    N_adresse_livraison = fields.Char("N° adresse livraison")
-    N_ordre_Livraison = fields.Char("N° ordre Livraison")
-    CA_N_Avoir = fields.Char("CA N Avoir")
-    Taux_Avoir = fields.Char("Taux Avoir")
-    Commentaire_client_2 = fields.Char("Commentaire client 2")
-    Date_Der_commande = fields.Char("Date Der. commande")
-    Commentaire_client_3 = fields.Char("Commentaire client 3")
-    Numerique_1 = fields.Char("Numérique 1")
-    Mouvementer_des_Consignes = fields.Char("Mouvementer des Consignes")
-    Consignes_valorisees = fields.Char("Consignes valorisées")
-    Statut_de_relance = fields.Char("Statut de relance")
-    Statut_rel_precedent = fields.Char("Statut rel. précédent")
-    Consignes_en_compte = fields.Char("Consignes en compte")
-    Facture_EDI = fields.Char("Facture EDI")
-    URL2 = fields.Char("URL2")
-    Periodicite_releve = fields.Char("Periodicité relevé")
-    Lie_au_client_N = fields.Char("Lié au client N°")
-    Taux_d_escompte = fields.Char("Taux d'escompte")
-    Escompte_precompte = fields.Char("Escompte précompté")
-    Identifiant_Xol = fields.Char("Identifiant Xol")
-    N_de_societe_XoL = fields.Char("N° de société XoL")
-    Qualification_Client = fields.Char("Qualification Client")
-    Ancienne_Qualification = fields.Char("Ancienne Qualification")
-    Animation_1 = fields.Char("Animation 1")
-    Animation_2 = fields.Char("Animation 2")
-    Animation_3 = fields.Char("Animation 3")
-    Animation_4 = fields.Char("Animation 4")
-    Animation_5 = fields.Char("Animation 5")
-    Animation_6 = fields.Char("Animation 6")
-    Mode_d_expedition = fields.Char("Mode d'expédition")
+    _rec_name = '_n_client_0'
+
+    _ge_du_jardin_24 = fields.Char("âge du jardin")
+    _ge_du_jardin_25 = fields.Char("(âge du jardin)")
+    _n_client_0 = fields.Char("N° Client")
+    civilit_1 = fields.Char("Civilité")
+    nom_1_2 = fields.Char("Nom 1")
+    nom_2_3 = fields.Char("Nom 2")
+    rais_soc_4 = fields.Char("Rais. Soc.")
+    adresse_1_5 = fields.Char("Adresse (1)")
+    adresse_2_6 = fields.Char("Adresse (2)")
+    code_postal_7 = fields.Char("Code Postal")
+    ville_8 = fields.Char("Ville")
+    pays_9 = fields.Char("Pays")
+    t_l_phone_10 = fields.Char("Téléphone")
+    portable_11 = fields.Char("Portable")
+    fax_12 = fields.Char("Fax")
+    e_mail_13 = fields.Char("E-mail")
+    url_14 = fields.Char("URL")
+    code_cat_gorie_15 = fields.Char("Code Catégorie")
+    cont_fichier_16 = fields.Char("Cont.fichier")
+    _cont_fichier_17 = fields.Char("(Cont.fichier)")
+    altitude_du_jardin_18 = fields.Char("altitude du jardin")
+    _altitude_du_jardin_19 = fields.Char("(altitude du jardin)")
+    surface_du_jardin_20 = fields.Char("surface du jardin")
+    _surface_du_jardin_21 = fields.Char("(surface du jardin)")
+    crit_re_4_22 = fields.Char("Critère 4")
+    _crit_re_4_23 = fields.Char("(Critère 4)")
+    type_de_client_26 = fields.Char("type de client")
+    _type_de_client_27 = fields.Char("(type de client)")
+    code_repr_sentant_28 = fields.Char("Code Représentant")
+    code_etiquette_29 = fields.Char("Code Etiquette")
+    mode_de_r_glement_30 = fields.Char("Mode de Règlement")
+    type_classe_31 = fields.Char("Type Classe")
+    taux_remise_lig_32 = fields.Char("Taux Remise Lig.")
+    taux_remise_pied_33 = fields.Char("Taux Remise Pied")
+    interdit_34 = fields.Char("Interdit")
+    compte_tiers_35 = fields.Char("Compte Tiers")
+    date_ent_36 = fields.Char("Date Ent.")
+    date_dern_modif_37 = fields.Char("Date Dern. Modif.")
+    ca_n_38 = fields.Char("CA N")
+    ca_n_1_39 = fields.Char("CA N-1")
+    ca_n_2_40 = fields.Char("CA N-2")
+    commentaire_client_41 = fields.Char("Commentaire client")
+    identification_tva_42 = fields.Char("Identification TVA")
+    assurance_43 = fields.Char("Assurance")
+    devise_44 = fields.Char("Devise")
+    compte_factur_45 = fields.Char("Compte Facturé")
+    regroup_facture_46 = fields.Char("Regroup. Facture")
+    plafond_47 = fields.Char("Plafond")
+    date_dern_modif_plafond_48 = fields.Char("Date Dern. Modif. Plafond")
+    objectif_ca_49 = fields.Char("Objectif CA")
+    adresse_exp_50 = fields.Char("Adresse Exp.")
+    code_postal_51 = fields.Char("Code Postal")
+    ville_52 = fields.Char("Ville")
+    pays_53 = fields.Char("Pays")
+    comment_livraison_54 = fields.Char("Comment. Livraison")
+    pays_prov_dest_55 = fields.Char("Pays Prov./Dest.")
+    pays_d_origine_56 = fields.Char("Pays d'origine")
+    port_57 = fields.Char("Port")
+    code_cond_58 = fields.Char("Code Cond.")
+    nbre_factures_59 = fields.Char("Nbre Factures")
+    rempl_taille_60 = fields.Char("Rempl. Taille")
+    rempl_vari_t_61 = fields.Char("Rempl. Variété")
+    code_pays_code_barre_62 = fields.Char("Code Pays - code barre")
+    masquer_dans_les_listes_63 = fields.Char("Masquer dans les listes")
+    cnuf_64 = fields.Char("CNUF")
+    n_r_f_65 = fields.Char("N° Réf.")
+    logo_66 = fields.Char("Logo")
+    n_tarification_67 = fields.Char("N° Tarification")
+    mod_le_etiquette_68 = fields.Char("Modèle Etiquette")
+    mod_le_de_facture_69 = fields.Char("Modèle de Facture")
+    code_client_70 = fields.Char("Code Client")
+    type_de_plantation_71 = fields.Char("type de plantation")
+    type_d_entretien_72 = fields.Char("type d'entretien")
+    parrainage_73 = fields.Char("parrainage")
+    type_de_profil_74 = fields.Char("type de profil")
+    interm_diaire_75 = fields.Char("intermédiaire")
+    interm_diaire_2_76 = fields.Char("Intermédiaire 2")
+    newsletter_77 = fields.Char("NEWSLETTER")
+    crit_re_14_78 = fields.Char("Critère 14")
+    crit_re_15_79 = fields.Char("Critère 15")
+    crit_re_16_80 = fields.Char("Critère 16")
+    crit_re_17_81 = fields.Char("Critère 17")
+    crit_re_18_82 = fields.Char("Critère 18")
+    nom_livraison_83 = fields.Char("Nom Livraison")
+    pr_nom_livraison_84 = fields.Char("Prénom Livraison")
+    ad_liv_1_85 = fields.Char("Ad. Liv. 1")
+    ad_liv_2_86 = fields.Char("Ad. Liv. 2")
+    cp_livraison_87 = fields.Char("CP Livraison")
+    ville_liv_88 = fields.Char("Ville Liv.")
+    code_pays_livraison_89 = fields.Char("Code pays Livraison")
+    t_l_phone_livraison_90 = fields.Char("Téléphone Livraison")
+    fax_livraison_91 = fields.Char("Fax Livraison")
+    portable_livraison_92 = fields.Char("Portable Livraison")
+    e_mail_livraison_93 = fields.Char("E-mail Livraison")
+    commentaire_livraison_94 = fields.Char("Commentaire Livraison")
+    zone_exp_95 = fields.Char("Zone Exp.")
+    incoterm_96 = fields.Char("Incoterm")
+    type_transport_97 = fields.Char("Type transport")
+    code_lieu_liv_ue_98 = fields.Char("Code lieu liv. UE")
+    lieu_livraison_99 = fields.Char("Lieu Livraison")
+    transporteur_100 = fields.Char("Transporteur")
+    n_ordre_tourn_e_livraison_101 = fields.Char("N° Ordre Tournée Livraison")
+    n_adresse_livraison_102 = fields.Char("N° adresse livraison")
+    n_ordre_livraison_103 = fields.Char("N° ordre Livraison")
+    ca_n_avoir_104 = fields.Char("CA N Avoir")
+    taux_avoir_105 = fields.Char("Taux Avoir")
+    commentaire_client_2_106 = fields.Char("Commentaire client 2")
+    date_der_commande_107 = fields.Char("Date Der. commande")
+    commentaire_client_3_108 = fields.Char("Commentaire client 3")
+    num_rique_1_109 = fields.Char("Numérique 1")
+    mouvementer_des_consignes_110 = fields.Char("Mouvementer des Consignes")
+    consignes_valoris_es_111 = fields.Char("Consignes valorisées")
+    statut_de_relance_112 = fields.Char("Statut de relance")
+    statut_rel_pr_c_dent_113 = fields.Char("Statut rel. précédent")
+    consignes_en_compte_114 = fields.Char("Consignes en compte")
+    facture_edi_115 = fields.Char("Facture EDI")
+    url2_116 = fields.Char("URL2")
+    periodicit_relev_117 = fields.Char("Periodicité relevé")
+    li_au_client_n_118 = fields.Char("Lié au client N°")
+    taux_d_escompte_119 = fields.Char("Taux d'escompte")
+    escompte_pr_compt_120 = fields.Char("Escompte précompté")
+    identifiant_xol_121 = fields.Char("Identifiant Xol")
+    n_de_soci_t_xol_122 = fields.Char("N° de société XoL")
+    qualification_client_123 = fields.Char("Qualification Client")
+    ancienne_qualification_124 = fields.Char("Ancienne Qualification")
+    animation_1_125 = fields.Char("Animation 1")
+    animation_2_126 = fields.Char("Animation 2")
+    animation_3_127 = fields.Char("Animation 3")
+    animation_4_128 = fields.Char("Animation 4")
+    animation_5_129 = fields.Char("Animation 5")
+    animation_6_130 = fields.Char("Animation 6")
+    mode_d_exp_dition_131 = fields.Char("Mode d'expédition")
 
     @api.multi
     def get_pays(self, pays):
@@ -415,37 +416,38 @@ class TmpClient(models.Model):
     @api.model
     def create(self, values):	# Cette fonction retourne un record et permet la création d'un client
         record = super(TmpClient, self).create(values)
-        Nom_1 = self.is_empty_char(values.get('Nom_1'))
-        Nom_2 = self.is_empty_char(values.get('Nom_2'))
-        Ville = self.is_empty_char(values.get('Ville'))
-        Code_Postal = self.is_empty_char(values.get('Code_Postal'))
-        E_mail = self.is_empty_char(values.get('E_mail'))
-        URL = self.is_empty_char(values.get('URL'))
-        FAX = self.is_empty_char(values.get('FAX'))
-        Telephone = self.is_empty_char(values.get('Telephone'))
-        Portable = self.is_empty_char(values.get('Portable'))
-        Adresse_1 = self.is_empty_char(values.get('Adresse_1'))
-        Adresse_2 = self.is_empty_char(values.get('Adresse_2'))
-        N_Client = self.is_empty_char(values.get('N_Client'))
+
+        nom_1_2 = self.is_empty_char(values.get('nom_1_2'))
+        nom_2_3 = self.is_empty_char(values.get('nom_2_3'))
+        ville_8 = self.is_empty_char(values.get('ville_8'))
+        code_postal_7 = self.is_empty_char(values.get('code_postal_7'))
+        e_mail_13 = self.is_empty_char(values.get('e_mail_13'))
+        url_14 = self.is_empty_char(values.get('url_14'))
+        fax_12 = self.is_empty_char(values.get('fax_12'))
+        t_l_phone_10 = self.is_empty_char(values.get('t_l_phone_10'))
+        portable_11 = self.is_empty_char(values.get('portable_11'))
+        adresse_1_5 = self.is_empty_char(values.get('adresse_1_5'))
+        adresse_2_6 = self.is_empty_char(values.get('adresse_2_6'))
+        _n_client_0 = self.is_empty_char(values.get('_n_client_0'))
+        type_de_client_26 = self.is_empty_char(values.get('type_de_client_26'))
 
         #livraison
 
-        Nom_Livraison = self.is_empty_char(values.get('Nom_Livraison'))
-        Prenom_Livraison = self.is_empty_char(values.get('Prenom_Livraison'))
-        Ad_Liv_1 = self.is_empty_char(values.get('Ad_Liv_1'))
-        Ad_Liv_2 = self.is_empty_char(values.get('Ad_Liv_2'))
-        CP_Livraison = self.is_empty_char(values.get('CP_Livraison'))
-        Ville_Liv = self.is_empty_char(values.get('Ville_Liv'))
-        Code_pays_Livraison = self.is_empty_char(values.get('Code_pays_Livraison'))
-        Pays = self.is_empty_char(values.get('Pays'))
-        Telephone_Livraison = self.is_empty_char(values.get('Telephone_Livraison'))
-        Fax_Livraison = self.is_empty_char(values.get('Fax_Livraison'))
-        Portable_Livraison = self.is_empty_char(values.get('Portable_Livraison'))
-        E_mail_Livraison = self.is_empty_char(values.get('E_mail_Livraison'))
-        Commentaire_Livraison = self.is_empty_char(values.get('Commentaire_Livraison'))
-
-        code_pays = self.env['res.country'].search([('code','=',self.get_pays(Pays))])
-        code_Code_pays_Livraison = self.env['res.country'].search([('code','=',self.get_pays(Code_pays_Livraison))])
+        nom_livraison_83 = self.is_empty_char(values.get('nom_livraison_83'))
+        pr_nom_livraison_84 = self.is_empty_char(values.get('pr_nom_livraison_84'))
+        ad_liv_1_85 = self.is_empty_char(values.get('ad_liv_1_85'))
+        ad_liv_2_86 = self.is_empty_char(values.get('ad_liv_2_86'))
+        cp_livraison_87 = self.is_empty_char(values.get('cp_livraison_87'))
+        ville_liv_88 = self.is_empty_char(values.get('ville_liv_88'))
+        code_pays_livraison_89 = self.is_empty_char(values.get('code_pays_livraison_89'))
+        pays_9 = self.is_empty_char(values.get('pays_9'))
+        t_l_phone_livraison_90 = self.is_empty_char(values.get('t_l_phone_livraison_90'))
+        fax_livraison_91 = self.is_empty_char(values.get('fax_livraison_91'))
+        portable_livraison_92 = self.is_empty_char(values.get('portable_livraison_92'))
+        e_mail_livraison_93 = self.is_empty_char(values.get('e_mail_livraison_93'))
+        commentaire_livraison_94 = self.is_empty_char(values.get('commentaire_livraison_94'))
+        code_pays = self.env['res.country'].search([('code','=',self.get_pays(pays_9))])
+        code_pays_Livraison = self.env['res.country'].search([('code','=',self.get_pays(code_pays_livraison_89))])
 
 
 
@@ -454,17 +456,17 @@ class TmpClient(models.Model):
             'notify_email': 'always',
             # 'message_follower_ids': False,
             'company_type': 'person',
-            'N_Client': N_Client,  # N_Client
+            'N_Client': _n_client_0,  # N_Client
             # 'property_stock_customer': 9,
-            'street': Adresse_1,  # Adresse_1
+            'street': adresse_1_5,  # Adresse_1
             # 'property_account_receivable_id': 227,
             # 'property_account_position_id': False,
             # 'property_payment_term_id': False,
-            'city': Ville,
+            'city': ville_8,
             'country_id': code_pays.id,
             # 'user_id': False,
             # 'opt_out': False,
-            'zip': Code_Postal,  # Code_Postal
+            'zip': code_postal_7,  # Code_Postal
             # 'title': False,
             # 'company_id': 1,
             # 'message_ids': False,
@@ -472,36 +474,160 @@ class TmpClient(models.Model):
             # 'supplier': False,
             # 'property_supplier_payment_term_id': False,
             'type': 'contact',
-            'email': E_mail,  # E_mail
+            'email': e_mail_13,  # E_mail
             # 'is_company': False,
-            'website': URL,  # v
+            'website': url_14,  # v
             'customer': True,
-            'fax': FAX,  # FAX
-            'street2': Adresse_2,  # Adresse_2
+            'fax': fax_12,  # FAX
+            'street2': adresse_2_6,  # Adresse_2
             'child_ids': [[0, False,
-                           {u'function': False, u'city': Ville_Liv, u'name': Nom_Livraison + " " + Prenom_Livraison, u'zip': CP_Livraison, u'title': False,
-                            u'mobile': Portable_Livraison, u'street2': Ad_Liv_2, u'country_id': code_Code_pays_Livraison.id, u'comment': False,
-                            u'phone': Telephone_Livraison, u'street': Ad_Liv_1, u'customer': Commentaire_Livraison,
-                            u'supplier': False, u'state_id': False, u'type': u'delivery', u'email': E_mail_Livraison,
+                           {u'function': False, u'city': ville_liv_88, u'name': nom_livraison_83 + " " + pr_nom_livraison_84, u'zip': cp_livraison_87, u'title': False,
+                            u'mobile': portable_livraison_92, u'street2': ad_liv_2_86, u'country_id': code_pays_Livraison.id, u'comment': False,
+                            u'phone': t_l_phone_livraison_90, u'street': ad_liv_1_85, u'customer': commentaire_livraison_94,
+                            u'supplier': False, u'state_id': False, u'type': u'delivery', u'email': e_mail_livraison_93,
                             u'lang': u'fr_FR'}]], #adress liv
-            'phone': Telephone,
+            'phone': t_l_phone_10,
             # 'user_ids': [],
             'active': True,
             'lang': 'fr_FR',
             # 'property_stock_supplier': 8,
-            'name': Nom_1 + " " + Nom_2,  # nom
-            'mobile': Portable,
+            'name': nom_1_2 + " " + nom_2_3,  # nom
+            'mobile': portable_11,
             # 'ref': N_Client, #N_Client
             # 'property_account_payable_id': 292,
             'state_id': False,
             'category_id': [],
             'importe': True,
+            'type_client': type_de_client_26,
         }
         # client = self.env['res.partner'].search([('ref','=',self.N_Client)])
         # if client:
         #   _logger.error("Ce Client existe déjà !")
         # else:
-        self.env['res.partner'].create(valuesc)
+
+        obj_partner = self.env['res.partner'].search([('N_Client', '=', _n_client_0)])
+        print "obj_partner"
+        print obj_partner
+        if obj_partner:
+            obj_partner.child_ids.unlink()
+            obj_partner.write(valuesc)
+        else:
+            self.env['res.partner'].create(valuesc)
+        return record
+
+    @api.multi
+    def write(self, values):
+        print "values"
+        print values
+
+        record = super(TmpClient, self).write(values)
+
+        print "values"
+        print values
+
+        nom_1_2 = self.is_empty_char(values.get('nom_1_2'))
+        nom_2_3 = self.is_empty_char(values.get('nom_2_3'))
+        ville_8 = self.is_empty_char(values.get('ville_8'))
+        code_postal_7 = self.is_empty_char(values.get('code_postal_7'))
+        e_mail_13 = self.is_empty_char(values.get('e_mail_13'))
+        url_14 = self.is_empty_char(values.get('url_14'))
+        fax_12 = self.is_empty_char(values.get('fax_12'))
+        t_l_phone_10 = self.is_empty_char(values.get('t_l_phone_10'))
+        portable_11 = self.is_empty_char(values.get('portable_11'))
+        adresse_1_5 = self.is_empty_char(values.get('adresse_1_5'))
+        adresse_2_6 = self.is_empty_char(values.get('adresse_2_6'))
+        _n_client_0 = self.is_empty_char(values.get('_n_client_0'))
+        type_de_client_26 = self.is_empty_char(values.get('type_de_client_26'))
+
+        # livraison
+
+        nom_livraison_83 = self.is_empty_char(values.get('nom_livraison_83'))
+        pr_nom_livraison_84 = self.is_empty_char(values.get('pr_nom_livraison_84'))
+        ad_liv_1_85 = self.is_empty_char(values.get('ad_liv_1_85'))
+        ad_liv_2_86 = self.is_empty_char(values.get('ad_liv_2_86'))
+        cp_livraison_87 = self.is_empty_char(values.get('cp_livraison_87'))
+        ville_liv_88 = self.is_empty_char(values.get('ville_liv_88'))
+        code_pays_livraison_89 = self.is_empty_char(values.get('code_pays_livraison_89'))
+        pays_9 = self.is_empty_char(values.get('pays_9'))
+        t_l_phone_livraison_90 = self.is_empty_char(values.get('t_l_phone_livraison_90'))
+        fax_livraison_91 = self.is_empty_char(values.get('fax_livraison_91'))
+        portable_livraison_92 = self.is_empty_char(values.get('portable_livraison_92'))
+        e_mail_livraison_93 = self.is_empty_char(values.get('e_mail_livraison_93'))
+        commentaire_livraison_94 = self.is_empty_char(values.get('commentaire_livraison_94'))
+        code_pays = self.env['res.country'].search([('code', '=', self.get_pays(pays_9))])
+        code_pays_Livraison = self.env['res.country'].search([('code', '=', self.get_pays(code_pays_livraison_89))])
+
+        valuesc = {  # 'comment': False,
+            # 'function': False,
+            'notify_email': 'always',
+            # 'message_follower_ids': False,
+            'company_type': 'person',
+            'N_Client': _n_client_0,  # N_Client
+            # 'property_stock_customer': 9,
+            'street': adresse_1_5,  # Adresse_1
+            # 'property_account_receivable_id': 227,
+            # 'property_account_position_id': False,
+            # 'property_payment_term_id': False,
+            'city': ville_8,
+            'country_id': code_pays.id,
+            # 'user_id': False,
+            # 'opt_out': False,
+            'zip': code_postal_7,  # Code_Postal
+            # 'title': False,
+            # 'company_id': 1,
+            # 'message_ids': False,
+            # 'parent_id': False,
+            # 'supplier': False,
+            # 'property_supplier_payment_term_id': False,
+            'type': 'contact',
+            'email': e_mail_13,  # E_mail
+            # 'is_company': False,
+            'website': url_14,  # v
+            'customer': True,
+            'fax': fax_12,  # FAX
+            'street2': adresse_2_6,  # Adresse_2
+            'child_ids': [[0, False,
+                           {u'function': False, u'city': ville_liv_88,
+                            u'name': nom_livraison_83 + " " + pr_nom_livraison_84, u'zip': cp_livraison_87,
+                            u'title': False,
+                            u'mobile': portable_livraison_92, u'street2': ad_liv_2_86,
+                            u'country_id': code_pays_Livraison.id, u'comment': False,
+                            u'phone': t_l_phone_livraison_90, u'street': ad_liv_1_85,
+                            u'customer': commentaire_livraison_94,
+                            u'supplier': False, u'state_id': False, u'type': u'delivery', u'email': e_mail_livraison_93,
+                            u'lang': u'fr_FR'}]],  # adress liv
+            'phone': t_l_phone_10,
+            # 'user_ids': [],
+            'active': True,
+            'lang': 'fr_FR',
+            # 'property_stock_supplier': 8,
+            'name': nom_1_2 + " " + nom_2_3,  # nom
+            'mobile': portable_11,
+            # 'ref': N_Client, #N_Client
+            # 'property_account_payable_id': 292,
+            'state_id': False,
+            'category_id': [],
+            'importe': True,
+            'type_client': type_de_client_26,
+        }
+
+        print "valuesc"
+        print valuesc
+
+        obj_partner = self.env['res.partner'].search([('N_Client', '=', _n_client_0)])
+        print "obj_partner"
+        print obj_partner
+        if obj_partner:
+            obj_partner.child_ids.unlink()
+            obj_partner.write(valuesc)
+        else:
+            self.env['res.partner'].create(valuesc)
+
+        # client = self.env['res.partner'].search([('ref','=',self.N_Client)])
+        # if client:
+        #   _logger.error("Ce Client existe déjà !")
+        # else:
+        #self.env['res.partner'].write(valuesc)
         return record
 
 
