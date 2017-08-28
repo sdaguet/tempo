@@ -293,7 +293,7 @@ class TmpArticle(models.Model):
                 # 'uom_id': 1,
                 # 'property_account_income_id': False,
                 # 'description_purchase': False,
-                'N_Article':n_article_0,  # N_Article
+                'N_Article': n_article_0,  # N_Article
                 # 'message_ids': False,
                 'sale_ok': True,
                 # 'item_ids': [],
@@ -345,7 +345,6 @@ class TmpArticle(models.Model):
 
             #pour les attributs
             obj_template = self.env['product.template'].search([('libelle_commercial','=',libell_commercial_20)])
-
 
 			#logger ajouté
 			#print "obj_template"

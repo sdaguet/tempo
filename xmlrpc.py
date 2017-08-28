@@ -12,12 +12,12 @@ sys.setdefaultencoding('utf-8')
 
 log_report = defaultdict(lambda: 0)
 
-url = 'http://localhost:8969'
+url = 'http://localhost:8069'
 xmlrpctxt = '/xmlrpc/'
-#db = 'preprodputhod'
-db = 'test2'
+db = 'preprodputhod'
+#db = 'preprod'
 username = 'admin'
-password = 'admin'
+password = 'qualifputhod1406'
 
 models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
@@ -42,13 +42,13 @@ clients = models.execute_kw(
 for client in clients:
     print client
 
-for tva_file in ["client-test.csv"]:
+for tva_file in ["Clients.csv"]:
     f = open(tva_file, 'rt')
     i = 0
     rez = []
 
     reader = csv.reader(f, dialect='pointvirg')
-    if tva_file == 'client-test.csv' :
+    if tva_file == 'Clients.csv' :
         modl = 'tmpclient'
         modl_std = 'res.partner'
         fild_cxt = 'N_Client'
@@ -88,6 +88,7 @@ for tva_file in ["client-test.csv"]:
                     modl_std, 'search_read',
                     [[(fild_cxt, '=', row[0])]],{'limit': 10,'fields': ['id']})
                 print "ici search"
+                print fild_cxt
                 if filds_exist:
                     filds_exist_tmp = models.execute_kw(
                         db, uid, password,
