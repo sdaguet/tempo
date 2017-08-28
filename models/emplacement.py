@@ -10,6 +10,9 @@ class emplacement(models.Model):
 
     name = fields.Char('Nom')
     chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
+    longueur = fields.Char('Longueur')
+    densite = fields.Char('Densité')
+    product_ids = fields.Many2many('product.product', string="Produits")
 
 
 class product_emplacement(models.Model):
@@ -17,4 +20,4 @@ class product_emplacement(models.Model):
 
     product_id = fields.Many2one('product.product', string='Produit', index=True, track_visibility='onchange')
     emplacement_id = fields.Many2one('emplacement', string='Emplacement', index=True, track_visibility='onchange')
-    name = fields.Char('Nom', related='emplacement_id.name')
+    name = fields.Char('Nom', related='product_id.name')

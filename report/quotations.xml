@@ -9,7 +9,7 @@
                 report_type="qweb-pdf"
                 file="darb_puthod.report_entretien"
                 name="darb_puthod.report_entretien"
-        /> 
+        />
          
 		<report
                 id="sale_report_quotation_email"
@@ -18,6 +18,15 @@
                 report_type="qweb-pdf"
                 file="darb_puthod.report_quotation_email"
                 name="darb_puthod.report_quotation_email"
+        />
+         
+		<report
+                id="liasse_preparation_report"
+                string="Liasse de préparation"
+                model="liasse.preparation"
+                report_type="qweb-pdf"
+                file="darb_puthod.report_liasse_preparation"
+                name="darb_puthod.report_liasse_preparation"
         />
 
     </data>

@@ -11,6 +11,9 @@
         			<group>
 			          <field name="name"/>
 			          <field name="chantier_id"/>
+			          <field name="longueur"/>
+			          <field name="densite"/>
+			          <field name="product_ids" widget="many2many_tags"/>
         			</group>
         		</form>
       		</field>
@@ -23,6 +26,8 @@
         		<tree>
 			          <field name="name"/>
 			          <field name="chantier_id"/>
+			          <field name="longueur"/>
+			          <field name="densite"/>
         		</tree>
       		</field>
 		</record>

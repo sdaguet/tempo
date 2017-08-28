@@ -60,6 +60,8 @@
         'views/report_productlabel.xml',
         'views/puthod_product_report.xml',
         'views/report_saleorder_mail.xml',
+        'views/liasse_preparation.xml',
+        'views/report_liasse_preparation.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
