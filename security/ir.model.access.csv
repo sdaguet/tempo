@@ -80,7 +80,9 @@ access_equipe_directeur,Directeur.equipe,model_equipe,group_directeur,1,1,1,1
 access_calendar_event_directeur,Directeur.calendar.event,calendar.model_calendar_event,group_directeur,1,1,1,1
 access_res_partner_directeur,Directeur.res.partner,model_res_partner,group_directeur,1,0,0,0
 access_sale_order_directeur,Directeur.sale.order,sale.model_sale_order,group_directeur,1,1,1,1
-access_product_emplacement_directeur,Directeur.product.emplacement,model_product_emplacement,group_directeur,1,1,1,1
+access_product_emplacement_directeur,Directeur.product.emplacement,model_product_emplacement,group_directeur,0,0,0,0
+access_product_product_directeur,Directeur.product.product,product.model_product_product,group_directeur,1,0,0,0
+access_product_template_directeur,Directeur.product.template,product.model_product_template,group_directeur,1,0,0,0
 access_hr_employee_directeur,Directeur.hr.employee,model_hr_employee,group_directeur,1,1,0,0
 access_hr_attendance_directeur,Directeur.hr.attendance,hr_attendance.model_hr_attendance,group_directeur,1,1,0,0
 
@@ -91,7 +93,7 @@ access_calendar_event_compta,compta.calendar.event,calendar.model_calendar_event
 access_res_partner_compta,compta.res.partner,model_res_partner,group_compta,1,1,1,1
 access_sale_order_compta,compta.sale.order,sale.model_sale_order,group_compta,1,1,0,0
 access_sale_order_line_compta,compta.sale.order.line,sale.model_sale_order_line,group_compta,1,1,0,0
-access_product_emplacement_compta,compta.product.emplacement,model_product_emplacement,group_compta,1,1,0,0
+access_product_emplacement_compta,compta.product.emplacement,model_product_emplacement,group_compta,0,0,0,0
 access_hr_employee_compta,compta.hr.employee,model_hr_employee,group_compta,1,1,1,1
 access_hr_attendance_compta,compta.hr.attendance,hr_attendance.model_hr_attendance,group_compta,1,1,1,1
 access_hr_action_reason_compta,compta.hr.action.reason,hr_attendance.model_hr_action_reason,group_compta,1,1,1,1

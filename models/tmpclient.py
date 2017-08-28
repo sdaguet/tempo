@@ -8,11 +8,11 @@ _logger = logging.getLogger(__name__)
 
 class TmpClient(models.Model):
     _name = 'tmpclient'
-    _rec_name = '_n_client_0'
+    _rec_name = 'n_client_0'
 
-    _ge_du_jardin_24 = fields.Char("âge du jardin")
-    _ge_du_jardin_25 = fields.Char("(âge du jardin)")
-    _n_client_0 = fields.Char("N° Client")
+    age_du_jardin_24 = fields.Char("âge du jardin")
+    age_du_jardin_25 = fields.Char("(âge du jardin)")
+    n_client_0 = fields.Char("N° Client")
     civilit_1 = fields.Char("Civilité")
     nom_1_2 = fields.Char("Nom 1")
     nom_2_3 = fields.Char("Nom 2")
@@ -37,7 +37,7 @@ class TmpClient(models.Model):
     crit_re_4_22 = fields.Char("Critère 4")
     _crit_re_4_23 = fields.Char("(Critère 4)")
     type_de_client_26 = fields.Char("type de client")
-    _type_de_client_27 = fields.Char("(type de client)")
+    type_de_client_27 = fields.Char("(type de client)")
     code_repr_sentant_28 = fields.Char("Code Représentant")
     code_etiquette_29 = fields.Char("Code Etiquette")
     mode_de_r_glement_30 = fields.Char("Mode de Règlement")

@@ -126,7 +126,7 @@
                 <form string="Client">
                     <sheet>
                         <group>
-                            <field name="_n_client_0"/>
+                            <field name="n_client_0"/>
                             <field name="civilit_1"/>
                             <field name="nom_1_2"/>
                             <field name="nom_2_3"/>
@@ -150,10 +150,10 @@
                             <field name="_surface_du_jardin_21"/>
                             <field name="crit_re_4_22"/>
                             <field name="_crit_re_4_23"/>
-                            <field name="_ge_du_jardin_24"/>
-                            <field name="_ge_du_jardin_25"/>
+                            <field name="age_du_jardin_24"/>
+                            <field name="age_du_jardin_25"/>
                             <field name="type_de_client_26"/>
-                            <field name="_type_de_client_27"/>
+                            <field name="type_de_client_27"/>
                             <field name="code_repr_sentant_28"/>
                             <field name="code_etiquette_29"/>
                             <field name="mode_de_r_glement_30"/>
