@@ -140,6 +140,10 @@
             <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_preparateur')),(4, ref('group_directeur')),(4, ref('group_compta')),(4, ref('group_administration'))]"
                    name="groups_id"/>
         </record>
+        <record model="ir.ui.menu" id="darb_puthod.liasse_preparation">
+            <field eval="[(4, ref('group_chef_chantier')),(4, ref('group_directeur'))]"
+                   name="groups_id"/>
+        </record>
 
         <record model="ir.ui.menu" id="sale.menu_sale_order">
             <field eval="[(4, ref('group_compta'))]" name="groups_id"/>

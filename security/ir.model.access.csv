@@ -196,3 +196,10 @@ access_fiche_chantier_scloture_administration,administration.fiche.chantier.sclo
 access_fiche_chantier_vehicle_administration,administration.fiche.chantier.vehicle.administration,model_fiche_chantier_vehicle,group_administration,1,1,1,1
 access_fiche_chantier_materiel_administration,administration.fiche.chantier.materiel.administration,model_fiche_chantier_materiel,group_administration,1,1,1,1
 
+access_liasse_chantier_chef,chef.chantier.liasse,model_liasse_preparation,group_chef_chantier,1,1,1,1
+access_liasse_lines_chantier_chef,chef.chantier.liasse.lines,model_liasse_preparation_line,group_chef_chantier,1,1,1,1
+access_liasse_directeur,liasse.directeur,model_liasse_preparation,group_directeur,1,0,0,0
+access_liasse_directeur.line,liasse.directeur.line,model_liasse_preparation_line,group_directeur,1,0,0,0
+
+access_emplacement_chantier_chef,chef.chantier.emplacement,model_emplacement,group_chef_chantier,1,1,1,1
+access_emplacement_directeur,emplacement.directeur,model_emplacement,group_directeur,1,1,1,1
