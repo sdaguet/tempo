@@ -12,8 +12,8 @@ class liasse_preparation(models.Model):
     date = fields.Date('Date')
     partner_id = fields.Many2one('res.partner', string='Client')
     lines = fields.One2many('liasse.preparation.line', 'liasse_id', string="Lines")
-    partner_invoice_id = fields.Many2one('res.partner', string='Invoice Address', readonly=True, required=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, help="Invoice address for current sales order.")
-    partner_shipping_id = fields.Many2one('res.partner', string='Delivery Address', readonly=True, required=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, help="Delivery address for current sales order.")
+    partner_invoice_id = fields.Many2one('res.partner', string='Adresse de Facturation')
+    partner_shipping_id = fields.Many2one('res.partner', string='Adresse de livraison')
 
 
     @api.multi
@@ -37,6 +37,20 @@ class liasse_preparation(models.Model):
             'partner_shipping_id': addr['delivery'],
         }
         self.update(values)
+
+    @api.one
+    def getallemplacementgroups(self):
+        datas = {}
+        res = []
+        for obj in self.lines.search([('liasse_id','=', self.id)]):
+            key = obj.emplacement_id
+            if key in datas:
+                datas[key].append(obj)
+            else:
+                datas[key] = [obj]
+        res.append(datas)
+        _logger.info("Current REZZZZZZZZZZZZZZZZZZZZZ = " + str(datas))
+        return datas
 
 
 class liasse_preparation_line(models.Model):

@@ -28,25 +28,68 @@
 			                    <th width="2%" class="text-right" style="border:thin solid #323232;font-size: 11">Emplacement</th>
 			                    <th width="40%" style="border:thin solid #323232;font-size: 11">Désignation</th>
 			                    <th class="text-center" style="border:thin solid #323232;font-size: 11">QTY</th>
+			                    <th width="1%" class="text-right" style="border:thin solid #323232;font-size: 11"></th>
 			                    <th class="text-center" style="border:thin solid #323232;font-size: 11">Nbre Etiq</th>
+			                    <th width="1%" class="text-right" style="border:thin solid #323232;font-size: 11"></th>
+			                    <th width="20%" style="border:thin solid #323232;font-size: 11"></th>
 			                </tr>
 		               </thead>
 		               <tbody class="sale_tbody">
-                            <t t-foreach="doc.lines" t-as="l">
+                            <t t-foreach="doc.getallemplacementgroups()[0]" t-as="emp">
                                 <tr align="center">
-                                    <td align="center">
-                                    	<span t-field="l.emplacement_id"/>
-                                    </td>
-                                    <td align="center">
-                                    	<span t-field="l.product_id"/>
-                                    </td>
-                                    <td align="center">
-                                    	<span t-field="l.qty"/>
-                                    </td>
-                                    <td align="center">
-                                    	<span t-field="l.nbr_etiq"/>
+                                    <td align="center" colspan="7">
+                                    	<t t-esc="emp.name"/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td colspan="7">
+                                    	<t t-esc="emp.longueur"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">
+                                    	<t t-esc="emp.densite"/>
+                                    </td>
+                                </tr>
+                                <t t-foreach="emp_value" t-as="val">
+	                                <tr t-if="val.product_id.categ_id.id == %(darb_puthod.product_category_vigitaux)d">
+	                                	<td></td>
+	                                    <td>
+	                                    	<t t-esc="val.product_id.name"/>
+	                                    </td>
+	                                    <td>
+	                                    	<t t-esc="val.qty"/>
+	                                    </td>
+	                                	<td></td>
+	                                    <td>
+	                                    	<t t-esc="val.nbr_etiq"/>
+	                                    </td>
+	                                	<td></td>
+	                                	<td></td>
+	                                </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="7">
+                                    	Fourniture:
+                                    </td>
+                                </tr>
+                                <t t-foreach="emp_value" t-as="val">
+	                                <tr t-if="val.product_id.categ_id.id != %(darb_puthod.product_category_vigitaux)d">
+	                                	<td></td>
+	                                    <td>
+	                                    	<t t-esc="val.product_id.name"/>
+	                                    </td>
+	                                    <td>
+	                                    	<t t-esc="val.qty"/>
+	                                    </td>
+	                                	<td></td>
+	                                    <td>
+	                                    	<t t-esc="val.nbr_etiq"/>
+	                                    </td>
+	                                	<td></td>
+	                                	<td></td>
+	                                </tr>
+                                </t>
                             </t>
 		               </tbody>
 	               </table>
