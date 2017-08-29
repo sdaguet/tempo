@@ -46,7 +46,7 @@ clients = models.execute_kw(
 for client in clients:
     print client
 
-for tva_file in ["Articles.csv"]:
+for tva_file in ["Articles-Famille.csv"]:
     f = open(tva_file, 'rt')
     i = 0
     rez = []
@@ -85,8 +85,9 @@ for tva_file in ["Articles.csv"]:
                 for k in range(min(len(keys), len(row))):
                     obj[keys[k]] = row[k]
                 rez.append(obj)
-                print "obj"
-                print obj
+                print "obj 'tmqprix_45' "
+                print obj['tmqprix_45']
+                #break
                 filds_exist = models.execute_kw(
                     db, uid, password,
                     modl_std, 'search_read',
@@ -100,14 +101,16 @@ for tva_file in ["Articles.csv"]:
                         [[(fild_tmp_cxt, '=', row[0])]], {'limit': 10, 'fields': ['id']})
                     if filds_exist_tmp :
                         print "ici update"
-                        models.execute_kw(db, uid, password, modl, 'write', [[filds_exist_tmp[0]['id']], obj])
+                        models.execute_kw(db, uid, password, modl, 'write', [[filds_exist_tmp[0]['id']], {'prix_etiquette_24':obj['tmqprix_45']}])
                         print "ici update after"
+                        print "ici update 2"
+                        models.execute_kw(db, uid, password, 'product.product', 'write', [[filds_exist[0]['id']], {'lst_price':float(obj['tmqprix_45'].replace(",", "."))}])
+                        print "ici update after 2"
+
                     else:
-                        id = models.execute_kw(db, uid, password, modl, 'create', [obj])
+                        print "ici Rien du tt"
                 else:
-                    print "ici create"
-                    id = models.execute_kw(db, uid, password, modl, 'create', [obj])
-                    print "ici create"
+                    print "ici Rien"
 
             except Exception as ex:
                 print 'Error in FILE : ' + tva_file

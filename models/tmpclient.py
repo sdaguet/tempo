@@ -428,7 +428,7 @@ class TmpClient(models.Model):
         portable_11 = self.is_empty_char(values.get('portable_11'))
         adresse_1_5 = self.is_empty_char(values.get('adresse_1_5'))
         adresse_2_6 = self.is_empty_char(values.get('adresse_2_6'))
-        _n_client_0 = self.is_empty_char(values.get('_n_client_0'))
+        n_client_0 = self.is_empty_char(values.get('n_client_0'))
         type_de_client_26 = self.is_empty_char(values.get('type_de_client_26'))
 
         #livraison
@@ -456,7 +456,7 @@ class TmpClient(models.Model):
             'notify_email': 'always',
             # 'message_follower_ids': False,
             'company_type': 'person',
-            'N_Client': _n_client_0,  # N_Client
+            'N_Client': n_client_0,  # N_Client
             # 'property_stock_customer': 9,
             'street': adresse_1_5,  # Adresse_1
             # 'property_account_receivable_id': 227,
@@ -505,9 +505,11 @@ class TmpClient(models.Model):
         #   _logger.error("Ce Client existe déjà !")
         # else:
 
-        obj_partner = self.env['res.partner'].search([('N_Client', '=', _n_client_0)])
-        print "obj_partner"
+        obj_partner = self.env['res.partner'].search([('N_Client', '=', n_client_0)])
+        print "obj_partner mmmm"
         print obj_partner
+        print "n_client_0"
+        print n_client_0
         if obj_partner:
             obj_partner.child_ids.unlink()
             obj_partner.write(valuesc)
@@ -536,7 +538,7 @@ class TmpClient(models.Model):
         portable_11 = self.is_empty_char(values.get('portable_11'))
         adresse_1_5 = self.is_empty_char(values.get('adresse_1_5'))
         adresse_2_6 = self.is_empty_char(values.get('adresse_2_6'))
-        _n_client_0 = self.is_empty_char(values.get('_n_client_0'))
+        n_client_0 = self.is_empty_char(values.get('n_client_0'))
         type_de_client_26 = self.is_empty_char(values.get('type_de_client_26'))
 
         # livraison
@@ -562,7 +564,7 @@ class TmpClient(models.Model):
             'notify_email': 'always',
             # 'message_follower_ids': False,
             'company_type': 'person',
-            'N_Client': _n_client_0,  # N_Client
+            'N_Client': n_client_0,  # N_Client
             # 'property_stock_customer': 9,
             'street': adresse_1_5,  # Adresse_1
             # 'property_account_receivable_id': 227,
@@ -614,8 +616,8 @@ class TmpClient(models.Model):
         print "valuesc"
         print valuesc
 
-        obj_partner = self.env['res.partner'].search([('N_Client', '=', _n_client_0)])
-        print "obj_partner"
+        obj_partner = self.env['res.partner'].search([('N_Client', '=', n_client_0)])
+        print "obj_partner write"
         print obj_partner
         if obj_partner:
             obj_partner.child_ids.unlink()
