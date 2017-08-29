@@ -18,13 +18,14 @@
 						<group>
 							<field name="date"/>
 							<field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options="{&quot;always_reload&quot;: True}"/>
+							<field name="chantier_id"/>
 							<field name="partner_invoice_id"/>
 							<field name="partner_shipping_id"/>
 						</group>
                         <group>
                         	<field name="lines">
                         		<tree editable="bottom">
-		                            <field name="emplacement_id"/>
+		                            <field name="emplacement_id" domain="[('chantier_id','=',parent.chantier_id)]"/>
 		                            <field name="product_id"/>
 		                            <field name="qty"/>
 		                            <field name="nbr_etiq"/>

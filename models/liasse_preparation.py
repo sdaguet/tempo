@@ -12,6 +12,7 @@ class liasse_preparation(models.Model):
     date = fields.Date('Date')
     partner_id = fields.Many2one('res.partner', string='Client')
     lines = fields.One2many('liasse.preparation.line', 'liasse_id', string="Lines")
+    chantier_id = fields.Many2one('chantier', string='Chantier', index=True, track_visibility='onchange')
     partner_invoice_id = fields.Many2one('res.partner', string='Adresse de Facturation')
     partner_shipping_id = fields.Many2one('res.partner', string='Adresse de livraison')
 
@@ -49,7 +50,6 @@ class liasse_preparation(models.Model):
             else:
                 datas[key] = [obj]
         res.append(datas)
-        _logger.info("Current REZZZZZZZZZZZZZZZZZZZZZ = " + str(datas))
         return datas
 
 
