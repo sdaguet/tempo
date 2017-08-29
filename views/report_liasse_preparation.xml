@@ -22,72 +22,72 @@
 	                        </div>
 	                    </div>
 	                </div>
-                	<table style="border-top:thin solid #323232;page-break-after:always;" class="table table-condensed">
+                	<table style="border:1px solid #323232;font-size: 11;page-break-after:always;" class="table table-condensed">
 		                <thead>
 			                <tr style="background-color:#D8D8D8;">
-			                    <th width="2%" class="text-right" style="border:thin solid #323232;font-size: 11">Emplacement</th>
-			                    <th width="40%" style="border:thin solid #323232;font-size: 11">Désignation</th>
-			                    <th class="text-center" style="border:thin solid #323232;font-size: 11">QTY</th>
-			                    <th width="1%" class="text-right" style="border:thin solid #323232;font-size: 11"></th>
-			                    <th class="text-center" style="border:thin solid #323232;font-size: 11">Nbre Etiq</th>
-			                    <th width="1%" class="text-right" style="border:thin solid #323232;font-size: 11"></th>
-			                    <th width="20%" style="border:thin solid #323232;font-size: 11"></th>
+			                    <th width="10%" style="border:1px solid #323232" class="text-right">Emplacement</th>
+			                    <th width="40%" style="border:1px solid #323232">Désignation</th>
+			                    <th class="text-center" style="border:1px solid #323232">QTY</th>
+			                    <th width="5%" class="text-right" style="border:1px solid #323232"></th>
+			                    <th class="text-center" style="border:1px solid #323232">Nbre Etiq</th>
+			                    <th width="5%" class="text-right" style="border:1px solid #323232"></th>
+			                    <th width="20%" style="border:1px solid #323232"></th>
 			                </tr>
 		               </thead>
 		               <tbody class="sale_tbody">
                             <t t-foreach="doc.getallemplacementgroups()[0]" t-as="emp">
-                                <tr align="center">
-                                    <td align="center" colspan="7">
+                                <tr style="background-color:#CAEDC4;">
+                                    <td style="padding-left:10%;border:1px solid #323232" colspan="7">
                                     	<t t-esc="emp.name"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td colspan="7">
-                                    	<t t-esc="emp.longueur"/>
+                                <tr style="background-color:#A9EAF6;">
+                                    <td style="padding-left:4%;border:1px solid #323232" colspan="7">
+                                    	Longueur: <t t-esc="emp.longueur"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td colspan="7">
-                                    	<t t-esc="emp.densite"/>
+                                <tr style="background-color:#A9EAF6;">
+                                    <td style="padding-left:4%;border:1px solid #323232" colspan="7">
+                                    	Densité: <t t-esc="emp.densite"/>
                                     </td>
                                 </tr>
                                 <t t-foreach="emp_value" t-as="val">
 	                                <tr t-if="val.product_id.categ_id.id == %(darb_puthod.product_category_vigitaux)d">
-	                                	<td></td>
-	                                    <td>
+	                                	<td style="border:1px solid #323232"></td>
+	                                    <td style="border:1px solid #323232">
 	                                    	<t t-esc="val.product_id.name"/>
 	                                    </td>
-	                                    <td>
+	                                    <td style="border:1px solid #323232">
 	                                    	<t t-esc="val.qty"/>
 	                                    </td>
-	                                	<td></td>
-	                                    <td>
+	                                	<td style="border:1px solid #323232"></td>
+	                                    <td style="border:1px solid #323232">
 	                                    	<t t-esc="val.nbr_etiq"/>
 	                                    </td>
-	                                	<td></td>
-	                                	<td></td>
+	                                	<td style="border:1px solid #323232"></td>
+	                                	<td style="border:1px solid #323232"></td>
 	                                </tr>
                                 </t>
-                                <tr>
-                                    <td colspan="7">
+                                <tr style="background-color:#A9EAF6;">
+                                    <td style="padding-left:4%;border:1px solid #323232" colspan="7">
                                     	Fourniture:
                                     </td>
                                 </tr>
                                 <t t-foreach="emp_value" t-as="val">
 	                                <tr t-if="val.product_id.categ_id.id != %(darb_puthod.product_category_vigitaux)d">
-	                                	<td></td>
-	                                    <td>
+	                                	<td style="border:1px solid #323232"></td>
+	                                    <td style="border:1px solid #323232">
 	                                    	<t t-esc="val.product_id.name"/>
 	                                    </td>
-	                                    <td>
+	                                    <td style="border:1px solid #323232">
 	                                    	<t t-esc="val.qty"/>
 	                                    </td>
-	                                	<td></td>
-	                                    <td>
+	                                	<td style="border:1px solid #323232"></td>
+	                                    <td style="border:1px solid #323232">
 	                                    	<t t-esc="val.nbr_etiq"/>
 	                                    </td>
-	                                	<td></td>
-	                                	<td></td>
+	                                	<td style="border:1px solid #323232"></td>
+	                                	<td style="border:1px solid #323232"></td>
 	                                </tr>
                                 </t>
                             </t>
