@@ -8,5 +8,13 @@
             report_type="qweb-pdf"
             name="darb_puthod.report_productlabel"
             file="darb_puthod.report_productlabel"/>
+
+        <report
+            id="report_liasse_products_labels"
+            string="Préparation étiquettes"
+            model="liasse.preparation"
+            report_type="qweb-pdf"
+            name="darb_puthod.report_liasse_productlabel"
+            file="darb_puthod.report_liasse_productlabel"/>
     </data>
 </openerp>

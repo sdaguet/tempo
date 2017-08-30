@@ -31,5 +31,43 @@
         </div>
     </t>
 </template>
+
+
+<template id="report_liasse_productlabel">
+    <t t-call="report.html_container">
+        <div class="page">
+            <t t-foreach="docs" t-as="doc">
+                <div class="oe_structure">
+                    <table style="margin-left:20%; width:80%">
+                        <tbody>
+        					<t t-foreach="doc.lines" t-as="l">
+                            <tr>
+                                <td>
+                                    <img t-if="l.product_id.company_id.logo" t-att-src="'data:image/png;base64,%s' % l.product_id.company_id.logo" style="max-height: 45px;"/>
+                                </td>
+                                <td>
+                                    <strong t-field="l.product_id.name"/>
+                                </td>
+                                <t t-foreach="l.product_id.attribute_value_ids" t-as="var">
+	                                <td>
+	                                    <strong t-field="var.name"/>
+	                                </td>
+                                </t>
+                                <td>
+                                    <strong t-field="l.product_id.qrcode"/>
+                                </td>
+                                <td>
+                                    <strong t-field="l.emplacement_id.name"/>
+                                </td>
+                            </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </div>
+    </t>
+</template>
+
 </data>
 </openerp>
