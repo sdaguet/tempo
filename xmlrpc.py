@@ -46,12 +46,13 @@ clients = models.execute_kw(
 for client in clients:
     print client
 
-for tva_file in ["Articles.csv"]:
+for tva_file in ["art.csv"]:
     f = open(tva_file, 'rt')
     i = 0
     rez = []
 
     reader = csv.reader(f, dialect='pointvirg')
+
     if tva_file == 'Clients.csv' :
         modl = 'tmpclient'
         modl_std = 'res.partner'
@@ -78,6 +79,7 @@ for tva_file in ["Articles.csv"]:
                 ks = ks.replace("__","_")
                 keys[ki] = ks
                 ki += 1
+            print "keys"
             print keys
         else:
             try:
@@ -87,6 +89,9 @@ for tva_file in ["Articles.csv"]:
                 rez.append(obj)
                 print "obj"
                 print obj
+
+                print "row"
+                print row[0]
                 filds_exist = models.execute_kw(
                     db, uid, password,
                     modl_std, 'search_read',
