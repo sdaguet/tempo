@@ -151,7 +151,22 @@ class product(models.Model):
     marque_savoie = fields.Boolean(string="Marque Savoie",  )
     name_puthod = fields.Char(string="Nom complet", required=False)
     compute_famille_p = fields.Char(string="_compute_famille_p", compute='_compute_famille_p')
+    active = fields.Boolean('Active', default = True,readonly = 0,help="If unchecked, it will allow you to hide the product without removing it.", compute ='_compute_actif')
 
+    @api.multi
+    @api.depends('barcode','active','importe')
+    def _compute_actif(self):
+        bc = self.barcode
+        print "barcode"
+        print bc
+        imp = self.importe
+        print "imp"
+        print imp
+        if imp:
+            if bc == False or bc == '' or bc == ' ' :
+                self.active = False
+            else:
+                self.active = True
 
     @api.multi
     @api.depends('name_puthod','name')

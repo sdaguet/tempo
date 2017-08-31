@@ -395,6 +395,7 @@ class TmpClient(models.Model):
             'AGO': 'AO',
             'AFG': 'AF',
             'ABW': 'AW',
+            '':'',
 
         }[pays]
 

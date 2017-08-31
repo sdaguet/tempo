@@ -356,6 +356,7 @@ class TmpArticle(models.Model):
 
             if obj_template.id :
                 name = libell_commercial_20 + " " + _taille_11 + " - " + nom_fran_ais_21
+
                 for al in obj_template.attribute_line_ids:
                     if al.attribute_id.id == xml_genre.id:
 						#logger_ajoutéf
@@ -442,8 +443,12 @@ class TmpArticle(models.Model):
                         al.value_ids = al.value_ids + value_fourn_principal[1]
                 obj_template.create_variant_ids()
                 record_product_last = obj_template.product_variant_ids.ids
-                lent = len(record_product_last)
-                last = record_product_last[lent - 1]
+
+                #testé et approuvé ! il faut bien prende the last one
+
+                #lent = len(record_product_last)
+                #last = record_product_last[lent - 1]
+                last = record_product_last[-1]
 
                 last_product = self.env['product.product'].browse(last)
 
@@ -502,6 +507,13 @@ class TmpArticle(models.Model):
                     }
 
                 last_product.write(valuespp)
+                obj_product = self.env['product.product'].search([('barcode','=',False),('importe','=',True)])
+                if obj_product:
+                    print "ici active not"
+                    for op in obj_product:
+                        print "oooooooooooooooooop"
+                        print op
+                        op.write({'active': False ,})
 
                 #on peut compute sur les valeurs concérné et fixer le n_article
 
