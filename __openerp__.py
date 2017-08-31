@@ -62,6 +62,7 @@
         'views/report_liasse_preparation.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/pricelist_view.xml',
     ],
     #'qweb': ['static/src/js/*.js'],
     # only loaded in demonstration mode
