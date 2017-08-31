@@ -6,22 +6,22 @@ import xml.etree.cElementTree as ET
 import csv
 from collections import defaultdict
 import xmlrpclib
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
 
 log_report = defaultdict(lambda: 0)
 
 url = 'http://localhost:8069'
-#url = 'http://localhost:8969'
+# url = 'http://localhost:8969'
 xmlrpctxt = '/xmlrpc/'
 db = 'preprodputhod'
 username = 'admin'
 password = 'qualifputhod1406'
 
-#db = 'test2'
-#username = 'admin'
-#password = 'admin'
+# db = 'test2'
+# username = 'admin'
+# password = 'admin'
 
 models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
@@ -41,26 +41,33 @@ clients = models.execute_kw(
         'property_account_receivable',
         'property_payment_term',
         'property_account_position']
-    })
+     })
+
+obj_ex = []
+obj_ex_n = []
 
 for client in clients:
     print client
 
-for tva_file in ["Articles-Famille.csv"]:
+for tva_file in ["Tarifs Famille 0.csv", "Tarifs Famille 1.csv", "Tarifs Famille 2.csv", "Tarifs Famille 3.csv",
+                 "Tarifs Famille 4.csv", "Tarifs Famille 5.csv", "Tarifs Famille 6.csv", "Tarifs Famille 7.csv",
+                 "Tarifs Famille 8.csv", "Tarifs Famille 9.csv", "Tarifs Fournitures.csv", "Tarifs OP SPE.csv",
+                 "Tarifs PRESTATIONS.csv", "Tarifs TOP.csv", "Tarifs TRANSPORT.csv", "Tarifs VIVACES.csv"]:
     f = open(tva_file, 'rt')
     i = 0
     rez = []
 
     reader = csv.reader(f, dialect='pointvirg')
-    if tva_file == 'Clients.csv' :
+    if tva_file == 'Clients.csv':
         modl = 'tmpclient'
         modl_std = 'res.partner'
         fild_cxt = 'N_Client'
         fild_tmp_cxt = 'n_client_0'
-    else :
+    else:
         modl = 'tmparticle'
         fild_cxt = 'n_article'
-        modl_std = 'product.product'
+        modl_std = 'product.template'
+        modl_std_template = 'product.template'
         fild_tmp_cxt = 'n_article_0'
 
     for row in reader:
@@ -72,10 +79,10 @@ for tva_file in ["Articles-Famille.csv"]:
             for ks in keys:
                 for ch in ks:
                     if ch not in alphabet:
-                        ks = ks.replace(ch ,"_")
+                        ks = ks.replace(ch, "_")
                 ks = ks.lower() + "_" + str(ki)
-                ks = ks.replace("___","_")
-                ks = ks.replace("__","_")
+                ks = ks.replace("___", "_")
+                ks = ks.replace("__", "_")
                 keys[ki] = ks
                 ki += 1
             print keys
@@ -87,14 +94,19 @@ for tva_file in ["Articles-Famille.csv"]:
                 rez.append(obj)
                 print "obj 'tmqprix_45' "
                 print obj['tmqprix_45']
-                #break
+                # break
                 filds_exist = models.execute_kw(
                     db, uid, password,
                     modl_std, 'search_read',
-                    [[(fild_cxt, '=', row[0])]],{'limit': 10,'fields': ['id']})
+                    [[(fild_cxt, '=', row[0])]], {'limit': 10, 'fields': ['id']})
                 print "ici search"
                 print filds_exist
+
                 if filds_exist:
+
+                    print "ici exist tva_file"
+                    print tva_file
+
                     filds_exist_tmp = models.execute_kw(
                         db, uid, password,
                         modl, 'search_read',
@@ -104,13 +116,42 @@ for tva_file in ["Articles-Famille.csv"]:
                         models.execute_kw(db, uid, password, modl, 'write', [[filds_exist_tmp[0]['id']], {'prix_etiquette_24':obj['tmqprix_45']}])
                         print "ici update after"
                         print "ici update 2"
-                        models.execute_kw(db, uid, password, 'product.product', 'write', [[filds_exist[0]['id']], {'lst_price':float(obj['tmqprix_45'].replace(",", "."))}])
+                        models.execute_kw(db, uid, password, 'product.template', 'write', [[filds_exist[0]['id']], {'list_price':float(obj['tmqprix_45'].replace(",", "."))}])
                         print "ici update after 2"
 
                     else:
+
                         print "ici Rien du tt"
+
+                    obj_ex.append(row[0])
+
+                    print "obj_ex exist"
+                    print obj_ex
+
+                    print "obj_len exist"
+                    print len(obj_ex)
                 else:
-                    print "ici Rien"
+                    print "tva_file"
+                    print tva_file
+                    obj_ex.append(row[0])
+
+                    print "obj_ex_n"
+                    print obj_ex_n
+
+                    print "obj_len"
+                    print len(obj_ex_n)
+
+                print "obj_ex_n"
+                print obj_ex_n
+
+                print "obj_len"
+                print len(obj_ex_n)
+
+                print "obj_ex exist"
+                print obj_ex
+
+                print "obj_len exist"
+                print len(obj_ex)
 
             except Exception as ex:
                 print 'Error in FILE : ' + tva_file

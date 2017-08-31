@@ -46,7 +46,7 @@ clients = models.execute_kw(
 for client in clients:
     print client
 
-for tva_file in ["art.csv"]:
+for tva_file in ["Clients.csv"]:
     f = open(tva_file, 'rt')
     i = 0
     rez = []

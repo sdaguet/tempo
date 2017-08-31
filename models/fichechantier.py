@@ -1,5 +1,10 @@
 #!/usr/bin/python
 # coding: utf8
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from openerp import fields, models, api, _
 from openerp.exceptions import ValidationError
 from datetime import datetime

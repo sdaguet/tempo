@@ -293,7 +293,7 @@ class TmpArticle(models.Model):
                 # 'uom_id': 1,
                 # 'property_account_income_id': False,
                 # 'description_purchase': False,
-                'N_Article': n_article_0,  # N_Article
+                'n_article': n_article_0,  # N_Article
                 # 'message_ids': False,
                 'sale_ok': True,
                 # 'item_ids': [],
@@ -342,6 +342,9 @@ class TmpArticle(models.Model):
             # _logger.info("mapping minimum Términé: %.2f " %(ec3) )
             #
             # timestamp7 = time.time()
+
+            print "n_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            print valuesp.get('n_article')
 
             #pour les attributs
             obj_template = self.env['product.template'].search([('libelle_commercial','=',libell_commercial_20)])
@@ -508,8 +511,12 @@ class TmpArticle(models.Model):
                 _logger.info("create(self, values): %r " %(last))
 				
             else :
-                #print "iciiiiiiiiiii creation"
+                print "iciiiiiiiiiii creation"
+                print "n_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa creas"
+                print valuesp.get('n_article')
                 self.env['product.template'].create(valuesp)
+
+
 
             # timestamp8 = time.time()
             # ec4 = timestamp8 - timestamp7
