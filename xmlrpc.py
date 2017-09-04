@@ -62,6 +62,7 @@ for tva_file in ["art.csv"]:
         modl = 'tmparticle'
         fild_cxt = 'n_article'
         modl_std = 'product.product'
+        modl_std_p = 'product.template'
         fild_tmp_cxt = 'n_article_0'
 
     for row in reader:
@@ -96,9 +97,14 @@ for tva_file in ["art.csv"]:
                     db, uid, password,
                     modl_std, 'search_read',
                     [[(fild_cxt, '=', row[0])]],{'limit': 10,'fields': ['id']})
+                if modl == 'tmparticle':
+                    filds_exist_p = models.execute_kw(
+                        db, uid, password,
+                        modl_std_p, 'search_read',
+                        [[(fild_cxt, '=', row[0])]],{'limit': 10,'fields': ['id']})
                 print "ici search"
                 print filds_exist
-                if filds_exist:
+                if filds_exist or filds_exist_p:
                     filds_exist_tmp = models.execute_kw(
                         db, uid, password,
                         modl, 'search_read',

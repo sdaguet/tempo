@@ -156,17 +156,18 @@ class product(models.Model):
     @api.multi
     @api.depends('barcode','active','importe')
     def _compute_actif(self):
-        bc = self.barcode
-        print "barcode"
-        print bc
-        imp = self.importe
-        print "imp"
-        print imp
-        if imp:
-            if bc == False or bc == '' or bc == ' ' :
-                self.active = False
-            else:
-                self.active = True
+        for s in self:
+            bc = s.barcode
+            print "barcode"
+            print bc
+            imp = s.importe
+            print "imp"
+            print imp
+            if imp:
+                if bc == False or bc == '' or bc == ' ' :
+                    s.active = False
+                else:
+                    s.active = True
 
     @api.multi
     @api.depends('name_puthod','name')

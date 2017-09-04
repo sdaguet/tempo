@@ -541,6 +541,268 @@ class TmpArticle(models.Model):
 
             return record
 
+    @api.multi
+    def write(self, values):
+        print "values"
+        print values
+
+        record = super(TmpArticle, self).write(values)
+
+        print "values"
+        print values
+
+        obj_product = self.env['product.product'].search([('barcode', '=', False), ('importe', '=', True)])
+        if obj_product:
+            print "ici active not"
+            for op in obj_product:
+                print "oooooooooooooooooop"
+                print op
+                op.write({'active': False, })
+        # attributs id
+        xml_genre = self.env.ref("darb_puthod.product_attribute_genre")
+        xml_espece = self.env.ref("darb_puthod.product_attribute_espece")
+        xml_variete = self.env.ref("darb_puthod.product_attribute_variete")
+        xml_taille = self.env.ref("darb_puthod.product_attribute_taille")
+        xml_taille_bis = self.env.ref("darb_puthod.product_attribute_taille_bis")
+        xml_type_de_feuillage = self.env.ref("darb_puthod.product_attribute_type_de_feuillage")
+        xml_critere_7 = self.env.ref("darb_puthod.product_attribute_critere_7")
+        xml_critere_8 = self.env.ref("darb_puthod.product_attribute_critere_8")
+        xml_critere_9 = self.env.ref("darb_puthod.product_attribute_critere_9")
+        xml_nom_francais = self.env.ref("darb_puthod.product_attribute_nom_francais")
+        xml_modele_etiquette = self.env.ref("darb_puthod.product_attribute_modele_etiquette")
+        xml_hauteur_mm = self.env.ref("darb_puthod.product_attribute_hauteur_mm")
+        xml_poids_brut = self.env.ref("darb_puthod.product_attribute_poids_brut")
+        xml_ca_n = self.env.ref("darb_puthod.product_attribute_ca_n")
+        xml_ca_n_1 = self.env.ref("darb_puthod.product_attribute_ca_n_1")
+        xml_ca_n_2 = self.env.ref("darb_puthod.product_attribute_ca_n_2")
+        xml_qte_n = self.env.ref("darb_puthod.product_attribute_qte_n")
+        xml_qte_n_1 = self.env.ref("darb_puthod.product_attribute_qte_n_1")
+        xml_qte_n_2 = self.env.ref("darb_puthod.product_attribute_qte_n_2")
+        xml_critere_18 = self.env.ref("darb_puthod.product_attribute_critere_18")
+        xml_sous_famille_article = self.env.ref("darb_puthod.product_attribute_sous_famille_article")
+        xml_pays_d_origine = self.env.ref("darb_puthod.product_attribute_pays_d_origine")
+        xml_fourn_principal = self.env.ref("darb_puthod.product_attribute_fourn_principal")
+
+        # attribute values
+
+        genre = self.is_empty_char(values.get('genre_3'))
+        espece = self.is_empty_char(values.get('espece_4'))
+        variete = self.is_empty_char(values.get('variete_5'))
+        taille = self.is_empty_char(values.get('taille_10'))
+        taille_bis = self.is_empty_char(values.get('_taille_11'))
+        type_de_feuillage = self.is_empty_char(values.get('type_de_feuillage_14'))
+        critere_7 = self.is_empty_char(values.get('crit_re_7_17'))
+        critere_8 = self.is_empty_char(values.get('crit_re_8_18'))
+        critere_9 = self.is_empty_char(values.get('crit_re_9_19'))
+        nom_francais = self.is_empty_char(values.get('nom_fran_ais_21'))
+        modele_etiquette = self.is_empty_char(values.get('mod_le_tiquette_23'))
+        hauteur_mm = self.is_empty_char(values.get('hauteur_mm_28'))
+        poids_brut = self.is_empty_char(values.get('poids_brut_29'))
+        ca_n = self.is_empty_char(values.get('ca_n_33'))
+        ca_n_1 = self.is_empty_char(values.get('ca_n_1_34'))
+        ca_n_2 = self.is_empty_char(values.get('ca_n_2_35'))
+        qte_n = self.is_empty_char(values.get('qt_n_36'))
+        qte_n_1 = self.is_empty_char(values.get('qt_n_1_37'))
+        qte_n_2 = self.is_empty_char(values.get('qt_n_2_38'))
+        critere_18 = self.is_empty_char(values.get('crit_re_18_55'))
+        sous_famille_article = self.is_empty_char(values.get('sous_famille_article_59'))
+        pays_d_origine = self.is_empty_char(values.get('pays_d_origine_60'))
+        fourn_principal = self.is_empty_char(values.get('fourn_principal_83'))
+
+        # check values or create
+        value_genre = self.check_value(genre, xml_genre)
+        value_fourn_principal = self.check_value(fourn_principal, xml_fourn_principal)
+        value_pays_d_origine = self.check_value(pays_d_origine, xml_pays_d_origine)
+        value_sous_famille_article = self.check_value(sous_famille_article, xml_sous_famille_article)
+        value_qte_n = self.check_value(qte_n, xml_qte_n)
+        value_qte_n_1 = self.check_value(qte_n_1, xml_qte_n_1)
+        value_qte_n_2 = self.check_value(qte_n_2, xml_qte_n_2)
+        value_ca_n = self.check_value(ca_n, xml_ca_n)
+        value_ca_n_1 = self.check_value(ca_n_1, xml_ca_n_1)
+        value_ca_n_2 = self.check_value(ca_n_2, xml_ca_n_2)
+        value_poids_brut = self.check_value(poids_brut, xml_poids_brut)
+        value_hauteur_mm = self.check_value(hauteur_mm, xml_hauteur_mm)
+        value_modele_etiquette = self.check_value(modele_etiquette, xml_modele_etiquette)
+        value_nom_francais = self.check_value(nom_francais, xml_nom_francais)
+        value_critere_7 = self.check_value(critere_7, xml_critere_7)
+        value_critere_8 = self.check_value(critere_8, xml_critere_8)
+        value_critere_18 = self.check_value(critere_18, xml_critere_18)
+        value_critere_9 = self.check_value(critere_9, xml_critere_9)
+        value_type_de_feuillage = self.check_value(type_de_feuillage, xml_type_de_feuillage)
+        value_taille_bis = self.check_value(taille_bis, xml_taille_bis)
+        value_taille = self.check_value(taille, xml_taille)
+        value_variete = self.check_value(variete, xml_variete)
+        value_espece = self.check_value(espece, xml_espece)
+
+        nom_fran_ais_21 = self.is_empty_char(values.get('nom_fran_ais_21'))
+        libell_commercial_20 = self.is_empty_char(values.get('libell_commercial_20'))
+        _taille_11 = self.is_empty_char(values.get('_taille_11'))
+        famille_12 = self.is_empty_char(values.get('famille_12'))
+
+        prix_etiquette_24 = self.is_empty_float(values.get('prix_etiquette_24'))
+        poids_brut_29 = self.is_empty_float(values.get('poids_brut_29'))
+
+        code_barre_2 = self.is_empty_char(values.get('code_barre_2'))
+        code_article_1 = self.is_empty_char(values.get('code_article_1'))
+        n_article_0 = self.is_empty_char(values.get('n_article_0'))
+        marque_savoie_7 = self.is_empty_char(values.get('marque_savoie_7'))
+
+        TVA = self.is_empty_float(values.get('tva_27'))
+        taxe_id = []
+
+        if TVA == 4:
+            taxe_id = self.env['account.tax'].search([('amount', '=', '10')]).ids
+        elif TVA == 2:
+            taxe_id = self.env['account.tax'].search([('amount', '=', '20')]).ids
+
+            #dict product template
+
+            valuesp = {
+                # 'warranty': 0,
+                # 'message_follower_ids': False,
+                # 'property_account_creditor_price_difference': False,
+                # 'standard_price': 0,
+                'attribute_line_ids': [[0, False, {u'attribute_id': xml_genre.id, u'value_ids': value_genre[0]}],
+                                       [0, False, {u'attribute_id': xml_espece.id, u'value_ids': value_espece[0]}],
+                                       [0, False, {u'attribute_id': xml_variete.id, u'value_ids': value_variete[0]}],
+                                       # [0, False, {u'attribute_id': xml_taille.id, u'value_ids': value_taille[0]}],
+                                       [0, False,
+                                        {u'attribute_id': xml_taille_bis.id, u'value_ids': value_taille_bis[0]}],
+                                       # [0, False, {u'attribute_id': xml_type_de_feuillage.id, u'value_ids': value_type_de_feuillage[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_7.id, u'value_ids': value_critere_7[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_8.id, u'value_ids': value_critere_8[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_9.id, u'value_ids': value_critere_9[0]}],
+                                       # [0, False, {u'attribute_id': xml_nom_francais.id, u'value_ids': value_nom_francais[0]}],
+                                       # [0, False, {u'attribute_id': xml_modele_etiquette.id, u'value_ids': value_modele_etiquette[0]}],
+                                       # [0, False, {u'attribute_id': xml_hauteur_mm.id, u'value_ids': value_hauteur_mm[0]}],
+                                       # [0, False, {u'attribute_id': xml_poids_brut.id, u'value_ids': value_poids_brut[0]}],
+                                       # [0, False, {u'attribute_id': xml_ca_n.id, u'value_ids': value_ca_n[0]}],
+                                       # [0, False, {u'attribute_id': xml_ca_n_1.id, u'value_ids': value_ca_n_1[0]}],
+                                       # [0, False, {u'attribute_id': xml_ca_n_2.id, u'value_ids': value_ca_n_2[0]}],
+                                       # [0, False, {u'attribute_id': xml_qte_n.id, u'value_ids': value_qte_n[0]}],
+                                       # [0, False, {u'attribute_id': xml_qte_n_1.id, u'value_ids': value_qte_n_1[0]}],
+                                       # [0, False, {u'attribute_id': xml_qte_n_2.id, u'value_ids': value_qte_n_2[0]}],
+                                       # [0, False, {u'attribute_id': xml_critere_18.id, u'value_ids': value_critere_18[0]}],
+                                       # [0, False, {u'attribute_id': xml_sous_famille_article.id, u'value_ids': value_sous_famille_article[0]}],
+                                       # [0, False, {u'attribute_id': xml_pays_d_origine.id, u'value_ids': value_pays_d_origine[0]}],
+                                       # [0, False, {u'attribute_id': xml_fourn_principal.id, u'value_ids': value_fourn_principal[0]}],
+                                       ],  # attributes
+                # 'uom_id': 1,
+                # 'property_account_income_id': False,
+                # 'description_purchase': False,
+                'n_article': n_article_0,  # N_Article
+                # 'message_ids': False,
+                'sale_ok': True,
+                # 'item_ids': [],
+                # 'description_picking': False,
+                # 'purchase_method': 'receive',
+                'purchase_ok': True,
+                # 'sale_delay': 7,
+                # 'company_id': 1,
+                # 'property_valuation': False,
+                'track_service': 'manual',
+                # 'uom_po_id': 1,
+                # 'property_cost_method': False,
+                'type': u'consu',
+                # 'property_stock_account_input': False,
+                # 'property_stock_production': 7,
+                # 'supplier_taxes_id': [[6, False, [11]]],
+                'volume': 0,
+                # 'route_ids': [[6, False, [8]]],
+                'tracking': u'none',
+                # 'description_sale': False,
+                'active': True,
+                # 'property_stock_inventory': 5,
+                # 'cost_method': False,
+                # 'valuation': False,
+                # 'image_medium': False,
+                'name': libell_commercial_20,  # name
+                # 'property_account_expense_id': False,
+                'famille': famille_12,
+                'libelle_commercial': libell_commercial_20,
+                # 'categ_id': categ,
+                'packaging_ids': [],
+                'invoice_policy': u'delivery',
+                'taxes_id': [[6, False, taxe_id]],
+                # 'property_stock_account_output': False,
+                'seller_ids': [],
+                'default_code': code_article_1,
+                'list_price': prix_etiquette_24,  # Prix_Etiquette
+                'barcode': code_barre_2,  # Code_Barre
+                'weight': poids_brut_29,  # Poids_Brut
+                'importe': True,
+            }
+
+            obj_trmplate_write = self.env['product.template'].search([('n_article', '=', n_article_0)])
+            if obj_trmplate_write:
+                obj_trmplate_write.write(valuesp)
+            else:
+                print "product template write not"
+
+
+            # dict product product
+
+            valuespp = {
+                # 'warranty': 0,
+                # 'message_follower_ids': False,
+                # 'property_account_creditor_price_difference': False,
+                # 'standard_price': 0,
+                # 'attribute_line_ids': [],
+                # 'uom_id': 1,
+                # 'property_account_income_id': False,
+                # 'description_purchase': False,
+                'n_article': n_article_0,  # N_Article
+                # 'message_ids': False,
+                'sale_ok': True,
+                # 'item_ids': [],
+                # 'description_picking': False,
+                # 'purchase_method': 'receive',
+                'purchase_ok': True,
+                # 'sale_delay': 7,
+                # 'company_id': 1,
+                # 'property_valuation': False,
+                'track_service': 'manual',
+                # 'uom_po_id': 1,
+                # 'property_cost_method': False,
+                'type': u'consu',
+                # 'property_stock_account_input': False,
+                # 'property_stock_production': 7,
+                # 'supplier_taxes_id': [[6, False, [11]]],
+                'volume': 0,
+                # 'route_ids': [[6, False, [8]]],
+                'tracking': u'none',
+                # 'description_sale': False,
+                'active': True,
+                # 'property_stock_inventory': 5,
+                # 'cost_method': False,
+                # 'valuation': False,
+                # 'image_medium': False,
+                'name_puthod': libell_commercial_20 + " " + _taille_11 + " - " + nom_fran_ais_21,  # name
+                # 'property_account_expense_id': False,
+                'famille_p': famille_12,
+                # 'categ_id': categ,
+                'packaging_ids': [],
+                'invoice_policy': u'delivery',
+                'taxes_id': [[6, False, taxe_id]],
+                # 'property_stock_account_output': False,
+                'seller_ids': [],
+                'lst_price': prix_etiquette_24,  # Prix_Etiquette
+                'barcode': code_barre_2,  # Code_Barre
+                'weight': poids_brut_29,  # Poids_Brut
+                'default_code': code_article_1,
+                # 'importe' : True,
+                'marque_savoie': marque_savoie_7,
+            }
+
+            obj_product_write = self.env['product.product'].search([('n_article', '=', n_article_0)])
+            if obj_product_write:
+                obj_product_write.write(valuespp)
+            else:
+                print "product product write not"
+                print n_article_0
+
+        return record
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -565,6 +827,7 @@ class ProductProduct(models.Model):
         _logger.info("create(self, values): %r " %(record))
 
         return record
+
 
 
 class Partner(models.Model):
